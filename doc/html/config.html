@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Configuration &#8212; phpMyAdmin 4.8.3 documentation</title>
+    <title>Configuration &#8212; phpMyAdmin 4.8.4 documentation</title>
     
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '4.8.3',
+        VERSION:     '4.8.4',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,7 +26,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="copyright" title="Copyright" href="copyright.html" />
-    <link rel="top" title="phpMyAdmin 4.8.3 documentation" href="index.html" />
+    <link rel="top" title="phpMyAdmin 4.8.4 documentation" href="index.html" />
     <link rel="next" title="User Guide" href="user.html" />
     <link rel="prev" title="Installation" href="setup.html" /> 
   </head>
@@ -43,7 +43,7 @@
         <li class="right" >
           <a href="setup.html" title="Installation"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">phpMyAdmin 4.8.3 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">phpMyAdmin 4.8.4 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -1960,6 +1960,24 @@ system, the following work:</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xx[yyy-zzz]</span></code> (partial <a class="reference internal" href="glossary.html#term-ipv6"><span class="xref std std-term">IPv6</span></a> address range)</li>
 </ul>
+<p>Examples:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>$cfg[&#39;Servers&#39;][$i][&#39;AllowDeny&#39;][&#39;order&#39;] = &#39;allow,deny&#39;;
+$cfg[&#39;Servers&#39;][$i][&#39;AllowDeny&#39;][&#39;rules&#39;] = array(&#39;allow bob from all&#39;);
+// Allow only &#39;bob&#39; to connect from any host
+
+$cfg[&#39;Servers&#39;][$i][&#39;AllowDeny&#39;][&#39;order&#39;] = &#39;allow,deny&#39;;
+$cfg[&#39;Servers&#39;][$i][&#39;AllowDeny&#39;][&#39;rules&#39;] = array(&#39;allow mary from 192.168.100.[50-100]&#39;);
+// Allow only &#39;mary&#39; to connect from host 192.168.100.50 through 192.168.100.100
+
+$cfg[&#39;Servers&#39;][$i][&#39;AllowDeny&#39;][&#39;order&#39;] = &#39;allow,deny&#39;;
+$cfg[&#39;Servers&#39;][$i][&#39;AllowDeny&#39;][&#39;rules&#39;] = array(&#39;allow % from 192.168.[5-6].10&#39;);
+// Allow any user to connect from host 192.168.5.10 or 192.168.6.10
+
+$cfg[&#39;Servers&#39;][$i][&#39;AllowDeny&#39;][&#39;order&#39;] = &#39;allow,deny&#39;;
+$cfg[&#39;Servers&#39;][$i][&#39;AllowDeny&#39;][&#39;rules&#39;] = array(&#39;allow root from 192.168.5.50&#39;,&#39;allow % from 192.168.6.10&#39;);
+// Allow any user to connect from 192.168.6.10, and additionally allow root to connect from 192.168.5.50
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="option">
@@ -6181,7 +6199,7 @@ server certificates and tell phpMyAdmin to use them:</p>
         <li class="right" >
           <a href="setup.html" title="Installation"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">phpMyAdmin 4.8.3 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">phpMyAdmin 4.8.4 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
