@@ -121,5 +121,61 @@
 				"imported": false
 			}
 		]
+	},
+	{
+		"major": 4,
+		"minor": 7,
+		"versions": [
+			{
+				"patch": 0,
+				"name": "4.7.0",
+				"imported": false
+			},
+			{
+				"patch": 1,
+				"name": "4.7.1",
+				"imported": false
+			},
+			{
+				"patch": 2,
+				"name": "4.7.2",
+				"imported": false
+			},
+			{
+				"patch": 3,
+				"name": "4.7.3",
+				"imported": false
+			},
+			{
+				"patch": 4,
+				"name": "4.7.4",
+				"imported": false
+			},
+			{
+				"patch": 5,
+				"name": "4.7.5",
+				"imported": false
+			},
+			{
+				"patch": 6,
+				"name": "4.7.6",
+				"imported": false
+			},
+			{
+				"patch": 7,
+				"name": "4.7.7",
+				"imported": false
+			},
+			{
+				"patch": 8,
+				"name": "4.7.8",
+				"imported": false
+			},
+			{
+				"patch": 9,
+				"name": "4.7.9",
+				"imported": false
+			}
+		]
 	}
 ]
