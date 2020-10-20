@@ -9,6 +9,8 @@ namespace PhpMyAdmin\SqlParser\Utils;
 use PhpMyAdmin\SqlParser\Lexer;
 use PhpMyAdmin\SqlParser\Token;
 use PhpMyAdmin\SqlParser\TokensList;
+use function count;
+use function strcasecmp;
 
 /**
  * Token utilities.
@@ -53,13 +55,8 @@ class Tokens
         }
 
         // Flags.
-        if (isset($pattern['flags'])
-            && (($pattern['flags'] & $token->flags) === 0)
-        ) {
-            return false;
-        }
-
-        return true;
+        return ! isset($pattern['flags'])
+            || (! (($pattern['flags'] & $token->flags) === 0));
     }
 
     public static function replaceTokens($list, array $find, array $replace)

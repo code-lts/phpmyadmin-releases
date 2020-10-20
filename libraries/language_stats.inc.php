@@ -7,7 +7,7 @@
 $GLOBALS['language_stats'] = [
     'af' => 8,
     'am' => 0,
-    'ar' => 47,
+    'ar' => 49,
     'az' => 49,
     'be' => 61,
     'be@latin' => 20,
@@ -77,7 +77,7 @@ $GLOBALS['language_stats'] = [
     'sl' => 100,
     'sq' => 95,
     'sr' => 20,
-    'sr@latin' => 41,
+    'sr@latin' => 49,
     'sv' => 89,
     'ta' => 33,
     'te' => 7,

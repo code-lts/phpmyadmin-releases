@@ -11,6 +11,8 @@ use PhpMyAdmin\SqlParser\Parser;
 use PhpMyAdmin\SqlParser\Statement;
 use PhpMyAdmin\SqlParser\Token;
 use PhpMyAdmin\SqlParser\TokensList;
+use function in_array;
+use function trim;
 
 /**
  * `PURGE` statement.
@@ -48,6 +50,7 @@ class PurgeStatement extends Statement
     {
         $ret = 'PURGE ' . $this->log_type . ' LOGS '
             . ($this->end_option !== null ? ($this->end_option . ' ' . $this->end_expr) : '');
+
         return trim($ret);
     }
 
@@ -106,12 +109,13 @@ class PurgeStatement extends Statement
                     $parser->error('Unexpected token.', $token);
                     break;
             }
+
             $state++;
             $prevToken = $token;
         }
 
         // Only one possible end state
-        if ($state != 4) {
+        if ($state !== 4) {
             $parser->error('Unexpected token.', $prevToken);
         }
     }
@@ -134,6 +138,7 @@ class PurgeStatement extends Statement
         } else {
             $parser->error('Unexpected token.', $token);
         }
+
         return null;
     }
 }

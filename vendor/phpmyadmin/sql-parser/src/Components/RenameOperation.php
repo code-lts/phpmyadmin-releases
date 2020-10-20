@@ -10,6 +10,8 @@ use PhpMyAdmin\SqlParser\Component;
 use PhpMyAdmin\SqlParser\Parser;
 use PhpMyAdmin\SqlParser\Token;
 use PhpMyAdmin\SqlParser\TokensList;
+use function implode;
+use function is_array;
 
 /**
  * `RENAME TABLE` keyword parser.
@@ -104,6 +106,7 @@ class RenameOperation extends Component
                         $token
                     );
                 }
+
                 $state = 1;
             } elseif ($state === 1) {
                 if ($token->type === Token::TYPE_KEYWORD && $token->keyword === 'TO') {
@@ -130,6 +133,7 @@ class RenameOperation extends Component
                         $token
                     );
                 }
+
                 $state = 3;
             } elseif ($state === 3) {
                 if (($token->type === Token::TYPE_OPERATOR) && ($token->value === ',')) {
