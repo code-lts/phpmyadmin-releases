@@ -6,9 +6,9 @@ phpMyAdmin releases into GIT
 
 ### By version
 
-- `upstream/version/latest-all-languages/{VERSION}` Each "all languages" phpMyAdmin version.
-- `upstream/version/latest-english/{VERSION}` Each "english" phpMyAdmin version.
-- `upstream/version/latest-source/{VERSION}` Each "source" phpMyAdmin version.
+- `upstream/version/all-languages/{VERSION}` Each "all languages" phpMyAdmin version.
+- `upstream/version/english/{VERSION}` Each "english" phpMyAdmin version.
+- `upstream/version/source/{VERSION}` Each "source" phpMyAdmin version.
 
 ## Branches spec
 
