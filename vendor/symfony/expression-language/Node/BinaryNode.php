@@ -20,24 +20,24 @@ use Symfony\Component\ExpressionLanguage\Compiler;
  */
 class BinaryNode extends Node
 {
-    private static $operators = [
+    private static $operators = array(
         '~' => '.',
         'and' => '&&',
         'or' => '||',
-    ];
+    );
 
-    private static $functions = [
+    private static $functions = array(
         '**' => 'pow',
         '..' => 'range',
         'in' => 'in_array',
         'not in' => '!in_array',
-    ];
+    );
 
     public function __construct($operator, Node $left, Node $right)
     {
         parent::__construct(
-            ['left' => $left, 'right' => $right],
-            ['operator' => $operator]
+            array('left' => $left, 'right' => $right),
+            array('operator' => $operator)
         );
     }
 
@@ -147,24 +147,11 @@ class BinaryNode extends Node
             case '*':
                 return $left * $right;
             case '/':
-                if (0 == $right) {
-                    throw new \DivisionByZeroError('Division by zero.');
-                }
-
                 return $left / $right;
             case '%':
-                if (0 == $right) {
-                    throw new \DivisionByZeroError('Modulo by zero.');
-                }
-
                 return $left % $right;
             case 'matches':
                 return preg_match($right, $left);
         }
-    }
-
-    public function toArray()
-    {
-        return ['(', $this->nodes['left'], ' '.$this->attributes['operator'].' ', $this->nodes['right'], ')'];
     }
 }
