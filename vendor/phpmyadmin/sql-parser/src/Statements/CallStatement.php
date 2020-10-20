@@ -17,10 +17,6 @@ use PhpMyAdmin\SqlParser\Statement;
  * or
  *
  * CALL sp_name[()]
- *
- * @category   Statements
- *
- * @license    https://www.gnu.org/licenses/gpl-2.0.txt GPL-2.0+
  */
 class CallStatement extends Statement
 {
@@ -38,6 +34,6 @@ class CallStatement extends Statement
      */
     public function build()
     {
-        return "CALL " . $this->call->name . "(" . ($this->call->parameters ? implode(",", $this->call->parameters->raw) : "") . ")";
+        return 'CALL ' . $this->call->name . '(' . ($this->call->parameters ? implode(',', $this->call->parameters->raw) : '') . ')';
     }
 }

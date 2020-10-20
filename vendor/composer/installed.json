@@ -364,17 +364,17 @@
     },
     {
         "name": "phpmyadmin/sql-parser",
-        "version": "5.1.0",
-        "version_normalized": "5.1.0.0",
+        "version": "5.2.0",
+        "version_normalized": "5.2.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/phpmyadmin/sql-parser.git",
-            "reference": "33e531b0dddbbf75a55c830b2186ae7287e99a58"
+            "reference": "bddaf056f8f43621e94b29284c98f35db8b6d93e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/phpmyadmin/sql-parser/zipball/33e531b0dddbbf75a55c830b2186ae7287e99a58",
-            "reference": "33e531b0dddbbf75a55c830b2186ae7287e99a58",
+            "url": "https://api.github.com/repos/phpmyadmin/sql-parser/zipball/bddaf056f8f43621e94b29284c98f35db8b6d93e",
+            "reference": "bddaf056f8f43621e94b29284c98f35db8b6d93e",
             "shasum": ""
         },
         "require": {
@@ -386,15 +386,18 @@
         },
         "require-dev": {
             "phpmyadmin/coding-standard": "^1.0",
+            "phpmyadmin/motranslator": "^4.0",
+            "phpstan/extension-installer": "^1.0",
+            "phpstan/phpstan": "^0.12.3",
+            "phpstan/phpstan-phpunit": "^0.12.1",
             "phpunit/php-code-coverage": "*",
-            "phpunit/phpunit": "^7.4 || ^8",
-            "sami/sami": "^4.0"
+            "phpunit/phpunit": "^7.4 || ^8"
         },
         "suggest": {
             "ext-mbstring": "For best performance",
             "phpmyadmin/motranslator": "Translate messages to your favorite locale"
         },
-        "time": "2019-11-12T13:34:35+00:00",
+        "time": "2020-01-07T23:24:46+00:00",
         "bin": [
             "bin/highlight-query",
             "bin/lint-query",
@@ -1753,17 +1756,17 @@
     },
     {
         "name": "twig/twig",
-        "version": "v2.12.2",
-        "version_normalized": "2.12.2.0",
+        "version": "v2.12.3",
+        "version_normalized": "2.12.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/twigphp/Twig.git",
-            "reference": "d761fd1f1c6b867ae09a7d8119a6d95d06dc44ed"
+            "reference": "97b6311585cae66a26833b14b33785f5797f7d39"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/twigphp/Twig/zipball/d761fd1f1c6b867ae09a7d8119a6d95d06dc44ed",
-            "reference": "d761fd1f1c6b867ae09a7d8119a6d95d06dc44ed",
+            "url": "https://api.github.com/repos/twigphp/Twig/zipball/97b6311585cae66a26833b14b33785f5797f7d39",
+            "reference": "97b6311585cae66a26833b14b33785f5797f7d39",
             "shasum": ""
         },
         "require": {
@@ -1773,10 +1776,9 @@
         },
         "require-dev": {
             "psr/container": "^1.0",
-            "symfony/debug": "^3.4|^4.2",
-            "symfony/phpunit-bridge": "^4.4@dev|^5.0"
+            "symfony/phpunit-bridge": "^4.4|^5.0"
         },
-        "time": "2019-11-11T16:52:09+00:00",
+        "time": "2019-12-28T07:12:03+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1805,7 +1807,6 @@
             },
             {
                 "name": "Twig Team",
-                "homepage": "https://twig.symfony.com/contributors",
                 "role": "Contributors"
             },
             {

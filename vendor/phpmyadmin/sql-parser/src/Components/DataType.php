@@ -13,10 +13,6 @@ use PhpMyAdmin\SqlParser\TokensList;
 
 /**
  * Parses a data type.
- *
- * @category   Components
- *
- * @license    https://www.gnu.org/licenses/gpl-2.0.txt GPL-2.0+
  */
 class DataType extends Component
 {
@@ -73,8 +69,6 @@ class DataType extends Component
     public $options;
 
     /**
-     * Constructor.
-     *
      * @param string       $name       the name of this data type
      * @param array        $parameters the parameters (size or possible values)
      * @param OptionsArray $options    the options of this data type
@@ -94,7 +88,7 @@ class DataType extends Component
      * @param TokensList $list    the list of tokens that are being parsed
      * @param array      $options parameters for parsing
      *
-     * @return DataType
+     * @return DataType|null
      */
     public static function parse(Parser $parser, TokensList $list, array $options = [])
     {
@@ -136,7 +130,7 @@ class DataType extends Component
                 if (($token->type === Token::TYPE_OPERATOR) && ($token->value === '(')) {
                     $parameters = ArrayObj::parse($parser, $list);
                     ++$list->idx;
-                    $ret->parameters = (($ret->name === 'ENUM') || ($ret->name === 'SET')) ?
+                    $ret->parameters = ($ret->name === 'ENUM') || ($ret->name === 'SET') ?
                         $parameters->raw : $parameters->values;
                 }
                 $ret->options = OptionsArray::parse($parser, $list, static::$DATA_TYPE_OPTIONS);

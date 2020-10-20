@@ -13,10 +13,6 @@ use PhpMyAdmin\SqlParser\TokensList;
 
 /**
  * `LIMIT` keyword parser.
- *
- * @category   Keywords
- *
- * @license    https://www.gnu.org/licenses/gpl-2.0.txt GPL-2.0+
  */
 class Limit extends Component
 {
@@ -35,8 +31,6 @@ class Limit extends Component
     public $rowCount;
 
     /**
-     * Constructor.
-     *
      * @param int $rowCount the row count
      * @param int $offset   the offset
      */
@@ -93,6 +87,11 @@ class Limit extends Component
                 $ret->offset = $ret->rowCount;
                 $ret->rowCount = 0;
                 continue;
+            }
+
+            // Skip if not a number
+            if (($token->type !== Token::TYPE_NUMBER)) {
+                break;
             }
 
             if ($offset) {

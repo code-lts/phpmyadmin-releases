@@ -35,10 +35,6 @@ use PhpMyAdmin\SqlParser\TokensList;
 
 /**
  * Statement utilities.
- *
- * @category   Statement
- *
- * @license    https://www.gnu.org/licenses/gpl-2.0.txt GPL-2.0+
  */
 class Query
 {
@@ -441,7 +437,7 @@ class Query
                     } else {
                         $arr = [
                             $expr->table,
-                            (isset($expr->database) && ($expr->database !== '')) ?
+                            isset($expr->database) && ($expr->database !== '') ?
                                 $expr->database : null,
                         ];
                     }
@@ -461,7 +457,7 @@ class Query
                     if (isset($expr->table) && ($expr->table !== '')) {
                         $arr = [
                             $expr->table,
-                            (isset($expr->database) && ($expr->database !== '')) ?
+                            isset($expr->database) && ($expr->database !== '') ?
                                 $expr->database : null,
                         ];
                         if (! in_array($arr, $ret['select_tables'])) {
@@ -591,7 +587,7 @@ class Query
          *
          * @var int
          */
-        $clauseIdx = $clauses[$clauseType];
+        $clauseIdx = isset($clauses[$clauseType]) ? $clauses[$clauseType] : -1;
 
         $firstClauseIdx = $clauseIdx;
         $lastClauseIdx = $clauseIdx;
@@ -698,7 +694,7 @@ class Query
      * @param Statement  $statement the parsed query that has to be modified
      * @param TokensList $list      the list of tokens
      * @param array      $ops       Clauses to be replaced. Contains multiple
-     *                              arrays having two values: array($old, $new).
+     *                              arrays having two values: [$old, $new].
      *                              Clauses must be sorted.
      *
      * @return string

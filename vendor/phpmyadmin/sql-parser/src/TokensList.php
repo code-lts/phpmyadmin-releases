@@ -6,14 +6,12 @@ declare(strict_types=1);
 
 namespace PhpMyAdmin\SqlParser;
 
+use ArrayAccess;
+
 /**
  * A structure representing a list of tokens.
- *
- * @category Tokens
- *
- * @license  https://www.gnu.org/licenses/gpl-2.0.txt GPL-2.0+
  */
-class TokensList implements \ArrayAccess
+class TokensList implements ArrayAccess
 {
     /**
      * The array of tokens.
@@ -37,8 +35,6 @@ class TokensList implements \ArrayAccess
     public $idx = 0;
 
     /**
-     * Constructor.
-     *
      * @param array $tokens the initial array of tokens
      * @param int   $count  the count of tokens in the initial array
      */
@@ -93,7 +89,7 @@ class TokensList implements \ArrayAccess
      * Gets the next token. Skips any irrelevant token (whitespaces and
      * comments).
      *
-     * @return Token
+     * @return Token|null
      */
     public function getNext()
     {
@@ -113,7 +109,7 @@ class TokensList implements \ArrayAccess
      *
      * @param int $type the type
      *
-     * @return Token
+     * @return Token|null
      */
     public function getNextOfType($type)
     {
@@ -132,7 +128,7 @@ class TokensList implements \ArrayAccess
      * @param int    $type  the type of the token
      * @param string $value the value of the token
      *
-     * @return Token
+     * @return Token|null
      */
     public function getNextOfTypeAndValue($type, $value)
     {

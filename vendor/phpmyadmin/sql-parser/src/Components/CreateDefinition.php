@@ -18,10 +18,6 @@ use PhpMyAdmin\SqlParser\TokensList;
  * Parses the create definition of a column or a key.
  *
  * Used for parsing `CREATE TABLE` statement.
- *
- * @category   Components
- *
- * @license    https://www.gnu.org/licenses/gpl-2.0.txt GPL-2.0+
  */
 class CreateDefinition extends Component
 {
@@ -84,7 +80,7 @@ class CreateDefinition extends Component
             12,
             'expr',
             ['parenthesesDelimited' => true],
-        ]
+        ],
         // Common entries.
         //
         // NOTE: Some of the common options are not in the same order which
@@ -94,7 +90,7 @@ class CreateDefinition extends Component
         //
         // 'UNIQUE'                        => 4,
         // 'UNIQUE KEY'                    => 4,
-        // 'COMMENT'                       => array(5, 'var'),
+        // 'COMMENT'                       => [5, 'var'],
         // 'NOT NULL'                      => 1,
         // 'NULL'                          => 1,
         // 'PRIMARY'                       => 4,
@@ -144,8 +140,6 @@ class CreateDefinition extends Component
     public $options;
 
     /**
-     * Constructor.
-     *
      * @param string       $name         the name of the field
      * @param OptionsArray $options      the options of this field
      * @param DataType|Key $type         the data type of this field or the key

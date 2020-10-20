@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>FAQ - Frequently Asked Questions &#8212; phpMyAdmin 5.0.0 documentation</title>
+    <title>FAQ - Frequently Asked Questions &#8212; phpMyAdmin 5.0.1 documentation</title>
     
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '5.0.0',
+        VERSION:     '5.0.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,7 +26,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="copyright" title="Copyright" href="copyright.html" />
-    <link rel="top" title="phpMyAdmin 5.0.0 documentation" href="index.html" />
+    <link rel="top" title="phpMyAdmin 5.0.1 documentation" href="index.html" />
     <link rel="next" title="Developers Information" href="developers.html" />
     <link rel="prev" title="Other sources of information" href="other.html" /> 
   </head>
@@ -43,7 +43,7 @@
         <li class="right" >
           <a href="other.html" title="Other sources of information"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">phpMyAdmin 5.0.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">phpMyAdmin 5.0.1 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -579,6 +579,26 @@ A list of files and corresponding functionality which degrade gracefully when re
 <li><code class="file docutils literal"><span class="pre">./sql/</span></code> (SQL scripts to configure advanced functionality)</li>
 <li><code class="file docutils literal"><span class="pre">./js/vendor/openlayers/</span></code> (GIS visualization)</li>
 </ul>
+</div>
+<div class="section" id="i-get-an-error-message-about-unknown-authentication-method-caching-sha2-password-when-trying-to-log-in">
+<span id="faq1-45"></span><h3>1.45 I get an error message about unknown authentication method caching_sha2_password when trying to log in<a class="headerlink" href="#i-get-an-error-message-about-unknown-authentication-method-caching-sha2-password-when-trying-to-log-in" title="Permalink to this headline">¶</a></h3>
+<p>When logging in using MySQL version 8 or newer, you may encounter an error message like this:</p>
+<blockquote>
+<div><p>mysqli_real_connect(): The server requested authentication method unknown to the client [caching_sha2_password]</p>
+<p>mysqli_real_connect(): (HY000/2054): The server requested authentication method unknown to the client</p>
+</div></blockquote>
+<p>This error is because of a version compatibility problem between PHP and MySQL. The MySQL project introduced a new authentication
+method (our tests show this began with version 8.0.11) however PHP did not include the ability to use that authentication method.
+PHP reports that this was fixed in PHP version 7.4.</p>
+<p>Users experiencing this are encouraged to upgrade their PHP installation, however a workaround exists. Your MySQL user account
+can be set to use the older authentication with a command such as</p>
+<div class="highlight-mysql"><div class="highlight"><pre><span></span><span class="k">ALTER</span> <span class="n">USER</span> <span class="s1">&#39;root&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span> <span class="n">IDENTIFIED</span> <span class="k">WITH</span> <span class="n">mysql_native_password</span> <span class="k">BY</span> <span class="s1">&#39;PASSWORD&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">&lt;<a class="reference external" href="https://github.com/phpmyadmin/phpmyadmin/issues/14220">https://github.com/phpmyadmin/phpmyadmin/issues/14220</a>&gt;, &lt;<a class="reference external" href="https://stackoverflow.com/questions/49948350/phpmyadmin-on-mysql-8-0">https://stackoverflow.com/questions/49948350/phpmyadmin-on-mysql-8-0</a>&gt;, &lt;<a class="reference external" href="https://bugs.php.net/bug.php?id=76243">https://bugs.php.net/bug.php?id=76243</a>&gt;</p>
+</div>
 </div>
 </div>
 <div class="section" id="configuration">
@@ -1835,6 +1855,7 @@ spreadsheet program to properly parse and sanitize such data on input instead.</
 <li><a class="reference internal" href="#how-can-i-prevent-robots-from-accessing-phpmyadmin">1.42 How can I prevent robots from accessing phpMyAdmin?</a></li>
 <li><a class="reference internal" href="#why-can-t-i-display-the-structure-of-my-table-containing-hundreds-of-columns">1.43 Why can&#8217;t I display the structure of my table containing hundreds of columns?</a></li>
 <li><a class="reference internal" href="#how-can-i-reduce-the-installed-size-of-phpmyadmin-on-disk">1.44 How can I reduce the installed size of phpMyAdmin on disk?</a></li>
+<li><a class="reference internal" href="#i-get-an-error-message-about-unknown-authentication-method-caching-sha2-password-when-trying-to-log-in">1.45 I get an error message about unknown authentication method caching_sha2_password when trying to log in</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#configuration">Configuration</a><ul>
@@ -2013,7 +2034,7 @@ spreadsheet program to properly parse and sanitize such data on input instead.</
         <li class="right" >
           <a href="other.html" title="Other sources of information"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">phpMyAdmin 5.0.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">phpMyAdmin 5.0.1 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

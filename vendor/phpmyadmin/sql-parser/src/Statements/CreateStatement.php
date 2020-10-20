@@ -20,10 +20,6 @@ use PhpMyAdmin\SqlParser\TokensList;
 
 /**
  * `CREATE` statement.
- *
- * @category   Statements
- *
- * @license    https://www.gnu.org/licenses/gpl-2.0.txt GPL-2.0+
  */
 class CreateStatement extends Statement
 {
@@ -66,6 +62,7 @@ class CreateStatement extends Statement
         'TRIGGER' => 6,
         'USER' => 6,
         'VIEW' => 6,
+        'SCHEMA' => 6,
 
         // CREATE TABLE
         'IF NOT EXISTS' => 7,
@@ -261,11 +258,11 @@ class CreateStatement extends Statement
      *
      * Used by `CREATE TABLE`, `CREATE FUNCTION` and `CREATE PROCEDURE`.
      *
-     * @var OptionsArray
-     *
      * @see static::$TABLE_OPTIONS
      * @see static::$FUNC_OPTIONS
      * @see static::$TRIGGER_OPTIONS
+     *
+     * @var OptionsArray
      */
     public $entityOptions;
 
@@ -382,18 +379,18 @@ class CreateStatement extends Statement
                 $fields = ArrayObj::build($this->fields);
             }
         }
-        if ($this->options->has('DATABASE')) {
+        if ($this->options->has('DATABASE') || $this->options->has('SCHEMA')) {
             return 'CREATE '
                 . OptionsArray::build($this->options) . ' '
                 . Expression::build($this->name) . ' '
                 . OptionsArray::build($this->entityOptions);
         } elseif ($this->options->has('TABLE')) {
-            if (! is_null($this->select)) {
+            if ($this->select !== null) {
                 return 'CREATE '
                     . OptionsArray::build($this->options) . ' '
                     . Expression::build($this->name) . ' '
                     . $this->select->build();
-            } elseif (! is_null($this->like)) {
+            } elseif ($this->like !== null) {
                 return 'CREATE '
                     . OptionsArray::build($this->options) . ' '
                     . Expression::build($this->name) . ' LIKE '
@@ -470,12 +467,15 @@ class CreateStatement extends Statement
         $this->options = OptionsArray::parse($parser, $list, static::$OPTIONS);
         ++$list->idx; // Skipping last option.
 
+        $isDatabase = $this->options->has('DATABASE') || $this->options->has('SCHEMA');
+        $fieldName = $isDatabase ? 'database' : 'table';
+
         // Parsing the field name.
         $this->name = Expression::parse(
             $parser,
             $list,
             [
-                'parseField' => 'table',
+                'parseField' => $fieldName,
                 'breakOnAlias' => true,
             ]
         );
@@ -500,7 +500,7 @@ class CreateStatement extends Statement
             ++$nextidx;
         }
 
-        if ($this->options->has('DATABASE')) {
+        if ($isDatabase) {
             $this->entityOptions = OptionsArray::parse(
                 $parser,
                 $list,
@@ -530,7 +530,7 @@ class CreateStatement extends Statement
                     ]
                 );
                 // The 'LIKE' keyword was found, but no table_name was found next to it
-                if (is_null($this->like)) {
+                if ($this->like === null) {
                     $parser->error(
                         'A table name was expected.',
                         $list->tokens[$list->idx]
@@ -622,7 +622,7 @@ class CreateStatement extends Statement
                         }
 
                         // Building the expression used for partitioning.
-                        $this->$field .= ($token->type === Token::TYPE_WHITESPACE) ? ' ' : $token->token;
+                        $this->$field .= $token->type === Token::TYPE_WHITESPACE ? ' ' : $token->token;
 
                         // Last bracket was read, the expression ended.
                         // Comparing with `0` and not `false`, because `false` means
@@ -653,10 +653,10 @@ class CreateStatement extends Statement
             if ($this->options->has('FUNCTION')) {
                 $prev_token = $token;
                 $token = $list->getNextOfType(Token::TYPE_KEYWORD);
-                if (is_null($token) || $token->keyword !== 'RETURNS') {
+                if ($token === null || $token->keyword !== 'RETURNS') {
                     $parser->error(
                         'A "RETURNS" keyword was expected.',
-                        is_null($token) ? $prev_token : $token
+                        $token ?? $prev_token
                     );
                 } else {
                     ++$list->idx;
