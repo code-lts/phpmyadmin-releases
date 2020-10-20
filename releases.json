@@ -26,7 +26,7 @@
 			{
 				"patch": 4,
 				"name": "5.0.4",
-				"imported": false
+				"imported": true
 			}
 		]
 	},
