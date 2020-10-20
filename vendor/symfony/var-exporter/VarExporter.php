@@ -34,13 +34,12 @@ final class VarExporter
      *
      * @param mixed $value          The value to export
      * @param bool  &$isStaticValue Set to true after execution if the provided value is static, false otherwise
-     * @param bool  &$classes       Classes found in the value are added to this list as both keys and values
      *
      * @return string The value exported as PHP code
      *
      * @throws ExceptionInterface When the provided value cannot be serialized
      */
-    public static function export($value, bool &$isStaticValue = null, array &$foundClasses = []): string
+    public static function export($value, bool &$isStaticValue = null): string
     {
         $isStaticValue = true;
 
@@ -72,9 +71,7 @@ final class VarExporter
         $values = [];
         $states = [];
         foreach ($objectsPool as $i => $v) {
-            [, $class, $values[], $wakeup] = $objectsPool[$v];
-            $foundClasses[$class] = $classes[] = $class;
-
+            list(, $classes[], $values[], $wakeup) = $objectsPool[$v];
             if (0 < $wakeup) {
                 $states[$wakeup] = $i;
             } elseif (0 > $wakeup) {
