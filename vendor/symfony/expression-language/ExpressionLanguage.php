@@ -11,9 +11,7 @@
 
 namespace Symfony\Component\ExpressionLanguage;
 
-use Psr\Cache\CacheItemPoolInterface;
-use Symfony\Component\Cache\Adapter\ArrayAdapter;
-use Symfony\Component\ExpressionLanguage\ParserCache\ParserCacheAdapter;
+use Symfony\Component\ExpressionLanguage\ParserCache\ArrayParserCache;
 use Symfony\Component\ExpressionLanguage\ParserCache\ParserCacheInterface;
 
 /**
@@ -28,24 +26,15 @@ class ExpressionLanguage
     private $parser;
     private $compiler;
 
-    protected $functions = [];
+    protected $functions = array();
 
     /**
-     * @param CacheItemPoolInterface                $cache
+     * @param ParserCacheInterface                  $cache
      * @param ExpressionFunctionProviderInterface[] $providers
      */
-    public function __construct($cache = null, array $providers = [])
+    public function __construct(ParserCacheInterface $cache = null, array $providers = array())
     {
-        if (null !== $cache) {
-            if ($cache instanceof ParserCacheInterface) {
-                @trigger_error(sprintf('Passing an instance of %s as constructor argument for %s is deprecated as of 3.2 and will be removed in 4.0. Pass an instance of %s instead.', ParserCacheInterface::class, self::class, CacheItemPoolInterface::class), \E_USER_DEPRECATED);
-                $cache = new ParserCacheAdapter($cache);
-            } elseif (!$cache instanceof CacheItemPoolInterface) {
-                throw new \InvalidArgumentException(sprintf('Cache argument has to implement "%s".', CacheItemPoolInterface::class));
-            }
-        }
-
-        $this->cache = $cache ?: new ArrayAdapter();
+        $this->cache = $cache ?: new ArrayParserCache();
         $this->registerFunctions();
         foreach ($providers as $provider) {
             $this->registerProvider($provider);
@@ -60,7 +49,7 @@ class ExpressionLanguage
      *
      * @return string The compiled PHP source code
      */
-    public function compile($expression, $names = [])
+    public function compile($expression, $names = array())
     {
         return $this->getCompiler()->compile($this->parse($expression, $names)->getNodes())->getSource();
     }
@@ -73,7 +62,7 @@ class ExpressionLanguage
      *
      * @return mixed The result of the evaluation of the expression
      */
-    public function evaluate($expression, $values = [])
+    public function evaluate($expression, $values = array())
     {
         return $this->parse($expression, array_keys($values))->getNodes()->evaluate($this->functions, $values);
     }
@@ -93,20 +82,19 @@ class ExpressionLanguage
         }
 
         asort($names);
-        $cacheKeyItems = [];
+        $cacheKeyItems = array();
 
         foreach ($names as $nameKey => $name) {
             $cacheKeyItems[] = \is_int($nameKey) ? $name : $nameKey.':'.$name;
         }
 
-        $cacheItem = $this->cache->getItem(rawurlencode($expression.'//'.implode('|', $cacheKeyItems)));
+        $key = $expression.'//'.implode('|', $cacheKeyItems);
 
-        if (null === $parsedExpression = $cacheItem->get()) {
+        if (null === $parsedExpression = $this->cache->fetch($key)) {
             $nodes = $this->getParser()->parse($this->getLexer()->tokenize((string) $expression), $names);
             $parsedExpression = new ParsedExpression((string) $expression, $nodes);
 
-            $cacheItem->set($parsedExpression);
-            $this->cache->save($cacheItem);
+            $this->cache->save($key, $parsedExpression);
         }
 
         return $parsedExpression;
@@ -123,13 +111,13 @@ class ExpressionLanguage
      *
      * @see ExpressionFunction
      */
-    public function register($name, callable $compiler, callable $evaluator)
+    public function register($name, $compiler, $evaluator)
     {
         if (null !== $this->parser) {
             throw new \LogicException('Registering functions after calling evaluate(), compile() or parse() is not supported.');
         }
 
-        $this->functions[$name] = ['compiler' => $compiler, 'evaluator' => $evaluator];
+        $this->functions[$name] = array('compiler' => $compiler, 'evaluator' => $evaluator);
     }
 
     public function addFunction(ExpressionFunction $function)
@@ -146,7 +134,11 @@ class ExpressionLanguage
 
     protected function registerFunctions()
     {
-        $this->addFunction(ExpressionFunction::fromPhp('constant'));
+        $this->register('constant', function ($constant) {
+            return sprintf('constant(%s)', $constant);
+        }, function (array $values, $constant) {
+            return \constant($constant);
+        });
     }
 
     private function getLexer()
