@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>FAQ - Frequently Asked Questions &#8212; phpMyAdmin 4.9.2 documentation</title>
+    <title>FAQ - Frequently Asked Questions &#8212; phpMyAdmin 4.9.3 documentation</title>
     
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '4.9.2',
+        VERSION:     '4.9.3',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,7 +26,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="copyright" title="Copyright" href="copyright.html" />
-    <link rel="top" title="phpMyAdmin 4.9.2 documentation" href="index.html" />
+    <link rel="top" title="phpMyAdmin 4.9.3 documentation" href="index.html" />
     <link rel="next" title="Developers Information" href="developers.html" />
     <link rel="prev" title="Other sources of information" href="other.html" /> 
   </head>
@@ -43,7 +43,7 @@
         <li class="right" >
           <a href="other.html" title="Other sources of information"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">phpMyAdmin 4.9.2 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">phpMyAdmin 4.9.3 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -204,7 +204,7 @@ output. In general, it should have at least the same minor version as
 your server - as mentioned in <a class="reference internal" href="#faq1-17"><span class="std std-ref">1.17 Which Database versions does phpMyAdmin support?</span></a>. This problem is
 generally caused by using MySQL version 4.1 or newer. MySQL changed
 the authentication hash and your PHP is trying to use the old method.
-The proper solution is to use the <a class="reference external" href="https://secure.php.net/mysqli">mysqli extension</a> with the proper client library to match
+The proper solution is to use the <a class="reference external" href="https://www.php.net/mysqli">mysqli extension</a> with the proper client library to match
 your MySQL installation. More
 information (and several workarounds) are located in the <a class="reference external" href="https://dev.mysql.com/doc/refman/5.7/en/common-errors.html">MySQL
 Documentation</a>.</p>
@@ -674,7 +674,7 @@ by <a class="reference external" href="https://bugs.php.net/bug.php?id=39842">bu
 <div class="section" id="seeing-an-upload-progress-bar">
 <span id="faq2-9"></span><h3>2.9 Seeing an upload progress bar<a class="headerlink" href="#seeing-an-upload-progress-bar" title="Permalink to this headline">¶</a></h3>
 <p>To be able to see a progress bar during your uploads, your server must
-have the <a class="reference external" href="https://secure.php.net/manual/en/book.apc.php">APC</a> extension, the
+have the <a class="reference external" href="https://www.php.net/manual/en/book.apc.php">APC</a> extension, the
 <a class="reference external" href="https://pecl.php.net/package/uploadprogress">uploadprogress</a> one, or
 you must be running PHP 5.4.0 or higher. Moreover, the JSON extension
 has to be enabled in your PHP.</p>
@@ -844,7 +844,7 @@ is no way for PHP to set the charset before authenticating.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
 <p class="last"><a class="reference external" href="https://github.com/phpmyadmin/phpmyadmin/issues/12232">phpMyAdmin issue 12232</a>,
-<a class="reference external" href="https://secure.php.net/manual/en/mysqli.real-connect.php#refsect1-mysqli.real-connect-notes">MySQL documentation note</a></p>
+<a class="reference external" href="https://www.php.net/manual/en/mysqli.real-connect.php#refsect1-mysqli.real-connect-notes">MySQL documentation note</a></p>
 </div>
 </div>
 </div>
@@ -1408,7 +1408,7 @@ in Browse mode or on the Structure page.</p>
 <div class="section" id="what-format-strings-can-i-use">
 <span id="faq6-27"></span><h3>6.27 What format strings can I use?<a class="headerlink" href="#what-format-strings-can-i-use" title="Permalink to this headline">¶</a></h3>
 <p>In all places where phpMyAdmin accepts format strings, you can use
-<code class="docutils literal"><span class="pre">&#64;VARIABLE&#64;</span></code> expansion and <a class="reference external" href="https://secure.php.net/strftime">strftime</a>
+<code class="docutils literal"><span class="pre">&#64;VARIABLE&#64;</span></code> expansion and <a class="reference external" href="https://www.php.net/strftime">strftime</a>
 format strings. The expanded variables depend on a context (for
 example, if you haven&#8217;t chosen a table, you can not get the table
 name), but the following variables can be used:</p>
@@ -2003,7 +2003,7 @@ spreadsheet program to properly parse and sanitize such data on input instead.</
         <li class="right" >
           <a href="other.html" title="Other sources of information"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">phpMyAdmin 4.9.2 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">phpMyAdmin 4.9.3 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
