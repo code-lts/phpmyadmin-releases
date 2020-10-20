@@ -80,5 +80,46 @@
 				"imported": true
 			}
 		]
+	},
+	{
+		"major": 4,
+		"minor": 8,
+		"versions": [
+			{
+				"patch": 0,
+				"name": "4.8.0",
+				"imported": false
+			},
+			{
+				"patch": 0,
+				"name": "4.8.0.1",
+				"imported": false
+			},
+			{
+				"patch": 1,
+				"name": "4.8.1",
+				"imported": false
+			},
+			{
+				"patch": 2,
+				"name": "4.8.2",
+				"imported": false
+			},
+			{
+				"patch": 3,
+				"name": "4.8.3",
+				"imported": false
+			},
+			{
+				"patch": 4,
+				"name": "4.8.4",
+				"imported": false
+			},
+			{
+				"patch": 5,
+				"name": "4.8.5",
+				"imported": false
+			}
+		]
 	}
 ]
