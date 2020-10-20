@@ -322,17 +322,17 @@
     },
     {
         "name": "phpmyadmin/sql-parser",
-        "version": "4.4.0",
-        "version_normalized": "4.4.0.0",
+        "version": "4.5.0",
+        "version_normalized": "4.5.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/phpmyadmin/sql-parser.git",
-            "reference": "35a895a1ad4f4b068e44c4cd17c04759c71eed13"
+            "reference": "b00f1c29ff80d0b68afaaa67a2d6b01ae74310f7"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/phpmyadmin/sql-parser/zipball/35a895a1ad4f4b068e44c4cd17c04759c71eed13",
-            "reference": "35a895a1ad4f4b068e44c4cd17c04759c71eed13",
+            "url": "https://api.github.com/repos/phpmyadmin/sql-parser/zipball/b00f1c29ff80d0b68afaaa67a2d6b01ae74310f7",
+            "reference": "b00f1c29ff80d0b68afaaa67a2d6b01ae74310f7",
             "shasum": ""
         },
         "require": {
@@ -346,13 +346,13 @@
             "phpunit/php-code-coverage": "*",
             "phpunit/phpunit": "~4.8 || ~5.7 || ~6.5",
             "sami/sami": "^4.0",
-            "squizlabs/php_codesniffer": "^2.9"
+            "squizlabs/php_codesniffer": "~2.9 || ~3.4"
         },
         "suggest": {
             "ext-mbstring": "For best performance",
             "phpmyadmin/motranslator": "Translate messages to your favorite locale"
         },
-        "time": "2019-11-12T13:34:03+00:00",
+        "time": "2020-01-07T23:22:41+00:00",
         "bin": [
             "bin/highlight-query",
             "bin/lint-query",
