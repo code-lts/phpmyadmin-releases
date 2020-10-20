@@ -93,7 +93,7 @@
 			{
 				"patch": 0,
 				"name": "4.8.0.1",
-				"imported": false
+				"imported": true
 			},
 			{
 				"patch": 1,
