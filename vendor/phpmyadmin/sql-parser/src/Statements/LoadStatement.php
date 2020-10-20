@@ -15,6 +15,9 @@ use PhpMyAdmin\SqlParser\Parser;
 use PhpMyAdmin\SqlParser\Statement;
 use PhpMyAdmin\SqlParser\Token;
 use PhpMyAdmin\SqlParser\TokensList;
+use function count;
+use function strlen;
+use function trim;
 
 /**
  * `LOAD` statement.
@@ -362,6 +365,7 @@ class LoadStatement extends Statement
 
                     return $state;
                 }
+
                 // no break
             case 4:
                 if ($token->keyword === 'CHARACTER SET') {
@@ -371,6 +375,7 @@ class LoadStatement extends Statement
 
                     return $state;
                 }
+
                 // no break
             case 5:
                 if ($token->keyword === 'FIELDS'
@@ -382,6 +387,7 @@ class LoadStatement extends Statement
 
                     return $state;
                 }
+
                 // no break
             case 6:
                 if ($token->keyword === 'IGNORE') {
@@ -396,10 +402,12 @@ class LoadStatement extends Statement
                     ) {
                         $this->lines_rows = $nextToken->token;
                     }
+
                     $state = 7;
 
                     return $state;
                 }
+
                 // no break
             case 7:
                 if ($token->keyword === 'SET') {
@@ -409,6 +417,7 @@ class LoadStatement extends Statement
 
                     return $state;
                 }
+
                 // no break
             default:
         }

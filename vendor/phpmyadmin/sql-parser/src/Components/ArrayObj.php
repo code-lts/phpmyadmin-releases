@@ -10,6 +10,10 @@ use PhpMyAdmin\SqlParser\Component;
 use PhpMyAdmin\SqlParser\Parser;
 use PhpMyAdmin\SqlParser\Token;
 use PhpMyAdmin\SqlParser\TokensList;
+use function implode;
+use function is_array;
+use function strlen;
+use function trim;
 
 /**
  * Parses an array.
@@ -127,6 +131,7 @@ class ArrayObj extends Component
                             $lastRaw = $lastValue = '';
                         }
                     }
+
                     continue;
                 }
             }

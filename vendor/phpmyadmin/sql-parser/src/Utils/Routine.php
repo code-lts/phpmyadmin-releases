@@ -11,6 +11,8 @@ use PhpMyAdmin\SqlParser\Components\ParameterDefinition;
 use PhpMyAdmin\SqlParser\Lexer;
 use PhpMyAdmin\SqlParser\Parser;
 use PhpMyAdmin\SqlParser\Statements\CreateStatement;
+use function implode;
+use function is_string;
 
 /**
  * Routine utilities.
@@ -127,6 +129,7 @@ class Routine
                     $retval['opts'][$idx][] = is_string($opt) ?
                         $opt : $opt['value'];
                 }
+
                 $retval['opts'][$idx] = implode(' ', $retval['opts'][$idx]);
                 ++$idx;
             }

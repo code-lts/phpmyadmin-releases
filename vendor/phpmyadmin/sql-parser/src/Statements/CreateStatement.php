@@ -17,6 +17,8 @@ use PhpMyAdmin\SqlParser\Parser;
 use PhpMyAdmin\SqlParser\Statement;
 use PhpMyAdmin\SqlParser\Token;
 use PhpMyAdmin\SqlParser\TokensList;
+use function is_array;
+use function trim;
 
 /**
  * `CREATE` statement.
@@ -379,6 +381,7 @@ class CreateStatement extends Statement
                 $fields = ArrayObj::build($this->fields);
             }
         }
+
         if ($this->options->has('DATABASE') || $this->options->has('SCHEMA')) {
             return 'CREATE '
                 . OptionsArray::build($this->options) . ' '
@@ -401,15 +404,19 @@ class CreateStatement extends Statement
                 if (! empty($this->partitionBy)) {
                     $partition .= "\nPARTITION BY " . $this->partitionBy;
                 }
+
                 if (! empty($this->partitionsNum)) {
                     $partition .= "\nPARTITIONS " . $this->partitionsNum;
                 }
+
                 if (! empty($this->subpartitionBy)) {
                     $partition .= "\nSUBPARTITION BY " . $this->subpartitionBy;
                 }
+
                 if (! empty($this->subpartitionsNum)) {
                     $partition .= "\nSUBPARTITIONS " . $this->subpartitionsNum;
                 }
+
                 if (! empty($this->partitions)) {
                     $partition .= "\n" . PartitionDefinition::build($this->partitions);
                 }
@@ -544,6 +551,7 @@ class CreateStatement extends Statement
                         $list->tokens[$list->idx]
                     );
                 }
+
                 ++$list->idx;
 
                 $this->entityOptions = OptionsArray::parse(
@@ -615,7 +623,7 @@ class CreateStatement extends Statement
                                 // This is used instead of `++$brackets` because,
                                 // initially, `$brackets` is `false` cannot be
                                 // incremented.
-                                $brackets = $brackets + 1;
+                                $brackets += 1;
                             } elseif ($token->value === ')') {
                                 --$brackets;
                             }
@@ -637,11 +645,10 @@ class CreateStatement extends Statement
                             $this->partitions = ArrayObj::parse(
                                 $parser,
                                 $list,
-                                [
-                                    'type' => 'PhpMyAdmin\\SqlParser\\Components\\PartitionDefinition',
-                                ]
+                                ['type' => 'PhpMyAdmin\\SqlParser\\Components\\PartitionDefinition']
                             );
                         }
+
                         break;
                     }
                 }
@@ -666,6 +673,7 @@ class CreateStatement extends Statement
                     );
                 }
             }
+
             ++$list->idx;
 
             $this->entityOptions = OptionsArray::parse(
@@ -696,6 +704,7 @@ class CreateStatement extends Statement
                 if ($token->type === Token::TYPE_DELIMITER) {
                     break;
                 }
+
                 $this->body[] = $token;
             }
         } elseif ($this->options->has('TRIGGER')) {
@@ -734,6 +743,7 @@ class CreateStatement extends Statement
                 if ($token->type === Token::TYPE_DELIMITER) {
                     break;
                 }
+
                 $this->body[] = $token;
             }
         }

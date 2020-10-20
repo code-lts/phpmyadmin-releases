@@ -11,6 +11,12 @@ namespace PhpMyAdmin\SqlParser;
 
 use PhpMyAdmin\SqlParser\Components\FunctionCall;
 use PhpMyAdmin\SqlParser\Components\OptionsArray;
+use function array_flip;
+use function array_keys;
+use function count;
+use function in_array;
+use function stripos;
+use function trim;
 
 /**
  * Abstract statement definition.
@@ -165,6 +171,7 @@ abstract class Statement
                 if (! empty($built[$field])) {
                     continue;
                 }
+
                 $built[$field] = true;
             }
 
@@ -187,6 +194,7 @@ abstract class Statement
      *
      * @param Parser     $parser the instance that requests parsing
      * @param TokensList $list   the list of tokens to be parsed
+     * @throws Exceptions\ParserException
      */
     public function parse(Parser $parser, TokensList $list)
     {
@@ -238,6 +246,7 @@ abstract class Statement
                 ) {
                     $parser->error('Unexpected token.', $token);
                 }
+
                 continue;
             }
 
@@ -276,6 +285,7 @@ abstract class Statement
                     break;
                 }
             }
+
             $list->idx = $lastIdx;
 
             /**
@@ -310,6 +320,7 @@ abstract class Statement
                     );
                     break;
                 }
+
                 $parsedClauses[$token->value] = true;
             }
 
@@ -342,11 +353,13 @@ abstract class Statement
                     );
                     break;
                 }
+
                 if (! $parsedOptions) {
                     if (empty(static::$OPTIONS[$token->value])) {
                         // Skipping keyword because if it is not a option.
                         ++$list->idx;
                     }
+
                     $this->options = OptionsArray::parse(
                         $parser,
                         $list,
@@ -394,6 +407,7 @@ abstract class Statement
                     $parser->error('Keyword at end of statement.', $token);
                     continue;
                 }
+
                 ++$list->idx; // Skipping keyword or last option.
                 $this->$field = $class::parse($parser, $list, $options);
             }
@@ -401,12 +415,10 @@ abstract class Statement
             $this->after($parser, $list, $token);
 
             // #223 Here may make a patch, if last is delimiter, back one
-            if ($class !== null) {
-                if ((new $class()) instanceof FunctionCall) {
-                    if ($list->offsetGet($list->idx)->type === Token::TYPE_DELIMITER) {
-                        --$list->idx;
-                    }
-                }
+            if ($class === FunctionCall::class
+                && $list->offsetGet($list->idx)->type === Token::TYPE_DELIMITER
+            ) {
+                --$list->idx;
             }
         }
 
@@ -467,6 +479,7 @@ abstract class Statement
      * @param TokensList $list   the list of tokens to be parsed
      *
      * @return bool
+     * @throws Exceptions\ParserException
      */
     public function validateClauseOrder($parser, $list)
     {
@@ -541,6 +554,7 @@ abstract class Statement
 
                     return false;
                 }
+
                 $minIdx = $clauseStartIdx;
             } elseif ($clauseStartIdx !== -1) {
                 $minIdx = $clauseStartIdx;

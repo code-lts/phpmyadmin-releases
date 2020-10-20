@@ -75,7 +75,7 @@ echo $flags['querytype'];
 ### Parsing and building SQL query
 
 ```php
-require __DIR__."/vendor/autoload.php";
+require __DIR__ . '/vendor/autoload.php';
 
 $query1 = "select * from a";
 $parser = new PhpMyAdmin\SqlParser\Parser($query1);
@@ -84,30 +84,30 @@ $parser = new PhpMyAdmin\SqlParser\Parser($query1);
 var_dump($parser->statements[0]); // outputs object(PhpMyAdmin\SqlParser\Statements\SelectStatement)
 
 // modify query by replacing table a with table b
-$table2 = new \PhpMyAdmin\SqlParser\Components\Expression("", "b", "", "");
+$table2 = new \PhpMyAdmin\SqlParser\Components\Expression('', 'b', '', '');
 $parser->statements[0]->from[0] = $table2;
 
 // build query again from an array of object(PhpMyAdmin\SqlParser\Statements\SelectStatement) to a string
 $statement = $parser->statements[0];
 $query2 = $statement->build();
-var_dump($query2); // outputs string(19) "SELECT  * FROM `b` "
+var_dump($query2); // outputs string(19) 'SELECT  * FROM `b` '
 
 // Change SQL mode
 PhpMyAdmin\SqlParser\Context::setMode('ANSI_QUOTES');
 
 // build the query again using different quotes
 $query2 = $statement->build();
-var_dump($query2); // outputs string(19) "SELECT  * FROM "b" "
+var_dump($query2); // outputs string(19) 'SELECT  * FROM "b" '
 ```
 
 ## Localization
 
-You can localize error messages installing `phpmyadmin/motranslator` version `3.0` or newer:
+You can localize error messages installing `phpmyadmin/motranslator` version `5.0` or newer:
 ```sh
-composer require phpmyadmin/motranslator:^3.0
+composer require phpmyadmin/motranslator:^5.0
 ```
 
-The locale is automatically detected from your enrivonment, you can also set a different locale
+The locale is automatically detected from your environment, you can also set a different locale
 
 **From cli**:
 ```sh
@@ -116,11 +116,11 @@ LC_ALL=pl ./vendor/bin/lint-query --query "SELECT 1"
 
 **From php**:
 ```php
-require __DIR__."/vendor/autoload.php";
+require __DIR__ . '/vendor/autoload.php';
 
 $GLOBALS['lang'] = 'pl';
 
-$query1 = "select * from a";
+$query1 = 'select * from a';
 $parser = new PhpMyAdmin\SqlParser\Parser($query1);
 ```
 

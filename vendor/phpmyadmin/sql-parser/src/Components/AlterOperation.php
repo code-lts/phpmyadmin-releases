@@ -10,6 +10,8 @@ use PhpMyAdmin\SqlParser\Component;
 use PhpMyAdmin\SqlParser\Parser;
 use PhpMyAdmin\SqlParser\Token;
 use PhpMyAdmin\SqlParser\TokensList;
+use function array_key_exists;
+use function in_array;
 
 /**
  * Parses an alter operation.
@@ -126,9 +128,7 @@ class AlterOperation extends Component
      *
      * @var array
      */
-    public static $VIEW_OPTIONS = [
-        'AS' => 1,
-    ];
+    public static $VIEW_OPTIONS = ['AS' => 1];
 
     /**
      * Options of this operation.
@@ -224,6 +224,7 @@ class AlterOperation extends Component
                     // included to not break anything.
                     $ret->unknown[] = $token;
                 }
+
                 continue;
             }
 
@@ -235,8 +236,10 @@ class AlterOperation extends Component
                         if ($list->tokens[$list->idx]->type === Token::TYPE_DELIMITER) {
                             break;
                         }
+
                         $ret->unknown[] = $list->tokens[$list->idx];
                     }
+
                     break;
                 }
 
@@ -255,6 +258,7 @@ class AlterOperation extends Component
                     // iteration will parse the same token, but in state 2.
                     --$list->idx;
                 }
+
                 $state = 2;
             } elseif ($state === 2) {
                 if ($token->type === Token::TYPE_OPERATOR) {
@@ -280,13 +284,15 @@ class AlterOperation extends Component
                     || array_key_exists($token->value, self::$TABLE_OPTIONS))
                     && ! self::checkIfColumnDefinitionKeyword($token->value)
                 ) {
-                    // This alter operation has finished, which means a comma was missing before start of new alter operation
+                    // This alter operation has finished, which means a comma
+                    // was missing before start of new alter operation
                     $parser->error(
                         'Missing comma before start of a new alter operation.',
                         $token
                     );
                     break;
                 }
+
                 $ret->unknown[] = $token;
             }
         }
@@ -315,6 +321,7 @@ class AlterOperation extends Component
         if (isset($component->field) && ($component->field !== '')) {
             $ret .= $component->field . ' ';
         }
+
         $ret .= TokensList::build($component->unknown);
 
         return $ret;
@@ -341,6 +348,7 @@ class AlterOperation extends Component
             'PRIMARY KEY',
             'UNIQUE KEY',
         ];
+
         // Since these options can be used for
         // both table as well as a specific column in the table
         return in_array($tokenValue, $common_options);
