@@ -31,9 +31,11 @@ class Exporter
      * @param int               &$objectsCount
      * @param bool              &$valuesAreStatic
      *
+     * @return array
+     *
      * @throws NotInstantiableTypeException When a value cannot be serialized
      */
-    public static function prepare($values, $objectsPool, &$refsPool, &$objectsCount, &$valuesAreStatic): array
+    public static function prepare($values, $objectsPool, &$refsPool, &$objectsCount, &$valuesAreStatic)
     {
         $refs = $values;
         foreach ($values as $k => $value) {
@@ -185,7 +187,7 @@ class Exporter
         return $values;
     }
 
-    public static function export($value, string $indent = '')
+    public static function export($value, $indent = '')
     {
         switch (true) {
             case \is_int($value) || \is_float($value): return var_export($value, true);
@@ -271,7 +273,7 @@ class Exporter
             return self::exportHydrator($value, $indent, $subIndent);
         }
 
-        throw new \UnexpectedValueException(sprintf('Cannot export value of type "%s".', get_debug_type($value)));
+        throw new \UnexpectedValueException(sprintf('Cannot export value of type "%s".', \is_object($value) ? \get_class($value) : \gettype($value)));
     }
 
     private static function exportRegistry(Registry $value, string $indent, string $subIndent): string

@@ -56,7 +56,7 @@ trait RedisTrait
         }
 
         if (!$redisClient instanceof \Redis && !$redisClient instanceof \RedisArray && !$redisClient instanceof \RedisCluster && !$redisClient instanceof \Predis\ClientInterface && !$redisClient instanceof RedisProxy && !$redisClient instanceof RedisClusterProxy) {
-            throw new InvalidArgumentException(sprintf('"%s()" expects parameter 1 to be Redis, RedisArray, RedisCluster or Predis\ClientInterface, "%s" given.', __METHOD__, get_debug_type($redisClient)));
+            throw new InvalidArgumentException(sprintf('"%s()" expects parameter 1 to be Redis, RedisArray, RedisCluster or Predis\ClientInterface, "%s" given.', __METHOD__, \is_object($redisClient) ? \get_class($redisClient) : \gettype($redisClient)));
         }
 
         if ($redisClient instanceof \Predis\ClientInterface && $redisClient->getOptions()->exceptions) {
@@ -333,7 +333,7 @@ trait RedisTrait
     /**
      * {@inheritdoc}
      */
-    protected function doHave(string $id)
+    protected function doHave($id)
     {
         return (bool) $this->redis->exists($id);
     }
@@ -341,7 +341,7 @@ trait RedisTrait
     /**
      * {@inheritdoc}
      */
-    protected function doClear(string $namespace)
+    protected function doClear($namespace)
     {
         $cleared = true;
         if ($this->redis instanceof \Predis\ClientInterface) {

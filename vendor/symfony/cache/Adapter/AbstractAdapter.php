@@ -99,9 +99,14 @@ abstract class AbstractAdapter implements AdapterInterface, CacheInterface, Logg
      *
      * Using ApcuAdapter makes system caches compatible with read-only filesystems.
      *
+     * @param string $namespace
+     * @param int    $defaultLifetime
+     * @param string $version
+     * @param string $directory
+     *
      * @return AdapterInterface
      */
-    public static function createSystemCache(string $namespace, int $defaultLifetime, string $version, string $directory, LoggerInterface $logger = null)
+    public static function createSystemCache($namespace, $defaultLifetime, $version, $directory, LoggerInterface $logger = null)
     {
         $opcache = new PhpFilesAdapter($namespace, $defaultLifetime, $directory, true);
         if (null !== $logger) {
@@ -124,16 +129,16 @@ abstract class AbstractAdapter implements AdapterInterface, CacheInterface, Logg
         return new ChainAdapter([$apcu, $opcache]);
     }
 
-    public static function createConnection(string $dsn, array $options = [])
+    public static function createConnection($dsn, array $options = [])
     {
+        if (!\is_string($dsn)) {
+            throw new InvalidArgumentException(sprintf('The "%s()" method expect argument #1 to be string, "%s" given.', __METHOD__, \gettype($dsn)));
+        }
         if (0 === strpos($dsn, 'redis:') || 0 === strpos($dsn, 'rediss:')) {
             return RedisAdapter::createConnection($dsn, $options);
         }
         if (0 === strpos($dsn, 'memcached:')) {
             return MemcachedAdapter::createConnection($dsn, $options);
-        }
-        if (0 === strpos($dsn, 'couchbase:')) {
-            return CouchbaseBucketAdapter::createConnection($dsn, $options);
         }
 
         throw new InvalidArgumentException(sprintf('Unsupported DSN: "%s".', $dsn));
@@ -166,9 +171,9 @@ abstract class AbstractAdapter implements AdapterInterface, CacheInterface, Logg
                 foreach (\is_array($e) ? $e : array_keys($values) as $id) {
                     $ok = false;
                     $v = $values[$id];
-                    $type = get_debug_type($v);
+                    $type = \is_object($v) ? \get_class($v) : \gettype($v);
                     $message = sprintf('Failed to save key "{key}" of type %s%s', $type, $e instanceof \Exception ? ': '.$e->getMessage() : '.');
-                    CacheItem::log($this->logger, $message, ['key' => substr($id, \strlen($this->namespace)), 'exception' => $e instanceof \Exception ? $e : null, 'cache-adapter' => get_debug_type($this)]);
+                    CacheItem::log($this->logger, $message, ['key' => substr($id, \strlen($this->namespace)), 'exception' => $e instanceof \Exception ? $e : null]);
                 }
             } else {
                 foreach ($values as $id => $v) {
@@ -189,9 +194,9 @@ abstract class AbstractAdapter implements AdapterInterface, CacheInterface, Logg
                     continue;
                 }
                 $ok = false;
-                $type = get_debug_type($v);
+                $type = \is_object($v) ? \get_class($v) : \gettype($v);
                 $message = sprintf('Failed to save key "{key}" of type %s%s', $type, $e instanceof \Exception ? ': '.$e->getMessage() : '.');
-                CacheItem::log($this->logger, $message, ['key' => substr($id, \strlen($this->namespace)), 'exception' => $e instanceof \Exception ? $e : null, 'cache-adapter' => get_debug_type($this)]);
+                CacheItem::log($this->logger, $message, ['key' => substr($id, \strlen($this->namespace)), 'exception' => $e instanceof \Exception ? $e : null]);
             }
         }
 
