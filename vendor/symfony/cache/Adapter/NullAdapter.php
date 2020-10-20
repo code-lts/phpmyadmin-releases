@@ -78,9 +78,11 @@ class NullAdapter implements AdapterInterface, CacheInterface
     /**
      * {@inheritdoc}
      *
+     * @param string $prefix
+     *
      * @return bool
      */
-    public function clear(string $prefix = '')
+    public function clear(/*string $prefix = ''*/)
     {
         return true;
     }
