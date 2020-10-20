@@ -10,16 +10,12 @@ use PhpMyAdmin\SqlParser\Component;
 
 /**
  * `UNION` keyword builder.
- *
- * @category   Keywords
- *
- * @license    https://www.gnu.org/licenses/gpl-2.0.txt GPL-2.0+
  */
 class UnionKeyword extends Component
 {
     /**
-     * @param UnionKeyword[] $component the component to be built
-     * @param array          $options   parameters for building
+     * @param array<UnionKeyword[]> $component the component to be built
+     * @param array                 $options   parameters for building
      *
      * @return string
      */

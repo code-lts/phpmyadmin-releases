@@ -13,10 +13,6 @@ use PhpMyAdmin\SqlParser\TokensList;
 
 /**
  * `INTO` keyword parser.
- *
- * @category   Keywords
- *
- * @license    https://www.gnu.org/licenses/gpl-2.0.txt GPL-2.0+
  */
 class IntoKeyword extends Component
 {
@@ -88,9 +84,9 @@ class IntoKeyword extends Component
     /**
      * Options for FIELDS/COLUMNS keyword.
      *
-     * @var OptionsArray
-     *
      * @see static::$FIELDS_OPTIONS
+     *
+     * @var OptionsArray
      */
     public $fields_options;
 
@@ -104,21 +100,19 @@ class IntoKeyword extends Component
     /**
      * Options for OPTIONS keyword.
      *
-     * @var OptionsArray
-     *
      * @see static::$LINES_OPTIONS
+     *
+     * @var OptionsArray
      */
     public $lines_options;
 
     /**
-     * Constructor.
-     *
      * @param string            $type           type of destination (may be OUTFILE)
      * @param string|Expression $dest           actual destination
      * @param array             $columns        column list of destination
      * @param array             $values         selected fields
      * @param OptionsArray      $fields_options options for FIELDS/COLUMNS keyword
-     * @param OptionsArray      $fields_keyword options for OPTINOS keyword
+     * @param bool              $fields_keyword options for OPTIONS keyword
      */
     public function __construct(
         $type = null,

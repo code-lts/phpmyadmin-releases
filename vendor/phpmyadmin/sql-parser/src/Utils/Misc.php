@@ -11,10 +11,6 @@ use PhpMyAdmin\SqlParser\Statements\SelectStatement;
 
 /**
  * Miscellaneous utilities.
- *
- * @category   Misc
- *
- * @license    https://www.gnu.org/licenses/gpl-2.0.txt GPL-2.0+
  */
 class Misc
 {
@@ -59,7 +55,7 @@ class Misc
                 continue;
             }
 
-            $thisDb = (isset($expr->database) && ($expr->database !== '')) ?
+            $thisDb = isset($expr->database) && ($expr->database !== '') ?
                 $expr->database : $database;
 
             if (! isset($retval[$thisDb])) {
@@ -71,7 +67,7 @@ class Misc
 
             if (! isset($retval[$thisDb]['tables'][$expr->table])) {
                 $retval[$thisDb]['tables'][$expr->table] = [
-                    'alias' => (isset($expr->alias) && ($expr->alias !== '')) ?
+                    'alias' => isset($expr->alias) && ($expr->alias !== '') ?
                         $expr->alias : null,
                     'columns' => [],
                 ];
@@ -89,7 +85,7 @@ class Misc
                 continue;
             }
 
-            $thisDb = (isset($expr->database) && ($expr->database !== '')) ?
+            $thisDb = isset($expr->database) && ($expr->database !== '') ?
                 $expr->database : $database;
 
             if (isset($expr->table) && ($expr->table !== '')) {

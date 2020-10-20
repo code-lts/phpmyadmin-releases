@@ -16,10 +16,6 @@ use PhpMyAdmin\SqlParser\TokensList;
  * Parses the definition of a key.
  *
  * Used for parsing `CREATE TABLE` statement.
- *
- * @category   Components
- *
- * @license    https://www.gnu.org/licenses/gpl-2.0.txt GPL-2.0+
  */
 class Key extends Component
 {
@@ -76,8 +72,6 @@ class Key extends Component
     public $options;
 
     /**
-     * Constructor.
-     *
      * @param string       $name    the name of the key
      * @param array        $columns the columns covered by this key
      * @param string       $type    the type of this key
@@ -161,7 +155,7 @@ class Key extends Component
                     if ($token->value === '(') {
                         $state = 3;
                     } elseif (($token->value === ',') || ($token->value === ')')) {
-                        $state = ($token->value === ',') ? 2 : 4;
+                        $state = $token->value === ',' ? 2 : 4;
                         if (! empty($lastColumn)) {
                             $ret->columns[] = $lastColumn;
                             $lastColumn = [];
