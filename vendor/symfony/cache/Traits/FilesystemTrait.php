@@ -59,7 +59,7 @@ trait FilesystemTrait
 
         foreach ($ids as $id) {
             $file = $this->getFile($id);
-            if (!file_exists($file) || !$h = @fopen($file, 'rb')) {
+            if (!is_file($file) || !$h = @fopen($file, 'rb')) {
                 continue;
             }
             if (($expiresAt = (int) fgets($h)) && $now >= $expiresAt) {
@@ -81,17 +81,17 @@ trait FilesystemTrait
     /**
      * {@inheritdoc}
      */
-    protected function doHave($id)
+    protected function doHave(string $id)
     {
         $file = $this->getFile($id);
 
-        return file_exists($file) && (@filemtime($file) > time() || $this->doFetch([$id]));
+        return is_file($file) && (@filemtime($file) > time() || $this->doFetch([$id]));
     }
 
     /**
      * {@inheritdoc}
      */
-    protected function doSave(array $values, $lifetime)
+    protected function doSave(array $values, int $lifetime)
     {
         $expiresAt = $lifetime ? (time() + $lifetime) : 0;
         $values = $this->marshaller->marshall($values, $failed);
@@ -103,7 +103,7 @@ trait FilesystemTrait
         }
 
         if ($failed && !is_writable($this->directory)) {
-            throw new CacheException(sprintf('Cache directory is not writable (%s)', $this->directory));
+            throw new CacheException(sprintf('Cache directory is not writable (%s).', $this->directory));
         }
 
         return $failed;
