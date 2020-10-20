@@ -62,7 +62,7 @@
 			{
 				"patch": 4,
 				"name": "4.9.4",
-				"imported": false
+				"imported": true
 			},
 			{
 				"patch": 5,
