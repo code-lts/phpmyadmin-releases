@@ -4,6 +4,11 @@
 		"minor": 0,
 		"versions": [
 			{
+				"patch": 0,
+				"name": "5.0.0",
+				"imported": false
+			},
+			{
 				"patch": 1,
 				"name": "5.0.1",
 				"imported": false
@@ -29,6 +34,16 @@
 		"major": 4,
 		"minor": 9,
 		"versions": [
+			{
+				"patch": 0,
+				"name": "4.9.0",
+				"imported": false
+			},
+			{
+				"patch": 0,
+				"name": "4.9.0.1",
+				"imported": false
+			},
 			{
 				"patch": 1,
 				"name": "4.9.1",
