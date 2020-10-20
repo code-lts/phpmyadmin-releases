@@ -125,13 +125,23 @@ doImportOfVersionToCommit () {
 addArchiveFilesToGit () {
 	BUNDLE_FILE="${1}"
 	BUNDLE_NAME="${2}" # Used to emulate a strip-components on each file name
-	logDebug "${BUNDLE_FILE}"
+	FILES_TO_ADD=()
 	for file in $(tar --list --file="${BUNDLE_FILE}"); do
 		RELATIVE_PATH=${file/${BUNDLE_NAME}\//}
 		if [ -f "${RELATIVE_PATH}" ]; then
-			git add "${RELATIVE_PATH}"
+			FILES_TO_ADD+=(${RELATIVE_PATH})
 		fi
 	done
+	# Add all files
+	git add "${FILES_TO_ADD[@]}"
+}
+
+cleanGitFiles () {
+	logDebug 'Removing all files tracked by GIT'
+	FILES_TO_DELETE=$(git ls-files)
+	if [ ! -z "${FILES_TO_DELETE}" ]; then
+		git rm --quiet ${FILES_TO_DELETE}
+	fi
 }
 
 commitVersion () {
@@ -160,6 +170,7 @@ bundleToCommitOnBranch () {
 	fi
 	logDebug "checkout ${BRANCH}"
 	git checkout --quiet "${BRANCH}"
+	cleanGitFiles
 	logDebug "Extracting bundle ${BUNDLE_FILE}"
 	tar -xJf "${BUNDLE_FILE}" --strip-components=1
 	logDebug "Add files from bundle ${BUNDLE_FILE} to git"
