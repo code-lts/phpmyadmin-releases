@@ -6,29 +6,22 @@
 			{
 				"patch": 1,
 				"name": "5.0.1",
-				"imported": false,
-				"fingerprints": {
-					"sha1": "",
-					"sha256": ""
-				}
+				"imported": false
 			},
 			{
 				"patch": 2,
 				"name": "5.0.2",
-				"imported": false,
-				"fingerprints": {
-					"sha1": "",
-					"sha256": ""
-				}
+				"imported": false
 			},
 			{
 				"patch": 3,
 				"name": "5.0.3",
-				"imported": false,
-				"fingerprints": {
-					"sha1": "",
-					"sha256": ""
-				}
+				"imported": false
+			},
+			{
+				"patch": 4,
+				"name": "5.0.4",
+				"imported": false
 			}
 		]
 	},
@@ -39,56 +32,37 @@
 			{
 				"patch": 1,
 				"name": "4.9.1",
-				"imported": false,
-				"fingerprints": {
-					"sha1": "",
-					"sha256": ""
-				}
+				"imported": false
 			},
 			{
 				"patch": 2,
 				"name": "4.9.2",
-				"imported": false,
-				"fingerprints": {
-					"sha1": "",
-					"sha256": ""
-				}
+				"imported": false
 			},
 			{
 				"patch": 3,
 				"name": "4.9.3",
-				"imported": false,
-				"fingerprints": {
-					"sha1": "",
-					"sha256": ""
-				}
+				"imported": false
 			},
 			{
 				"patch": 4,
 				"name": "4.9.4",
-				"imported": false,
-				"fingerprints": {
-					"sha1": "",
-					"sha256": ""
-				}
+				"imported": false
 			},
 			{
 				"patch": 5,
 				"name": "4.9.5",
-				"imported": false,
-				"fingerprints": {
-					"sha1": "",
-					"sha256": ""
-				}
+				"imported": false
 			},
 			{
 				"patch": 6,
 				"name": "4.9.6",
-				"imported": false,
-				"fingerprints": {
-					"sha1": "",
-					"sha256": ""
-				}
+				"imported": false
+			},
+			{
+				"patch": 7,
+				"name": "4.9.7",
+				"imported": false
 			}
 		]
 	}
