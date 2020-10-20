@@ -1,5 +1,4 @@
 [![Build Status](https://travis-ci.org/jquery/jquery-migrate.svg?branch=master)](https://travis-ci.org/jquery/jquery-migrate)
-[![Coverage Status](https://img.shields.io/coveralls/jquery/jquery-migrate.svg?style=flat)](https://coveralls.io/r/jquery/jquery-migrate?branch=master)
 
 #### NOTE: To upgrade to jQuery 3.0, you first need version 1.12.x or 2.2.x. If you're using an older version, first upgrade to one of these versions using [jQuery Migrate 1.x](https://github.com/jquery/jquery-migrate/tree/1.x-stable#readme), to resolve any compatibility issues. For more information about the changes made in jQuery 3.0, see the [upgrade guide](https://jquery.com/upgrade-guide/3.0/) and [blog post](https://blog.jquery.com/2016/06/09/jquery-3-0-final-released/).
 
@@ -14,20 +13,20 @@ In your web page, load this plugin *after* the script tag for jQuery, for exampl
 
 ```html
 <script src="https://code.jquery.com/jquery-3.0.0.js"></script>
-<script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>
+<script src="https://code.jquery.com/jquery-migrate-3.1.0.js"></script>
 ```
 
 ## Download
 
 ### Development vs. Production versions
 
-The production build is minified and does not generate console warnings. It will only generate a console log message upon loading, or if it detects an error such as an outdated version of jQuery that it does not support. Do not use this file for development or debugging, it will make your life miserable. 
+The production build is minified and does not generate console warnings. It will only generate a console log message upon loading, or if it detects an error such as an outdated version of jQuery that it does not support. Do not use this file for development or debugging, it will make your life miserable.
 
 |  | Development | Production |
 |--|-------------|------------|
 | Debugging enabled | <p align="center">✓</p> |  |
 | Minified |  | <p align="center">✓</p> |
-| Latest release (*may be hotlinked if desired*) | [jquery-migrate-3.0.1.js](https://code.jquery.com/jquery-migrate-3.0.1.js) | [jquery-migrate-3.0.1.min.js](https://code.jquery.com/jquery-migrate-3.0.1.min.js) |
+| Latest release (*may be hotlinked if desired*) | [jquery-migrate-3.1.0.js](https://code.jquery.com/jquery-migrate-3.1.0.js) | [jquery-migrate-3.1.0.min.js](https://code.jquery.com/jquery-migrate-3.1.0.min.js) |
 | \* Latest work-in-progress build | [jquery-migrate-git.js](https://code.jquery.com/jquery-migrate-git.js) | [jquery-migrate-git.min.js](https://code.jquery.com/jquery-migrate-git.min.js) |
 
 
