@@ -13,10 +13,6 @@ use PhpMyAdmin\SqlParser\TokensList;
 
 /**
  * Parses an array.
- *
- * @category   Components
- *
- * @license    https://www.gnu.org/licenses/gpl-2.0.txt GPL-2.0+
  */
 class ArrayObj extends Component
 {
@@ -35,8 +31,6 @@ class ArrayObj extends Component
     public $values = [];
 
     /**
-     * Constructor.
-     *
      * @param array $raw    the unprocessed values
      * @param array $values the processed values
      */
@@ -153,14 +147,13 @@ class ArrayObj extends Component
         //
         // This is treated differently to treat the following cases:
         //
-        //           => array()
-        //      (,)  => array('', '')
-        //      ()   => array()
-        //      (a,) => array('a', '')
-        //      (a)  => array('a')
-        //
+        //           => []
+        //      [,]  => ['', '']
+        //      []   => []
+        //      [a,] => ['a', '']
+        //      [a]  => ['a']
         $lastRaw = trim($lastRaw);
-        if ((empty($options['type']))
+        if (empty($options['type'])
             && ((strlen($lastRaw) > 0) || ($isCommaLast))
         ) {
             $ret->raw[] = $lastRaw;

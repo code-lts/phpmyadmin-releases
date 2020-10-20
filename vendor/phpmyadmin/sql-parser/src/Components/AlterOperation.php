@@ -13,10 +13,6 @@ use PhpMyAdmin\SqlParser\TokensList;
 
 /**
  * Parses an alter operation.
- *
- * @category   Components
- *
- * @license    https://www.gnu.org/licenses/gpl-2.0.txt GPL-2.0+
  */
 class AlterOperation extends Component
 {
@@ -156,8 +152,6 @@ class AlterOperation extends Component
     public $unknown = [];
 
     /**
-     * Constructor.
-     *
      * @param OptionsArray $options options of alter operation
      * @param Expression   $field   altered field
      * @param array        $unknown unparsed tokens found at the end of operation
@@ -318,7 +312,7 @@ class AlterOperation extends Component
     public static function build($component, array $options = [])
     {
         $ret = $component->options . ' ';
-        if ((isset($component->field)) && ($component->field !== '')) {
+        if (isset($component->field) && ($component->field !== '')) {
             $ret .= $component->field . ' ';
         }
         $ret .= TokensList::build($component->unknown);
@@ -331,6 +325,8 @@ class AlterOperation extends Component
      * between column and table alteration
      *
      * @param string $tokenValue Value of current token
+     *
+     * @return bool
      */
     private static function checkIfColumnDefinitionKeyword($tokenValue)
     {
@@ -340,6 +336,10 @@ class AlterOperation extends Component
             'DEFAULT',
             'CHARACTER SET',
             'COLLATE',
+            'PRIMARY',
+            'UNIQUE',
+            'PRIMARY KEY',
+            'UNIQUE KEY',
         ];
         // Since these options can be used for
         // both table as well as a specific column in the table

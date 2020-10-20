@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Installation &#8212; phpMyAdmin 5.0.0 documentation</title>
+    <title>Installation &#8212; phpMyAdmin 5.0.1 documentation</title>
     
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '5.0.0',
+        VERSION:     '5.0.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,7 +26,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="copyright" title="Copyright" href="copyright.html" />
-    <link rel="top" title="phpMyAdmin 5.0.0 documentation" href="index.html" />
+    <link rel="top" title="phpMyAdmin 5.0.1 documentation" href="index.html" />
     <link rel="next" title="Configuration" href="config.html" />
     <link rel="prev" title="Requirements" href="require.html" /> 
   </head>
@@ -43,7 +43,7 @@
         <li class="right" >
           <a href="require.html" title="Requirements"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">phpMyAdmin 5.0.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">phpMyAdmin 5.0.1 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -740,9 +740,24 @@ directives used for that can be found in the <a class="reference internal" href=
 <span class="target" id="index-14"></span><a class="reference internal" href="config.html#cfg_Servers_controlpass"><code class="xref config config-option docutils literal"><span class="pre">$cfg['Servers'][$i]['controlpass']</span></code></a> settings)
 with the proper rights to those tables. For example you can create it
 using following statement:</p>
-<div class="highlight-mysql"><div class="highlight"><pre><span></span><span class="k">GRANT</span> <span class="k">SELECT</span><span class="p">,</span> <span class="k">INSERT</span><span class="p">,</span> <span class="k">UPDATE</span><span class="p">,</span> <span class="k">DELETE</span> <span class="k">ON</span> <span class="o">&lt;</span><span class="n">pma_db</span><span class="o">&gt;</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="s1">&#39;pma&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span>  <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">&#39;pmapass&#39;</span><span class="p">;</span>
+<p>And for any MariaDB version:</p>
+<div class="highlight-mysql"><div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="n">USER</span> <span class="s1">&#39;pma&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span> <span class="n">IDENTIFIED</span> <span class="n">VIA</span> <span class="n">mysql_native_password</span> <span class="k">USING</span> <span class="s1">&#39;pmapass&#39;</span><span class="p">;</span>
+<span class="k">GRANT</span> <span class="k">SELECT</span><span class="p">,</span> <span class="k">INSERT</span><span class="p">,</span> <span class="k">UPDATE</span><span class="p">,</span> <span class="k">DELETE</span> <span class="k">ON</span> <span class="ss">`&lt;pma_db&gt;`</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="s1">&#39;pma&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
+<p>For MySQL 8.0 and newer:</p>
+<div class="highlight-mysql"><div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="n">USER</span> <span class="s1">&#39;pma&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span> <span class="n">IDENTIFIED</span> <span class="k">WITH</span> <span class="n">caching_sha2_password</span> <span class="k">BY</span> <span class="s1">&#39;pmapass&#39;</span><span class="p">;</span>
+<span class="k">GRANT</span> <span class="k">SELECT</span><span class="p">,</span> <span class="k">INSERT</span><span class="p">,</span> <span class="k">UPDATE</span><span class="p">,</span> <span class="k">DELETE</span> <span class="k">ON</span> <span class="o">&lt;</span><span class="n">pma_db</span><span class="o">&gt;</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="s1">&#39;pma&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>For MySQL older than 8.0:</p>
+<div class="highlight-mysql"><div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="n">USER</span> <span class="s1">&#39;pma&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span> <span class="n">IDENTIFIED</span> <span class="k">WITH</span> <span class="n">mysql_native_password</span> <span class="k">AS</span> <span class="s1">&#39;pmapass&#39;</span><span class="p">;</span>
+<span class="k">GRANT</span> <span class="k">SELECT</span><span class="p">,</span> <span class="k">INSERT</span><span class="p">,</span> <span class="k">UPDATE</span><span class="p">,</span> <span class="k">DELETE</span> <span class="k">ON</span> <span class="o">&lt;</span><span class="n">pma_db</span><span class="o">&gt;</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="s1">&#39;pma&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Note that MySQL installations with PHP older than 7.4 and MySQL newer than 8.0 may require
+using the mysql_native_password authentication as a workaround, see
+<a class="reference internal" href="faq.html#faq1-45"><span class="std std-ref">1.45 I get an error message about unknown authentication method caching_sha2_password when trying to log in</span></a> for details.</p>
 </div>
 </div>
 <div class="section" id="upgrading-from-an-older-version">
@@ -1445,7 +1460,7 @@ manually or after a period of inactivity). <a class="reference external" href="h
         <li class="right" >
           <a href="require.html" title="Requirements"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">phpMyAdmin 5.0.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">phpMyAdmin 5.0.1 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

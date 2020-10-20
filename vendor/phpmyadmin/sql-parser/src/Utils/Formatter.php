@@ -14,10 +14,6 @@ use PhpMyAdmin\SqlParser\TokensList;
 
 /**
  * Utilities that are used for formatting queries.
- *
- * @category   Misc
- *
- * @license    https://www.gnu.org/licenses/gpl-2.0.txt GPL-2.0+
  */
 class Formatter
 {
@@ -70,8 +66,6 @@ class Formatter
     ];
 
     /**
-     * Constructor.
-     *
      * @param array $options the formatting options
      */
     public function __construct(array $options = [])
@@ -99,11 +93,11 @@ class Formatter
             $options['formats'] = $this->getDefaultFormats();
         }
 
-        if (is_null($options['line_ending'])) {
+        if ($options['line_ending'] === null) {
             $options['line_ending'] = $options['type'] === 'html' ? '<br/>' : "\n";
         }
 
-        if (is_null($options['indentation'])) {
+        if ($options['indentation'] === null) {
             $options['indentation'] = $options['type'] === 'html' ? '&nbsp;&nbsp;&nbsp;&nbsp;' : '    ';
         }
 
@@ -176,7 +170,7 @@ class Formatter
 
     /**
      * The styles used for HTML formatting.
-     * array($type, $flags, $span, $callback).
+     * [$type, $flags, $span, $callback].
      *
      * @return array
      */
@@ -494,7 +488,7 @@ class Formatter
                 // Finishing the line.
                 if ($lineEnded) {
                     $ret .= $this->options['line_ending']
-                        . str_repeat($this->options['indentation'], $indent);
+                        . str_repeat($this->options['indentation'], (int) $indent);
 
                     $lineEnded = false;
                 } else {

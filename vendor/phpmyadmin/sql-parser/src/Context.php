@@ -13,10 +13,6 @@ use PhpMyAdmin\SqlParser\Exceptions\LoaderException;
 
 /**
  * Holds the configuration of the context that is currently used.
- *
- * @category Contexts
- *
- * @license  https://www.gnu.org/licenses/gpl-2.0.txt GPL-2.0+
  */
 abstract class Context
 {
@@ -268,7 +264,7 @@ abstract class Context
      * @param string $str        string to be checked
      * @param bool   $isReserved checks if the keyword is reserved
      *
-     * @return int
+     * @return int|null
      */
     public static function isKeyword($str, $isReserved = false)
     {
@@ -293,7 +289,7 @@ abstract class Context
      *
      * @param string $str string to be checked
      *
-     * @return int the appropriate flag for the operator
+     * @return int|null the appropriate flag for the operator
      */
     public static function isOperator($str)
     {
@@ -328,7 +324,7 @@ abstract class Context
      * @param string $str string to be checked
      * @param mixed  $end
      *
-     * @return int the appropriate flag for the comment type
+     * @return int|null the appropriate flag for the comment type
      */
     public static function isComment($str, $end = false)
     {
@@ -339,7 +335,7 @@ abstract class Context
         if ($str[0] === '#') {
             return Token::FLAG_COMMENT_BASH;
         } elseif (($len > 1) && ($str[0] === '/') && ($str[1] === '*')) {
-            return (($len > 2) && ($str[2] === '!')) ?
+            return ($len > 2) && ($str[2] === '!') ?
                 Token::FLAG_COMMENT_MYSQL_CMD : Token::FLAG_COMMENT_C;
         } elseif (($len > 1) && ($str[0] === '*') && ($str[1] === '/')) {
             return Token::FLAG_COMMENT_C;
@@ -385,7 +381,7 @@ abstract class Context
      */
     public static function isNumber($str)
     {
-        return (($str >= '0') && ($str <= '9')) || ($str === '.')
+        return ($str >= '0') && ($str <= '9') || ($str === '.')
             || ($str === '-') || ($str === '+') || ($str === 'e') || ($str === 'E');
     }
 
@@ -398,7 +394,7 @@ abstract class Context
      *
      * @param string $str string to be checked
      *
-     * @return int the appropriate flag for the symbol type
+     * @return int|null the appropriate flag for the symbol type
      */
     public static function isSymbol($str)
     {
@@ -424,7 +420,7 @@ abstract class Context
      *
      * @param string $str string to be checked
      *
-     * @return int the appropriate flag for the string type
+     * @return int|null the appropriate flag for the string type
      */
     public static function isString($str)
     {
@@ -468,7 +464,7 @@ abstract class Context
      * @param string $context name of the context or full class name that
      *                        defines the context
      *
-     * @throws LoaderException if the specified context doesn't exist
+     * @throws LoaderException if the specified context doesn't exist.
      */
     public static function load($context = '')
     {
@@ -500,7 +496,7 @@ abstract class Context
      * @param string $context name of the context or full class name that
      *                        defines the context
      *
-     * @return string The loaded context. `null` if no context was loaded.
+     * @return string|null The loaded context. `null` if no context was loaded.
      */
     public static function loadClosest($context = '')
     {
@@ -555,7 +551,7 @@ abstract class Context
      * @param array|string $str   the string to be escaped
      * @param string       $quote quote to be used when escaping
      *
-     * @return string
+     * @return string|array
      */
     public static function escape($str, $quote = '`')
     {

@@ -6,15 +6,13 @@ declare(strict_types=1);
 
 namespace PhpMyAdmin\SqlParser\Utils;
 
+use PhpMyAdmin\SqlParser\Exceptions\LexerException;
+use PhpMyAdmin\SqlParser\Exceptions\ParserException;
 use PhpMyAdmin\SqlParser\Lexer;
 use PhpMyAdmin\SqlParser\Parser;
 
 /**
  * Error related utilities.
- *
- * @category   Exceptions
- *
- * @license    https://www.gnu.org/licenses/gpl-2.0.txt GPL-2.0+
  */
 class Error
 {
@@ -28,7 +26,7 @@ class Error
      *               `$err[1]` holds the error code.
      *               `$err[2]` holds the string that caused the issue.
      *               `$err[3]` holds the position of the string.
-     *               (i.e. `array($msg, $code, $str, $pos)`)
+     *               (i.e. `[$msg, $code, $str, $pos]`)
      */
     public static function get($objs)
     {
@@ -36,6 +34,7 @@ class Error
 
         foreach ($objs as $obj) {
             if ($obj instanceof Lexer) {
+                /** @var LexerException $err */
                 foreach ($obj->errors as $err) {
                     $ret[] = [
                         $err->getMessage(),
@@ -45,6 +44,7 @@ class Error
                     ];
                 }
             } elseif ($obj instanceof Parser) {
+                /** @var ParserException $err */
                 foreach ($obj->errors as $err) {
                     $ret[] = [
                         $err->getMessage(),
