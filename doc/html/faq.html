@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>FAQ - Frequently Asked Questions &#8212; phpMyAdmin 5.0.2 documentation</title>
+    <title>FAQ - Frequently Asked Questions &#8212; phpMyAdmin 5.0.3 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
@@ -34,7 +34,7 @@
         <li class="right" >
           <a href="other.html" title="Other sources of information"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">phpMyAdmin 5.0.2 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">phpMyAdmin 5.0.3 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -52,7 +52,7 @@ or interface.</p>
 <span id="faqserver"></span><h2>Server<a class="headerlink" href="#server" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="my-server-is-crashing-each-time-a-specific-action-is-required-or-phpmyadmin-sends-a-blank-page-or-a-page-full-of-cryptic-characters-to-my-browser-what-can-i-do">
 <span id="faq1-1"></span><h3>1.1 My server is crashing each time a specific action is required or phpMyAdmin sends a blank page or a page full of cryptic characters to my browser, what can I do?<a class="headerlink" href="#my-server-is-crashing-each-time-a-specific-action-is-required-or-phpmyadmin-sends-a-blank-page-or-a-page-full-of-cryptic-characters-to-my-browser-what-can-i-do" title="Permalink to this headline">¶</a></h3>
-<p>Try to set the <span class="target" id="index-0"></span><a class="reference internal" href="config.html#cfg_OBGzip"><code class="xref config config-option docutils literal notranslate"><span class="pre">$cfg['OBGzip']</span></code></a>  directive to <code class="docutils literal notranslate"><span class="pre">false</span></code> in your
+<p>Try to set the <span class="target" id="index-0"></span><a class="reference internal" href="config.html#cfg_OBGzip"><code class="xref config config-option docutils literal notranslate"><span class="pre">$cfg['OBGzip']</span></code></a> directive to <code class="docutils literal notranslate"><span class="pre">false</span></code> in your
 <code class="file docutils literal notranslate"><span class="pre">config.inc.php</span></code> file and the <code class="docutils literal notranslate"><span class="pre">zlib.output_compression</span></code> directive to
 <code class="docutils literal notranslate"><span class="pre">Off</span></code> in your php configuration file.</p>
 </div>
@@ -84,7 +84,7 @@ Please use instead the cookie authentication mode.</p>
 <span id="faq1-6"></span><h3>1.6 I can’t use phpMyAdmin on PWS: nothing is displayed!<a class="headerlink" href="#i-can-t-use-phpmyadmin-on-pws-nothing-is-displayed" title="Permalink to this headline">¶</a></h3>
 <p>This seems to be a PWS bug. Filippo Simoncini found a workaround (at
 this time there is no better fix): remove or comment the <code class="docutils literal notranslate"><span class="pre">DOCTYPE</span></code>
-declarations (2 lines) from the scripts <code class="file docutils literal notranslate"><span class="pre">libraries/Header.class.php</span></code>
+declarations (2 lines) from the scripts <code class="file docutils literal notranslate"><span class="pre">libraries/classes/Header.php</span></code>
 and <code class="file docutils literal notranslate"><span class="pre">index.php</span></code>.</p>
 </div>
 <div class="section" id="how-can-i-gzip-a-dump-or-a-csv-export-it-does-not-seem-to-work">
@@ -247,7 +247,7 @@ can tell it to use specific path for this file using <code class="docutils liter
 </div>
 <p>In some rare cases this problem can be also caused by other extensions loaded
 in PHP which prevent MySQL extensions to be loaded. If anything else fails, you
-can try commenting out extensions for other databses from <code class="file docutils literal notranslate"><span class="pre">php.ini</span></code>.</p>
+can try commenting out extensions for other databases from <code class="file docutils literal notranslate"><span class="pre">php.ini</span></code>.</p>
 </div>
 <div class="section" id="i-am-running-the-cgi-version-of-php-under-unix-and-i-cannot-log-in-using-cookie-auth">
 <span id="faq1-21"></span><h3>1.21 I am running the CGI version of PHP under Unix, and I cannot log in using cookie auth.<a class="headerlink" href="#i-am-running-the-cgi-version-of-php-under-unix-and-i-cannot-log-in-using-cookie-auth" title="Permalink to this headline">¶</a></h3>
@@ -428,8 +428,8 @@ error log file might give a clue.</p>
 <div class="section" id="i-run-phpmyadmin-on-cluster-of-different-machines-and-password-encryption-in-cookie-auth-doesn-t-work">
 <span id="faq1-37"></span><h3>1.37 I run phpMyAdmin on cluster of different machines and password encryption in cookie auth doesn’t work.<a class="headerlink" href="#i-run-phpmyadmin-on-cluster-of-different-machines-and-password-encryption-in-cookie-auth-doesn-t-work" title="Permalink to this headline">¶</a></h3>
 <p>If your cluster consist of different architectures, PHP code used for
-encryption/decryption won’t work correct. This is caused by use of
-pack/unpack functions in code. Only solution is to use mcrypt
+encryption/decryption won’t work correctly. This is caused by use of
+pack/unpack functions in code. Only solution is to use openssl
 extension which works fine in this case.</p>
 </div>
 <div class="section" id="can-i-use-phpmyadmin-on-a-server-on-which-suhosin-is-enabled">
@@ -2027,11 +2027,11 @@ spreadsheet program to properly parse and sanitize such data on input instead.</
         <li class="right" >
           <a href="other.html" title="Other sources of information"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">phpMyAdmin 5.0.2 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">phpMyAdmin 5.0.3 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; <a href="copyright.html">Copyright</a> 2012 - 2018, The phpMyAdmin devel team.
+        &#169; <a href="copyright.html">Copyright</a> 2012 - 2020, The phpMyAdmin devel team.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
     </div>
   </body>
