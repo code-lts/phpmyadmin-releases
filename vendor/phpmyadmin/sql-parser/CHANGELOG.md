@@ -1,5 +1,14 @@
 # Change Log
 
+## [4.5.0] - 2020-01-07
+
+* Fix ALTER TABLE ... PRIMARY/UNIQUE KEY results in error (#267)
+* Prevent overwrite of offset in Limit clause by parenthesis (#275)
+* Allow SCHEMA to be used in CREATE Database statement (#231)
+* Add missing options in SET statement (#255)
+* Add support for DROP USER statement (#259)
+* Fix php error "undefined index" when replacing a non existing clause (#249)
+
 ## [4.4.0] - 2019-11-12
 
 * Fix for PHP deprecations messages about implode for php 7.4+ (#258)
