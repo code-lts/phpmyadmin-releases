@@ -52,11 +52,11 @@ getMajorReleases () {
 }
 
 getMinorForMajorMinor () {
-	jq -r '.[] | select("\(.major).\(.minor)"=="${1}") | .minor' releases.json
+	jq -r ".[] | select(\"\(.major).\(.minor)\"==\"${1}\") | .minor" releases.json
 }
 
 getMajorForMajorMinor () {
-	jq -r '.[] | select("\(.major).\(.minor)"=="${1}") | .major' releases.json
+	jq -r ".[] | select(\"\(.major).\(.minor)\"==\"${1}\") | .major" releases.json
 }
 
 getImported () {
@@ -105,7 +105,7 @@ checkReleaseFile () {
 }
 
 doImportOfVersionToCommit () {
-	RELEASE_NAME="$(getReleaseName "${version}")"
+	RELEASE_NAME="$(getReleaseName "${1}")"
 	MAJOR="$(getMajorForMajorMinor "${2}")"
 	MINOR="$(getMinorForMajorMinor "${2}")"
 	logInfo "Importing ${RELEASE_NAME} ..."
@@ -116,8 +116,9 @@ doImportOfVersionToCommit () {
 		bundleToCommitOnBranch \
 			"./build/phpMyAdmin-${RELEASE_NAME}-${variant}.tar.xz" \
 			"phpMyAdmin-${RELEASE_NAME}-${variant}" \
-			"upstream/series/${variant}/latest-${MAJOR}-${MINOR}" \
-			"${variant}"
+			"upstream/series/latest-${variant}/${MAJOR}-${MINOR}" \
+			"${variant}" \
+			"${RELEASE_NAME}"
 	done
 }
 
@@ -134,29 +135,38 @@ addArchiveFilesToGit () {
 }
 
 commitVersion () {
-	BUNDLE_NAME="${1}"
+	VERSION_NAME="${1}"
 	VARIANT="${2}"
-	git commit -m "Added new version: ${BUNDLE_NAME}"
-	git tag -a -m -s "version: ${BUNDLE_NAME}" upstream/version/${VARIANT}/${BUNDLE_NAME}
+	git commit --quiet -S -m "Added new version: ${VERSION_NAME}"
+	git tag -a -s -m "version: ${VERSION_NAME}" "upstream/version/${VARIANT}/${VERSION_NAME}"
 }
 
 bundleToCommitOnBranch () {
 	BUNDLE_FILE="${1}"
 	BUNDLE_NAME="${2}"
 	BRANCH="${3}"
-	VARIANT="${3}"
+	VARIANT="${4}"
+	VERSION_NAME="${5}"
 	logDebug "Importing bundle ${BUNDLE_FILE}"
 	if [ ! -f "${BUNDLE_FILE}" ]; then
 		quitError "The bundle file ${BUNDLE_FILE} does not exist."
 	fi
-	git checkout "${BRANCH}" || git checkout upstream/origin && git checkout -b "${BRANCH}"
+	logDebug "Check branch exists for 'refs/heads/${BRANCH}'"
+	REF_EXISTS=$(git show-ref --quiet "refs/heads/${BRANCH}" && echo $? || echo $?)
+	if [ "${REF_EXISTS}" != "0" ]; then
+		logDebug "Branch ${BRANCH} does not exist, creating."
+		git checkout --quiet -b "${BRANCH}" upstream/origin
+		git checkout --quiet -
+	fi
+	logDebug "checkout ${BRANCH}"
+	git checkout --quiet "${BRANCH}"
 	logDebug "Extracting bundle ${BUNDLE_FILE}"
 	tar -xJf "${BUNDLE_FILE}" --strip-components=1
 	logDebug "Add files from bundle ${BUNDLE_FILE} to git"
 	addArchiveFilesToGit "${BUNDLE_FILE}" "${BUNDLE_NAME}"
 	logDebug "Commit files from bundle ${BUNDLE_FILE} to git"
-	commitVersion "${BUNDLE_NAME}" "${VARIANT}"
-	git checkout -
+	commitVersion "${VERSION_NAME}" "${VARIANT}"
+	git checkout --quiet -
 	logDebug "All done for bundle ${BUNDLE_FILE}"
 }
 
