@@ -11,6 +11,8 @@ namespace PhpMyAdmin\SqlParser;
 use PhpMyAdmin\SqlParser\Exceptions\ParserException;
 use PhpMyAdmin\SqlParser\Statements\SelectStatement;
 use PhpMyAdmin\SqlParser\Statements\TransactionStatement;
+use function is_string;
+use function strtoupper;
 
 /**
  * Takes multiple tokens (contained in a Lexer instance) as input and builds a
@@ -373,6 +375,7 @@ class Parser extends Core
 
     /**
      * Builds the parse trees.
+     * @throws ParserException
      */
     public function parse()
     {
@@ -449,6 +452,7 @@ class Parser extends Core
                         $token
                     );
                 }
+
                 continue;
             }
 
@@ -473,6 +477,7 @@ class Parser extends Core
                         $token
                     );
                 }
+
                 // Skipping to the end of this statement.
                 $list->getNextOfType(Token::TYPE_DELIMITER);
                 $prevLastIdx = $list->idx;
@@ -563,6 +568,7 @@ class Parser extends Core
                     } else {
                         $lastTransaction->end = $statement;
                     }
+
                     $lastTransaction = null;
                 }
 
@@ -580,6 +586,7 @@ class Parser extends Core
             } else {
                 $this->statements[] = $statement;
             }
+
             $lastStatement = $statement;
         }
     }

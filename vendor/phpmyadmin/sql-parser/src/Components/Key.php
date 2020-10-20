@@ -11,6 +11,8 @@ use PhpMyAdmin\SqlParser\Context;
 use PhpMyAdmin\SqlParser\Parser;
 use PhpMyAdmin\SqlParser\Token;
 use PhpMyAdmin\SqlParser\TokensList;
+use function implode;
+use function trim;
 
 /**
  * Parses the definition of a key.
@@ -201,6 +203,7 @@ class Key extends Component
             if (isset($column['length'])) {
                 $tmp .= '(' . $column['length'] . ')';
             }
+
             $columns[] = $tmp;
         }
 

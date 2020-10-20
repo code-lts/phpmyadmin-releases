@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitcffcd61e9798dd817f367505fcb2aeb1
+class ComposerStaticInitd4a3523f00dfc37d09ffe096eb3f82ca
 {
     public static $files = array (
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
@@ -24,7 +24,6 @@ class ComposerStaticInitcffcd61e9798dd817f367505fcb2aeb1
         ),
         'T' => 
         array (
-            'Twig\\Extensions\\' => 16,
             'Twig\\' => 5,
         ),
         'S' => 
@@ -57,6 +56,7 @@ class ComposerStaticInitcffcd61e9798dd817f367505fcb2aeb1
             'PragmaRX\\Google2FA\\' => 19,
             'PragmaRX\\Google2FAQRCode\\Tests\\' => 31,
             'PragmaRX\\Google2FAQRCode\\' => 25,
+            'PhpMyAdmin\\Twig\\Extensions\\' => 27,
             'PhpMyAdmin\\SqlParser\\' => 21,
             'PhpMyAdmin\\ShapeFile\\' => 21,
             'PhpMyAdmin\\MoTranslator\\' => 24,
@@ -81,10 +81,6 @@ class ComposerStaticInitcffcd61e9798dd817f367505fcb2aeb1
         'Williamdes\\MariaDBMySQLKBS\\' => 
         array (
             0 => __DIR__ . '/..' . '/williamdes/mariadb-mysql-kbs/src',
-        ),
-        'Twig\\Extensions\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/twig/extensions/src',
         ),
         'Twig\\' => 
         array (
@@ -178,6 +174,10 @@ class ComposerStaticInitcffcd61e9798dd817f367505fcb2aeb1
         array (
             0 => __DIR__ . '/..' . '/pragmarx/google2fa-qrcode/src',
         ),
+        'PhpMyAdmin\\Twig\\Extensions\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmyadmin/twig-i18n-extension/src',
+        ),
         'PhpMyAdmin\\SqlParser\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpmyadmin/sql-parser/src',
@@ -211,10 +211,6 @@ class ComposerStaticInitcffcd61e9798dd817f367505fcb2aeb1
     public static $prefixesPsr0 = array (
         'T' => 
         array (
-            'Twig_Extensions_' => 
-            array (
-                0 => __DIR__ . '/..' . '/twig/extensions/lib',
-            ),
             'Twig_' => 
             array (
                 0 => __DIR__ . '/..' . '/twig/twig/lib',
@@ -242,10 +238,10 @@ class ComposerStaticInitcffcd61e9798dd817f367505fcb2aeb1
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitcffcd61e9798dd817f367505fcb2aeb1::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitcffcd61e9798dd817f367505fcb2aeb1::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitcffcd61e9798dd817f367505fcb2aeb1::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitcffcd61e9798dd817f367505fcb2aeb1::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitd4a3523f00dfc37d09ffe096eb3f82ca::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitd4a3523f00dfc37d09ffe096eb3f82ca::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitd4a3523f00dfc37d09ffe096eb3f82ca::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitd4a3523f00dfc37d09ffe096eb3f82ca::$classMap;
 
         }, null, ClassLoader::class);
     }

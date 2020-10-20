@@ -11,6 +11,9 @@ use PhpMyAdmin\SqlParser\Context;
 use PhpMyAdmin\SqlParser\Parser;
 use PhpMyAdmin\SqlParser\Token;
 use PhpMyAdmin\SqlParser\TokensList;
+use function implode;
+use function is_array;
+use function trim;
 
 /**
  * The definition of a parameter of a function or procedure.
@@ -104,6 +107,7 @@ class ParameterDefinition extends Component
                 if (($token->type === Token::TYPE_OPERATOR) && ($token->value === '(')) {
                     $state = 1;
                 }
+
                 continue;
             } elseif ($state === 1) {
                 if (($token->value === 'IN') || ($token->value === 'OUT') || ($token->value === 'INOUT')) {

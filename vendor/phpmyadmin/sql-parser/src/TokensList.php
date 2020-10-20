@@ -7,6 +7,9 @@ declare(strict_types=1);
 namespace PhpMyAdmin\SqlParser;
 
 use ArrayAccess;
+use function count;
+use function is_array;
+use function is_string;
 
 /**
  * A structure representing a list of tokens.
@@ -194,6 +197,7 @@ class TokensList implements ArrayAccess
         for ($i = $offset; $i < $this->count; ++$i) {
             $this->tokens[$i] = $this->tokens[$i + 1];
         }
+
         unset($this->tokens[$this->count]);
     }
 }

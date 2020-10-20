@@ -11,6 +11,7 @@ use PhpMyAdmin\SqlParser\Parser;
 use PhpMyAdmin\SqlParser\Statement;
 use PhpMyAdmin\SqlParser\Token;
 use PhpMyAdmin\SqlParser\TokensList;
+use function trim;
 
 /**
  * `LOCK` statement.
@@ -40,6 +41,7 @@ class LockStatement extends Statement
             // this is in fact an UNLOCK statement
             $this->isLock = false;
         }
+
         ++$list->idx; // Skipping `LOCK`.
 
         /**
@@ -84,6 +86,7 @@ class LockStatement extends Statement
                         $parser->error('Unexpected keyword.', $token);
                         break;
                     }
+
                     $state = 1;
                     continue;
                 } else {
@@ -96,6 +99,7 @@ class LockStatement extends Statement
                     $parser->error('Unexpected token.', $token);
                     break;
                 }
+
                 $this->locked[] = LockExpression::parse($parser, $list);
                 $state = 2;
             } elseif ($state === 2) {
@@ -108,7 +112,7 @@ class LockStatement extends Statement
             $prevToken = $token;
         }
 
-        if ($state !== 2 && $prevToken != null) {
+        if ($state !== 2 && $prevToken !== null) {
             $parser->error('Unexpected end of LOCK statement.', $prevToken);
         }
     }
