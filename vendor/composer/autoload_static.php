@@ -4,12 +4,13 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit102f20e61ccf2c21c496103ebe25665b
+class ComposerStaticInit1f23202176534dbdadae3b6647bb2dee
 {
     public static $files = array (
-        '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
+        '32dcc8afd4335739640db7d200c1971d' => __DIR__ . '/..' . '/symfony/polyfill-apcu/bootstrap.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
+        '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
         'decc78cc4436b1292c6c0d151b19445c' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/bootstrap.php',
     );
 
@@ -23,7 +24,9 @@ class ComposerStaticInit102f20e61ccf2c21c496103ebe25665b
             'Symfony\\Polyfill\\Util\\' => 22,
             'Symfony\\Polyfill\\Php56\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
+            'Symfony\\Polyfill\\Apcu\\' => 22,
             'Symfony\\Component\\ExpressionLanguage\\' => 37,
+            'Symfony\\Component\\Cache\\' => 24,
             'Samyoul\\U2F\\U2FServer\\' => 22,
         ),
         'R' => 
@@ -32,6 +35,9 @@ class ComposerStaticInit102f20e61ccf2c21c496103ebe25665b
         ),
         'P' => 
         array (
+            'Psr\\SimpleCache\\' => 16,
+            'Psr\\Log\\' => 8,
+            'Psr\\Cache\\' => 10,
             'PragmaRX\\Google2FA\\' => 19,
             'PhpMyAdmin\\SqlParser\\' => 21,
             'PhpMyAdmin\\ShapeFile\\' => 21,
@@ -58,9 +64,17 @@ class ComposerStaticInit102f20e61ccf2c21c496103ebe25665b
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
         ),
+        'Symfony\\Polyfill\\Apcu\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-apcu',
+        ),
         'Symfony\\Component\\ExpressionLanguage\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/expression-language',
+        ),
+        'Symfony\\Component\\Cache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/cache',
         ),
         'Samyoul\\U2F\\U2FServer\\' => 
         array (
@@ -69,6 +83,18 @@ class ComposerStaticInit102f20e61ccf2c21c496103ebe25665b
         'ReCaptcha\\' => 
         array (
             0 => __DIR__ . '/..' . '/google/recaptcha/src/ReCaptcha',
+        ),
+        'Psr\\SimpleCache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/simple-cache/src',
+        ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
+        'Psr\\Cache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/cache/src',
         ),
         'PragmaRX\\Google2FA\\' => 
         array (
@@ -126,10 +152,10 @@ class ComposerStaticInit102f20e61ccf2c21c496103ebe25665b
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit102f20e61ccf2c21c496103ebe25665b::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit102f20e61ccf2c21c496103ebe25665b::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit102f20e61ccf2c21c496103ebe25665b::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit102f20e61ccf2c21c496103ebe25665b::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit1f23202176534dbdadae3b6647bb2dee::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit1f23202176534dbdadae3b6647bb2dee::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit1f23202176534dbdadae3b6647bb2dee::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit1f23202176534dbdadae3b6647bb2dee::$classMap;
 
         }, null, ClassLoader::class);
     }
