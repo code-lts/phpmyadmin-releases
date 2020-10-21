@@ -1,8 +1,9 @@
 <?php
+declare(strict_types=1);
 namespace ParagonIE\ConstantTime;
 
 /**
- *  Copyright (c) 2016 Paragon Initiative Enterprises.
+ *  Copyright (c) 2016 - 2017 Paragon Initiative Enterprises.
  *  Copyright (c) 2014 Steve "Sc00bz" Thomas (steve at tobtu dot com)
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -41,7 +42,7 @@ abstract class RFC4648
      * @param string $str
      * @return string
      */
-    public function base64Encode($str)
+    public function base64Encode(string $str): string
     {
         return Base64::encode($str);
     }
@@ -54,9 +55,9 @@ abstract class RFC4648
      * @param string $str
      * @return string
      */
-    public function base64Decode($str)
+    public function base64Decode(string $str): string
     {
-        return Base64::decode($str);
+        return Base64::decode($str, true);
     }
 
     /**
@@ -67,7 +68,7 @@ abstract class RFC4648
      * @param string $str
      * @return string
      */
-    public function base64UrlSafeEncode($str)
+    public function base64UrlSafeEncode(string $str): string
     {
         return Base64UrlSafe::encode($str);
     }
@@ -80,9 +81,9 @@ abstract class RFC4648
      * @param string $str
      * @return string
      */
-    public function base64UrlSafeDecode($str)
+    public function base64UrlSafeDecode(string $str): string
     {
-        return Base64UrlSafe::decode($str);
+        return Base64UrlSafe::decode($str, true);
     }
 
     /**
@@ -93,7 +94,7 @@ abstract class RFC4648
      * @param string $str
      * @return string
      */
-    public function base32Encode($str)
+    public function base32Encode(string $str): string
     {
         return Base32::encodeUpper($str);
     }
@@ -106,9 +107,9 @@ abstract class RFC4648
      * @param string $str
      * @return string
      */
-    public function base32Decode($str)
+    public function base32Decode(string $str): string
     {
-        return Base32::decodeUpper($str);
+        return Base32::decodeUpper($str, true);
     }
 
     /**
@@ -119,7 +120,7 @@ abstract class RFC4648
      * @param string $str
      * @return string
      */
-    public function base32HexEncode($str)
+    public function base32HexEncode(string $str): string
     {
         return Base32::encodeUpper($str);
     }
@@ -132,9 +133,9 @@ abstract class RFC4648
      * @param string $str
      * @return string
      */
-    public function base32HexDecode($str)
+    public function base32HexDecode(string $str): string
     {
-        return Base32::decodeUpper($str);
+        return Base32::decodeUpper($str, true);
     }
 
     /**
@@ -145,7 +146,7 @@ abstract class RFC4648
      * @param string $str
      * @return string
      */
-    public function base16Encode($str)
+    public function base16Encode(string $str): string
     {
         return Hex::encodeUpper($str);
     }
@@ -158,8 +159,8 @@ abstract class RFC4648
      * @param string $str
      * @return string
      */
-    public function base16Decode($str)
+    public function base16Decode(string $str): string
     {
-        return Hex::decode($str);
+        return Hex::decode($str, true);
     }
 }
