@@ -1,5 +1,9 @@
 # Change Log
 
+## [4.1.10] - 2017-08-21
+
+* Use custom LoaderException for context loading errors.
+
 ## [4.1.9] - 2017-07-12
 
 * Various code cleanups.
