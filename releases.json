@@ -154,7 +154,7 @@
 			{
 				"patch": 5,
 				"name": "4.7.5",
-				"imported": false
+				"imported": true
 			},
 			{
 				"patch": 6,
