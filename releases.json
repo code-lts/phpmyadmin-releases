@@ -169,7 +169,7 @@
 			{
 				"patch": 8,
 				"name": "4.7.8",
-				"imported": false
+				"imported": true
 			},
 			{
 				"patch": 9,
