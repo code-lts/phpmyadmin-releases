@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Component\Cache\Adapter;
+namespace Symfony\Component\Cache\Traits;
 
 use Symfony\Component\Cache\Exception\InvalidArgumentException;
 
@@ -18,7 +18,7 @@ use Symfony\Component\Cache\Exception\InvalidArgumentException;
  *
  * @internal
  */
-trait FilesystemAdapterTrait
+trait FilesystemCommonTrait
 {
     private $directory;
     private $tmp;
@@ -118,7 +118,9 @@ trait FilesystemAdapterTrait
 
     public function __destruct()
     {
-        parent::__destruct();
+        if (method_exists(parent::class, '__destruct')) {
+            parent::__destruct();
+        }
         if (null !== $this->tmp && file_exists($this->tmp)) {
             unlink($this->tmp);
         }
