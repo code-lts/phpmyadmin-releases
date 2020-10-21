@@ -174,7 +174,7 @@
 			{
 				"patch": 9,
 				"name": "4.7.9",
-				"imported": false
+				"imported": true
 			}
 		]
 	}
