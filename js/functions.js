@@ -294,6 +294,15 @@ function PMA_getSQLEditor($textarea, options, resize, lintOptions) {
         // enable autocomplete
         codemirrorEditor.on("inputRead", codemirrorAutocompleteOnInputRead);
 
+        // page locking
+        codemirrorEditor.on('change', function (e) {
+            e.data = {
+                value: 3,
+                content: codemirrorEditor.isClean(),
+            };
+            AJAX.lockPageHandler(e);
+        });
+
         return codemirrorEditor;
     }
     return null;
@@ -4741,7 +4750,7 @@ $(document).on("change", checkboxes_sel, checkboxes_changed);
 
 $(document).on("change", "input.checkall_box", function () {
     var is_checked = $(this).is(":checked");
-    $(this.form).find(checkboxes_sel).prop("checked", is_checked)
+    $(this.form).find(checkboxes_sel).not('.row-hidden').prop("checked", is_checked)
     .parents("tr").toggleClass("marked", is_checked);
 });
 
