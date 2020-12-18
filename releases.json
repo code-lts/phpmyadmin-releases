@@ -1,6 +1,17 @@
 [
 	{
 		"major": 5,
+		"minor": 1,
+		"versions": [
+			{
+				"patch": 0,
+				"name": "5.1.0-rc1",
+				"imported": false
+			}
+		]
+	},
+	{
+		"major": 5,
 		"minor": 0,
 		"versions": [
 			{
