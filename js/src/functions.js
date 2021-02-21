@@ -1241,6 +1241,7 @@ Functions.handleSimulateQueryButton = function () {
   *
   */
 Functions.insertQuery = function (queryType) {
+    var table;
     if (queryType === 'clear') {
         Functions.setQuery('');
         return;
@@ -1268,10 +1269,18 @@ Functions.insertQuery = function (queryType) {
         }
         return;
     } else if (queryType === 'saved') {
-        if (isStorageSupported('localStorage') && typeof window.localStorage.autoSavedSql !== 'undefined') {
-            Functions.setQuery(window.localStorage.autoSavedSql);
-        } else if (Cookies.get('autoSavedSql')) {
-            Functions.setQuery(Cookies.get('autoSavedSql'));
+        var db = $('input[name="db"]').val();
+        table = $('input[name="table"]').val();
+        var key = db;
+        if (table !== undefined) {
+            key += '.' + table;
+        }
+        key = 'autoSavedSql_' + key;
+        if (isStorageSupported('localStorage') &&
+            typeof window.localStorage.getItem(key) === 'string') {
+            Functions.setQuery(window.localStorage.getItem(key));
+        } else if (Cookies.get(key)) {
+            Functions.setQuery(Cookies.get(key));
         } else {
             Functions.ajaxShowMessage(Messages.strNoAutoSavedQuery);
         }
@@ -1280,7 +1289,7 @@ Functions.insertQuery = function (queryType) {
 
     var query = '';
     var myListBox = document.sqlform.dummy;
-    var table = document.sqlform.table.value;
+    table = document.sqlform.table.value;
 
     if (myListBox.options.length > 0) {
         sqlBoxLocked = true;
@@ -5151,12 +5160,13 @@ Functions.configSet = function (key, value) {
  * If value should not be cached and the up-to-date configuration value from
  * right from the server is required, the third parameter should be `false`.
  *
- * @param {string}     key         Configuration key.
- * @param {boolean}    cached      Configuration type.
+ * @param {string}     key             Configuration key.
+ * @param {boolean}    cached          Configuration type.
+ * @param {Function}   successCallback  The callback to call after the value is received
  *
  * @return {object}                Configuration value.
  */
-Functions.configGet = function (key, cached) {
+Functions.configGet = function (key, cached, successCallback) {
     var isCached = (typeof cached !== 'undefined') ? cached : true;
     var value = localStorage.getItem(key);
     if (isCached && value !== undefined && value !== null) {
@@ -5166,10 +5176,8 @@ Functions.configGet = function (key, cached) {
     // Result not found in local storage or ignored.
     // Hitting the server.
     $.ajax({
-        // TODO: This is ugly, but usually when a configuration is needed,
-        // processing cannot continue until that value is found.
-        // Another solution is to provide a callback as a parameter.
-        async: false,
+        // Value at false to be synchronous (then ignore the callback on success)
+        async: typeof successCallback === 'function',
         url: 'index.php?route=/config/get',
         type: 'POST',
         dataType: 'json',
@@ -5185,7 +5193,11 @@ Functions.configGet = function (key, cached) {
             } else {
                 Functions.ajaxShowMessage(data.message);
             }
-            // Eventually, call callback.
+            // Call the callback if it is defined
+            if (typeof successCallback === 'function') {
+                // Feed it the value previously saved like on async mode
+                successCallback(JSON.parse(localStorage.getItem(key)));
+            }
         }
     });
     return JSON.parse(localStorage.getItem(key));

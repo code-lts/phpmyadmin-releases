@@ -4,6 +4,7 @@
  * @requires    jQuery
  * @requires    js/functions.js
  *
+ * @test-module Sql
  */
 
 /* global Stickyfill */
@@ -45,10 +46,13 @@ Sql.urlEncode = function (str) {
  * @return void
  */
 Sql.autoSave = function (query) {
-    if (isStorageSupported('localStorage')) {
-        window.localStorage.autoSavedSql = query;
-    } else {
-        Cookies.set('autoSavedSql', query);
+    if (query) {
+        var key = Sql.getAutoSavedKey();
+        if (isStorageSupported('localStorage')) {
+            window.localStorage.setItem(key, query);
+        } else {
+            Cookies.set(key, query);
+        }
     }
 };
 
@@ -107,13 +111,13 @@ Sql.setShowThisQuery = function () {
 /**
  * Saves SQL query with sort in local storage or cookie
  *
- * @param string SQL query
+ * @param {String} query SQL query
  * @return void
  */
 Sql.autoSaveWithSort = function (query) {
     if (query) {
         if (isStorageSupported('localStorage')) {
-            window.localStorage.autoSavedSqlSort = query;
+            window.localStorage.setItem('autoSavedSqlSort', query);
         } else {
             Cookies.set('autoSavedSqlSort', query);
         }
@@ -127,9 +131,9 @@ Sql.autoSaveWithSort = function (query) {
  */
 Sql.clearAutoSavedSort = function () {
     if (isStorageSupported('localStorage')) {
-        window.localStorage.removeItem('auto_saved_sql_sort');
+        window.localStorage.removeItem('autoSavedSqlSort');
     } else {
-        Cookies.set('auto_saved_sql_sort', '');
+        Cookies.set('autoSavedSqlSort', '');
     }
 };
 
@@ -185,7 +189,6 @@ AJAX.registerTeardown('sql.js', function () {
     $(document).off('submit', '.bookmarkQueryForm');
     $('input#bkm_label').off('input');
     $(document).off('makegrid', '.sqlqueryresults');
-    $(document).off('stickycolumns', '.sqlqueryresults');
     $('#togglequerybox').off('click');
     $(document).off('click', '#button_submit_query');
     $(document).off('change', '#id_bookmark');
@@ -241,7 +244,7 @@ AJAX.registerOnload('sql.js', function () {
             $('#sqlquery').on('input propertychange', function () {
                 Sql.autoSave($('#sqlquery').val());
             });
-            var useLocalStorageValue = isStorageSupported('localStorage') && typeof window.localStorage.auto_saved_sql_sort !== 'undefined';
+            var useLocalStorageValue = isStorageSupported('localStorage') && typeof window.localStorage.autoSavedSqlSort !== 'undefined';
             // Save sql query with sort
             if ($('#RememberSorting') !== undefined && $('#RememberSorting').is(':checked')) {
                 $('select[name="sql_query"]').on('change', function () {
@@ -254,7 +257,7 @@ AJAX.registerOnload('sql.js', function () {
                 Sql.clearAutoSavedSort();
             }
             // If sql query with sort for current table is stored, change sort by key select value
-            var sortStoredQuery = useLocalStorageValue ? window.localStorage.auto_saved_sql_sort : Cookies.get('auto_saved_sql_sort');
+            var sortStoredQuery = useLocalStorageValue ? window.localStorage.autoSavedSqlSort : Cookies.get('autoSavedSqlSort');
             if (typeof sortStoredQuery !== 'undefined' && sortStoredQuery !== $('select[name="sql_query"]').val() && $('select[name="sql_query"] option[value="' + sortStoredQuery + '"]').length !== 0) {
                 $('select[name="sql_query"]').val(sortStoredQuery).trigger('change');
             }
@@ -460,12 +463,6 @@ AJAX.registerOnload('sql.js', function () {
         // id_bookmark selector to avoid misinterpretation in
         // /import about what needs to be done
         $form.find('select[name=id_bookmark]').val('');
-        // let normal event propagation happen
-        if (isStorageSupported('localStorage')) {
-            window.localStorage.removeItem('autoSavedSql');
-        } else {
-            Cookies.set('autoSavedSql', '');
-        }
         var isShowQuery =  $('input[name="show_query"]').is(':checked');
         if (isShowQuery) {
             window.localStorage.showThisQuery = '1';
@@ -972,8 +969,27 @@ Sql.browseForeignDialog = function ($thisA) {
     });
 };
 
+/**
+ * Get the auto saved query key
+ * @return {String}
+ */
+Sql.getAutoSavedKey = function () {
+    var db = $('input[name="db"]').val();
+    var table = $('input[name="table"]').val();
+    var key = db;
+    if (table !== undefined) {
+        key += '.' + table;
+    }
+    return 'autoSavedSql_' + key;
+};
+
 Sql.checkSavedQuery = function () {
-    if (isStorageSupported('localStorage') && window.localStorage.autoSavedSql !== undefined) {
+    var key = Sql.getAutoSavedKey();
+
+    if (isStorageSupported('localStorage') &&
+        typeof window.localStorage.getItem(key) === 'string') {
+        Functions.ajaxShowMessage(Messages.strPreviousSaveQuery);
+    } else if (Cookies.get(key)) {
         Functions.ajaxShowMessage(Messages.strPreviousSaveQuery);
     }
 };

@@ -986,15 +986,6 @@ span {
   }
 }
 
-fieldset.caution a {
-  color: #f00;
-
-  &:hover {
-    color: #fff;
-    background-color: #f00;
-  }
-}
-
 // zoom search
 div#dataDisplay {
   input,
@@ -1992,6 +1983,7 @@ table#index_columns {
     margin: 1.1em 0.2em 0;
     list-style: none;
     font-weight: bold;
+    padding-left: 10px;
 
     li {
       float: $left;
