@@ -74,7 +74,16 @@ var Console = {
       return;
     }
 
-    Console.config = Functions.configGet('Console', false);
+    Functions.configGet('Console', false, function (data) {
+      Console.config = data;
+      Console.setupAfterInit();
+    });
+  },
+
+  /**
+   * Setup the console after the config has been set at initialize stage
+   */
+  setupAfterInit: function setupAfterInit() {
     Console.isEnabled = true; // Vars init
 
     Console.$consoleToolbar = $('#pma_console').find('>.toolbar');

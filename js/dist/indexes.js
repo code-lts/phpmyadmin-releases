@@ -290,7 +290,7 @@ Indexes.getCompositeIndexList = function (sourceArray, colIndex) {
       }
     }
 
-    $compositeIndexList.append('<li>' + '<input type="radio" name="composite_with" ' + (alreadyPresent ? 'checked="checked"' : '') + ' id="composite_index_' + i + '" value="' + i + '">' + '<label for="composite_index_' + i + '">' + columnNames.join(', ') + '</lablel>' + '</li>');
+    $compositeIndexList.append('<li>' + '<input type="radio" name="composite_with" ' + (alreadyPresent ? 'checked="checked"' : '') + ' id="composite_index_' + i + '" value="' + i + '">' + '<label for="composite_index_' + i + '">' + columnNames.join(', ') + '</label>' + '</li>');
   }
 
   return $compositeIndexList;

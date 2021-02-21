@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
     Copyright (c) 2003, 2009 Danilo Segan <danilo@kvota.net>.
     Copyright (c) 2005 Nico Kaiser <nico@siriux.net>
@@ -20,7 +23,6 @@
     with this program; if not, write to the Free Software Foundation, Inc.,
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
-declare(strict_types=1);
 
 namespace PhpMyAdmin\MoTranslator;
 
@@ -101,14 +103,29 @@ class Translator
     /**
      * Array with original -> translation mapping.
      *
-     * @var array
+     * @var array<string,string>
      */
     private $cacheTranslations = [];
 
     /**
+     * @param string|null $filename Name of mo file to load (null to not load a file)
+     */
+    public function __construct(?string $filename)
+    {
+        // The user can load the translations manually
+        if ($filename === null) {
+            return;
+        }
+
+        $this->loadTranslationsFromFile($filename);
+    }
+
+    /**
+     * Load a Mo file translations
+     *
      * @param string $filename Name of mo file to load
      */
-    public function __construct(string $filename)
+    private function loadTranslationsFromFile(string $filename): void
     {
         if (! is_readable($filename)) {
             $this->error = self::ERROR_DOES_NOT_EXIST;
@@ -136,13 +153,17 @@ class Translator
             $translations = $stream->readint($unpack, 16);
 
             /* get original and translations tables */
-            $tableOriginals = $stream->readintarray($unpack, $originals, $total * 2);
-            $tableTranslations = $stream->readintarray($unpack, $translations, $total * 2);
+            $totalTimesTwo = (int) ($total * 2);// Fix for issue #36 on ARM
+            $tableOriginals = $stream->readintarray($unpack, $originals, $totalTimesTwo);
+            $tableTranslations = $stream->readintarray($unpack, $translations, $totalTimesTwo);
 
             /* read all strings to the cache */
             for ($i = 0; $i < $total; ++$i) {
-                $original = $stream->read($tableOriginals[$i * 2 + 2], $tableOriginals[$i * 2 + 1]);
-                $translation = $stream->read($tableTranslations[$i * 2 + 2], $tableTranslations[$i * 2 + 1]);
+                $iTimesTwo = $i * 2;
+                $iPlusOne = $iTimesTwo + 1;
+                $iPlusTwo = $iTimesTwo + 2;
+                $original = $stream->read($tableOriginals[$iPlusTwo], $tableOriginals[$iPlusOne]);
+                $translation = $stream->read($tableTranslations[$iPlusTwo], $tableTranslations[$iPlusOne]);
                 $this->cacheTranslations[$original] = $translation;
             }
         } catch (ReaderException $e) {
@@ -159,7 +180,7 @@ class Translator
      *
      * @return string translated string (or original, if not found)
      */
-    public function gettext($msgid)
+    public function gettext(string $msgid): string
     {
         if (array_key_exists($msgid, $this->cacheTranslations)) {
             return $this->cacheTranslations[$msgid];
@@ -172,10 +193,8 @@ class Translator
      * Check if a string is translated.
      *
      * @param string $msgid String to be checked
-     *
-     * @return bool
      */
-    public function exists($msgid)
+    public function exists(string $msgid): bool
     {
         return array_key_exists($msgid, $this->cacheTranslations);
     }
@@ -187,7 +206,7 @@ class Translator
      *
      * @return string sanitized plural form expression
      */
-    public static function sanitizePluralExpression($expr)
+    public static function sanitizePluralExpression(string $expr): string
     {
         // Parse equation
         $expr = explode(';', $expr);
@@ -221,7 +240,7 @@ class Translator
      *
      * @return int Total number of plurals
      */
-    public static function extractPluralCount($expr)
+    public static function extractPluralCount(string $expr): int
     {
         $parts = explode(';', $expr, 2);
         $nplurals = explode('=', trim($parts[0]), 2);
@@ -243,7 +262,7 @@ class Translator
      *
      * @return string verbatim plural form header field
      */
-    public static function extractPluralsForms($header)
+    public static function extractPluralsForms(string $header): string
     {
         $headers = explode("\n", $header);
         $expr = 'nplurals=2; plural=n == 1 ? 0 : 1;';
@@ -263,7 +282,7 @@ class Translator
      *
      * @return string plural form header
      */
-    private function getPluralForms()
+    private function getPluralForms(): string
     {
         // lets assume message number 0 is header
         // this is true, right?
@@ -291,14 +310,14 @@ class Translator
      *
      * @return int array index of the right plural form
      */
-    private function selectString($n)
+    private function selectString(int $n): int
     {
         if ($this->pluralExpression === null) {
             $this->pluralExpression = new ExpressionLanguage();
         }
 
         try {
-            $plural = $this->pluralExpression->evaluate(
+            $plural = (int) $this->pluralExpression->evaluate(
                 $this->getPluralForms(),
                 ['n' => $n]
             );
@@ -322,7 +341,7 @@ class Translator
      *
      * @return string translated plural form
      */
-    public function ngettext($msgid, $msgidPlural, $number)
+    public function ngettext(string $msgid, string $msgidPlural, int $number): string
     {
         // this should contains all strings separated by NULLs
         $key = implode(chr(0), [$msgid, $msgidPlural]);
@@ -335,9 +354,13 @@ class Translator
 
         $result = $this->cacheTranslations[$key];
         $list = explode(chr(0), $result);
+        // @codeCoverageIgnoreStart
         if ($list === false) {
+            // This was added in 3ff2c63bcf85f81b3a205ce7222de11b33e2bf56 for phpstan
+            // But according to the php manual it should never happen
             return '';
         }
+        // @codeCoverageIgnoreEnd
 
         if (! isset($list[$select])) {
             return $list[0];
@@ -354,7 +377,7 @@ class Translator
      *
      * @return string translated plural form
      */
-    public function pgettext($msgctxt, $msgid)
+    public function pgettext(string $msgctxt, string $msgid): string
     {
         $key = implode(chr(4), [$msgctxt, $msgid]);
         $ret = $this->gettext($key);
@@ -375,7 +398,7 @@ class Translator
      *
      * @return string translated plural form
      */
-    public function npgettext($msgctxt, $msgid, $msgidPlural, $number)
+    public function npgettext(string $msgctxt, string $msgid, string $msgidPlural, int $number): string
     {
         $key = implode(chr(4), [$msgctxt, $msgid]);
         $ret = $this->ngettext($key, $msgidPlural, $number);
@@ -391,11 +414,29 @@ class Translator
      *
      * @param string $msgid  String to be set
      * @param string $msgstr Translation
-     *
-     * @return void
      */
-    public function setTranslation($msgid, $msgstr)
+    public function setTranslation(string $msgid, string $msgstr): void
     {
         $this->cacheTranslations[$msgid] = $msgstr;
+    }
+
+    /**
+     * Set the translations
+     *
+     * @param array<string,string> $translations The translations "key => value" array
+     */
+    public function setTranslations(array $translations): void
+    {
+        $this->cacheTranslations = $translations;
+    }
+
+    /**
+     * Get the translations
+     *
+     * @return array<string,string> The translations "key => value" array
+     */
+    public function getTranslations(): array
+    {
+        return $this->cacheTranslations;
     }
 }

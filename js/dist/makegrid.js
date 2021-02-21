@@ -219,7 +219,6 @@ var makeGrid = function makeGrid(t, enableResize, enableReorder, enableVisib, en
         g.reposDrop();
         g.colRsz = false;
         $(g.cRsz).find('div').removeClass('colborder_active');
-        Sql.rearrangeStickyColumns($(t).prev('.sticky_columns'), $(t));
       } else if (g.colReorder) {
         // shift columns
         if (g.colReorder.newn !== g.colReorder.n) {
@@ -244,7 +243,6 @@ var makeGrid = function makeGrid(t, enableResize, enableReorder, enableVisib, en
         }, 'fast').fadeOut();
         $(g.cPointer).css('visibility', 'hidden');
         g.colReorder = false;
-        Sql.rearrangeStickyColumns($(t).prev('.sticky_columns'), $(t));
       }
 
       $(document.body).css('cursor', 'inherit').noSelect(false);
@@ -396,6 +394,12 @@ var makeGrid = function makeGrid(t, enableResize, enableReorder, enableVisib, en
     sendColPrefs: function sendColPrefs() {
       if ($(g.t).is('.ajax')) {
         // only send preferences if ajax class
+        if (typeof g.db !== 'string' && typeof g.table !== 'string') {
+          // The server has nothing to do with it
+          // Issue: https://github.com/phpmyadmin/phpmyadmin/issues/15658
+          return;
+        }
+
         var postParams = {
           'ajax_request': true,
           'db': g.db,

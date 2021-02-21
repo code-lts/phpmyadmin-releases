@@ -147,6 +147,7 @@ var processList = {
    */
   getUrlParams: function getUrlParams() {
     var urlParams = {
+      'server': CommonParams.get('server'),
       'ajax_request': true,
       'refresh': true,
       'full': $('input[name="full"]').val(),

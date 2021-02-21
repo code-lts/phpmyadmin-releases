@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
     Copyright (c) 2005 Steven Armstrong <sa at c-area dot ch>
     Copyright (c) 2009 Danilo Segan <danilo@kvota.net>
@@ -20,7 +23,6 @@
     with this program; if not, write to the Free Software Foundation, Inc.,
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
-declare(strict_types=1);
 
 namespace PhpMyAdmin\MoTranslator;
 
@@ -58,14 +60,14 @@ class Loader
     /**
      * Loaded domains.
      *
-     * @var array
+     * @var array<string,array<string,Translator>>
      */
     private $domains = [];
 
     /**
      * Bound paths for domains.
      *
-     * @var array
+     * @var array<string,string>
      */
     private $paths = ['' => './'];
 
@@ -74,7 +76,7 @@ class Loader
      *
      * @return Loader object
      */
-    public static function getInstance()
+    public static function getInstance(): Loader
     {
         if (empty(self::$instance)) {
             self::$instance = new self();
@@ -84,9 +86,9 @@ class Loader
     }
 
     /**
-     * Loads global localizaton functions.
+     * Loads global localization functions.
      */
-    public static function loadFunctions()
+    public static function loadFunctions(): void
     {
         require_once __DIR__ . '/functions.php';
     }
@@ -98,9 +100,9 @@ class Loader
      *
      * @param string $locale Locale code
      *
-     * @return array list of locales to try for any POSIX-style locale specification
+     * @return string[] list of locales to try for any POSIX-style locale specification
      */
-    public static function listLocales($locale)
+    public static function listLocales(string $locale): array
     {
         $localeNames = [];
 
@@ -179,10 +181,8 @@ class Loader
      * Returns Translator object for domain or for default domain.
      *
      * @param string $domain Translation domain
-     *
-     * @return Translator
      */
-    public function getTranslator($domain = '')
+    public function getTranslator(string $domain = ''): Translator
     {
         if (empty($domain)) {
             $domain = $this->defaultDomain;
@@ -223,7 +223,7 @@ class Loader
      * @param string $domain Domain name
      * @param string $path   Path where to find locales
      */
-    public function bindtextdomain($domain, $path)
+    public function bindtextdomain(string $domain, string $path): void
     {
         $this->paths[$domain] = $path;
     }
@@ -233,7 +233,7 @@ class Loader
      *
      * @param string $domain Domain name
      */
-    public function textdomain($domain)
+    public function textdomain(string $domain): void
     {
         $this->defaultDomain = $domain;
     }
@@ -245,7 +245,7 @@ class Loader
      *
      * @return string Set or current locale
      */
-    public function setlocale($locale)
+    public function setlocale(string $locale): string
     {
         if (! empty($locale)) {
             $this->locale = $locale;
@@ -264,7 +264,7 @@ class Loader
      *
      * @return string with locale name
      */
-    public function detectlocale()
+    public function detectlocale(): string
     {
         if (isset($GLOBALS['lang'])) {
             return $GLOBALS['lang'];

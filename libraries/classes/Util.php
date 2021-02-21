@@ -816,7 +816,6 @@ class Util
         $ret = strftime($date, (int) $timestamp);
         // Some OSes such as Win8.1 Traditional Chinese version did not produce UTF-8
         // output here. See https://github.com/phpmyadmin/phpmyadmin/issues/10598
-        /** @phpstan-ignore-next-line */
         if ($ret === false
             || mb_detect_encoding($ret, 'UTF-8', true) !== 'UTF-8'
         ) {
@@ -1298,6 +1297,10 @@ class Util
             $pages = array_unique($pages);
         }
 
+        if ($pageNow > $nbTotalPage) {
+            $pages[] = $pageNow;
+        }
+
         foreach ($pages as $i) {
             if ($i == $pageNow) {
                 $selected = 'selected="selected" style="font-weight: bold"';
@@ -1599,8 +1602,9 @@ class Util
      *
      * @return bool Default foreign key checks value
      */
-    public static function handleDisableFKCheckInit()
+    public static function handleDisableFKCheckInit(): bool
     {
+        /** @var DatabaseInterface $dbi */
         global $dbi;
 
         $default_fk_check_value = $dbi->getVariable('FOREIGN_KEY_CHECKS') === 'ON';
@@ -1622,8 +1626,9 @@ class Util
      *
      * @param bool $default_fk_check_value original value for 'FOREIGN_KEY_CHECKS'
      */
-    public static function handleDisableFKCheckCleanup($default_fk_check_value): void
+    public static function handleDisableFKCheckCleanup(bool $default_fk_check_value): void
     {
+        /** @var DatabaseInterface $dbi */
         global $dbi;
 
         $dbi->setVariable(
