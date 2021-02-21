@@ -1,8 +1,5 @@
 "use strict";
 
-/* global isStorageSupported */
-// js/config.js
-
 /* global ErrorReport */
 // js/error_report.js
 
@@ -12,6 +9,8 @@
 /**
  * This object handles ajax requests for pages. It also
  * handles the reloading of the main menu and scripts.
+ *
+ * @test-module AJAX
  */
 var AJAX = {
   /**
@@ -284,16 +283,8 @@ var AJAX = {
     // the click event is not triggered by script
 
 
-    if (typeof event !== 'undefined' && event.type === 'click' && event.isTrigger !== true && !jQuery.isEmptyObject(AJAX.lockedTargets)) {
-      if (confirm(Messages.strConfirmNavigation) === false) {
-        return false;
-      } else {
-        if (isStorageSupported('localStorage')) {
-          window.localStorage.removeItem('autoSavedSql');
-        } else {
-          Cookies.set('autoSavedSql', '');
-        }
-      }
+    if (typeof event !== 'undefined' && event.type === 'click' && event.isTrigger !== true && !jQuery.isEmptyObject(AJAX.lockedTargets) && confirm(Messages.strConfirmNavigation) === false) {
+      return false;
     }
 
     AJAX.resetLock();

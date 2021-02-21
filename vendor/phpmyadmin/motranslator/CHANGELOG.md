@@ -1,6 +1,19 @@
 # Change Log
 
-## [5.0] - 2020-02-28
+## [5.2.0] - 2021-02-05
+
+* Fix "Translator::selectString() must be of the type integer, boolean returned" (#37)
+* Fix "TypeError: StringReader::readintarray() ($count) must be of type int, float given" failing tests on ARM (#36)
+* Add support for getting and setting all translations (#30)
+
+## [5.1.0] - 2020-11-15
+
+* Allow PHPUnit 9 (#35)
+* Fix some typos
+* Sync config files
+* Allow PHP 8.0
+
+## [5.0.0] - 2020-02-28
 
 * Drop support for PHP 5.3, PHP 5.4, PHP 5.5, PHP 5.6, PHP 7.0 and HHVM
 * Enabled strict mode on PHP files

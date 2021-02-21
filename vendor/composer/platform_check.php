@@ -15,7 +15,10 @@ extension_loaded('json') || $missingExtensions[] = 'json';
 extension_loaded('mysqli') || $missingExtensions[] = 'mysqli';
 extension_loaded('openssl') || $missingExtensions[] = 'openssl';
 extension_loaded('pcre') || $missingExtensions[] = 'pcre';
+extension_loaded('simplexml') || $missingExtensions[] = 'simplexml';
+extension_loaded('tokenizer') || $missingExtensions[] = 'tokenizer';
 extension_loaded('xml') || $missingExtensions[] = 'xml';
+extension_loaded('xmlwriter') || $missingExtensions[] = 'xmlwriter';
 
 if ($missingExtensions) {
     $issues[] = 'Your Composer dependencies require the following PHP extensions to be installed: ' . implode(', ', $missingExtensions);

@@ -54,12 +54,12 @@ class PhpDumper extends Dumper
     /**
      * Characters that might appear in the generated variable name as first character.
      */
-    const FIRST_CHARS = 'abcdefghijklmnopqrstuvwxyz';
+    public const FIRST_CHARS = 'abcdefghijklmnopqrstuvwxyz';
 
     /**
      * Characters that might appear in the generated variable name as any but the first character.
      */
-    const NON_FIRST_CHARS = 'abcdefghijklmnopqrstuvwxyz0123456789_';
+    public const NON_FIRST_CHARS = 'abcdefghijklmnopqrstuvwxyz0123456789_';
 
     private $definitionVariables;
     private $referenceVariables;
@@ -534,7 +534,7 @@ EOF;
         $proxyClasses = [];
         $alreadyGenerated = [];
         $definitions = $this->container->getDefinitions();
-        $strip = '' === $this->docStar && method_exists('Symfony\Component\HttpKernel\Kernel', 'stripComments');
+        $strip = '' === $this->docStar && method_exists(Kernel::class, 'stripComments');
         $proxyDumper = $this->getProxyDumper();
         ksort($definitions);
         foreach ($definitions as $definition) {
@@ -1449,6 +1449,9 @@ EOF;
 
         $code = <<<'EOF'
 
+    /**
+     * @return array|bool|float|int|string|null
+     */
     public function getParameter($name)
     {
         $name = (string) $name;
@@ -1986,7 +1989,7 @@ EOF;
     private function getExpressionLanguage(): ExpressionLanguage
     {
         if (null === $this->expressionLanguage) {
-            if (!class_exists('Symfony\Component\ExpressionLanguage\ExpressionLanguage')) {
+            if (!class_exists(\Symfony\Component\ExpressionLanguage\ExpressionLanguage::class)) {
                 throw new LogicException('Unable to use expressions as the Symfony ExpressionLanguage component is not installed.');
             }
             $providers = $this->container->getExpressionLanguageProviders();
