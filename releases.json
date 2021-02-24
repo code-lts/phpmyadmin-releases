@@ -12,6 +12,11 @@
 				"patch": 0,
 				"name": "5.1.0-rc2",
 				"imported": true
+			},
+			{
+				"patch": 0,
+				"name": "5.1.0",
+				"imported": false
 			}
 		]
 	},
