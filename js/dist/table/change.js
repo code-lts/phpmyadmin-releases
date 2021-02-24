@@ -175,15 +175,26 @@ function checkForCheckbox(multiEdit) {
 
 
 function verifyAfterSearchFieldChange(index, searchFormId) {
-  var $thisInput = $('input[name=\'criteriaValues[' + index + ']\']'); // validation for integer type
+  var $thisInput = $('input[name=\'criteriaValues[' + index + ']\']'); // Add  data-skip-validators attribute to skip validation in changeValueFieldType function
 
-  if ($thisInput.data('type') === 'INT') {
+  if ($('#fieldID_' + index).data('data-skip-validators')) {
+    $(searchFormId).validate().destroy();
+    return;
+  } // validation for integer type
+
+
+  if ($thisInput.data('type') === 'INT' || $thisInput.data('type') === 'TINYINT') {
     // Trim spaces if it's an integer
     $thisInput.val($thisInput.val().trim());
     var hasMultiple = $thisInput.prop('multiple');
 
     if (hasMultiple) {
-      $(searchFormId).validate(); // validator method for IN(...), NOT IN(...)
+      $(searchFormId).validate({
+        // update errors as we write
+        onkeyup: function onkeyup(element) {
+          $(element).valid();
+        }
+      }); // validator method for IN(...), NOT IN(...)
       // BETWEEN and NOT BETWEEN
 
       jQuery.validator.addMethod('validationFunctionForMultipleInt', function (value) {
@@ -191,9 +202,17 @@ function verifyAfterSearchFieldChange(index, searchFormId) {
       }, Messages.strEnterValidNumber);
       validateMultipleIntField($thisInput, true);
     } else {
-      $(searchFormId).validate();
+      $(searchFormId).validate({
+        // update errors as we write
+        onkeyup: function onkeyup(element) {
+          $(element).valid();
+        }
+      });
       validateIntField($thisInput, true);
-    }
+    } // Update error on dropdown change
+
+
+    $thisInput.valid();
   }
 }
 /**
@@ -226,7 +245,9 @@ function validateMultipleIntField(jqueryInput, returnValueIfFine) {
 
 function validateIntField(jqueryInput, returnValueIfIsNumber) {
   var mini = parseInt(jqueryInput.data('min'));
-  var maxi = parseInt(jqueryInput.data('max'));
+  var maxi = parseInt(jqueryInput.data('max')); // removing previous rules
+
+  jqueryInput.rules('remove');
   jqueryInput.rules('add', {
     number: {
       param: true,
@@ -698,7 +719,7 @@ function addNewContinueInsertionFields(event) {
       }); // Insert/Clone the ignore checkboxes
 
       if (currRows === 1) {
-        $('<input id="insert_ignore_1" type="checkbox" name="insert_ignore_1" checked="checked">').insertBefore('table.insertRowTable').last().after('<label for="insert_ignore_1">' + Messages.strIgnore + '</label>');
+        $('<input id="insert_ignore_1" type="checkbox" name="insert_ignore_1" checked="checked">').insertBefore($('table.insertRowTable').last()).after('<label for="insert_ignore_1">' + Messages.strIgnore + '</label>');
       } else {
         /**
          * @var $last_checkbox   Object reference to the last checkbox in #insertForm
@@ -713,13 +734,13 @@ function addNewContinueInsertionFields(event) {
         /** name of new {@link $lastCheckbox} */
 
         var newName = lastCheckboxName.replace(/\d+/, lastCheckboxIndex + 1);
-        $('<br><div class="clearfloat"></div>').insertBefore('table.insertRowTable').last();
+        $('<br><div class="clearfloat"></div>').insertBefore($('table.insertRowTable').last());
         $lastCheckbox.clone().attr({
           'id': newName,
           'name': newName
-        }).prop('checked', true).insertBefore('table.insertRowTable').last();
-        $('label[for^=insert_ignore]').last().clone().attr('for', newName).insertBefore('table.insertRowTable').last();
-        $('<br>').insertBefore('table.insertRowTable').last();
+        }).prop('checked', true).insertBefore($('table.insertRowTable').last());
+        $('label[for^=insert_ignore]').last().clone().attr('for', newName).insertBefore($('table.insertRowTable').last());
+        $('<br>').insertBefore($('table.insertRowTable').last());
       }
 
       currRows++;
@@ -769,6 +790,13 @@ function changeValueFieldType(elem, searchIndex) {
   }
 
   var type = $(elem).val();
+
+  if ('LIKE' === type || 'LIKE %...%' === type || 'NOT LIKE' === type) {
+    $('#fieldID_' + searchIndex).data('data-skip-validators', true);
+    return;
+  } else {
+    $('#fieldID_' + searchIndex).data('data-skip-validators', false);
+  }
 
   if ('IN (...)' === type || 'NOT IN (...)' === type || 'BETWEEN' === type || 'NOT BETWEEN' === type) {
     $('#fieldID_' + searchIndex).prop('multiple', true);

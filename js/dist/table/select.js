@@ -7,7 +7,7 @@
  * @requires    js/functions.js
  */
 
-/* global changeValueFieldType */
+/* global changeValueFieldType, verifyAfterSearchFieldChange */
 // js/table/change.js
 
 /* global openGISEditor, gisEditorLoaded, loadJSAndGISEditor, loadGISEditor */
@@ -73,6 +73,7 @@ AJAX.registerOnload('table/select.js', function () {
   $.each(tableRows, function (index, item) {
     $(item).on('change', function () {
       changeValueFieldType(this, index);
+      verifyAfterSearchFieldChange(index, '#tbl_search_form');
     });
   });
   /**
