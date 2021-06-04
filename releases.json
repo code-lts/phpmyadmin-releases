@@ -17,6 +17,11 @@
 				"patch": 0,
 				"name": "5.1.0",
 				"imported": true
+			},
+			{
+				"patch": 1,
+				"name": "5.1.1",
+				"imported": false
 			}
 		]
 	},
