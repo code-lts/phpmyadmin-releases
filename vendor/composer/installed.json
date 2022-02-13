@@ -423,17 +423,17 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "2.0.35",
-            "version_normalized": "2.0.35.0",
+            "version": "2.0.36",
+            "version_normalized": "2.0.36.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "4e16cf3f5f927a7d3f5317820af795c0366c0420"
+                "reference": "a97547126396548c224703a267a30af1592be146"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/4e16cf3f5f927a7d3f5317820af795c0366c0420",
-                "reference": "4e16cf3f5f927a7d3f5317820af795c0366c0420",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/a97547126396548c224703a267a30af1592be146",
+                "reference": "a97547126396548c224703a267a30af1592be146",
                 "shasum": ""
             },
             "require": {
@@ -450,7 +450,7 @@
                 "ext-mcrypt": "Install the Mcrypt extension in order to speed up a few other cryptographic operations.",
                 "ext-openssl": "Install the OpenSSL extension in order to speed up a wide variety of cryptographic operations."
             },
-            "time": "2021-11-28T23:30:39+00:00",
+            "time": "2022-01-30T08:48:36+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -515,7 +515,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phpseclib/phpseclib/issues",
-                "source": "https://github.com/phpseclib/phpseclib/tree/2.0.35"
+                "source": "https://github.com/phpseclib/phpseclib/tree/2.0.36"
             },
             "funding": [
                 {
@@ -535,17 +535,17 @@
         },
         {
             "name": "pragmarx/google2fa",
-            "version": "v7.0.0",
-            "version_normalized": "7.0.0.0",
+            "version": "v3.0.3",
+            "version_normalized": "3.0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/antonioribeiro/google2fa.git",
-                "reference": "0afb47f8a686bd203fe85a05bab85139f3c1971e"
+                "reference": "6949226739e4424f40031e6f1c96b1fd64047335"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/antonioribeiro/google2fa/zipball/0afb47f8a686bd203fe85a05bab85139f3c1971e",
-                "reference": "0afb47f8a686bd203fe85a05bab85139f3c1971e",
+                "url": "https://api.github.com/repos/antonioribeiro/google2fa/zipball/6949226739e4424f40031e6f1c96b1fd64047335",
+                "reference": "6949226739e4424f40031e6f1c96b1fd64047335",
                 "shasum": ""
             },
             "require": {
@@ -555,9 +555,13 @@
                 "symfony/polyfill-php56": "~1.2"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4|~5|~6|~7|~8"
+                "bacon/bacon-qr-code": "~1.0",
+                "phpunit/phpunit": "~4|~5|~6"
             },
-            "time": "2019-10-21T17:49:22+00:00",
+            "suggest": {
+                "bacon/bacon-qr-code": "Required to generate inline QR Codes."
+            },
+            "time": "2018-08-29T13:28:06+00:00",
             "type": "library",
             "extra": {
                 "component": "package",
@@ -588,11 +592,12 @@
                 "2fa",
                 "Authentication",
                 "Two Factor Authentication",
-                "google2fa"
+                "google2fa",
+                "laravel"
             ],
             "support": {
                 "issues": "https://github.com/antonioribeiro/google2fa/issues",
-                "source": "https://github.com/antonioribeiro/google2fa/tree/v7.0.0"
+                "source": "https://github.com/antonioribeiro/google2fa/tree/master"
             },
             "install-path": "../pragmarx/google2fa"
         },

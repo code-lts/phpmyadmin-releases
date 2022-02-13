@@ -18,19 +18,4 @@ class Constants
      * Argument not set constant.
      */
     const ARGUMENT_NOT_SET = '__not_set__';
-
-    /**
-     * SHA1 algorithm.
-     */
-    const SHA1 = 'sha1';
-
-    /**
-     * SHA256 algorithm.
-     */
-    const SHA256 = 'sha256';
-
-    /**
-     * SHA512 algorithm.
-     */
-    const SHA512 = 'sha512';
 }
