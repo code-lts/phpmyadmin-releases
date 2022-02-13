@@ -1283,5 +1283,6 @@
             "install-path": "../twig/twig"
         }
     ],
-    "dev": false
+    "dev": false,
+    "dev-package-names": []
 }
