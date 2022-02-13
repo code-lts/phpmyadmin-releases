@@ -94,6 +94,7 @@ var makeGrid = function (t, enableResize, enableReorder, enableVisib, enableGrid
                 objLeft: $(obj).position().left,
                 objWidth: $(g.t).find('th.draggable:visible').eq(n).find('span').outerWidth()
             };
+            // eslint-disable-next-line compat/compat
             $(document.body).css('cursor', 'col-resize').noSelect();
             if (g.isCellEditActive) {
                 g.hideEditCell();
@@ -133,6 +134,7 @@ var makeGrid = function (t, enableResize, enableReorder, enableVisib, enableGrid
                 objLeft: objPos.left
             };
 
+            // eslint-disable-next-line compat/compat
             $(document.body).css('cursor', 'move').noSelect();
             if (g.isCellEditActive) {
                 g.hideEditCell();
@@ -229,6 +231,7 @@ var makeGrid = function (t, enableResize, enableReorder, enableVisib, enableGrid
 
                 g.colReorder = false;
             }
+            // eslint-disable-next-line compat/compat
             $(document.body).css('cursor', 'inherit').noSelect(false);
         },
 
@@ -933,6 +936,10 @@ var makeGrid = function (t, enableResize, enableReorder, enableVisib, enableGrid
                     };
                     g.lastXHR = $.post('index.php?route=/sql/get-enum-values', postParams, function (data) {
                         g.lastXHR = null;
+                        if (typeof data === 'object' && data.success === false) {
+                            Functions.ajaxShowMessage(data.error, undefined, 'error');
+                            return;
+                        }
                         $editArea.removeClass('edit_area_loading');
                         $editArea.append(data.dropdown);
                         $editArea.append('<div class="cell_edit_hint">' + g.cellEditHint + '</div>');
@@ -971,6 +978,10 @@ var makeGrid = function (t, enableResize, enableReorder, enableVisib, enableGrid
 
                     g.lastXHR = $.post('index.php?route=/sql/get-set-values', postParams, function (data) {
                         g.lastXHR = null;
+                        if (typeof data === 'object' && data.success === false) {
+                            Functions.ajaxShowMessage(data.error, undefined, 'error');
+                            return;
+                        }
                         $editArea.removeClass('edit_area_loading');
                         $editArea.append(data.select);
                         $td.data('original_data', $(data.select).val().join());
