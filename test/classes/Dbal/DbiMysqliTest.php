@@ -11,7 +11,6 @@ use PhpMyAdmin\Tests\AbstractTestCase;
 use const MYSQLI_ASSOC;
 use const MYSQLI_BOTH;
 use const MYSQLI_NUM;
-use const PHP_VERSION_ID;
 
 class DbiMysqliTest extends AbstractTestCase
 {
@@ -32,13 +31,7 @@ class DbiMysqliTest extends AbstractTestCase
 
     public function testGetClientInfo(): void
     {
-        if (PHP_VERSION_ID < 80100) {
-            $this->markTestSkipped('This test requires PHP 8.1');
-        }
-
-        /** @var mysqli $obj */
-        $obj = null;
-        $this->assertNotEmpty($this->object->getClientInfo($obj));
+        $this->assertNotEmpty($this->object->getClientInfo());
     }
 
     /**
@@ -175,11 +168,12 @@ class DbiMysqliTest extends AbstractTestCase
     public function testStoreResult(): void
     {
         $mysqli = $this->createMock(mysqli::class);
+        $mysqliResult = $this->createMock(mysqli_result::class);
         $mysqli->expects($this->once())
             ->method('store_result')
-            ->willReturn(true);
+            ->willReturn($mysqliResult);
 
-        $this->assertTrue($this->object->storeResult($mysqli));
+        $this->assertInstanceOf(mysqli_result::class, $this->object->storeResult($mysqli));
     }
 
     /**

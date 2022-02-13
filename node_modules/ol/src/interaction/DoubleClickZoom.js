@@ -17,7 +17,7 @@ import MapBrowserEventType from '../MapBrowserEventType.js';
  */
 class DoubleClickZoom extends Interaction {
   /**
-   * @param {Options=} opt_options Options.
+   * @param {Options} [opt_options] Options.
    */
   constructor(opt_options) {
     super();
@@ -46,13 +46,15 @@ class DoubleClickZoom extends Interaction {
   handleEvent(mapBrowserEvent) {
     let stopEvent = false;
     if (mapBrowserEvent.type == MapBrowserEventType.DBLCLICK) {
-      const browserEvent = /** @type {MouseEvent} */ (mapBrowserEvent.originalEvent);
+      const browserEvent = /** @type {MouseEvent} */ (
+        mapBrowserEvent.originalEvent
+      );
       const map = mapBrowserEvent.map;
       const anchor = mapBrowserEvent.coordinate;
       const delta = browserEvent.shiftKey ? -this.delta_ : this.delta_;
       const view = map.getView();
       zoomByDelta(view, delta, anchor, this.duration_);
-      mapBrowserEvent.preventDefault();
+      browserEvent.preventDefault();
       stopEvent = true;
     }
     return !stopEvent;

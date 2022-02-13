@@ -103,7 +103,18 @@ abstract class AbstractTestCase extends TestCase
             return;
         }
 
-        $this->fail('Some queries where no used !');
+        $this->fail('Some queries where not used !');
+    }
+
+    protected function assertAllErrorCodesConsumed(): void
+    {
+        if ($this->dummyDbi->hasUnUsedErrors() === false) {
+            $this->assertTrue(true);// increment the assertion count
+
+            return;
+        }
+
+        $this->fail('Some error codes where not used !');
     }
 
     protected function loadContainerBuilder(): void
@@ -130,6 +141,16 @@ abstract class AbstractTestCase extends TestCase
         $containerBuilder->setAlias('response', Response::class);
     }
 
+    protected function setResponseIsAjax(): void
+    {
+        global $containerBuilder;
+
+        /** @var Response $response */
+        $response = $containerBuilder->get(Response::class);
+
+        $response->setAjax(true);
+    }
+
     protected function getResponseHtmlResult(): string
     {
         global $containerBuilder;
@@ -148,6 +169,24 @@ abstract class AbstractTestCase extends TestCase
         return $response->getJSONResult();
     }
 
+    protected function assertResponseWasNotSuccessfull(): void
+    {
+        global $containerBuilder;
+        $response = $containerBuilder->get(Response::class);
+
+        /** @var Response $response */
+        $this->assertFalse($response->hasSuccessState(), 'expected the request to fail');
+    }
+
+    protected function assertResponseWasSuccessfull(): void
+    {
+        global $containerBuilder;
+        $response = $containerBuilder->get(Response::class);
+
+        /** @var Response $response */
+        $this->assertTrue($response->hasSuccessState(), 'expected the request not to fail');
+    }
+
     protected function setGlobalDbi(): void
     {
         global $dbi;
@@ -161,6 +200,7 @@ abstract class AbstractTestCase extends TestCase
         global $PMA_Config;
         $PMA_Config = new Config();
         $PMA_Config->set('environment', 'development');
+        $PMA_Config->set('URLQueryEncryption', false);
     }
 
     protected function setTheme(): void

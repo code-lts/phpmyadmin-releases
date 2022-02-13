@@ -102,6 +102,10 @@ class CompositeMapRenderer extends MapRenderer {
     const viewState = frameState.viewState;
 
     this.children_.length = 0;
+    /**
+     * @type {Array<import("../layer/BaseVector.js").default>}
+     */
+    const declutterLayers = [];
     let previousElement = null;
     for (let i = 0, ii = layerStatesArray.length; i < ii; ++i) {
       const layerState = layerStatesArray[i];
@@ -123,8 +127,15 @@ class CompositeMapRenderer extends MapRenderer {
         this.children_.push(element);
         previousElement = element;
       }
+      if ('getDeclutter' in layer) {
+        declutterLayers.push(
+          /** @type {import("../layer/BaseVector.js").default} */ (layer)
+        );
+      }
     }
-    super.renderFrame(frameState);
+    for (let i = declutterLayers.length - 1; i >= 0; --i) {
+      declutterLayers[i].renderDeclutter(frameState);
+    }
 
     replaceChildren(this.element_, this.children_);
 
@@ -142,9 +153,9 @@ class CompositeMapRenderer extends MapRenderer {
    * @param {import("../pixel.js").Pixel} pixel Pixel.
    * @param {import("../PluggableMap.js").FrameState} frameState FrameState.
    * @param {number} hitTolerance Hit tolerance in pixels.
-   * @param {function(import("../layer/Layer.js").default, (Uint8ClampedArray|Uint8Array)): T} callback Layer
+   * @param {function(import("../layer/Layer.js").default<import("../source/Source").default>, (Uint8ClampedArray|Uint8Array)): T} callback Layer
    *     callback.
-   * @param {function(import("../layer/Layer.js").default): boolean} layerFilter Layer filter
+   * @param {function(import("../layer/Layer.js").default<import("../source/Source").default>): boolean} layerFilter Layer filter
    *     function, only layers which are visible and for which this function
    *     returns `true` will be tested for features.  By default, all visible
    *     layers will be tested.

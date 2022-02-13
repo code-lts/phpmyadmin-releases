@@ -9,18 +9,20 @@ import {
   compose as composeTransform,
   create as createTransform,
 } from '../../transform.js';
-import {createCanvasContext2D} from '../../dom.js';
 import {
+  containsCoordinate,
   getBottomLeft,
   getBottomRight,
   getTopLeft,
   getTopRight,
 } from '../../extent.js';
-import {rotateAtOffset} from '../../render/canvas.js';
+import {createCanvasContext2D} from '../../dom.js';
+import {cssOpacity} from '../../css.js';
 
 /**
  * @abstract
  * @template {import("../../layer/Layer.js").default} LayerType
+ * @extends {LayerRenderer<LayerType>}
  */
 class CanvasLayerRenderer extends LayerRenderer {
   /**
@@ -87,7 +89,7 @@ class CanvasLayerRenderer extends LayerRenderer {
     let container, context;
     if (
       target &&
-      target.style.opacity === '' &&
+      target.style.opacity === cssOpacity(opacity) &&
       target.className === layerClassName
     ) {
       const canvas = target.firstElementChild;
@@ -95,11 +97,7 @@ class CanvasLayerRenderer extends LayerRenderer {
         context = canvas.getContext('2d');
       }
     }
-    if (
-      context &&
-      (context.canvas.width === 0 ||
-        context.canvas.style.transform === transform)
-    ) {
+    if (context && context.canvas.style.transform === transform) {
       // Container of the previous layer renderer can be used.
       this.container = target;
       this.context = context;
@@ -127,38 +125,6 @@ class CanvasLayerRenderer extends LayerRenderer {
       this.container = container;
       this.context = context;
     }
-  }
-
-  /**
-   * @param {CanvasRenderingContext2D} context Context.
-   * @param {import("../../PluggableMap.js").FrameState} frameState Frame state.
-   * @param {import("../../extent.js").Extent} extent Clip extent.
-   * @protected
-   */
-  clip(context, frameState, extent) {
-    const pixelRatio = frameState.pixelRatio;
-    const halfWidth = (frameState.size[0] * pixelRatio) / 2;
-    const halfHeight = (frameState.size[1] * pixelRatio) / 2;
-    const rotation = frameState.viewState.rotation;
-    const topLeft = getTopLeft(extent);
-    const topRight = getTopRight(extent);
-    const bottomRight = getBottomRight(extent);
-    const bottomLeft = getBottomLeft(extent);
-
-    applyTransform(frameState.coordinateToPixelTransform, topLeft);
-    applyTransform(frameState.coordinateToPixelTransform, topRight);
-    applyTransform(frameState.coordinateToPixelTransform, bottomRight);
-    applyTransform(frameState.coordinateToPixelTransform, bottomLeft);
-
-    context.save();
-    rotateAtOffset(context, -rotation, halfWidth, halfHeight);
-    context.beginPath();
-    context.moveTo(topLeft[0] * pixelRatio, topLeft[1] * pixelRatio);
-    context.lineTo(topRight[0] * pixelRatio, topRight[1] * pixelRatio);
-    context.lineTo(bottomRight[0] * pixelRatio, bottomRight[1] * pixelRatio);
-    context.lineTo(bottomLeft[0] * pixelRatio, bottomLeft[1] * pixelRatio);
-    context.clip();
-    rotateAtOffset(context, rotation, halfWidth, halfHeight);
   }
 
   /**
@@ -283,6 +249,20 @@ class CanvasLayerRenderer extends LayerRenderer {
       pixel.slice()
     );
     const context = this.context;
+
+    const layer = this.getLayer();
+    const layerExtent = layer.getExtent();
+    if (layerExtent) {
+      const renderCoordinate = applyTransform(
+        frameState.pixelToCoordinateTransform,
+        pixel.slice()
+      );
+
+      /** get only data inside of the layer extent */
+      if (!containsCoordinate(layerExtent, renderCoordinate)) {
+        return null;
+      }
+    }
 
     let data;
     try {

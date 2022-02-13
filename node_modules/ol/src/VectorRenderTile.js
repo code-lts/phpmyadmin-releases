@@ -7,14 +7,13 @@ import {getUid} from './util.js';
 
 /**
  * @typedef {Object} ReplayState
- * @property {boolean} dirty
- * @property {null|import("./render.js").OrderFunction} renderedRenderOrder
- * @property {number} renderedTileRevision
- * @property {number} renderedResolution
- * @property {number} renderedRevision
- * @property {number} renderedZ
- * @property {number} renderedTileResolution
- * @property {number} renderedTileZ
+ * @property {boolean} dirty Dirty.
+ * @property {null|import("./render.js").OrderFunction} renderedRenderOrder RenderedRenderOrder.
+ * @property {number} renderedTileRevision RenderedTileRevision.
+ * @property {number} renderedResolution RenderedResolution.
+ * @property {number} renderedRevision RenderedRevision.
+ * @property {number} renderedTileResolution RenderedTileResolution.
+ * @property {number} renderedTileZ RenderedTileZ.
  */
 
 /**
@@ -46,16 +45,16 @@ class VectorRenderTile extends Tile {
     this.executorGroups = {};
 
     /**
+     * Executor groups for decluttering, by layer uid. Entries are read/written by the renderer.
+     * @type {Object<string, Array<import("./render/canvas/ExecutorGroup.js").default>>}
+     */
+    this.declutterExecutorGroups = {};
+
+    /**
      * Number of loading source tiles. Read/written by the source.
      * @type {number}
      */
     this.loadingSourceTiles = 0;
-
-    /**
-     * Tile keys of error source tiles. Read/written by the source.
-     * @type {Object<string, boolean>}
-     */
-    this.errorSourceTileKeys = {};
 
     /**
      * @type {Object<number, ImageData>}
@@ -71,7 +70,12 @@ class VectorRenderTile extends Tile {
     /**
      * @type {Array<import("./VectorTile.js").default>}
      */
-    this.sourceTiles = null;
+    this.sourceTiles = [];
+
+    /**
+     * @type {Object<string, boolean>}
+     */
+    this.errorTileKeys = {};
 
     /**
      * @type {number}
@@ -82,18 +86,6 @@ class VectorRenderTile extends Tile {
      * @type {!function():Array<import("./VectorTile.js").default>}
      */
     this.getSourceTiles = getSourceTiles.bind(undefined, this);
-
-    /**
-     * z of the source tiles of the last getSourceTiles call.
-     * @type {number}
-     */
-    this.sourceZ = -1;
-
-    /**
-     * True when all tiles for this tile's nominal resolution are available.
-     * @type {boolean}
-     */
-    this.hifi = false;
 
     /**
      * @type {import("./tilecoord.js").TileCoord}
@@ -144,7 +136,6 @@ class VectorRenderTile extends Tile {
         renderedRevision: -1,
         renderedTileResolution: NaN,
         renderedTileRevision: -1,
-        renderedZ: -1,
         renderedTileZ: -1,
       };
     }
@@ -164,6 +155,7 @@ class VectorRenderTile extends Tile {
   release() {
     for (const key in this.context_) {
       canvasPool.push(this.context_[key].canvas);
+      delete this.context_[key];
     }
     super.release();
   }

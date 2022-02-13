@@ -2,6 +2,7 @@
  * @module ol/proj/proj4
  */
 import Projection from './Projection.js';
+import Units from './Units.js';
 import {
   addCoordinateTransforms,
   addEquivalentProjections,
@@ -9,7 +10,6 @@ import {
   createSafeCoordinateTransform,
   get,
 } from '../proj.js';
-import {assign} from '../obj.js';
 import {get as getTransform} from './transforms.js';
 
 /**
@@ -31,12 +31,16 @@ export function register(proj4) {
     const code = projCodes[i];
     if (!get(code)) {
       const def = proj4.defs(code);
+      let units = def.units;
+      if (!units && def.projName === 'longlat') {
+        units = Units.DEGREES;
+      }
       addProjection(
         new Projection({
           code: code,
           axisOrientation: def.axis,
           metersPerUnit: def.to_meter,
-          units: def.units,
+          units,
         })
       );
     }
@@ -48,16 +52,10 @@ export function register(proj4) {
       const code2 = projCodes[j];
       const proj2 = get(code2);
       if (!getTransform(code1, code2)) {
-        const def1 = proj4.defs(code1);
-        const def2 = proj4.defs(code2);
-        if (def1 === def2) {
+        if (proj4.defs[code1] === proj4.defs[code2]) {
           addEquivalentProjections([proj1, proj2]);
         } else {
-          // Reset axis because OpenLayers always uses x, y axis order
-          const transform = proj4(
-            assign({}, def1, {axis: undefined}),
-            assign({}, def2, {axis: undefined})
-          );
+          const transform = proj4(code1, code2);
           addCoordinateTransforms(
             proj1,
             proj2,

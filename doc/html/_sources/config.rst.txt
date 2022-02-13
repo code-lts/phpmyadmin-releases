@@ -863,6 +863,24 @@ Server connection settings
 
     .. seealso:: :ref:`faqpdf`.
 
+.. _designer_coords:
+.. config:option:: $cfg['Servers'][$i]['designer_coords']
+
+    :type: string
+    :default: ``''``
+
+    .. versionadded:: 2.10.0
+
+        Since release 2.10.0 a Designer interface is available; it permits to
+        visually manage the relations.
+
+    .. deprecated:: 4.3.0
+
+        This setting was removed and the Designer table positioning data is now stored into :config:option:`$cfg['Servers'][$i]['table\_coords']`.
+
+    .. note::
+        You can now delete the table `pma__designer_coords` from your phpMyAdmin configuration storage database and remove :config:option:`$cfg['Servers'][$i]['designer\_coords']` from your configuration file.
+
 .. _col_com:
 .. config:option:: $cfg['Servers'][$i]['column_info']
 
@@ -1480,6 +1498,20 @@ Server connection settings
     after logout (doesn't affect config authentication method). Should be
     absolute including protocol.
 
+.. config:option:: $cfg['Servers'][$i]['hide_connection_errors']
+
+    :type: boolean
+    :default: false
+
+    .. versionadded:: 4.9.8
+
+    Whether to show or hide detailed MySQL/MariaDB connection errors on the login page.
+
+    .. note::
+
+        This error message can contain the target database server hostname or IP address,
+        which may reveal information about your network to an attacker.
+
 Generic settings
 ----------------
 
@@ -1768,6 +1800,27 @@ Generic settings
     Whether or not the drag and drop import feature is enabled.
     When enabled, a user can drag a file in to their browser and phpMyAdmin will
     attempt to import the file.
+
+.. config:option:: $cfg['URLQueryEncryption']
+
+    :type: boolean
+    :default: false
+
+    .. versionadded:: 4.9.8
+
+    Define whether phpMyAdmin will encrypt sensitive data (like database name
+    and table name) from the URL query string. Default is to not encrypt the URL
+    query string.
+
+.. config:option:: $cfg['URLQueryEncryptionSecretKey']
+
+    :type: string
+    :default: ``''``
+
+    .. versionadded:: 4.9.8
+
+    A secret key used to encrypt/decrypt the URL query string.
+    Should be 32 bytes long.
 
 Cookie authentication options
 -----------------------------
@@ -3036,7 +3089,7 @@ Text fields
 .. config:option:: $cfg['CharTextareaRows']
 
     :type: integer
-    :default: 2
+    :default: 7
 
     Number of columns and rows for the textareas. This value will be
     emphasized (\*2) for :term:`SQL` query
@@ -3045,6 +3098,10 @@ Text fields
 
     The Char\* values are used for CHAR
     and VARCHAR editing (if configured via :config:option:`$cfg['CharEditing']`).
+
+    .. versionchanged:: 5.0.0
+
+        The default value was changed from 2 to 7.
 
 .. config:option:: $cfg['LongtextDoubleTextarea']
 
@@ -3411,12 +3468,25 @@ MySQL settings
 .. config:option:: $cfg['DefaultFunctions']
 
     :type: array
-    :default: array(...)
+    :default: ``array('FUNC_CHAR' => '', 'FUNC_DATE' => '', 'FUNC_NUMBER' => '', 'FUNC_SPATIAL' => 'GeomFromText', 'FUNC_UUID' => 'UUID', 'first_timestamp' => 'NOW')``
 
     Functions selected by default when inserting/changing row, Functions
-    are defined for meta types as (FUNC\_NUMBER, FUNC\_DATE, FUNC\_CHAR,
-    FUNC\_SPATIAL, FUNC\_UUID) and for ``first_timestamp``, which is used
+    are defined for meta types as (``FUNC_NUMBER``, ``FUNC_DATE``, ``FUNC_CHAR``,
+    ``FUNC_SPATIAL``, ``FUNC_UUID``) and for ``first_timestamp``, which is used
     for first timestamp column in table.
+
+    Example configuration
+
+    .. code-block:: php
+
+        $cfg['DefaultFunctions'] = [
+            'FUNC_CHAR' => '',
+            'FUNC_DATE' => '',
+            'FUNC_NUMBER' => '',
+            'FUNC_SPATIAL' => 'ST_GeomFromText',
+            'FUNC_UUID' => 'UUID',
+            'first_timestamp' => 'UTC_TIMESTAMP',
+        ];
 
 Default options for Transformations
 -----------------------------------
