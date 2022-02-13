@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: phpMyAdmin 4.9.7-dev\n"
 "Report-Msgid-Bugs-To: translators@phpmyadmin.net\n"
 "POT-Creation-Date: 2020-10-10 13:32-0300\n"
-"PO-Revision-Date: 2019-12-13 11:05+0000\n"
+"PO-Revision-Date: 2021-03-12 07:02+0000\n"
 "Last-Translator: popcorner <memoword@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "phpmyadmin/4-9/zh_Hans/>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.10-dev\n"
+"X-Generator: Weblate 4.5.2-dev\n"
 
 #: ajax.php:21 ajax.php:50 export.php:196 libraries/classes/Export.php:1095
 msgid "Bad type!"
@@ -1358,8 +1358,7 @@ msgid ""
 "than %d seconds. It is advisable to set this long_query_time 0-2 seconds, "
 "depending on your system."
 msgstr ""
-"已启用 slow_query_log，但服务器仅记录查询时间超过 %d 秒的查询。请根据您的系统"
-"适当设置  long_query_time 为 0-2 秒。"
+"已启用 slow_query_log，但服务器仅记录查询时间超过 %d 秒的查询。请根据您的系统适当设置 long_query_time 为 0-2 秒。"
 
 #: js/messages.php:237
 #, php-format
@@ -1934,8 +1933,7 @@ msgstr "在该列表中搜索"
 msgid ""
 "No columns in the central list. Make sure the Central columns list for "
 "database %s has columns that are not present in the current table."
-msgstr ""
-"中心列表中没有列。请确保数据库  %s 的中心列表存在没有显示在当前表中的列。"
+msgstr "中心列表中没有列。请确保数据库 %s 的中心列表存在没有显示在当前表中的列。"
 
 #: js/messages.php:437
 msgid "See more"
@@ -2456,7 +2454,7 @@ msgstr "没有在历史记录中找到所请求的页面，页面可能已过期
 msgid ""
 "A newer version of phpMyAdmin is available and you should consider "
 "upgrading. The newest version is %s, released on %s."
-msgstr "phpMyAdmin 有新版本了，请您考虑升级。最新的版本是 %s，于 %s 发布。"
+msgstr "phpMyAdmin 的新版本已出，您应当考虑升级了。最新的版本是 %s，于 %s 发布。"
 
 #. l10n: Latest available phpMyAdmin version
 #: js/messages.php:674
@@ -2465,7 +2463,7 @@ msgstr "，最新稳定版本："
 
 #: js/messages.php:675
 msgid "up to date"
-msgstr "已更新"
+msgstr "已是最新"
 
 #: js/messages.php:677 libraries/classes/Display/Results.php:4825
 #: templates/view_create.twig:11
@@ -4941,9 +4939,7 @@ msgid ""
 "Enable if you want DB-based query history (requires phpMyAdmin configuration "
 "storage). If disabled, this utilizes JS-routines to display query history "
 "(lost by window close)."
-msgstr ""
-"允许使用基于数据库的查询历史 (需要 phpMyAdmin  高级功能)。如果禁用，将使用 "
-"JS 程序来显示查询历史 (关闭窗口即丢失)。"
+msgstr "允许使用基于数据库的查询历史 (需要 phpMyAdmin 高级功能)。如果禁用，将使用 JS 程序来显示查询历史 (关闭窗口即丢失)。"
 
 #: libraries/classes/Config/Descriptions.php:933
 msgid "Permanent query history"
@@ -5251,8 +5247,8 @@ msgid ""
 "tables]pmadb[/doc] for complete information. Leave blank for no support. "
 "Suggested: [kbd]phpmyadmin[/kbd]."
 msgstr ""
-"关系、书签、PDF 功能所用的数据库。参见 [doc@linked-tables]pmadb (外链，英文)"
-"[/doc]。不使用请留空。推荐:  [kbd]phpmyadmin[/kbd]。"
+"关系、书签、PDF 功能所用的数据库。参见 [doc@linked-tables]pmadb (外链，英文)[/doc]。不使用请留空。推荐: "
+"[kbd]phpmyadmin[/kbd]。"
 
 #: libraries/classes/Config/Descriptions.php:1112
 #: templates/server/databases/create.twig:21
@@ -9538,18 +9534,6 @@ msgstr ""
 "表中的一个字段值作为文件名。如果想使用字段值作为文件名，第一个选项必须留空。"
 
 #: libraries/classes/Plugins/Transformations/Abs/ExternalTransformationsPlugin.php:28
-#, fuzzy
-#| msgid ""
-#| "LINUX ONLY: Launches an external application and feeds it the column data "
-#| "via standard input. Returns the standard output of the application. The "
-#| "default is Tidy, to pretty-print HTML code. For security reasons, you "
-#| "have to manually edit the file libraries/classes/Plugins/Transformations/"
-#| "Output/Text_Plain_External.php and list the tools you want to make "
-#| "available. The first option is then the number of the program you want to "
-#| "use and the second option is the parameters for the program. The third "
-#| "option, if set to 1, will convert the output using htmlspecialchars() "
-#| "(Default 1). The fourth option, if set to 1, will prevent wrapping and "
-#| "ensure that the output appears all on one line (Default 1)."
 msgid ""
 "LINUX ONLY: Launches an external application and feeds it the column data "
 "via standard input. Returns the standard output of the application. The "
@@ -9562,12 +9546,11 @@ msgid ""
 "(Default 1). The fourth option, if set to 1, will prevent wrapping and "
 "ensure that the output appears all on one line (Default 1)."
 msgstr ""
-"仅 LINUX：调用外部程序并通过标准输入传入字段数据。返回此应用程序的标准输出。"
-"默认为 Tidy，可以很好的打印 HTML 代码。为了安全起见，您需要手动编辑 "
-"libraries/classes/Plugins/Transformations/Output/Text_Plain_External.php 文件"
-"来加入可以运行的工具。第一个选项是您想要使用的程序编号，第二个选项是程序的参"
-"数。第三个参数如果设为 1 的话将会用 htmlspecialchars() 处理输出 (默认为 1)。"
-"第四个参数如果设为 1 的话，将禁止换行，确保所有内容显示在一行中 (默认为 1)。"
+"仅 LINUX：调用外部程序并通过标准输入传入字段数据。返回此应用程序的标准输出。默认为 Tidy，可以很好的打印 HTML 代码。为了安全起见，"
+"您需要手动编辑 libraries/classes/Plugins/Transformations/Abs/"
+"ExternalTransformationsPlugin.php "
+"文件来加入可以运行的工具。第一个选项是您想要使用的程序编号，由于历史的原因，第二个选项应该为空。第三个参数如果设为 1 的话将会用 "
+"htmlspecialchars() 处理输出 (默认为 1)。第四个参数如果设为 1 的话，将禁止换行，确保所有内容显示在一行中 (默认为 1)。"
 
 #: libraries/classes/Plugins/Transformations/Abs/ExternalTransformationsPlugin.php:114
 #, php-format
@@ -9575,7 +9558,7 @@ msgid ""
 "You are using the external transformation command line options field, which "
 "has been deprecated for security reasons. Add all command line options "
 "directly to the definition in %s."
-msgstr ""
+msgstr "您正在使用外部转换命令行选项字段，出于安全原因，该字段已弃用。 将所有命令行选项直接添加到 %s中的定义中。"
 
 #: libraries/classes/Plugins/Transformations/Abs/FormattedTransformationsPlugin.php:28
 msgid ""
@@ -13338,7 +13321,7 @@ msgstr "以上均不"
 
 #: libraries/db_common.inc.php:151 tbl_operations.php:224
 msgid "No collation provided."
-msgstr "未提供排序规则"
+msgstr "未提供排序规则。"
 
 #: libraries/mult_submits.inc.php:337
 msgid "Success!"
@@ -13433,7 +13416,7 @@ msgstr ""
 
 #: prefs_manage.php:309
 msgid "Save as JSON file"
-msgstr "保存为 JSON 文件"
+msgstr "保存为JSON文件"
 
 #: prefs_manage.php:314
 msgid "Save as PHP file"
@@ -13675,7 +13658,7 @@ msgstr ""
 
 #: setup/lib/Index.php:186
 msgid "No newer stable version is available"
-msgstr "没有更新的可用版本"
+msgstr "没有新的稳定版本可用"
 
 #: setup/validate.php:26
 msgid "Wrong data"
@@ -13706,10 +13689,8 @@ msgstr "表名无效"
 
 #. l10n: In case a SQL query did not pass a security check
 #: tbl_get_field.php:46 transformation_wrapper.php:69
-#, fuzzy
-#| msgid "There are too many joins without indexes."
 msgid "There is an issue with your request."
-msgstr "有太多的联合查询未使用索引。"
+msgstr "您的请求有问题。"
 
 #: tbl_replace.php:258
 #, php-format

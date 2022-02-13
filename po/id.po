@@ -3,16 +3,16 @@ msgstr ""
 "Project-Id-Version: phpMyAdmin 4.9.7-dev\n"
 "Report-Msgid-Bugs-To: translators@phpmyadmin.net\n"
 "POT-Creation-Date: 2020-10-10 13:32-0300\n"
-"PO-Revision-Date: 2020-06-20 05:33+0000\n"
-"Last-Translator: William Desportes <williamdes@wdes.fr>\n"
-"Language-Team: Indonesian <https://hosted.weblate.org/projects/"
-"phpmyadmin/4-9/id/>\n"
+"PO-Revision-Date: 2021-12-05 08:51+0000\n"
+"Last-Translator: Hammam Afiq Murtadho <hammam.afiq277@gmail.com>\n"
+"Language-Team: Indonesian <https://hosted.weblate.org/projects/phpmyadmin/"
+"4-9/id/>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.1.1\n"
+"X-Generator: Weblate 4.10-dev\n"
 "X-Poedit-Basepath: ../../..\n"
 
 #: ajax.php:21 ajax.php:50 export.php:196 libraries/classes/Export.php:1095
@@ -541,15 +541,11 @@ msgid "Output"
 msgstr "Keluaran"
 
 #: gis_data_editor.php:423
-#, fuzzy
-#| msgid ""
-#| "Choose \"GeomFromText\" from the \"Function\" column and paste the string "
-#| "below into the \"Value\" field."
 msgid ""
 "Choose \"ST_GeomFromText\" from the \"Function\" column and paste the string "
 "below into the \"Value\" field."
 msgstr ""
-"Pilih \"GeomFromText\" dari kolom \"Fungsi\" dan rekatkan string dibawahnya "
+"Pilih \"ST_GeomFromText\" dari kolom \"Fungsi\" dan tempel string dibawahnya "
 "ke dalam isian \"Nilai\"."
 
 #: import.php:73
@@ -2372,8 +2368,6 @@ msgid "%d object(s) created."
 msgstr "%d objek dibuat."
 
 #: js/messages.php:582
-#, fuzzy
-#| msgid "Column names"
 msgid "Column name"
 msgstr "Nama kolom"
 
@@ -2717,9 +2711,8 @@ msgid "Strong"
 msgstr "Kuat"
 
 #: js/messages.php:751
-#, fuzzy
 msgid "Timed out waiting for security key activation."
-msgstr "Waktu tunggu untuk aktivasi kunci keamanan."
+msgstr "Waktu tunggu untuk menunggu aktivasi kunci keamanan sudah habis"
 
 #: js/messages.php:752
 #, php-format
@@ -2727,8 +2720,7 @@ msgid "Failed security key activation (%s)."
 msgstr "Gagal mengaktivasi kunci keamanan (%s)."
 
 #: js/messages.php:755
-#, fuzzy, php-format
-#| msgid "Table %s already exists!"
+#, php-format
 msgctxt ""
 "The table already exists in the designer and can not be added once more."
 msgid "Table %s already exists!"
@@ -3557,12 +3549,9 @@ msgid "accent-sensitive"
 msgstr "tidak peka aksen"
 
 #: libraries/classes/Charsets.php:679
-#, fuzzy
-#| msgctxt "Collation variant"
-#| msgid "accent-sensitive"
 msgctxt "Collation variant"
 msgid "kana-sensitive"
-msgstr "tidak peka aksen"
+msgstr "kana-sensitif"
 
 #: libraries/classes/Charsets.php:683
 msgctxt "Collation variant"
@@ -3577,7 +3566,7 @@ msgstr "biner"
 #: libraries/classes/Charsets.php:689
 msgctxt "Collation variant"
 msgid "no-pad"
-msgstr ""
+msgstr "tanpa pad"
 
 #: libraries/classes/Config.php:1132
 #, php-format
@@ -5476,10 +5465,6 @@ msgid "Server port"
 msgstr "Porta server"
 
 #: libraries/classes/Config/Descriptions.php:1119
-#, fuzzy
-#| msgid ""
-#| "Leave blank for no user preferences storage in database, suggested: "
-#| "[kbd]pma_userconfig[/kbd]"
 msgid ""
 "Leave blank for no \"persistent\" recently used tables across sessions, "
 "suggested: [kbd]pma__recent[/kbd]."
@@ -5492,16 +5477,12 @@ msgid "Recently used table"
 msgstr "Tabel yang baru digunakan"
 
 #: libraries/classes/Config/Descriptions.php:1126
-#, fuzzy
-#| msgid ""
-#| "Leave blank for no user preferences storage in database, suggested: "
-#| "[kbd]pma_userconfig[/kbd]"
 msgid ""
 "Leave blank for no \"persistent\" favorite tables across sessions, "
 "suggested: [kbd]pma__favorite[/kbd]."
 msgstr ""
 "Biarkan kosong untuk tidak menyimpan preferensi pengguna dalam basis data, "
-"saran: [kbd]pma_userconfig[/kbd]"
+"saran: [kbd]pma_userconfig[/kbd]."
 
 #: libraries/classes/Config/Descriptions.php:1130
 msgid "Favorites table"
@@ -6508,11 +6489,11 @@ msgid ""
 "phpMyAdmin panel. Set %1$sauthentication type%2$s to [kbd]cookie[/kbd] or "
 "[kbd]http[/kbd]."
 msgstr ""
-"Anda mengatur [kbd]config[/kbd] tipe otentikasi dan termasuk username dan "
-"password untuk login otomatis, yang mana bukan pilihan yang tepat untuk host "
-"selalu aktif. Siapapun yang mengetahui atau menebak URL phpMyAdmin anda "
-"dapat langsung  mengakses panel phpMyAdmin anda. Set type%s "
-"%sauthentication  ke [kbd]cookie[/kbd] atau [kbd]http[/kbd]."
+"Anda menyetel tipe otentikasi [kbd] config [/kbd] dan menyertakan nama "
+"pengguna dan sandi untuk masuk otomatis, yang bukan merupakan opsi yang "
+"diinginkan untuk host langsung. Siapapun yang mengetahui atau menebak URL "
+"phpMyAdmin Anda dapat langsung mengakses panel phpMyAdmin Anda. Setel %1$s "
+"jenis otentikasi %2$s ke [kbd] cookie [/kbd] atau [kbd] http [/kbd]."
 
 #: libraries/classes/Config/ServerConfigChecks.php:230
 msgid "You allow for connecting to the server without a password."
@@ -6557,19 +6538,15 @@ msgid "Key should contain letters, numbers [em]and[/em] special characters."
 msgstr "Kunci harus terdiri dari huruf, angka, [em]dan[/em] karakter khusus."
 
 #: libraries/classes/Config/ServerConfigChecks.php:418
-#, fuzzy, php-format
-#| msgid ""
-#| "%sLogin cookie validity%s greater than %ssession.gc_maxlifetime%s may "
-#| "cause random session invalidation (currently session.gc_maxlifetime is "
-#| "%d)."
+#, php-format
 msgid ""
 "%1$sLogin cookie validity%2$s greater than %3$ssession.gc_maxlifetime%4$s "
 "may cause random session invalidation (currently session.gc_maxlifetime is "
 "%5$d)."
 msgstr ""
-"%sLogin cookie validity%s sudah lebih dari %ssession.gc_maxlifetime%s dapat "
-"menyebabkan pembatalan session secara acak (saat ini session.gc_maxlifetime "
-"adalah %d)."
+"%1$sLogin cookie validity%2$s sudah lebih dari %3$ssession.gc_maxlifetime%4$"
+"s dapat menyebabkan pembatalan session secara acak (saat ini "
+"session.gc_maxlifetime adalah %5$d)."
 
 #: libraries/classes/Config/ServerConfigChecks.php:442
 #, php-format
@@ -6592,16 +6569,13 @@ msgstr ""
 "dengan itu."
 
 #: libraries/classes/Config/ServerConfigChecks.php:506
-#, fuzzy, php-format
-#| msgid ""
-#| "%sBzip2 compression and decompression%s requires functions (%s) which are "
-#| "unavailable on this system."
+#, php-format
 msgid ""
 "%1$sBzip2 compression and decompression%2$s requires functions (%3$s) which "
 "are unavailable on this system."
 msgstr ""
-"%sBzip2 compression and decompression%s membutuhkan fungsi (%s) yang tidak "
-"tersedia pada sistem ini."
+"%1$sBzip2 compression and decompression%2$s membutuhkan fungsi (%3$s) yang "
+"tidak tersedia pada sistem ini."
 
 #: libraries/classes/Config/ServerConfigChecks.php:538
 #, php-format
@@ -10097,7 +10071,7 @@ msgstr "Ekspor halaman PDF"
 #, fuzzy, php-format
 #| msgid "Schema of the %s database - Page %s"
 msgid "Schema of the %s database"
-msgstr "Skema basis data %s - Halaman %s"
+msgstr "Skema basis data %s"
 
 #: libraries/classes/Plugins/Schema/Pdf/PdfRelationSchema.php:130
 #: libraries/classes/Plugins/Schema/Pdf/PdfRelationSchema.php:525
@@ -10618,10 +10592,9 @@ msgid "Quick steps to set up advanced features:"
 msgstr "Langkah cepat untuk menyiapkan fitur lanjut:"
 
 #: libraries/classes/Relation.php:376
-#, fuzzy, php-format
+#, php-format
 msgid "Create the needed tables with the <code>%screate_tables.sql</code>."
-msgstr ""
-"Membuat tabel yang dibutuhkan dengan <code>contoh/create_tables.sql</code>."
+msgstr "Membuat tabel yang dibutuhkan dengan <code>%screate_tables.sql</code>."
 
 #: libraries/classes/Relation.php:381
 #, fuzzy
@@ -10662,20 +10635,20 @@ msgstr ""
 msgid ""
 "%sCreate%s a database named 'phpmyadmin' and setup the phpMyAdmin "
 "configuration storage there."
-msgstr "Tabel penyimpanan konfigurasi phpMyAdmin tidak ditemukan"
+msgstr "%sTabel%s penyimpanan konfigurasi phpMyAdmin tidak ditemukan."
 
 #: libraries/classes/Relation.php:2064
 #, fuzzy, php-format
 #| msgid "Missing phpMyAdmin configuration storage tables"
 msgid ""
 "%sCreate%s the phpMyAdmin configuration storage in the current database."
-msgstr "Tabel penyimpanan konfigurasi phpMyAdmin tidak ditemukan"
+msgstr "%sTabel%s penyimpanan konfigurasi phpMyAdmin tidak ditemukan."
 
 #: libraries/classes/Relation.php:2072
 #, fuzzy, php-format
 #| msgid "Missing phpMyAdmin configuration storage tables"
 msgid "%sCreate%s missing phpMyAdmin configuration storage tables."
-msgstr "Tabel penyimpanan konfigurasi phpMyAdmin tidak ditemukan"
+msgstr "%sTabel%s penyimpanan konfigurasi phpMyAdmin tidak ditemukan."
 
 #: libraries/classes/ReplicationGui.php:58
 #: libraries/classes/ReplicationGui.php:352
@@ -10821,16 +10794,13 @@ msgid "Change or reconfigure master server"
 msgstr "Ubah atau konfigurasikan ulang server master"
 
 #: libraries/classes/ReplicationGui.php:293
-#, fuzzy, php-format
-#| msgid ""
-#| "This server is not configured as slave in a replication process. Would "
-#| "you like to <a href=\"%s\">configure</a> it?"
+#, php-format
 msgid ""
 "This server is not configured as slave in a replication process. Would you "
 "like to %sconfigure%s it?"
 msgstr ""
 "Server ini tidak dikonfigurasikan sebagai slave dalam proses replikasi. "
-"Apakah Anda ingin <a href=\"%s\">mengonfigurasikannya</a>?"
+"Apakah Anda ingin %smengonfigurasikannya%s?"
 
 #: libraries/classes/ReplicationGui.php:316
 msgid "Error management:"
@@ -10852,16 +10822,13 @@ msgid "Skip next %s errors."
 msgstr "Lewati galat saat ini"
 
 #: libraries/classes/ReplicationGui.php:355
-#, fuzzy, php-format
-#| msgid ""
-#| "This server is not configured as master in a replication process. Would "
-#| "you like to <a href=\"%s\">configure</a> it?"
+#, php-format
 msgid ""
 "This server is not configured as master in a replication process. Would you "
 "like to %sconfigure%s it?"
 msgstr ""
 "Server ini tidak dikonfigurasikan sebagai master dalam proses replikasi. "
-"Apakah Anda ingin <a href=\"%s\">mengonfigurasikannya</a>?"
+"Apakah Anda ingin %smengonfigurasikannya%s?"
 
 #: libraries/classes/ReplicationGui.php:389
 #: templates/display/export/select_options.twig:8
@@ -14926,7 +14893,7 @@ msgstr "Tidak ada baris yang dipilih"
 #, fuzzy, php-format
 #| msgid "Tracking of %s.%s is activated."
 msgid "Tracking of %s is activated."
-msgstr "Pelacakan %s.%s diaktifkan."
+msgstr "Pelacakan %s diaktifkan."
 
 #: tbl_tracking.php:103
 #, fuzzy
@@ -15779,10 +15746,9 @@ msgid "Add/Delete columns"
 msgstr "Tambahkan/Hapus kolom"
 
 #: templates/table/tracking/create_version.twig:11
-#, fuzzy, php-format
-#| msgid "Create version %s of %s.%s"
+#, php-format
 msgid "Create version %1$s of %2$s"
-msgstr "Buat versi %s dari %s.%s"
+msgstr "Buat versi %1$s dari %2$s"
 
 #: templates/table/tracking/create_version.twig:16
 #, fuzzy, php-format
@@ -15994,20 +15960,18 @@ msgid "Do a \"query by example\" (wildcard: \"%\")"
 msgstr "Lakukan \"kueri dengan contoh\" (wildcard: \"%\")"
 
 #: templates/table/tracking/activate_deactivate.twig:7
-#, fuzzy, php-format
-#| msgid "Activate tracking for %s.%s"
+#, php-format
 msgid "Activate tracking for %s"
-msgstr "Aktifkan pelacakan untuk %s.%s"
+msgstr "Aktifkan pelacakan untuk %s"
 
 #: templates/table/tracking/activate_deactivate.twig:9
 msgid "Activate now"
 msgstr "Aktifkan sekarang"
 
 #: templates/table/tracking/activate_deactivate.twig:11
-#, fuzzy, php-format
-#| msgid "Deactivate tracking for %s.%s"
+#, php-format
 msgid "Deactivate tracking for %s"
-msgstr "Nonaktifkan pelacakan untuk %s.%s"
+msgstr "Nonaktifkan pelacakan untuk %s"
 
 #: templates/table/tracking/activate_deactivate.twig:13
 msgid "Deactivate now"
@@ -17879,7 +17843,9 @@ msgstr ""
 #| msgid "Max %% MyISAM key buffer ever used"
 msgid ""
 "max %% MyISAM key buffer ever used: %s%%, this value should be above 95%%"
-msgstr "Jumlah %% maksimum penyangga kunci MyISAM yang pernah dipakai"
+msgstr ""
+"max %% Penyangga kunci MyISAM yang pernah digunakan: %s%%, nilai ini harus "
+"di atas 95%%"
 
 #: libraries/advisory_rules_generic.txt:243
 msgid "Percentage of MyISAM key buffer used"
@@ -18428,7 +18394,7 @@ msgstr "Pertimbangkan untuk meningkatkan {query_cache_limit}."
 #, fuzzy, php-format
 #| msgid "Max %% MyISAM key buffer ever used"
 msgid "The current query cache hit rate of %s%% is below 20%%"
-msgstr "Jumlah %% maksimum penyangga kunci MyISAM yang pernah dipakai"
+msgstr "Tingkat kenaikan cache kueri saat ini (%s%%) di bawah 20%%"
 
 #: libraries/advisory_rules_mysql_before80003.txt:24
 msgid "Query Cache usage"

@@ -4,16 +4,16 @@ msgstr ""
 "Project-Id-Version: phpMyAdmin 4.9.7-dev\n"
 "Report-Msgid-Bugs-To: translators@phpmyadmin.net\n"
 "POT-Creation-Date: 2020-10-10 13:32-0300\n"
-"PO-Revision-Date: 2018-12-18 22:09+0000\n"
-"Last-Translator: Madhura Jayaratne <madhura.cj@gmail.com>\n"
-"Language-Team: Sinhala <https://hosted.weblate.org/projects/phpmyadmin/4-8/"
+"PO-Revision-Date: 2021-05-29 06:33+0000\n"
+"Last-Translator: HelaBasa <R45XvezA@protonmail.ch>\n"
+"Language-Team: Sinhala <https://hosted.weblate.org/projects/phpmyadmin/4-9/"
 "si/>\n"
 "Language: si\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.4-dev\n"
+"X-Generator: Weblate 4.7-dev\n"
 
 #: ajax.php:21 ajax.php:50 export.php:196 libraries/classes/Export.php:1095
 msgid "Bad type!"
@@ -309,7 +309,7 @@ msgstr "දත්තගබඩා නම හිස්ව පවතී!"
 
 #: db_operations.php:69
 msgid "Cannot copy database to the same name. Change the name and try again."
-msgstr "එකම  නමට  දත්තගබඩාව පිටපත් කළ නොහැක. නම වෙනස් කර නැවත උත්සාහ කරන්න."
+msgstr "එකම නමට දත්තගබඩාව පිටපත් කළ නොහැක. නම වෙනස් කර නැවත උත්සාහ කරන්න."
 
 #: db_operations.php:156
 #, php-format
@@ -529,15 +529,12 @@ msgid "Output"
 msgstr "ප්‍රතිදානය"
 
 #: gis_data_editor.php:423
-#, fuzzy
-#| msgid ""
-#| "Choose \"GeomFromText\" from the \"Function\" column and paste the string "
-#| "below into the \"Value\" field."
 msgid ""
 "Choose \"ST_GeomFromText\" from the \"Function\" column and paste the string "
 "below into the \"Value\" field."
 msgstr ""
-"\"ශ්‍රිතය\" තීරුවෙන් \"GeomFromText\" තෝරා පහත ඇති දේ \"අගය\" ක්ෂේත්‍රයට පිටපත් කරන්න."
+"\"ශ්‍රිතය\" තීරුවෙන් \"GeomFromText\" තෝරා පහත ඇති දේ \"අගය\" ක්ෂේත්‍රයට "
+"පිටපත් කරන්න."
 
 #: import.php:73
 msgid "Succeeded"
@@ -617,7 +614,7 @@ msgstr "\"DROP DATABASE\" ප්‍රකාශ අක්‍රීය කර ඇ
 
 #: import_status.php:108
 msgid "Could not load the progress of the import."
-msgstr ""
+msgstr "ආනයන ප්‍රගතිය ප්‍රවේශනය කල නොහැක"
 
 #: import_status.php:117 js/messages.php:461 js/messages.php:627
 #: libraries/classes/Export.php:509
@@ -631,13 +628,13 @@ msgid ""
 "You were logged out from one server, to logout completely from phpMyAdmin, "
 "you need to logout from all servers."
 msgstr ""
+"ඔබ එක් සේවාදායකයකින් ඉවත් වී ඇත, phpMyAdmin වෙතින් සම්පූර්ණයෙන්ම ඉවත් වීමට, "
+"ඔබ සියලුම සේවාදායකයන්ගෙන් ඉවත් විය යුතුය."
 
 #: index.php:202 libraries/classes/Footer.php:81
 #: libraries/classes/Plugins/Auth/AuthenticationCookie.php:115
-#, fuzzy
-#| msgid "phpMyAdmin homepage"
 msgid "phpMyAdmin Demo Server"
-msgstr "phpMyAdmin මුල් පිටුව"
+msgstr "phpMyAdmin නිරූපණ සේවාදායකය"
 
 #: index.php:206 libraries/classes/Plugins/Auth/AuthenticationCookie.php:118
 #, php-format
@@ -810,10 +807,10 @@ msgid ""
 "once phpMyAdmin has been configured. Otherwise the security of your server "
 "may be compromised by unauthorized people downloading your configuration."
 msgstr ""
-"පිහිටුවීමේ විධානාවලිය විසින් භාවිතා කරන [code]config[/code] ඩිරෙක්ටරිය තවමත් ඔබගේ "
-"phpMyAdmin ඩිරෙක්ටරිය තුල ඇත. phpMyAdmin වින්‍යාස සකසා අවසන් වූ පසු ඔබ එය ඉවත් කිරීම "
-"නිර්දේශිතයි. නැතහොත් ඔබගේ සේවාදායකයේ ආරක්ෂාව මෙම වින්‍යස අනවසරයෙන් බාගත කරගන්නන් විසින් "
-"තර්ජනයට ලක්කල  හැකිය."
+"පිහිටුවීමේ විධානාවලිය විසින් භාවිතා කරන [code]config[/code] ඩිරෙක්ටරිය තවමත් "
+"ඔබගේ phpMyAdmin ඩිරෙක්ටරිය තුල ඇත. phpMyAdmin වින්‍යාස සකසා අවසන් වූ පසු ඔබ "
+"එය ඉවත් කිරීම නිර්දේශිතයි. නැතහොත් ඔබගේ සේවාදායකයේ ආරක්ෂාව මෙම වින්‍යස "
+"අනවසරයෙන් බාගත කරගන්නන් විසින් තර්ජනයට ලක්කල හැකිය."
 
 #: index.php:616
 #, php-format
@@ -1000,10 +997,8 @@ msgid ""
 msgstr ""
 
 #: js/messages.php:112
-#, fuzzy
-#| msgid "Save as file"
 msgid "Save & close"
-msgstr "ගොනුවක් ලෙස තෝරන්න"
+msgstr "සුරකින්න සහ වසන්න"
 
 #: js/messages.php:113 libraries/classes/InsertEdit.php:1895
 #: prefs_manage.php:357 prefs_manage.php:368
@@ -1028,10 +1023,8 @@ msgid "Select at least one of the options!"
 msgstr "අවම වශයෙන් එක් වචනයක්වත්"
 
 #: js/messages.php:119
-#, fuzzy
-#| msgid "Not a valid port number"
 msgid "Please enter a valid number!"
-msgstr "වලංගු පොර්ට් අංකයක් නොවේ"
+msgstr "වලංගු අංකයක් යොදන්න"
 
 #: js/messages.php:120
 #, fuzzy
@@ -7602,7 +7595,7 @@ msgstr "කරුණාකර දත්තගබඩාව අඩංගු ඩි
 
 #: libraries/classes/DatabaseInterface.php:2203
 msgid "Details…"
-msgstr "තොරතුරු…"
+msgstr "විස්තර…"
 
 #: libraries/classes/DatabaseInterface.php:2507
 #, fuzzy
@@ -10042,16 +10035,12 @@ msgstr ""
 "(7,8,9)</code>"
 
 #: libraries/classes/Plugins/Export/ExportSql.php:425
-#, fuzzy
-#| msgid ""
-#| "both of the above<br /> &nbsp; &nbsp; &nbsp; Example: <code>INSERT INTO "
-#| "tbl_name (col_A,col_B) VALUES (1,2,3), (4,5,6), (7,8,9)</code>"
 msgid ""
 "both of the above<br /> &nbsp; &nbsp; &nbsp; Example: <code>INSERT INTO "
 "tbl_name (col_A,col_B,col_C) VALUES (1,2,3), (4,5,6), (7,8,9)</code>"
 msgstr ""
 "ඉහත දෙවර්ගයම<br /> &nbsp; &nbsp; &nbsp; උදාහරණ: <code>INSERT INTO tbl_name "
-"(col_A,col_B) VALUES (1,2,3), (4,5,6), (7,8,9)</code>"
+"(col_A,col_B,col_C) VALUES (1,2,3), (4,5,6), (7,8,9)</code>"
 
 #: libraries/classes/Plugins/Export/ExportSql.php:430
 msgid ""
@@ -11328,7 +11317,7 @@ msgstr "සිද්ධිය සංස්කරණය කරන්න"
 #: libraries/classes/Rte/Events.php:404 libraries/classes/Rte/Routines.php:906
 #: libraries/classes/Rte/Triggers.php:339 templates/view_create.twig:8
 msgid "Details"
-msgstr "තොරතුරු"
+msgstr "විස්තර"
 
 #: libraries/classes/Rte/Events.php:407
 msgid "Event name"

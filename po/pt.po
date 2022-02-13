@@ -4,16 +4,16 @@ msgstr ""
 "Project-Id-Version: phpMyAdmin 4.9.7-dev\n"
 "Report-Msgid-Bugs-To: translators@phpmyadmin.net\n"
 "POT-Creation-Date: 2020-10-10 13:32-0300\n"
-"PO-Revision-Date: 2020-10-04 21:34+0000\n"
-"Last-Translator: ssantos <ssantos@web.de>\n"
-"Language-Team: Portuguese <https://hosted.weblate.org/projects/"
-"phpmyadmin/4-9/pt/>\n"
+"PO-Revision-Date: 2022-01-01 16:53+0000\n"
+"Last-Translator: Salvador Domingues <salvadordomingues@gmail.com>\n"
+"Language-Team: Portuguese <https://hosted.weblate.org/projects/phpmyadmin/"
+"4-9/pt/>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.3-dev\n"
+"X-Generator: Weblate 4.10.1\n"
 
 #: ajax.php:21 ajax.php:50 export.php:196 libraries/classes/Export.php:1095
 msgid "Bad type!"
@@ -535,7 +535,7 @@ msgstr "Adicionar geometria"
 #: templates/server/binlog/log_selector.twig:27
 #: templates/table/index_form.twig:217 view_operations.php:115
 msgid "Go"
-msgstr "Executar"
+msgstr "Continuar"
 
 #: gis_data_editor.php:420
 msgid "Output"
@@ -644,9 +644,8 @@ msgid ""
 "You were logged out from one server, to logout completely from phpMyAdmin, "
 "you need to logout from all servers."
 msgstr ""
-"Você foi desconectado de apenas um servidor, para se desconectar "
-"completamente do phpMyAdmin, você precisa desconectar-se de todos os "
-"servidores."
+"Apenas foi desconectado de um servidor, para se desconectar completamente do "
+"phpMyAdmin, precisa de se desconectar de todos os servidores."
 
 #: index.php:202 libraries/classes/Footer.php:81
 #: libraries/classes/Plugins/Auth/AuthenticationCookie.php:115
@@ -1341,7 +1340,7 @@ msgstr "Tráfego"
 #: libraries/classes/Server/Status/Monitor.php:264
 #: libraries/classes/Util.php:3995
 msgid "Settings"
-msgstr "Configurações"
+msgstr "Definições"
 
 #: js/messages.php:216
 msgid "Add chart to grid"
@@ -1640,7 +1639,7 @@ msgstr "Total:"
 
 #: js/messages.php:313
 msgid "Loading logs"
-msgstr "Carregando registos"
+msgstr "A carregar registos"
 
 #: js/messages.php:314
 msgid "Monitor refresh failed"
@@ -1765,7 +1764,7 @@ msgstr "Aplicar"
 #: js/messages.php:362 libraries/classes/Navigation/NavigationHeader.php:61
 #: libraries/classes/Server/Status/Monitor.php:130
 msgid "Loading…"
-msgstr "Carregando…"
+msgstr "A carregar…"
 
 #: js/messages.php:363
 msgid "Request aborted!!"
@@ -1954,7 +1953,7 @@ msgstr "Mostrar Caixa do query"
 #: templates/server/variables/variable_row.twig:4
 #: templates/server/variables/variable_row.twig:7
 msgid "Edit"
-msgstr "Edita"
+msgstr "Editar"
 
 #: js/messages.php:423 libraries/classes/CentralColumns.php:881
 #: libraries/classes/CentralColumns.php:1238
@@ -2335,7 +2334,7 @@ msgstr "Guardar página"
 #: js/messages.php:568 templates/database/designer/side_menu.twig:64
 #: templates/database/designer/side_menu.twig:67
 msgid "Save page as"
-msgstr "Salvar página como"
+msgstr "Guardar página como"
 
 #: js/messages.php:569 templates/database/designer/side_menu.twig:50
 #: templates/database/designer/side_menu.twig:53
@@ -2396,8 +2395,8 @@ msgid ""
 "You have edited some data and they have not been saved. Are you sure you "
 "want to leave this page before saving the data?"
 msgstr ""
-"Editou alguns dados e estes não foram salvos. Tem certeza que quer sair "
-"desta página antes de salvar os seus dados?"
+"Editou alguns dados que não foram guardados. Tem a certeza de que quer sair "
+"desta página antes de os guardar?"
 
 #: js/messages.php:591
 msgid "Drag to reorder."
@@ -2680,12 +2679,12 @@ msgid ""
 "cause such a problem, clearing your \"Offline Website Data\" might help. In "
 "Safari, such problem is commonly caused by \"Private Mode Browsing\"."
 msgstr ""
-"Houve um erro ao acessar o armazenamento do seu browser. Algumas "
-"funcionalidades podem não funcionar corretamente para você. É provável que o "
-"browser não suporte armazenamento ou que a quota limite tenha sido "
-"alcançada. No Firefox, armazenamento corrompido também pode causar um "
-"problema. Limpar seus \"Dados offline de sites\" pode ajudar. No Safari, "
-"este problema é comumente causado pelo \"Modo de Navegação Privada\"."
+"Houve um erro ao aceder ao armazenamento do seu navegador. Algumas "
+"funcionalidades podem não funcionar corretamente para si. É provável que o "
+"navegador não suporte o armazenamento ou que a quota limite tenha sido "
+"alcançada. No Firefox, o armazenamento corrompido também pode causar um "
+"problema. Limpar os seus \"Dados offline de sites\" pode ajudar. No Safari, "
+"este problema é comummente causado pelo \"Modo de Navegação Privada\"."
 
 #: js/messages.php:738
 msgid "Copy tables to"
@@ -3363,7 +3362,7 @@ msgstr "Báltico"
 #: libraries/classes/Charsets.php:416
 msgctxt "Collation"
 msgid "Armenian"
-msgstr "Armênio"
+msgstr "Arménio"
 
 #: libraries/classes/Charsets.php:419
 msgctxt "Collation"
@@ -3970,7 +3969,7 @@ msgstr "Use a instrução %s"
 
 #: libraries/classes/Config/Descriptions.php:254
 msgid "Save as file"
-msgstr "envia"
+msgstr "Gravar como ficheiro"
 
 #: libraries/classes/Config/Descriptions.php:256
 #: libraries/classes/Config/Descriptions.php:629
@@ -5459,9 +5458,9 @@ msgid ""
 "use their literal instances, i.e. use [kbd]'my\\_db'[/kbd] and not "
 "[kbd]'my_db'[/kbd]."
 msgstr ""
-"Você pode usar meta-caracteres do MySQL (% e _), preceda-os de barra "
-"invertida se quiser usar suas instâncias literais, ou seja, use [kbd]'my"
-"\\_db'[/kbd] e não [kbd]'my_db'[/kbd]."
+"Pode utilizar metacaracteres do MySQL (% e _), anteceda-as com a barra "
+"invertida se quiser utilizar as suas instâncias literais, ou seja, utilize "
+"[kbd]'my\\_db'[/kbd] e não [kbd]'my_db'[/kbd]."
 
 #: libraries/classes/Config/Descriptions.php:1096
 msgid "Show only listed databases"
@@ -6221,7 +6220,7 @@ msgstr "Mostrar consulta de navegação atual"
 #: libraries/classes/Config/Descriptions.php:1472
 msgid "Execute queries on Enter and insert new line with Shift + Enter"
 msgstr ""
-"Executa os queries carregando em Enter e insere uma nova linha com Shift + "
+"Executa os queries carregando no Enter e insere uma nova linha com Shift + "
 "Enter"
 
 #: libraries/classes/Config/Descriptions.php:1474
@@ -6396,12 +6395,12 @@ msgid ""
 "protection with trusted proxies list may not be reliable if your IP belongs "
 "to an ISP where thousands of users, including you, are connected to."
 msgstr ""
-"Esta %sopção%s deveria ser desativata, pois ela permite que atacantes façam "
-"login por força bruta em qualquer servidor MySQL. Se julga que ela é "
-"necessária, use o %s login restrito para o servidor MySQL %s ou %s a lista "
-"de proxies confiáveis %s. Entretanto, proteções baseadas no protocolo IP "
-"podem não ser confiáveis se o seu endereço IP pertence a um PROVEDOR onde "
-"centenas de utilizadores, incluindo você, estão conectados."
+"Esta %sopção%s deveria ser desativada, pois permite que os atacantes iniciem "
+"sessão por força bruta em qualquer servidor MySQL. Se sente que seja "
+"necessária, utilize o %s início de sessão restrito para o servidor MySQL %s "
+"ou %s a lista de proxies confiáveis %s. Entretanto, as proteções baseadas no "
+"protocolo IP podem não ser fiáveis se o seu endereço IP pertence a um "
+"fornecedor onde milhares de utilizadores, incluindo-o a si, estão ligados."
 
 #: libraries/classes/Config/ServerConfigChecks.php:96
 msgid ""
@@ -6415,7 +6414,7 @@ msgstr ""
 #: libraries/classes/Config/ServerConfigChecks.php:169
 msgid "You should use SSL connections if your database server supports it."
 msgstr ""
-"Você deve utilizar conexões SSL, se o seu servidor de base de dados suportar."
+"Deve utilizar ligações SSL, se o seu servidor de base de dados suportar."
 
 #: libraries/classes/Config/ServerConfigChecks.php:176
 msgid ""
@@ -6439,16 +6438,16 @@ msgid ""
 "phpMyAdmin panel. Set %1$sauthentication type%2$s to [kbd]cookie[/kbd] or "
 "[kbd]http[/kbd]."
 msgstr ""
-"Você definiu o tipo de autenticação por [kbd]config[/kbd] e incluiu o nome "
-"de utilizador e palavra-passe para o inicio de sessão automático, o que não "
-"é uma opção aconselhável para servidores de produção. Alguém que saiba ou "
-"adivinhe o URL do seu phpMyAdmin tem acesso ao painel de gestão do "
+"Definiu o tipo de autenticação por [kbd]config[/kbd] e incluiu o nome de "
+"utilizador e palavra-passe para o inicio de sessão automático, o que não é "
+"uma opção aconselhável para servidores de produção. Qualquer pessoa que "
+"saiba ou adivinhe o URL do seu phpMyAdmin tem acesso ao painel de gestão do "
 "phpMyAdmin. Defina o %1$stipo de autenticação%2$s para [kbd]cookie[/kbd] ou "
 "[kbd]http[/kbd]."
 
 #: libraries/classes/Config/ServerConfigChecks.php:230
 msgid "You allow for connecting to the server without a password."
-msgstr "Você permite a conexão com o servidor sem uma palavra-passe."
+msgstr "Permite a ligação ao servidor sem uma palavra-passe."
 
 #: libraries/classes/Config/ServerConfigChecks.php:303
 #, php-format
@@ -6474,9 +6473,9 @@ msgid ""
 "authentication, so a key was automatically generated for you. It is used to "
 "encrypt cookies; you don't need to remember it."
 msgstr ""
-"Você não tinha o segredo blowfish configurado e ativou a autenticação por "
-"[kbd]cookies[/kbd], por isso uma chave foi gerada automaticamente. Esta é "
-"usada para encriptar cookies; você não precisa memorizá-la."
+"Não tinha o segredo blowfish definido e ativou a autenticação por "
+"[kbd]cookies[/kbd], foi então gerada uma chave automaticamente. Esta é "
+"utilizada para encriptar cookies; não a precisa de memorizar."
 
 #: libraries/classes/Config/ServerConfigChecks.php:372
 msgid "Key is too short, it should have at least 32 characters."
@@ -6493,7 +6492,7 @@ msgid ""
 "may cause random session invalidation (currently session.gc_maxlifetime is "
 "%5$d)."
 msgstr ""
-"A %1$svalidade do cookie de login%2$s sendo maior que %3$ssession."
+"A %1$svalidade do cookie de login%2$s a ser maior que %3$ssession."
 "gc_maxlifetime%4$s pode causar invalidação aleatória da sessão (atualmente a "
 "session.gc_maxlifetime é %5$d)."
 
@@ -7722,7 +7721,7 @@ msgid ""
 "The percentage of garbage in a data log file before it is compacted. This is "
 "a value between 1 and 99. The default is 50."
 msgstr ""
-"A porcentagem de lixo num ficheiro de dados de log antes de ser compactado. "
+"A percentagem de lixo num ficheiro de dados de log antes de ser compactado. "
 "Este é um valor entre 1 e 99. A predefinição é 50."
 
 #: libraries/classes/Engines/Pbxt.php:104
@@ -7844,7 +7843,7 @@ msgstr "Pasta temporária não encontrada."
 
 #: libraries/classes/File.php:319
 msgid "Failed to write file to disk."
-msgstr "Falha ao salvar o ficheiro para o disco."
+msgstr "Não foi possível guardar o ficheiro no disco."
 
 #: libraries/classes/File.php:322
 msgid "File upload stopped by extension."
@@ -8098,7 +8097,7 @@ msgstr "e então"
 
 #: libraries/classes/InsertEdit.php:1808
 msgid "Insert as new row"
-msgstr "Insere como novo registo"
+msgstr "Inserir como uma nova linha"
 
 #: libraries/classes/InsertEdit.php:1811
 msgid "Insert as new row and ignore errors"
@@ -8218,7 +8217,7 @@ msgstr "Pesquisar"
 #: libraries/config.values.php:41 libraries/config.values.php:49
 #: libraries/config.values.php:119
 msgid "Insert"
-msgstr "Insere"
+msgstr "Inserir"
 
 #: libraries/classes/Menu.php:401 libraries/classes/Menu.php:512
 #: libraries/classes/Server/Privileges.php:2584
@@ -11700,7 +11699,7 @@ msgstr "Especifico da Base de Dados"
 
 #: libraries/classes/Server/Privileges.php:2706
 msgid "wildcard"
-msgstr "curinga"
+msgstr "metacaracter"
 
 #: libraries/classes/Server/Privileges.php:2712
 msgid "table-specific"
@@ -12124,10 +12123,9 @@ msgid ""
 "may add charts and change the refresh rate under 'Settings', or remove any "
 "chart using the cog icon on each respective chart."
 msgstr ""
-"Seu navegador vai atualizar todos os gráficos exibidos em intervalo regular. "
-"Você pode adicionar gráficos e alterar a taxa de atualização em "
-"\"Configurações\", ou remover qualquer gráfico usando o ícone da engrenagem "
-"em cada gráfico."
+"O seu navegador atualizará todos os gráficos exibidos em intervalo regular. "
+"Pode adicioná-los e alterar a taxa de atualização em 'Definições', ou "
+"remover qualquer um usando o ícone da engrenagem em cada gráfico."
 
 #: libraries/classes/Server/Status/Monitor.php:144
 msgid ""
@@ -12370,7 +12368,7 @@ msgid ""
 msgstr ""
 "A quantidade de tabelas temporárias no disco criadas automaticamente pelo "
 "servidor enquanto executava os enunciados. Se Created_tmp_disk_tables é "
-"grande, você pode aumentar o valor de tmp_table_size para fazer as tabelas "
+"grande, pode aumentar o valor de tmp_table_size para fazer as tabelas "
 "temporárias serem baseadas na memória em vez de serem baseadas em disco."
 
 #: libraries/classes/Server/Status/Variables.php:367
@@ -12453,8 +12451,8 @@ msgid ""
 "if you are doing an index scan."
 msgstr ""
 "A quantidade de requisições para ler a linha seguinte na ordem da chave. "
-"Isto é incrementado se você estiver consultando uma coluna do índice com uma "
-"restrição de escala ou se você estiver fazendo uma varredura do índice."
+"Isto é incrementado se estiver a consultar uma coluna do índice com uma "
+"restrição de escala ou se estiver a fazer uma leitura do índice."
 
 #: libraries/classes/Server/Status/Variables.php:417
 msgid ""
@@ -12526,7 +12524,7 @@ msgid ""
 "reason."
 msgstr ""
 "A quantidade de páginas trancadas no pool de buffer do InnoDB. Estas são "
-"páginas que estão sendo lidas ou escritas atualmente ou que não podem ser "
+"páginas que estão a ser lidas ou escritas atualmente ou que não podem ser "
 "vazadas ou removidas por alguma razão."
 
 #: libraries/classes/Server/Status/Variables.php:462
@@ -13314,9 +13312,9 @@ msgid ""
 "after you refresh this page. Please check if the table structure has been "
 "changed."
 msgstr ""
-"Não pode salvar a propriedade de interface \"%s\". As mudanças feitas não "
-"serão constantes quando recarregar esta página. Favor verifique se a "
-"estrutura da tabela foi alterada."
+"Não pode guardar a propriedade da interface \"%s\". As mudanças efetuadas "
+"não serão constantes quando recarregar esta página. Por favor, verifique se "
+"a estrutura da tabela foi alterada."
 
 #: libraries/classes/Table.php:2086
 msgid "The name of the primary key must be \"PRIMARY\"!"
@@ -13811,7 +13809,7 @@ msgstr "Palavra-passe muito longa!"
 
 #: libraries/classes/UserPreferences.php:157
 msgid "Could not save configuration"
-msgstr "Não foi possível salvar a configuração"
+msgstr "Não foi possível guardar a configuração"
 
 #: libraries/classes/Util.php:175
 #, php-format
@@ -13909,7 +13907,7 @@ msgstr "Executar"
 
 #: libraries/classes/Util.php:3861
 msgid "SSL is not being used"
-msgstr "SSL não está sendo usado"
+msgstr "SSL não está a ser usado"
 
 #: libraries/classes/Util.php:3866
 msgid "SSL is used with disabled verification"
@@ -14079,7 +14077,7 @@ msgstr "Sucesso!"
 
 #: libraries/user_preferences.inc.php:31
 msgid "Manage your settings"
-msgstr "Gerencie suas configurações"
+msgstr "Gira as suas configurações"
 
 #: libraries/user_preferences.inc.php:38
 msgid "Two-factor authentication"
@@ -14853,7 +14851,7 @@ msgstr "Adiciona uma opção para a coluna \"%s\"."
 #: templates/display/export/options_quick_export.twig:8
 #, php-format
 msgid "Save on server in the directory <strong>%s</strong>"
-msgstr "Salvar em servidor no diretório <strong>%s</strong>"
+msgstr "Guardar em servidor na diretoria <strong>%s</strong>"
 
 #: templates/login/twofactor.twig:5
 msgid "Verify"
@@ -14945,7 +14943,7 @@ msgstr "Coluna de valor:"
 
 #: templates/table/chart/tbl_chart.twig:153
 msgid "Save chart as image"
-msgstr "Salvar gráfico como imagem"
+msgstr "Guardar gráfico como imagem"
 
 #: templates/database/structure/body_for_table_summary.twig:6
 #, php-format
@@ -15072,8 +15070,8 @@ msgstr "Adicionar privilégios no seguinte banco de dados:"
 #: templates/privileges/add_privileges_database.twig:14
 msgid "Wildcards % and _ should be escaped with a \\ to use them literally."
 msgstr ""
-"Coringas % e _ precisam ser precedidos com uma \\ para serem usados "
-"literalmente."
+"Os metacaracteres % e _ precisam de ser antecedidos com uma \\ para serem "
+"utilizados no seu sentido literal."
 
 #: templates/view_create.twig:65
 msgid "VIEW name"
@@ -15539,7 +15537,7 @@ msgstr "O ficheiro está a ser processado, por favor aguarde."
 
 #: templates/display/import/javascript.twig:36
 msgid "Uploading your import file…"
-msgstr "Carregando o seu ficheiro importado…"
+msgstr "A carregar o seu ficheiro importado…"
 
 #: templates/display/import/javascript.twig:161
 msgid ""
@@ -16478,7 +16476,7 @@ msgid ""
 "To have more accurate averages it is recommended to let the server run for "
 "longer than a day before running this analyzer"
 msgstr ""
-"Pra ter médias mais precisas é recomendado deixar o servidor rodando por "
+"Para ter médias mais precisas é recomendado deixar o servidor a correr por "
 "mais de um dia antes de utilizar esta ferramenta"
 
 #: libraries/advisory_rules_generic.txt:54
@@ -16526,8 +16524,8 @@ msgid ""
 "You might want to increase {long_query_time} or optimize the queries listed "
 "in the slow query log"
 msgstr ""
-"Você pode querer aumentar o parâmetro {long_query_time} ou otimizar as "
-"queries listadas no log de consultas lentas"
+"Pode querer aumentar o parâmetro {long_query_time} ou otimizar as queries "
+"listadas no log de consultas lentas"
 
 #: libraries/advisory_rules_generic.txt:68
 #, php-format
@@ -16544,7 +16542,8 @@ msgstr "Taxa de consulta lenta"
 msgid ""
 "There is a high percentage of slow queries compared to the server uptime."
 msgstr ""
-"A porcentagem de queries lentas está alta comparada com o uptime do servidor."
+"A percentagem de consultas lentas está alta comparada com o uptime do "
+"servidor."
 
 #: libraries/advisory_rules_generic.txt:75
 #, php-format
@@ -16627,7 +16626,7 @@ msgid ""
 "You should upgrade, as MySQL 5.1 has improved performance, and MySQL 5.5 "
 "even more so."
 msgstr ""
-"Você deveria atualizar, uma vez que o MySQL 5.1 tem um desempenho melhor e o "
+"Deveria atualizar, uma vez que o MySQL 5.1 tem um desempenho melhor e o "
 "MySQL 5.5 melhor ainda."
 
 #: libraries/advisory_rules_generic.txt:105
@@ -16652,8 +16651,8 @@ msgid ""
 "You should upgrade, as recent versions of MySQL 5.1 have improved "
 "performance and MySQL 5.5 even more so."
 msgstr ""
-"Você deveria atualizar, já que as versões recentes do MySQL 5.1 têm "
-"desempenho aprimorado e as do MySQL 5.5 ainda mais."
+"Deveria atualizar, já que as versões recentes do MySQL 5.1 têm um melhor "
+"desempenho e as do MySQL 5.5 ainda melhor."
 
 #: libraries/advisory_rules_generic.txt:117
 msgid "Version less than 5.5.8 (the first GA release of 5.5)."
@@ -16662,7 +16661,7 @@ msgstr ""
 
 #: libraries/advisory_rules_generic.txt:118
 msgid "You should upgrade, to a stable version of MySQL 5.5."
-msgstr "Você deveria atualizar para uma versão estável do MySQL 5.5."
+msgstr "Deveria atualizar para uma versão estável do MySQL 5.5."
 
 #: libraries/advisory_rules_generic.txt:121
 #: libraries/advisory_rules_generic.txt:128
@@ -16681,10 +16680,10 @@ msgid ""
 "distribution. The MySQL manual only is accurate for official MySQL binaries, "
 "not any package distributions (such as RedHat, Debian/Ubuntu etc)."
 msgstr ""
-"Se você não compilou a partir do código fonte, você pode estar usando um "
-"pacote modificado por uma distribuição. O manual do MySQL só é preciso com "
-"relação aos binários oficiais do MySQL, não com relação aos pacotes "
-"fornecidos com distribuições (como RedHat, Debian/Ubuntu etc.)."
+"Se não compilou a partir do código fonte, pode estar a utilizar um pacote "
+"modificado por uma distribuição. O manual do MySQL só é preciso para os "
+"binários oficiais do MySQL, e não para os dos pacotes fornecidos com "
+"distribuições (como RedHat, Debian/Ubuntu etc.)."
 
 #: libraries/advisory_rules_generic.txt:126
 msgid "'source' found in version_comment"
@@ -16721,9 +16720,9 @@ msgid ""
 "consider installing the 64-bit version of MySQL."
 msgstr ""
 "A quantidade de memória disponível é superior a 3GB (presumindo que o "
-"servidor esteja na máquina local), assim o MySQL pode não ser capaz de "
-"acessar toda a memória. Você deve considerar a instalação de uma versão 64-"
-"bit do MySQL."
+"servidor esteja na máquina local), assim, o MySQL pode não ser capaz de "
+"aceder a toda a memória. Deve considerar a instalação de uma versão 64-bit "
+"do MySQL."
 
 #: libraries/advisory_rules_generic.txt:140
 #, php-format
@@ -16762,7 +16761,7 @@ msgstr ""
 
 #: libraries/advisory_rules_generic.txt:154
 msgid "Percentage of sorts that cause temporary tables"
-msgstr "Porcentagem de ordenações que criam tabelas temporárias"
+msgstr "Percentagem de ordenações que criam tabelas temporárias"
 
 #: libraries/advisory_rules_generic.txt:157
 #: libraries/advisory_rules_generic.txt:164
@@ -16805,7 +16804,7 @@ msgstr "Ordenar linhas"
 
 #: libraries/advisory_rules_generic.txt:171
 msgid "There are lots of rows being sorted."
-msgstr "Muitos campos estão sendo ordenados."
+msgstr "Muitos campos estão a ser ordenados."
 
 #: libraries/advisory_rules_generic.txt:172
 msgid ""
@@ -16814,10 +16813,10 @@ msgid ""
 "indexed columns in the ORDER BY clause, as this will result in much faster "
 "sorting."
 msgstr ""
-"Apesar de não haver nada errado em uma grande quantidade de ordenação de "
-"campos, você pode querer garantir que as consultas que exigem muita "
-"ordenação usem colunas indexadas na cláusula ORDER BY, pois isso resultará "
-"em uma ordenação muito mais rápida."
+"Apesar de não haver nada de errado numa grande quantidade de ordenação de "
+"campos, pode querer garantir que as consultas que exigem muita ordenação "
+"utilizem colunas indexadas na cláusula ORDER BY, pois assim resultará numa "
+"ordenação muito mais rápida."
 
 #: libraries/advisory_rules_generic.txt:173
 #, php-format
@@ -16837,9 +16836,9 @@ msgid ""
 "This means that joins are doing full table scans. Adding indexes for the "
 "columns being used in the join conditions will greatly speed up table joins."
 msgstr ""
-"Isso significa que JOINs estão fazendo leituras completas de tabela. "
-"Adicionar índices aos campos sendo usados nas condições JOIN irá acelerar "
-"bastante a união das tabelas."
+"Isso significa que JOINs fazem leituras completas de tabela. Adicionar "
+"índices aos campos a serem usados nas condições JOIN irá acelerar bastante a "
+"união das tabelas."
 
 #: libraries/advisory_rules_generic.txt:181
 #, php-format
@@ -16944,21 +16943,19 @@ msgid ""
 "wish to increase the in-memory table limit you will have to increase the "
 "other value as well."
 msgstr ""
-"Se você mudou deliberadamente um deles: o servidor usa o valor mais baixo "
-"dos dois para determinar o tamanho máximo de tabelas em memória. Então, se "
-"você quiser aumentar o limite de tabela em memória, você terá que aumentar o "
-"outro valor também."
+"Se mudou deliberadamente um deles: o servidor utiliza o valor mais baixo dos "
+"dois para determinar o tamanho máximo de tabelas em memória. Então, se "
+"quiser aumentar o limite de tabela em memória, terá que aumentar o outro "
+"valor também."
 
 #: libraries/advisory_rules_generic.txt:210
 #, php-format
 msgid "Current values are tmp_table_size: %s, max_heap_table_size: %s"
-msgstr ""
-"Os valores atuais de tmp_table_size são de: %s e de max_heap_table_size de: "
-"%s"
+msgstr "Os valores atuais de tmp_table_size são: %s, max_heap_table_size: %s"
 
 #: libraries/advisory_rules_generic.txt:212
 msgid "Percentage of temp tables on disk"
-msgstr "Porcentagem de tabelas temporárias em disco"
+msgstr "Percentagem de tabelas temporárias em disco"
 
 #: libraries/advisory_rules_generic.txt:215
 #: libraries/advisory_rules_generic.txt:222
@@ -16966,7 +16963,7 @@ msgid ""
 "Many temporary tables are being written to disk instead of being kept in "
 "memory."
 msgstr ""
-"Muitas tabelas temporárias estão sendo escritas no disco ao invés de serem "
+"Muitas tabelas temporárias estão a ser escritas no disco ao invés de serem "
 "mantidas na memória."
 
 #: libraries/advisory_rules_generic.txt:216
@@ -16979,14 +16976,14 @@ msgid ""
 "mentioned in the beginning of an <a href=\"https://www.facebook.com/note.php?"
 "note_id=10150111255065841&comments\">Article by the Pythian Group</a>"
 msgstr ""
-"Aumentar o {max_heap_table_size} e {tmp_table_size} pode ajudar. Embora "
-"algumas tabelas temporárias estejam sempre sendo escritas para o disco, "
-"independente do valor dessas variáveis. Para eliminá-las, você terá que "
-"reescrever suas queries para evitar essas condições (dentro de uma tabela "
+"Aumentar o {max_heap_table_size} e {tmp_table_size} pode ajudar. Embora, "
+"algumas tabelas temporárias estejam sempre a ser escritas para o disco, "
+"independentemente do valor dessas variáveis. Para eliminá-las, terá que "
+"reescrever as suas queries para evitar essas condições (dentro de uma tabela "
 "temporária: presença de um campo BLOB ou TEXTO ou presença de um campo maior "
-"que 512 bytes) como mencionado no começo de um <a href=\"https://www."
-"facebook.com/note.php?note_id=10150111255065841&comments\">artigo do Pythian "
-"Group</a>"
+"do que 512 bytes) como mencionado na primeira parte de um <a href=\"https"
+"://www.facebook.com/note.php?note_id=10150111255065841&comments\">artigo do "
+"Pythian Group</a>"
 
 #: libraries/advisory_rules_generic.txt:217
 #, php-format
@@ -16994,8 +16991,8 @@ msgid ""
 "%s%% of all temporary tables are being written to disk, this value should be "
 "below 25%%"
 msgstr ""
-"%s%% de todas as tabelas temporárias estão sendo escritas no disco. Este "
-"valor deveria ser menor do que 25%%"
+"%s%% de todas as tabelas temporárias estão a ser escritas no disco. Este "
+"valor deveria ser menor que 25%%"
 
 #: libraries/advisory_rules_generic.txt:219
 msgid "Temp disk rate"
@@ -17012,8 +17009,8 @@ msgid ""
 "temporary-tables.html\">MySQL Documentation</a>"
 msgstr ""
 "Aumentar o {max_heap_table_size} e o {tmp_table_size} pode ajudar. Embora "
-"algumas tabelas temporárias estejam sempre sendo escritas para o disco, "
-"independente do valor dessas variáveis. Para eliminá-las, você terá que "
+"algumas tabelas temporárias estejam sempre a serem escritas para o disco, "
+"independente do valor dessas variáveis. Para eliminá-las, terá que "
 "reescrever suas queries para evitar essas condições (dentro de uma tabela "
 "temporária: presença de um campo BLOB ou TEXTO ou a presença de um campo "
 "maior que 512 bytes) como mencionado na <a href=\"https://dev.mysql.com/doc/"
@@ -17025,8 +17022,8 @@ msgid ""
 "Rate of temporary tables being written to disk: %s, this value should be "
 "less than 1 per hour"
 msgstr ""
-"A taxa de tabelas temporárias sendo escritas no disco: %s, esse valor "
-"deveria ser menor do que 1 por hora"
+"A taxa de tabelas temporárias a serem escritas no disco: %s, esse valor "
+"deveria ser menor que 1 por hora"
 
 #: libraries/advisory_rules_generic.txt:228
 msgid "MyISAM key buffer size"
@@ -17067,9 +17064,9 @@ msgid ""
 "tables to see if indexes have been removed, or examine queries and "
 "expectations about what indexes are being used."
 msgstr ""
-"Você pode precisar diminuir o tamanho do {key_buffer_size}, re-examinar suas "
-"tabelas para ver se os índices foram removidos, ou examinar as queries e "
-"expectativas a respeito de quais índices estão sendo usados."
+"Pode precisar de diminuir o tamanho do {key_buffer_size}, reexaminar as suas "
+"tabelas para ver se os índices foram removidos, ou examinar as queries e as "
+"expectativas dos índices que estão a ser utilizados."
 
 #: libraries/advisory_rules_generic.txt:240
 #, php-format
@@ -17081,7 +17078,7 @@ msgstr ""
 
 #: libraries/advisory_rules_generic.txt:243
 msgid "Percentage of MyISAM key buffer used"
-msgstr "Porcentagem do buffer de chaves MyISAM usada"
+msgstr "Percentagem do buffer de chaves MyISAM usada"
 
 #: libraries/advisory_rules_generic.txt:248
 #, php-format
@@ -17092,7 +17089,7 @@ msgstr ""
 
 #: libraries/advisory_rules_generic.txt:250
 msgid "Percentage of index reads from memory"
-msgstr "Porcentagem de leituras de índice da memória"
+msgstr "Percentagem de leituras de índice da memória"
 
 #: libraries/advisory_rules_generic.txt:253
 #, php-format
@@ -17101,7 +17098,7 @@ msgstr "A percentagem de índices que usam o buffer de chaves MyISAM é baixa."
 
 #: libraries/advisory_rules_generic.txt:254
 msgid "You may need to increase {key_buffer_size}."
-msgstr "Você pode precisar aumentar o {key_buffer_size}."
+msgstr "Pode precisar de aumentar o {key_buffer_size}."
 
 #: libraries/advisory_rules_generic.txt:255
 #, php-format
@@ -17133,7 +17130,7 @@ msgstr ""
 
 #: libraries/advisory_rules_generic.txt:266
 msgid "Percentage of used open files limit"
-msgstr "Porcentagem do limite de ficheiros abertos"
+msgstr "Percentagem do limite de ficheiros abertos"
 
 #: libraries/advisory_rules_generic.txt:269
 msgid ""
@@ -17260,16 +17257,14 @@ msgid ""
 "This generally happens in case of general system overload as it is pretty "
 "simple operations. You might want to monitor your system load carefully."
 msgstr ""
-"Isso geralmente acontece em caso de sobrecarga geral do sistema já que isso "
-"é uma operação bem simples. Você poderá querer monitorar o carregamento do "
-"seu sistema com cuidado."
+"Normalmente isto acontece em caso de sobrecarga geral do sistema já que até "
+"é uma operação simples. Poderá querer monitorar o carregamento do seu "
+"sistema com cuidado."
 
 #: libraries/advisory_rules_generic.txt:313
 #, php-format
 msgid "%s thread(s) took longer than %s seconds to start, it should be 0"
-msgstr ""
-"%s thread(s) levaram mais de %s segundos para começar, sendo que deveriam "
-"ser 0"
+msgstr "%s thread(s) levaram mais de %s segundos para começar, deveriam ser 0"
 
 #: libraries/advisory_rules_generic.txt:315
 msgid "Slow launch time"
@@ -17624,7 +17619,7 @@ msgstr "Utilização da cache de comandos"
 #: libraries/advisory_rules_mysql_before80003.txt:27
 #, php-format
 msgid "Less than 80%% of the query cache is being utilized."
-msgstr "Menos de 80%% do cache de query está sendo utilizado."
+msgstr "Menos de 80%% do cache de query está a ser utilizado."
 
 #: libraries/advisory_rules_mysql_before80003.txt:28
 msgid ""
@@ -17662,14 +17657,14 @@ msgid ""
 "using this formula: (query_cache_size - qcache_free_memory) / "
 "qcache_queries_in_cache"
 msgstr ""
-"Espera-se que fragmentação severa aumente (ainda mais) Qcache_lowmem_prunes. "
-"Isso pode ser causado por vários cortes de baixa memória do cache de query "
-"por causa de {query_cache_size} ser pequeno demais. Para conserto imediato "
-"mas de curta duração você pode esvaziar o cache de query (pode travar o "
-"cache de query por um bom tempo). Cuidadosamente ajustar "
-"{query_cache_min_res_unit) para um valor mais baixo pode ajudar também, por "
-"exemplo, você pode defini-lo para o tamanho médio de suas queries no cache "
-"usando essa fórmula: (query_cache_size - qcache_free_memory) / "
+"Espera-se que a fragmentação severa aumente (ainda mais) "
+"Qcache_lowmem_prunes. Isto pode ser causado por vários cortes de baixa "
+"memória da cache de query devido a {query_cache_size} ser demasiado pequena. "
+"Para uma solução imediata, mas de curta duração, pode esvaziar a cache de "
+"query (poderá bloquear a cache de query por um bom tempo). O cuidadoso "
+"ajuste da {query_cache_min_res_unit) para um valor mais baixo poderá também "
+"ajudar, por exemplo, pode defini-lo para o tamanho médio das suas queries na "
+"cache ao utilizar esta fórmula: (query_cache_size - qcache_free_memory) / "
 "qcache_queries_in_cache"
 
 #: libraries/advisory_rules_mysql_before80003.txt:36
@@ -17679,7 +17674,7 @@ msgid ""
 "that the query cache is an alternating pattern of free and used blocks. This "
 "value should be below 20%%."
 msgstr ""
-"O cache está atualmente fragmentado em %s%%, sendo que 100%% de fragmentação "
+"O cache está atualmente fragmentado em %s%%, a ser 100%% de fragmentação "
 "significa que o cache de consulta é um padrão alternante de blocos livres e "
 "utilizados. Esse valor deveria estar abaixo de 20%%."
 
@@ -17701,9 +17696,9 @@ msgid ""
 "overhead of maintaining the cache is likely to increase with its size, so do "
 "this in small increments and monitor the results."
 msgstr ""
-"Você pode querer aumentar o {query_cache_size}, embora saiba que é de se "
-"esperar que o consumo geral de manter o cache vá aumentar com seu tamanho, "
-"então aumente ele de pouco em pouco e monitore os resultados."
+"Poderá querer aumentar a {query_cache_size}, embora saiba que, é de se "
+"esperar que o consumo geral para manter a cache vá aumentar com o seu "
+"tamanho, então, aumente-a pouco a pouco e monitore os resultados."
 
 #: libraries/advisory_rules_mysql_before80003.txt:43
 #, php-format
