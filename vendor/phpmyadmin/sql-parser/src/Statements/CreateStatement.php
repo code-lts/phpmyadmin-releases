@@ -47,6 +47,7 @@ class CreateStatement extends Statement
             4,
             'expr=',
         ),
+        // Used in `CREATE VIEW`
         'SQL SECURITY' => array(
             5,
             'var',
@@ -218,21 +219,50 @@ class CreateStatement extends Statement
      * @var array
      */
     public static $FUNC_OPTIONS = array(
-        'COMMENT' => array(
-            1,
+        'NOT' =>  array(
+            2,
+            'var',
+        ),
+        'FUNCTION' =>  array(
+            3,
             'var=',
         ),
-        'LANGUAGE SQL' => 2,
-        'DETERMINISTIC' => 3,
-        'NOT DETERMINISTIC' => 3,
-        'CONTAINS SQL' => 4,
-        'NO SQL' => 4,
-        'READS SQL DATA' => 4,
-        'MODIFIES SQL DATA' => 4,
-        'SQL SECURITY DEFINER' => array(
-            5,
+        'PROCEDURE' =>  array(
+            3,
+            'var=',
+        ),
+        'CONTAINS' =>  array(
+            4,
+            'expr',
+        ),
+        'NO' =>  array(
+            4,
             'var',
-        )
+        ),
+        'READS' =>  array(
+            4,
+            'var',
+        ),
+        'MODIFIES' =>  array(
+            4,
+            'expr',
+        ),
+        'SQL SECURITY' =>  array(
+            6,
+            'var',
+        ),
+        'LANGUAGE' =>  array(
+            7,
+            'var',
+        ),
+        'COMMENT' =>  array(
+            8,
+            'var',
+        ),
+
+        'CREATE' => 1,
+        'DETERMINISTIC' => 2,
+        'DATA' =>  5,
     );
 
     /**
@@ -429,7 +459,7 @@ class CreateStatement extends Statement
             return 'CREATE '
                 . OptionsArray::build($this->options) . ' '
                 . Expression::build($this->name) . ' '
-                . $fields . ' AS ' . ($this->select ? $this->select->build() : TokensList::build($this->body)) . ' '
+                . $fields . ' AS ' . ($this->select ? $this->select->build() : '') . (! empty($this->body) ? TokensList::build($this->body) : '') . ' '
                 . OptionsArray::build($this->entityOptions);
         } elseif ($this->options->has('TRIGGER')) {
             return 'CREATE '
@@ -450,7 +480,8 @@ class CreateStatement extends Statement
                 . OptionsArray::build($this->options) . ' '
                 . Expression::build($this->name) . ' '
                 . ParameterDefinition::build($this->parameters) . ' '
-                . $tmp . ' ' . TokensList::build($this->body);
+                . $tmp . ' ' .  OptionsArray::build($this->entityOptions) . ' '
+                . TokensList::build($this->body);
         }
 
         return 'CREATE '
@@ -695,26 +726,23 @@ class CreateStatement extends Statement
                 $list->getNext();
             }
 
-            // Parsing the SELECT expression with and without the `AS` keyword
-            if ($token->type === Token::TYPE_KEYWORD
-                && $token->keyword === 'SELECT'
-            ) {
-                $this->select = new SelectStatement($parser, $list);
-            } elseif ($token->type === Token::TYPE_KEYWORD
+            // Parsing the SELECT expression if the view started with it.
+            if (
+                $token->type === Token::TYPE_KEYWORD
                 && $token->keyword === 'AS'
                 && $list->tokens[$nextidx]->type === Token::TYPE_KEYWORD
                 && $list->tokens[$nextidx]->value === 'SELECT'
             ) {
                 $list->idx = $nextidx;
                 $this->select = new SelectStatement($parser, $list);
-            } else {
-                for (; $list->idx < $list->count; ++$list->idx) {
-                    $token = $list->tokens[$list->idx];
-                    if ($token->type === Token::TYPE_DELIMITER) {
-                        break;
-                    }
-                    $this->body[] = $token;
+            }
+            // Parsing all other tokens
+            for (; $list->idx < $list->count; ++$list->idx) {
+                $token = $list->tokens[$list->idx];
+                if ($token->type === Token::TYPE_DELIMITER) {
+                    break;
                 }
+                $this->body[] = $token;
             }
         } elseif ($this->options->has('TRIGGER')) {
             // Parsing the time and the event.
