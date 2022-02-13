@@ -1563,7 +1563,7 @@ class DatabaseInterface
      */
     public function initRelationParamsCache()
     {
-        $storageDbName = $GLOBALS['cfg']['Server']['pmadb'] ?? '';
+        $storageDbName = isset($GLOBALS['cfg']['Server']['pmadb']) ? $GLOBALS['cfg']['Server']['pmadb'] : '';
         // Use "phpmyadmin" as a default database name to check to keep the behavior consistent
         $storageDbName = $storageDbName !== null
                             && is_string($storageDbName)
@@ -1574,7 +1574,7 @@ class DatabaseInterface
         $this->relation->fixPmaTables($storageDbName, false);
 
         // This global will be changed if fixPmaTables did find one valid table
-        $storageDbName = $GLOBALS['cfg']['Server']['pmadb'] ?? '';
+        $storageDbName = isset($GLOBALS['cfg']['Server']['pmadb']) ? $GLOBALS['cfg']['Server']['pmadb'] : '';
 
         // Empty means that until now no pmadb was found eligible
         if (empty($storageDbName)) {
@@ -2427,6 +2427,8 @@ class DatabaseInterface
 
             $server = array();
 
+            $server['hide_connection_errors'] = $cfg['Server']['hide_connection_errors'];
+
             if (! empty($cfg['Server']['controlhost'])) {
                 $server['host'] = $cfg['Server']['controlhost'];
             } else {
@@ -2484,6 +2486,10 @@ class DatabaseInterface
         }
         if (!isset($server['compress'])) {
             $server['compress'] = false;
+        }
+
+        if (! isset($server['hide_connection_errors'])) {
+            $server['hide_connection_errors'] = false;
         }
 
         return array($user, $password, $server);
