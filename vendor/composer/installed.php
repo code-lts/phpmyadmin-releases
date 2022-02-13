@@ -7,7 +7,7 @@
         'aliases' => array(
             0 => '4.9.x-dev',
         ),
-        'reference' => '1e8f8121fd699ec1d5e101631d6e230882099652',
+        'reference' => '351e66610ec995df75ed0c0ca668890ddf53ebbc',
         'name' => 'phpmyadmin/phpmyadmin',
         'dev' => false,
     ),
@@ -65,7 +65,7 @@
             'aliases' => array(
                 0 => '4.9.x-dev',
             ),
-            'reference' => '1e8f8121fd699ec1d5e101631d6e230882099652',
+            'reference' => '351e66610ec995df75ed0c0ca668890ddf53ebbc',
             'dev_requirement' => false,
         ),
         'phpmyadmin/shapefile' => array(
@@ -87,21 +87,21 @@
             'dev_requirement' => false,
         ),
         'phpseclib/phpseclib' => array(
-            'pretty_version' => '2.0.35',
-            'version' => '2.0.35.0',
+            'pretty_version' => '2.0.36',
+            'version' => '2.0.36.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../phpseclib/phpseclib',
             'aliases' => array(),
-            'reference' => '4e16cf3f5f927a7d3f5317820af795c0366c0420',
+            'reference' => 'a97547126396548c224703a267a30af1592be146',
             'dev_requirement' => false,
         ),
         'pragmarx/google2fa' => array(
-            'pretty_version' => 'v7.0.0',
-            'version' => '7.0.0.0',
+            'pretty_version' => 'v3.0.3',
+            'version' => '3.0.3.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../pragmarx/google2fa',
             'aliases' => array(),
-            'reference' => '0afb47f8a686bd203fe85a05bab85139f3c1971e',
+            'reference' => '6949226739e4424f40031e6f1c96b1fd64047335',
             'dev_requirement' => false,
         ),
         'psr/container' => array(
