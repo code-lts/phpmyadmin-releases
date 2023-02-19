@@ -255,33 +255,28 @@ class GMLBase extends XMLFeature {
   /**
    * @param {Element} node Node.
    * @param {Array<*>} objectStack Object stack.
-   * @return {import("../geom/Geometry.js").default|import("../extent.js").Extent|undefined} Geometry.
+   * @return {import("../extent.js").Extent|undefined} Geometry.
    */
   readExtentElement(node, objectStack) {
     const context = /** @type {Object} */ (objectStack[0]);
-    const extent = this.readGeometryOrExtent(node, objectStack);
-    return extent
-      ? transformExtentWithOptions(
-          /** @type {import("../extent.js").Extent} */ (extent),
-          context
-        )
-      : undefined;
+    const extent = /** @type {import("../extent.js").Extent} */ (
+      this.readGeometryOrExtent(node, objectStack)
+    );
+    return extent ? transformExtentWithOptions(extent, context) : undefined;
   }
 
   /**
    * @param {Element} node Node.
    * @param {Array<*>} objectStack Object stack.
-   * @return {import("../geom/Geometry.js").default|import("../extent.js").Extent|undefined} Geometry.
+   * @return {import("../geom/Geometry.js").default|undefined} Geometry.
    */
   readGeometryElement(node, objectStack) {
     const context = /** @type {Object} */ (objectStack[0]);
-    const geometry = this.readGeometryOrExtent(node, objectStack);
+    const geometry = /** @type {import("../geom/Geometry.js").default} */ (
+      this.readGeometryOrExtent(node, objectStack)
+    );
     return geometry
-      ? transformGeometryWithOptions(
-          /** @type {import("../geom/Geometry.js").default} */ (geometry),
-          false,
-          context
-        )
+      ? transformGeometryWithOptions(geometry, false, context)
       : undefined;
   }
 
@@ -324,6 +319,15 @@ class GMLBase extends XMLFeature {
         }
       }
 
+      const len = n.attributes.length;
+      if (len > 0) {
+        value = {_content_: value};
+        for (let i = 0; i < len; i++) {
+          const attName = n.attributes[i].name;
+          value[attName] = n.attributes[i].value;
+        }
+      }
+
       if (values[localName]) {
         if (!(values[localName] instanceof Array)) {
           values[localName] = [values[localName]];
@@ -331,15 +335,6 @@ class GMLBase extends XMLFeature {
         values[localName].push(value);
       } else {
         values[localName] = value;
-      }
-
-      const len = n.attributes.length;
-      if (len > 0) {
-        values[localName] = {_content_: values[localName]};
-        for (let i = 0; i < len; i++) {
-          const attName = n.attributes[i].name;
-          values[localName][attName] = n.attributes[i].value;
-        }
       }
     }
     if (!asFeature) {
@@ -556,9 +551,8 @@ class GMLBase extends XMLFeature {
    * @param {Element} node Node.
    * @param {import("./Feature.js").ReadOptions} [opt_options] Options.
    * @protected
-   * @return {import("../geom/Geometry.js").default|import("../extent.js").Extent} Geometry.
+   * @return {import("../geom/Geometry.js").default} Geometry.
    */
-  //@ts-ignore
   readGeometryFromNode(node, opt_options) {
     const geometry = this.readGeometryElement(node, [
       this.getReadOptions(node, opt_options ? opt_options : {}),

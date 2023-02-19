@@ -6,6 +6,7 @@ import {
   LooseObject,
   OptionsL33tTable,
 } from '../../../../types'
+import { DefaultMatch } from '../../types'
 
 type Subs = string[][][]
 
@@ -15,9 +16,9 @@ type Subs = string[][][]
  * -------------------------------------------------------------------------------
  */
 class MatchL33t {
-  defaultMatch: Function
+  defaultMatch: DefaultMatch
 
-  constructor(defaultMatch: Function) {
+  constructor(defaultMatch: DefaultMatch) {
     this.defaultMatch = defaultMatch
   }
 
@@ -26,7 +27,11 @@ class MatchL33t {
     const enumeratedSubs = this.enumerateL33tSubs(
       this.relevantL33tSubtable(password, zxcvbnOptions.l33tTable),
     )
-    for (let i = 0; i < enumeratedSubs.length; i += 1) {
+    const length = Math.min(
+      enumeratedSubs.length,
+      zxcvbnOptions.l33tMaxSubstitutions,
+    )
+    for (let i = 0; i < length; i += 1) {
       const sub = enumeratedSubs[i]
       // corner case: password has no relevant subs.
       if (empty(sub)) {
