@@ -35,7 +35,10 @@ checkRepoInGoodState () {
 	if output=$(git status --porcelain) && [ ! -z "$output" ]; then
 		quitError 'Some changes are not commited, please clean your repository first.'
 	fi
-	git fetch -p -P
+	logDebug "Showing non pushed tags"
+	git fetch --prune-tags --dry-run
+	logDebug "Fetch and prune branches"
+	git fetch --prune
 }
 
 checkBinaries () {
