@@ -9,6 +9,13 @@ import {assign} from '../obj.js';
 import {clamp} from '../math.js';
 
 /**
+ * A css color, or a function called with a view resolution returning a css color.
+ *
+ * @typedef {string|function(number):string} BackgroundColor
+ * @api
+ */
+
+/**
  * @typedef {import("../ObjectEventType").Types|'change:extent'|'change:maxResolution'|'change:maxZoom'|
  *    'change:minResolution'|'change:minZoom'|'change:opacity'|'change:visible'|'change:zIndex'} BaseLayerObjectEventTypes
  */
@@ -39,6 +46,8 @@ import {clamp} from '../math.js';
  * visible.
  * @property {number} [maxZoom] The maximum view zoom level (inclusive) at which this layer will
  * be visible.
+ * @property {BackgroundColor} [background] Background color for the layer. If not specified, no background
+ * will be rendered.
  * @property {Object<string, *>} [properties] Arbitrary observable properties. Can be accessed with `#get()` and `#set()`.
  */
 
@@ -46,8 +55,8 @@ import {clamp} from '../math.js';
  * @classdesc
  * Abstract base class; normally only used for creating subclasses and not
  * instantiated in apps.
- * Note that with {@link module:ol/layer/Base} and all its subclasses, any property set in
- * the options is set as a {@link module:ol/Object} property on the layer object, so
+ * Note that with {@link module:ol/layer/Base~BaseLayer} and all its subclasses, any property set in
+ * the options is set as a {@link module:ol/Object~BaseObject} property on the layer object, so
  * is observable, and has get/set accessors.
  *
  * @api
@@ -73,6 +82,12 @@ class BaseLayer extends BaseObject {
      * @type {BaseLayerOnSignature<void>}
      */
     this.un;
+
+    /**
+     * @type {BackgroundColor|false}
+     * @private
+     */
+    this.background_ = options.background;
 
     /**
      * @type {Object<string, *>}
@@ -104,7 +119,7 @@ class BaseLayer extends BaseObject {
      * @private
      */
     this.className_ =
-      properties.className !== undefined ? options.className : 'ol-layer';
+      properties.className !== undefined ? properties.className : 'ol-layer';
     delete properties.className;
 
     this.setProperties(properties);
@@ -114,6 +129,14 @@ class BaseLayer extends BaseObject {
      * @private
      */
     this.state_ = null;
+  }
+
+  /**
+   * Get the background for this layer.
+   * @return {BackgroundColor|false} Layer background.
+   */
+  getBackground() {
+    return this.background_;
   }
 
   /**
@@ -140,7 +163,6 @@ class BaseLayer extends BaseObject {
       });
     const zIndex = this.getZIndex();
     state.opacity = clamp(Math.round(this.getOpacity() * 100) / 100, 0, 1);
-    state.sourceState = this.getSourceState();
     state.visible = this.getVisible();
     state.extent = this.getExtent();
     state.zIndex = zIndex === undefined && !state.managed ? Infinity : zIndex;
@@ -263,6 +285,15 @@ class BaseLayer extends BaseObject {
    */
   getZIndex() {
     return /** @type {number} */ (this.get(LayerProperty.Z_INDEX));
+  }
+
+  /**
+   * Sets the background color.
+   * @param {BackgroundColor} [opt_background] Background color.
+   */
+  setBackground(opt_background) {
+    this.background_ = opt_background;
+    this.changed();
   }
 
   /**

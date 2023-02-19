@@ -25,8 +25,8 @@ import {getTransformFromProjections, getUserProjection} from './proj.js';
 
 /**
  * A function to be used when sorting features before rendering.
- * It takes two instances of {@link module:ol/Feature} or
- * {@link module:ol/render/Feature} and returns a `{number}`.
+ * It takes two instances of {@link module:ol/Feature~Feature} or
+ * {@link module:ol/render/Feature~RenderFeature} and returns a `{number}`.
  *
  * @typedef {function(import("./Feature.js").FeatureLike, import("./Feature.js").FeatureLike):number} OrderFunction
  */
@@ -88,6 +88,10 @@ export function toContext(context, opt_options) {
  * @api
  */
 export function getVectorContext(event) {
+  if (!(event.context instanceof CanvasRenderingContext2D)) {
+    throw new Error('Only works for render events from Canvas 2D layers');
+  }
+
   // canvas may be at a different pixel ratio than frameState.pixelRatio
   const canvasPixelRatio = event.inversePixelTransform[0];
   const frameState = event.frameState;
@@ -107,6 +111,7 @@ export function getVectorContext(event) {
       frameState.viewState.projection
     );
   }
+
   return new CanvasImmediateRenderer(
     event.context,
     canvasPixelRatio,
@@ -127,7 +132,5 @@ export function getVectorContext(event) {
  * @api
  */
 export function getRenderPixel(event, pixel) {
-  const result = pixel.slice(0);
-  applyTransform(event.inversePixelTransform.slice(), result);
-  return result;
+  return applyTransform(event.inversePixelTransform, pixel.slice(0));
 }

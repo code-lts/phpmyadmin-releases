@@ -183,7 +183,7 @@ class UtilTest extends AbstractTestCase
                 . ' AND `table`.`field4` = 123.456 AND `table`.`field5` = CAST(0x76616c7565 AS BINARY)'
                 . ' AND `table`.`field7` = \'value\' AND `table`.`field8` = \'value\''
                 . ' AND `table`.`field9` = CAST(0x76616c7565 AS BINARY)'
-                . ' AND `table`.`field10` =0x76616c7565 AND'
+                . ' AND `table`.`field10` = CAST(0x76616c7565 AS BINARY)'
                 . ' AND `table`.`field12` = b\'0001\'',
                 false,
                 [
@@ -330,8 +330,18 @@ class UtilTest extends AbstractTestCase
         SessionCache::set('is_superuser', 'yes');
         $this->assertEquals('yes', $_SESSION['cache']['server_server']['is_superuser']);
 
+        SessionCache::set('mysql_cur_user', 'mysql');
+        $this->assertEquals(
+            'mysql',
+            $_SESSION['cache']['server_server']['mysql_cur_user']
+        );
+
         Util::clearUserCache();
         $this->assertArrayNotHasKey('is_superuser', $_SESSION['cache']['server_server']);
+        $this->assertArrayNotHasKey(
+            'mysql_cur_user',
+            $_SESSION['cache']['server_server']
+        );
     }
 
     public function testCheckParameterMissing(): void

@@ -19,25 +19,17 @@ use PHPUnit\Framework\Assert;
 
 use function addslashes;
 use function count;
-use function debug_backtrace;
-use function fwrite;
 use function is_array;
 use function is_bool;
 use function is_int;
-use function json_encode;
 use function preg_replace;
 use function str_replace;
 use function trim;
 
-use const DEBUG_BACKTRACE_IGNORE_ARGS;
-use const JSON_PRETTY_PRINT;
-use const JSON_UNESCAPED_SLASHES;
 use const MYSQLI_TYPE_BLOB;
 use const MYSQLI_TYPE_DATETIME;
 use const MYSQLI_TYPE_DECIMAL;
 use const MYSQLI_TYPE_STRING;
-use const PHP_EOL;
-use const STDERR;
 
 // phpcs:disable Generic.Files.LineLength.TooLong
 
@@ -140,13 +132,7 @@ class DbiDummy implements DbiExtension
             return true;
         }
 
-        fwrite(STDERR, 'Non expected select of database: ' . $databaseName . PHP_EOL);
-        fwrite(STDERR, 'Trace: ' . json_encode(
-            debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 5),
-            JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES
-        ) . PHP_EOL);
-
-        return false;
+        Assert::markTestIncomplete('Non expected select of database: ' . $databaseName);
     }
 
     public function hasUnUsedErrors(): bool
@@ -507,7 +493,7 @@ class DbiDummy implements DbiExtension
      * @param array|bool $result   Expected result
      * @param string[]   $columns  The result columns
      * @param object[]   $metadata The result metadata
-     * @phpstan-param (int[]|string[]|array{string: string}|null[])[]|bool|bool[] $result
+     * @phpstan-param array<int, array<int, array{string: string}|bool|int|string|null>|bool>|bool $result
      */
     public function addResult(string $query, $result, array $columns = [], array $metadata = []): void
     {
@@ -1066,6 +1052,43 @@ class DbiDummy implements DbiExtension
                 ],
             ],
             [
+                'query' => 'SELECT CONCAT(`db_name`, \'.\', `table_name`, \'.\', `column_name`) AS column_name, `mimetype`, `transformation`,'
+                    . ' `transformation_options`, `input_transformation`,'
+                    . ' `input_transformation_options`'
+                    . ' FROM `information_schema`.`column_info`'
+                    . ' WHERE `db_name` = \'my_db\' AND `table_name` = \'\''
+                    . ' AND ( `mimetype` != \'\' OR `transformation` != \'\''
+                    . ' OR `transformation_options` != \'\''
+                    . ' OR `input_transformation` != \'\''
+                    . ' OR `input_transformation_options` != \'\')',
+                'columns' => [
+                    'column_name',
+                    'mimetype',
+                    'transformation',
+                    'transformation_options',
+                    'input_transformation',
+                    'input_transformation_options',
+                ],
+                'result' => [
+                    [
+                        'vc',
+                        '',
+                        'output/text_plain_json.php',
+                        '',
+                        'Input/Text_Plain_JsonEditor.php',
+                        '',
+                    ],
+                    [
+                        'vc',
+                        '',
+                        'output/text_plain_formatted.php',
+                        '',
+                        'Text_Plain_Substring.php',
+                        '1',
+                    ],
+                ],
+            ],
+            [
                 'query' => 'SELECT TABLE_NAME FROM information_schema.VIEWS'
                     . ' WHERE TABLE_SCHEMA = \'pma_test\' AND TABLE_NAME = \'table1\'',
                 'result' => [],
@@ -1078,6 +1101,11 @@ class DbiDummy implements DbiExtension
             [
                 'query' => 'SELECT TABLE_NAME FROM information_schema.VIEWS'
                     . ' WHERE TABLE_SCHEMA = \'ODS_DB\' AND TABLE_NAME = \'pma_bookmark\'',
+                'result' => [],
+            ],
+            [
+                'query'  => 'SELECT TABLE_NAME FROM information_schema.VIEWS'
+                . ' WHERE TABLE_SCHEMA = \'ODS_DB\' AND TABLE_NAME = \'Feuille 1\'',
                 'result' => [],
             ],
             [
@@ -1740,7 +1768,7 @@ class DbiDummy implements DbiExtension
                 'result' => [],
             ],
             [
-                'query' => "SHOW TABLE STATUS FROM `my_dataset` WHERE `Name` LIKE 'company\_users%'",
+                'query' => "SHOW TABLE STATUS FROM `my_dataset` WHERE `Name` LIKE 'company\\\\_users%'",
                 'result' => [],
             ],
             [
@@ -2361,7 +2389,7 @@ class DbiDummy implements DbiExtension
                 'result' => [['1']],
             ],
             [
-                'query' => 'SHOW TABLE STATUS FROM `PMA_db` WHERE `Name` LIKE \'PMA\_table%\'',
+                'query' => 'SHOW TABLE STATUS FROM `PMA_db` WHERE `Name` LIKE \'PMA\\\\_table%\'',
                 'columns' => ['Name', 'Engine'],
                 'result' => [['PMA_table', 'InnoDB']],
             ],
@@ -2415,7 +2443,7 @@ class DbiDummy implements DbiExtension
                 ],
             ],
             [
-                'query' => 'SHOW FULL COLUMNS FROM `testdb`.`mytable` LIKE \'\_id\'',
+                'query' => 'SHOW FULL COLUMNS FROM `testdb`.`mytable` LIKE \'\\\\_id\'',
                 'columns' => ['Field', 'Type', 'Collation', 'Null', 'Key', 'Default', 'Extra', 'Privileges', 'Comment'],
                 'result' => [
                     [
@@ -2520,7 +2548,7 @@ class DbiDummy implements DbiExtension
                 ],
             ],
             [
-                'query' => 'SHOW TABLE STATUS FROM `test_db` WHERE `Name` LIKE \'test\_table%\'',
+                'query' => 'SHOW TABLE STATUS FROM `test_db` WHERE `Name` LIKE \'test\\\\_table%\'',
                 'columns' => ['Name', 'Engine', 'Rows'],
                 'result' => [['test_table', 'InnoDB', '3']],
             ],
@@ -2685,7 +2713,7 @@ class DbiDummy implements DbiExtension
                 'result' => [],
             ],
             [
-                'query' => 'SHOW TABLE STATUS FROM `my_db` WHERE `Name` LIKE \'test\_tbl%\'',
+                'query' => 'SHOW TABLE STATUS FROM `my_db` WHERE `Name` LIKE \'test\\\\_tbl%\'',
                 'result' => [],
             ],
             [

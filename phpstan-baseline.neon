@@ -121,6 +121,21 @@ parameters:
 			path: libraries/classes/CheckUserPrivileges.php
 
 		-
+			message: "#^Cannot call method getExtension\\(\\) on mixed\\.$#"
+			count: 1
+			path: libraries/classes/Command/CacheWarmupCommand.php
+
+		-
+			message: "#^Cannot call method getPathname\\(\\) on mixed\\.$#"
+			count: 2
+			path: libraries/classes/Command/CacheWarmupCommand.php
+
+		-
+			message: "#^Cannot call method isFile\\(\\) on mixed\\.$#"
+			count: 1
+			path: libraries/classes/Command/CacheWarmupCommand.php
+
+		-
 			message: "#^Method PhpMyAdmin\\\\Command\\\\TwigLintCommand\\:\\:display\\(\\) has parameter \\$filesInfo with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: libraries/classes/Command/TwigLintCommand.php
@@ -151,7 +166,7 @@ parameters:
 			path: libraries/classes/Common.php
 
 		-
-			message: "#^Parameter \\#2 \\$value of method Symfony\\\\Component\\\\DependencyInjection\\\\Container\\:\\:setParameter\\(\\) expects array\\|bool\\|float\\|int\\|string\\|null, mixed given\\.$#"
+			message: "#^Parameter \\#2 \\$value of method Symfony\\\\Component\\\\DependencyInjection\\\\Container\\:\\:setParameter\\(\\) expects array\\|bool\\|float\\|int\\|string\\|UnitEnum\\|null, mixed given\\.$#"
 			count: 1
 			path: libraries/classes/Common.php
 
@@ -1046,7 +1061,7 @@ parameters:
 			path: libraries/classes/Controllers/Database/PrivilegesController.php
 
 		-
-			message: "#^Cannot access offset string on mixed\\.$#"
+			message: "#^Cannot access offset non\\-empty\\-string on mixed\\.$#"
 			count: 1
 			path: libraries/classes/Controllers/Database/Structure/FavoriteTableController.php
 
@@ -1282,6 +1297,11 @@ parameters:
 
 		-
 			message: "#^Left side of && is always false\\.$#"
+			count: 1
+			path: libraries/classes/Controllers/Import/ImportController.php
+
+		-
+			message: "#^Left side of \\|\\| is always true\\.$#"
 			count: 1
 			path: libraries/classes/Controllers/Import/ImportController.php
 
@@ -1771,6 +1791,11 @@ parameters:
 			path: libraries/classes/Controllers/Transformation/WrapperController.php
 
 		-
+			message: "#^Variable \\$mime_type on left side of \\?\\? always exists and is not nullable\\.$#"
+			count: 2
+			path: libraries/classes/Controllers/Transformation/WrapperController.php
+
+		-
 			message: "#^Parameter \\#1 \\$string of function substr expects string, mixed given\\.$#"
 			count: 1
 			path: libraries/classes/Controllers/View/CreateController.php
@@ -1816,7 +1841,7 @@ parameters:
 			path: libraries/classes/Core.php
 
 		-
-			message: "#^Offset 'pass'\\|'port'\\|'user' does not exist on array\\{host\\: non\\-empty\\-string, scheme\\?\\: string, port\\?\\: int, user\\?\\: string, pass\\?\\: string, path\\?\\: string, query\\?\\: string, fragment\\?\\: string\\}\\.$#"
+			message: "#^Offset 'pass'\\|'port'\\|'user' does not exist on array\\{scheme\\?\\: string, host\\: non\\-empty\\-string, port\\?\\: int, user\\?\\: string, pass\\?\\: string, path\\?\\: string, query\\?\\: string, fragment\\?\\: string\\}\\.$#"
 			count: 1
 			path: libraries/classes/Core.php
 
@@ -1912,6 +1937,11 @@ parameters:
 
 		-
 			message: "#^Method PhpMyAdmin\\\\Database\\\\CentralColumns\\:\\:updateMultipleColumn\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: libraries/classes/Database/CentralColumns.php
+
+		-
+			message: "#^Right side of \\|\\| is always false\\.$#"
 			count: 1
 			path: libraries/classes/Database/CentralColumns.php
 
@@ -2701,6 +2731,11 @@ parameters:
 			path: libraries/classes/DatabaseInterface.php
 
 		-
+			message: "#^Parameter \\#2 \\$link of method PhpMyAdmin\\\\DatabaseInterface\\:\\:escapeMysqlLikeString\\(\\) expects int, mixed given\\.$#"
+			count: 1
+			path: libraries/classes/DatabaseInterface.php
+
+		-
 			message: "#^Parameter \\#2 \\$table of method PhpMyAdmin\\\\Query\\\\Cache\\:\\:cacheTableData\\(\\) expects bool\\|string, array\\|string given\\.$#"
 			count: 1
 			path: libraries/classes/DatabaseInterface.php
@@ -2846,32 +2881,17 @@ parameters:
 			path: libraries/classes/Dbal/DbiMysqli.php
 
 		-
-			message: "#^Method PhpMyAdmin\\\\Dbal\\\\MysqliResult\\:\\:__construct\\(\\) has parameter \\$result with no value type specified in iterable type mysqli_result\\.$#"
-			count: 1
-			path: libraries/classes/Dbal/MysqliResult.php
-
-		-
 			message: "#^Method PhpMyAdmin\\\\Dbal\\\\MysqliResult\\:\\:fetchAllKeyPair\\(\\) should return array\\<string, string\\|null\\> but returns array\\<int\\|string, mixed\\>\\.$#"
-			count: 1
+			count: 2
 			path: libraries/classes/Dbal/MysqliResult.php
 
 		-
-			message: "#^Property PhpMyAdmin\\\\Dbal\\\\MysqliResult\\:\\:\\$result type has no value type specified in iterable type mysqli_result\\.$#"
-			count: 1
-			path: libraries/classes/Dbal/MysqliResult.php
-
-		-
-			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
-			count: 1
-			path: libraries/classes/Display/Results.php
-
-		-
-			message: "#^Binary operation \"\\+\" between array\\<string, bool\\|string\\>\\|string\\|null and array\\{default_action\\: 'insert'\\} results in an error\\.$#"
+			message: "#^Binary operation \"\\+\" between array\\<string, bool\\|string\\>\\|string and array\\{default_action\\: 'insert'\\} results in an error\\.$#"
 			count: 3
 			path: libraries/classes/Display/Results.php
 
 		-
-			message: "#^Binary operation \"\\+\" between array\\<string, bool\\|string\\>\\|string\\|null and array\\{default_action\\: 'update'\\} results in an error\\.$#"
+			message: "#^Binary operation \"\\+\" between array\\<string, bool\\|string\\>\\|string and array\\{default_action\\: 'update'\\} results in an error\\.$#"
 			count: 3
 			path: libraries/classes/Display/Results.php
 
@@ -3216,11 +3236,6 @@ parameters:
 			path: libraries/classes/Display/Results.php
 
 		-
-			message: "#^Method PhpMyAdmin\\\\Display\\\\Results\\:\\:setParamForLinkForeignKeyRelatedTables\\(\\) should return array\\<string, array\\<string\\>\\> but returns array\\<int\\|string, array\\>\\.$#"
-			count: 1
-			path: libraries/classes/Display/Results.php
-
-		-
 			message: "#^Offset 3 does not exist on array\\{string\\|null, string\\|null, string\\|null\\}\\.$#"
 			count: 1
 			path: libraries/classes/Display/Results.php
@@ -3272,6 +3287,11 @@ parameters:
 
 		-
 			message: "#^Property PhpMyAdmin\\\\SqlParser\\\\Statements\\\\SelectStatement\\:\\:\\$order \\(array\\<PhpMyAdmin\\\\SqlParser\\\\Components\\\\OrderKeyword\\>\\) on left side of \\?\\? is not nullable\\.$#"
+			count: 1
+			path: libraries/classes/Display/Results.php
+
+		-
+			message: "#^Result of && is always false\\.$#"
 			count: 1
 			path: libraries/classes/Display/Results.php
 
@@ -4571,11 +4591,6 @@ parameters:
 			path: libraries/classes/IndexColumn.php
 
 		-
-			message: "#^Else branch is unreachable because ternary operator condition is always true\\.$#"
-			count: 1
-			path: libraries/classes/InsertEdit.php
-
-		-
 			message: "#^Method PhpMyAdmin\\\\InsertEdit\\:\\:analyzeTableColumnsArray\\(\\) has parameter \\$column with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: libraries/classes/InsertEdit.php
@@ -5116,11 +5131,6 @@ parameters:
 			path: libraries/classes/LanguageManager.php
 
 		-
-			message: "#^Property PhpMyAdmin\\\\LanguageManager\\:\\:\\$languageData type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: libraries/classes/LanguageManager.php
-
-		-
 			message: "#^Unsafe access to private property PhpMyAdmin\\\\LanguageManager\\:\\:\\$languageData through static\\:\\:\\.$#"
 			count: 2
 			path: libraries/classes/LanguageManager.php
@@ -5322,6 +5332,11 @@ parameters:
 
 		-
 			message: "#^Property PhpMyAdmin\\\\Navigation\\\\Nodes\\\\Node\\:\\:\\$title \\(string\\) on left side of \\?\\? is not nullable\\.$#"
+			count: 1
+			path: libraries/classes/Navigation/NavigationTree.php
+
+		-
+			message: "#^Right side of \\|\\| is always false\\.$#"
 			count: 1
 			path: libraries/classes/Navigation/NavigationTree.php
 
@@ -5686,6 +5701,11 @@ parameters:
 			path: libraries/classes/Pdf.php
 
 		-
+			message: "#^Left side of \\|\\| is always false\\.$#"
+			count: 1
+			path: libraries/classes/Plugins.php
+
+		-
 			message: "#^Method PhpMyAdmin\\\\Plugins\\:\\:getPlugins\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: libraries/classes/Plugins.php
@@ -5693,6 +5713,11 @@ parameters:
 		-
 			message: "#^Parameter \\#2 \\$str2 of function strcmp expects string, class\\-string\\|false given\\.$#"
 			count: 1
+			path: libraries/classes/Plugins.php
+
+		-
+			message: "#^Right side of \\|\\| is always false\\.$#"
+			count: 3
 			path: libraries/classes/Plugins.php
 
 		-
@@ -5858,11 +5883,6 @@ parameters:
 		-
 			message: "#^Binary operation \"\\.\" between 'FOREIGN KEY ' and array\\|string results in an error\\.$#"
 			count: 1
-			path: libraries/classes/Plugins/Export/ExportSql.php
-
-		-
-			message: "#^Cannot access offset mixed on array\\<PhpMyAdmin\\\\SqlParser\\\\Components\\\\CreateDefinition\\>\\|PhpMyAdmin\\\\SqlParser\\\\Components\\\\ArrayObj\\.$#"
-			count: 4
 			path: libraries/classes/Plugins/Export/ExportSql.php
 
 		-
@@ -6066,7 +6086,7 @@ parameters:
 			path: libraries/classes/Plugins/Export/Helpers/Pdf.php
 
 		-
-			message: "#^Property PhpMyAdmin\\\\Plugins\\\\Export\\\\Helpers\\\\Pdf\\:\\:\\$colFits is unused\\.$#"
+			message: "#^Property PhpMyAdmin\\\\Plugins\\\\Export\\\\Helpers\\\\Pdf\\:\\:\\$colFits is never written, only read\\.$#"
 			count: 1
 			path: libraries/classes/Plugins/Export/Helpers/Pdf.php
 
@@ -6091,7 +6111,7 @@ parameters:
 			path: libraries/classes/Plugins/Export/Helpers/Pdf.php
 
 		-
-			message: "#^Property PhpMyAdmin\\\\Plugins\\\\Export\\\\Helpers\\\\Pdf\\:\\:\\$titleWidth is unused\\.$#"
+			message: "#^Property PhpMyAdmin\\\\Plugins\\\\Export\\\\Helpers\\\\Pdf\\:\\:\\$titleWidth is never written, only read\\.$#"
 			count: 1
 			path: libraries/classes/Plugins/Export/Helpers/Pdf.php
 
@@ -6261,16 +6281,6 @@ parameters:
 			path: libraries/classes/Plugins/Import/ImportOds.php
 
 		-
-			message: "#^Method PhpMyAdmin\\\\Plugins\\\\Import\\\\ImportOds\\:\\:getValue\\(\\) has parameter \\$cell_attrs with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: libraries/classes/Plugins/Import/ImportOds.php
-
-		-
-			message: "#^Method PhpMyAdmin\\\\Plugins\\\\Import\\\\ImportOds\\:\\:getValue\\(\\) has parameter \\$text with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: libraries/classes/Plugins/Import/ImportOds.php
-
-		-
 			message: "#^Method PhpMyAdmin\\\\Plugins\\\\Import\\\\ImportOds\\:\\:iterateOverColumns\\(\\) has parameter \\$col_names with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: libraries/classes/Plugins/Import/ImportOds.php
@@ -6331,12 +6341,12 @@ parameters:
 			path: libraries/classes/Plugins/Import/ImportOds.php
 
 		-
-			message: "#^Parameter \\#1 \\$cell_attrs of method PhpMyAdmin\\\\Plugins\\\\Import\\\\ImportOds\\:\\:getValue\\(\\) expects array, SimpleXMLElement\\|null given\\.$#"
+			message: "#^Parameter \\#1 \\$cell_attrs of method PhpMyAdmin\\\\Plugins\\\\Import\\\\ImportOds\\:\\:getValue\\(\\) expects SimpleXMLElement, SimpleXMLElement\\|null given\\.$#"
 			count: 1
 			path: libraries/classes/Plugins/Import/ImportOds.php
 
 		-
-			message: "#^Parameter \\#2 \\$text of method PhpMyAdmin\\\\Plugins\\\\Import\\\\ImportOds\\:\\:getValue\\(\\) expects array, SimpleXMLElement given\\.$#"
+			message: "#^Parameter \\#1 \\$sheets of method PhpMyAdmin\\\\Plugins\\\\Import\\\\ImportOds\\:\\:iterateOverTables\\(\\) expects array\\|SimpleXMLElement, array\\|SimpleXMLElement\\|null given\\.$#"
 			count: 1
 			path: libraries/classes/Plugins/Import/ImportOds.php
 
@@ -6411,11 +6421,6 @@ parameters:
 			path: libraries/classes/Plugins/Schema/Dia/Dia.php
 
 		-
-			message: "#^Parameter \\#2 \\$masterField of method PhpMyAdmin\\\\Plugins\\\\Schema\\\\Dia\\\\DiaRelationSchema\\:\\:addRelation\\(\\) expects string, int\\|string given\\.$#"
-			count: 1
-			path: libraries/classes/Plugins/Schema/Dia/DiaRelationSchema.php
-
-		-
 			message: "#^Binary operation \"\\+\" between int\\|string\\|false and 12 results in an error\\.$#"
 			count: 4
 			path: libraries/classes/Plugins/Schema/Dia/RelationStatsDia.php
@@ -6432,11 +6437,6 @@ parameters:
 
 		-
 			message: "#^Parameter \\#4 \\$foreign_table of class PhpMyAdmin\\\\Plugins\\\\Schema\\\\Eps\\\\RelationStatsEps constructor expects string, PhpMyAdmin\\\\Plugins\\\\Schema\\\\Eps\\\\TableStatsEps given\\.$#"
-			count: 1
-			path: libraries/classes/Plugins/Schema/Eps/EpsRelationSchema.php
-
-		-
-			message: "#^Parameter \\#4 \\$masterField of method PhpMyAdmin\\\\Plugins\\\\Schema\\\\Eps\\\\EpsRelationSchema\\:\\:addRelation\\(\\) expects string, int\\|string given\\.$#"
 			count: 1
 			path: libraries/classes/Plugins/Schema/Eps/EpsRelationSchema.php
 
@@ -6496,11 +6496,6 @@ parameters:
 			path: libraries/classes/Plugins/Schema/Pdf/PdfRelationSchema.php
 
 		-
-			message: "#^Parameter \\#2 \\$masterField of method PhpMyAdmin\\\\Plugins\\\\Schema\\\\Pdf\\\\PdfRelationSchema\\:\\:addRelation\\(\\) expects string, int\\|string given\\.$#"
-			count: 1
-			path: libraries/classes/Plugins/Schema/Pdf/PdfRelationSchema.php
-
-		-
 			message: "#^Parameter \\#2 \\$master_table of class PhpMyAdmin\\\\Plugins\\\\Schema\\\\Pdf\\\\RelationStatsPdf constructor expects string, PhpMyAdmin\\\\Plugins\\\\Schema\\\\Pdf\\\\TableStatsPdf given\\.$#"
 			count: 1
 			path: libraries/classes/Plugins/Schema/Pdf/PdfRelationSchema.php
@@ -6549,6 +6544,11 @@ parameters:
 			message: "#^Property PhpMyAdmin\\\\Plugins\\\\Schema\\\\TableStats\\:\\:\\$width \\(int\\) does not accept array\\<float\\>\\|float\\|int\\.$#"
 			count: 1
 			path: libraries/classes/Plugins/Schema/Pdf/TableStatsPdf.php
+
+		-
+			message: "#^Binary operation \"\\+\" between int\\|string\\|false and 1\\.5 results in an error\\.$#"
+			count: 1
+			path: libraries/classes/Plugins/Schema/RelationStats.php
 
 		-
 			message: "#^Method PhpMyAdmin\\\\Plugins\\\\Schema\\\\RelationStats\\:\\:getXy\\(\\) return type has no value type specified in iterable type array\\.$#"
@@ -6602,11 +6602,6 @@ parameters:
 
 		-
 			message: "#^Parameter \\#4 \\$foreign_table of class PhpMyAdmin\\\\Plugins\\\\Schema\\\\Svg\\\\RelationStatsSvg constructor expects string, PhpMyAdmin\\\\Plugins\\\\Schema\\\\Dia\\\\TableStatsDia\\|PhpMyAdmin\\\\Plugins\\\\Schema\\\\Eps\\\\TableStatsEps\\|PhpMyAdmin\\\\Plugins\\\\Schema\\\\Pdf\\\\TableStatsPdf\\|PhpMyAdmin\\\\Plugins\\\\Schema\\\\Svg\\\\TableStatsSvg given\\.$#"
-			count: 1
-			path: libraries/classes/Plugins/Schema/Svg/SvgRelationSchema.php
-
-		-
-			message: "#^Parameter \\#4 \\$masterField of method PhpMyAdmin\\\\Plugins\\\\Schema\\\\Svg\\\\SvgRelationSchema\\:\\:addRelation\\(\\) expects string, int\\|string given\\.$#"
 			count: 1
 			path: libraries/classes/Plugins/Schema/Svg/SvgRelationSchema.php
 
@@ -7114,11 +7109,6 @@ parameters:
 			message: "#^Parameter \\#1 \\$value of static method PhpMyAdmin\\\\Sanitize\\:\\:formatJsVal\\(\\) expects bool\\|int\\|string, mixed given\\.$#"
 			count: 1
 			path: libraries/classes/Sanitize.php
-
-		-
-			message: "#^Cannot assign offset 'criteria'\\|'criteriaAndOrColumn'\\|'criteriaAndOrRow'\\|'criteriaColumn'\\|'criteriaShow'\\|'criteriaSort'\\|'rows'\\|'TableList' to array\\|string\\.$#"
-			count: 1
-			path: libraries/classes/SavedSearches.php
 
 		-
 			message: "#^Method PhpMyAdmin\\\\SavedSearches\\:\\:getCriterias\\(\\) return type has no value type specified in iterable type array\\.$#"
@@ -7776,11 +7766,6 @@ parameters:
 			path: libraries/classes/Session.php
 
 		-
-			message: "#^Parameter \\#2 \\$newvalue of function ini_set expects string, mixed given\\.$#"
-			count: 1
-			path: libraries/classes/Session.php
-
-		-
 			message: "#^Method PhpMyAdmin\\\\Setup\\\\ConfigGenerator\\:\\:exportZeroBasedArray\\(\\) has parameter \\$array with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: libraries/classes/Setup/ConfigGenerator.php
@@ -7809,6 +7794,11 @@ parameters:
 			message: "#^Method PhpMyAdmin\\\\Setup\\\\Index\\:\\:messagesShowHtml\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: libraries/classes/Setup/Index.php
+
+		-
+			message: "#^Cannot access property \\$where on mixed\\.$#"
+			count: 1
+			path: libraries/classes/Sql.php
 
 		-
 			message: "#^Method PhpMyAdmin\\\\Sql\\:\\:countQueryResults\\(\\) has parameter \\$analyzedSqlResults with no value type specified in iterable type array\\.$#"
@@ -8331,6 +8321,11 @@ parameters:
 			path: libraries/classes/Table.php
 
 		-
+			message: "#^Right side of \\|\\| is always false\\.$#"
+			count: 1
+			path: libraries/classes/Table.php
+
+		-
 			message: "#^Method PhpMyAdmin\\\\Table\\\\ColumnsDefinition\\:\\:displayForm\\(\\) has parameter \\$fields_meta with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: libraries/classes/Table/ColumnsDefinition.php
@@ -8462,11 +8457,6 @@ parameters:
 
 		-
 			message: "#^Variable \\$dbname on left side of \\?\\? always exists and is not nullable\\.$#"
-			count: 1
-			path: libraries/classes/Tracker.php
-
-		-
-			message: "#^Variable \\$version on left side of \\?\\? always exists and is not nullable\\.$#"
 			count: 1
 			path: libraries/classes/Tracker.php
 
@@ -9016,11 +9006,6 @@ parameters:
 			path: libraries/classes/Utils/HttpRequest.php
 
 		-
-			message: "#^Parameter \\#2 \\$httpStatus of method PhpMyAdmin\\\\Utils\\\\HttpRequest\\:\\:response\\(\\) expects int, mixed given\\.$#"
-			count: 1
-			path: libraries/classes/Utils/HttpRequest.php
-
-		-
 			message: "#^Variable \\$http_response_header in isset\\(\\) always exists and is not nullable\\.$#"
 			count: 1
 			path: libraries/classes/Utils/HttpRequest.php
@@ -9042,6 +9027,11 @@ parameters:
 
 		-
 			message: "#^Method PhpMyAdmin\\\\VersionInformation\\:\\:getLatestVersion\\(\\) should return stdClass\\|null but returns object\\.$#"
+			count: 1
+			path: libraries/classes/VersionInformation.php
+
+		-
+			message: "#^Parameter \\#2 \\$version2 of function version_compare expects string, string\\|false given\\.$#"
 			count: 1
 			path: libraries/classes/VersionInformation.php
 
@@ -9146,6 +9136,21 @@ parameters:
 			path: test/classes/Command/TwigLintCommandTest.php
 
 		-
+			message: "#^Call to method PHPUnit\\\\Framework\\\\Assert\\:\\:assertFalse\\(\\) with true will always evaluate to false\\.$#"
+			count: 1
+			path: test/classes/CommonTest.php
+
+		-
+			message: "#^Call to method PHPUnit\\\\Framework\\\\Assert\\:\\:assertTrue\\(\\) with \\*NEVER\\* will always evaluate to false\\.$#"
+			count: 1
+			path: test/classes/CommonTest.php
+
+		-
+			message: "#^Call to method PHPUnit\\\\Framework\\\\Assert\\:\\:assertTrue\\(\\) with false will always evaluate to false\\.$#"
+			count: 1
+			path: test/classes/CommonTest.php
+
+		-
 			message: "#^Method PhpMyAdmin\\\\Tests\\\\CommonTest\\:\\:providerForTestCleanupPathInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: test/classes/CommonTest.php
@@ -9154,6 +9159,11 @@ parameters:
 			message: "#^Method PhpMyAdmin\\\\Tests\\\\Config\\\\DescriptionTest\\:\\:getValues\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: test/classes/Config/DescriptionTest.php
+
+		-
+			message: "#^Call to method PHPUnit\\\\Framework\\\\Assert\\:\\:assertTrue\\(\\) with null will always evaluate to false\\.$#"
+			count: 1
+			path: test/classes/Config/FormDisplayTest.php
 
 		-
 			message: "#^Cannot access offset 'pma_testform' on mixed\\.$#"
@@ -10436,11 +10446,6 @@ parameters:
 			path: test/classes/InsertEditTest.php
 
 		-
-			message: "#^Cannot access offset 'Field_html' on mixed\\.$#"
-			count: 1
-			path: test/classes/InsertEditTest.php
-
-		-
 			message: "#^Cannot access offset 'Field_md5' on mixed\\.$#"
 			count: 1
 			path: test/classes/InsertEditTest.php
@@ -10564,6 +10569,11 @@ parameters:
 			message: "#^Method PhpMyAdmin\\\\Tests\\\\Partitioning\\\\TablePartitionDefinitionTest\\:\\:testGetDetails\\(\\) has parameter \\$partitions with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: test/classes/Partitioning/TablePartitionDefinitionTest.php
+
+		-
+			message: "#^Call to method PHPUnit\\\\Framework\\\\Assert\\:\\:assertSame\\(\\) with 32 and 0 will always evaluate to false\\.$#"
+			count: 1
+			path: test/classes/Plugins/Auth/AuthenticationCookieTest.php
 
 		-
 			message: "#^Method PhpMyAdmin\\\\Tests\\\\Plugins\\\\Auth\\\\AuthenticationCookieTest\\:\\:checkRulesProvider\\(\\) return type has no value type specified in iterable type array\\.$#"
@@ -11159,6 +11169,11 @@ parameters:
 			message: "#^Method PhpMyAdmin\\\\Tests\\\\Selenium\\\\ExportTest\\:\\:testTableExport\\(\\) has parameter \\$expected with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: test/selenium/ExportTest.php
+
+		-
+			message: "#^Cannot access property \\$automation_session on mixed\\.$#"
+			count: 1
+			path: test/selenium/TestBase.php
 
 		-
 			message: "#^Method PhpMyAdmin\\\\Tests\\\\Selenium\\\\TestBase\\:\\:waitForElement\\(\\) should return Facebook\\\\WebDriver\\\\Remote\\\\RemoteWebElement but returns mixed\\.$#"

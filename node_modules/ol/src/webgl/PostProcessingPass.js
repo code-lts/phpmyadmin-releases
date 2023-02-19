@@ -2,6 +2,8 @@
  * @module ol/webgl/PostProcessingPass
  */
 
+import {getUid} from '../util.js';
+
 const DEFAULT_VERTEX_SHADER = `
   precision mediump float;
   
@@ -22,11 +24,12 @@ const DEFAULT_FRAGMENT_SHADER = `
   precision mediump float;
    
   uniform sampler2D u_image;
+  uniform float u_opacity;
    
   varying vec2 v_texCoord;
    
   void main() {
-    gl_FragColor = texture2D(u_image, v_texCoord);
+    gl_FragColor = texture2D(u_image, v_texCoord) * u_opacity;
   }
 `;
 
@@ -86,11 +89,12 @@ const DEFAULT_FRAGMENT_SHADER = `
  *   precision mediump float;
  *
  *   uniform sampler2D u_image;
+ *   uniform float u_opacity;
  *
  *   varying vec2 v_texCoord;
  *
  *   void main() {
- *     gl_FragColor = texture2D(u_image, v_texCoord);
+ *     gl_FragColor = texture2D(u_image, v_texCoord) * u_opacity;
  *   }
  *   ```
  *
@@ -147,6 +151,10 @@ class WebGLPostProcessingPass {
     this.renderTargetUniformLocation_ = gl.getUniformLocation(
       this.renderTargetProgram_,
       'u_screenSize'
+    );
+    this.renderTargetOpacityLocation_ = gl.getUniformLocation(
+      this.renderTargetProgram_,
+      'u_opacity'
     );
     this.renderTargetTextureLocation_ = gl.getUniformLocation(
       this.renderTargetProgram_,
@@ -244,9 +252,11 @@ class WebGLPostProcessingPass {
    * Render to the next postprocessing pass (or to the canvas if final pass).
    * @param {import("../PluggableMap.js").FrameState} frameState current frame state
    * @param {WebGLPostProcessingPass} [nextPass] Next pass, optional
+   * @param {function(WebGLRenderingContext, import("../PluggableMap.js").FrameState):void} [preCompose] Called before composing.
+   * @param {function(WebGLRenderingContext, import("../PluggableMap.js").FrameState):void} [postCompose] Called before composing.
    * @api
    */
-  apply(frameState, nextPass) {
+  apply(frameState, nextPass, preCompose, postCompose) {
     const gl = this.getGL();
     const size = frameState.size;
 
@@ -257,9 +267,21 @@ class WebGLPostProcessingPass {
     gl.activeTexture(gl.TEXTURE0);
     gl.bindTexture(gl.TEXTURE_2D, this.renderTargetTexture_);
 
-    // render the frame buffer to the canvas
-    gl.clearColor(0.0, 0.0, 0.0, 0.0);
-    gl.clear(gl.COLOR_BUFFER_BIT);
+    if (!nextPass) {
+      // clear the canvas if we are the first to render to it
+      // and preserveDrawingBuffer is true
+      const canvasId = getUid(gl.canvas);
+      if (!frameState.renderTargets[canvasId]) {
+        const attributes = gl.getContextAttributes();
+        if (attributes && attributes.preserveDrawingBuffer) {
+          gl.clearColor(0.0, 0.0, 0.0, 0.0);
+          gl.clear(gl.COLOR_BUFFER_BIT);
+        }
+
+        frameState.renderTargets[canvasId] = true;
+      }
+    }
+
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
     gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
@@ -279,9 +301,18 @@ class WebGLPostProcessingPass {
     gl.uniform2f(this.renderTargetUniformLocation_, size[0], size[1]);
     gl.uniform1i(this.renderTargetTextureLocation_, 0);
 
+    const opacity = frameState.layerStatesArray[frameState.layerIndex].opacity;
+    gl.uniform1f(this.renderTargetOpacityLocation_, opacity);
+
     this.applyUniforms(frameState);
 
+    if (preCompose) {
+      preCompose(gl, frameState);
+    }
     gl.drawArrays(gl.TRIANGLES, 0, 6);
+    if (postCompose) {
+      postCompose(gl, frameState);
+    }
   }
 
   /**

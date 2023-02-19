@@ -902,7 +902,7 @@ class Util
         } elseif ($meta->isMappedTypeGeometry && ! empty($row)) {
             // do not build a too big condition
             if (mb_strlen((string) $row) < 5000) {
-                $condition .= '=0x' . bin2hex((string) $row) . ' AND';
+                $condition .= '= CAST(0x' . bin2hex((string) $row) . ' AS BINARY)';
             } else {
                 $condition = '';
             }
@@ -1266,6 +1266,7 @@ class Util
         SessionCache::remove('is_superuser');
         SessionCache::remove('is_createuser');
         SessionCache::remove('is_grantuser');
+        SessionCache::remove('mysql_cur_user');
     }
 
     /**
@@ -2342,8 +2343,8 @@ class Util
                 && is_scalar($_REQUEST['tbl_group'])
                 && strlen((string) $_REQUEST['tbl_group']) > 0
             ) {
-                $group = self::escapeMysqlWildcards((string) $_REQUEST['tbl_group']);
-                $groupWithSeparator = self::escapeMysqlWildcards(
+                $group = $dbi->escapeMysqlLikeString((string) $_REQUEST['tbl_group']);
+                $groupWithSeparator = $dbi->escapeMysqlLikeString(
                     $_REQUEST['tbl_group']
                     . $GLOBALS['cfg']['NavigationTreeTableSeparator']
                 );

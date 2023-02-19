@@ -45,9 +45,16 @@ import {
  * is defined by the z-index of the layer, the `zIndex` of the style and the render order of features.
  * Higher z-index means higher priority. Within the same z-index, a feature rendered before another has
  * higher priority.
+ *
+ * As an optimization decluttered features from layers with the same `className` are rendered above
+ * the fill and stroke styles of all of those layers regardless of z-index.  To opt out of this
+ * behavior and place declutterd features with their own layer configure the layer with a `className`
+ * other than `ol-layer`.
  * @property {import("../style/Style.js").StyleLike|null} [style] Layer style. When set to `null`, only
- * features that have their own style will be rendered. See {@link module:ol/style} for default style
+ * features that have their own style will be rendered. See {@link module:ol/style/Style~Style} for the default style
  * which will be used if this is not set.
+ * @property {import("./Base.js").BackgroundColor} [background] Background color for the layer. If not specified, no background
+ * will be rendered.
  * @property {boolean} [updateWhileAnimating=false] When set to `true`, feature batches will
  * be recreated during animations. This means that no vectors will be shown clipped, but the
  * setting will have a performance impact for large amounts of vector data. When set to `false`,
@@ -73,7 +80,8 @@ const Property = {
  * options means that `title` is observable, and has get/set accessors.
  *
  * @template {import("../source/Vector.js").default|import("../source/VectorTile.js").default} VectorSourceType
- * @extends {Layer<VectorSourceType>}
+ * @template {import("../renderer/canvas/VectorLayer.js").default|import("../renderer/canvas/VectorTileLayer.js").default|import("../renderer/canvas/VectorImageLayer.js").default|import("../renderer/webgl/PointsLayer.js").default} RendererType
+ * @extends {Layer<VectorSourceType, RendererType>}
  * @api
  */
 class BaseVectorLayer extends Layer {
@@ -242,7 +250,7 @@ class BaseVectorLayer extends Layer {
    * an array of styles. If set to `null`, the layer has no style (a `null` style),
    * so only features that have their own styles will be rendered in the layer. Call
    * `setStyle()` without arguments to reset to the default style. See
-   * {@link module:ol/style} for information on the default style.
+   * {@link module:ol/style/Style~Style} for information on the default style.
    * @param {import("../style/Style.js").StyleLike|null} [opt_style] Layer style.
    * @api
    */

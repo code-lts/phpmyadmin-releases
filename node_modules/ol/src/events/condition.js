@@ -7,7 +7,7 @@ import {MAC, WEBKIT} from '../has.js';
 import {assert} from '../asserts.js';
 
 /**
- * A function that takes an {@link module:ol/MapBrowserEvent} and returns a
+ * A function that takes an {@link module:ol/MapBrowserEvent~MapBrowserEvent} and returns a
  * `{boolean}`. If the condition is met, true should be returned.
  *
  * @typedef {function(this: ?, import("../MapBrowserEvent.js").default): boolean} Condition
@@ -83,7 +83,9 @@ export const altShiftKeysOnly = function (mapBrowserEvent) {
  * @api
  */
 export const focus = function (event) {
-  return event.target.getTargetElement().contains(document.activeElement);
+  const targetElement = event.map.getTargetElement();
+  const activeElement = event.map.getOwnerDocument().activeElement;
+  return targetElement.contains(activeElement);
 };
 
 /**

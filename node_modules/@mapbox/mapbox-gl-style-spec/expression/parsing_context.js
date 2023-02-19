@@ -155,7 +155,7 @@ class ParsingContext {
      * parsing, is copied by reference rather than cloned.
      * @private
      */
-    concat(index: number, expectedType?: ?Type, bindings?: Array<[string, Expression]>) {
+    concat(index: number, expectedType?: ?Type, bindings?: Array<[string, Expression]>): ParsingContext {
         const path = typeof index === 'number' ? this.path.concat(index) : this.path;
         const scope = bindings ? this.scope.concat(bindings) : this.scope;
         return new ParsingContext(
@@ -229,5 +229,5 @@ function isConstant(expression: Expression) {
     }
 
     return isFeatureConstant(expression) &&
-        isGlobalPropertyConstant(expression, ['zoom', 'heatmap-density', 'line-progress', 'sky-radial-progress', 'accumulated', 'is-supported-script']);
+        isGlobalPropertyConstant(expression, ['zoom', 'heatmap-density', 'line-progress', 'sky-radial-progress', 'accumulated', 'is-supported-script', 'pitch', 'distance-from-center']);
 }

@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit0dc49b59920dc0b2aeaf47b49ea6fcfe
+class ComposerStaticInit30dc56dbcd95b1f5db28729d0c4615c4
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -708,7 +708,15 @@ class ComposerStaticInit0dc49b59920dc0b2aeaf47b49ea6fcfe
         'PhpMyAdmin\\Menu' => __DIR__ . '/../..' . '/libraries/classes/Menu.php',
         'PhpMyAdmin\\Message' => __DIR__ . '/../..' . '/libraries/classes/Message.php',
         'PhpMyAdmin\\Mime' => __DIR__ . '/../..' . '/libraries/classes/Mime.php',
+        'PhpMyAdmin\\MoTranslator\\CacheException' => __DIR__ . '/..' . '/phpmyadmin/motranslator/src/CacheException.php',
+        'PhpMyAdmin\\MoTranslator\\Cache\\ApcuCache' => __DIR__ . '/..' . '/phpmyadmin/motranslator/src/Cache/ApcuCache.php',
+        'PhpMyAdmin\\MoTranslator\\Cache\\ApcuCacheFactory' => __DIR__ . '/..' . '/phpmyadmin/motranslator/src/Cache/ApcuCacheFactory.php',
+        'PhpMyAdmin\\MoTranslator\\Cache\\CacheFactoryInterface' => __DIR__ . '/..' . '/phpmyadmin/motranslator/src/Cache/CacheFactoryInterface.php',
+        'PhpMyAdmin\\MoTranslator\\Cache\\CacheInterface' => __DIR__ . '/..' . '/phpmyadmin/motranslator/src/Cache/CacheInterface.php',
+        'PhpMyAdmin\\MoTranslator\\Cache\\GetAllInterface' => __DIR__ . '/..' . '/phpmyadmin/motranslator/src/Cache/GetAllInterface.php',
+        'PhpMyAdmin\\MoTranslator\\Cache\\InMemoryCache' => __DIR__ . '/..' . '/phpmyadmin/motranslator/src/Cache/InMemoryCache.php',
         'PhpMyAdmin\\MoTranslator\\Loader' => __DIR__ . '/..' . '/phpmyadmin/motranslator/src/Loader.php',
+        'PhpMyAdmin\\MoTranslator\\MoParser' => __DIR__ . '/..' . '/phpmyadmin/motranslator/src/MoParser.php',
         'PhpMyAdmin\\MoTranslator\\ReaderException' => __DIR__ . '/..' . '/phpmyadmin/motranslator/src/ReaderException.php',
         'PhpMyAdmin\\MoTranslator\\StringReader' => __DIR__ . '/..' . '/phpmyadmin/motranslator/src/StringReader.php',
         'PhpMyAdmin\\MoTranslator\\Translator' => __DIR__ . '/..' . '/phpmyadmin/motranslator/src/Translator.php',
@@ -1056,6 +1064,7 @@ class ComposerStaticInit0dc49b59920dc0b2aeaf47b49ea6fcfe
         'PhpMyAdmin\\Version' => __DIR__ . '/../..' . '/libraries/classes/Version.php',
         'PhpMyAdmin\\VersionInformation' => __DIR__ . '/../..' . '/libraries/classes/VersionInformation.php',
         'PhpMyAdmin\\ZipExtension' => __DIR__ . '/../..' . '/libraries/classes/ZipExtension.php',
+        'PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
         'PragmaRX\\Google2FAQRCode\\Exceptions\\MissingQrCodeServiceException' => __DIR__ . '/..' . '/pragmarx/google2fa-qrcode/src/Exceptions/MissingQrCodeServiceException.php',
         'PragmaRX\\Google2FAQRCode\\Google2FA' => __DIR__ . '/..' . '/pragmarx/google2fa-qrcode/src/Google2FA.php',
         'PragmaRX\\Google2FAQRCode\\QRCode\\Bacon' => __DIR__ . '/..' . '/pragmarx/google2fa-qrcode/src/QRCode/Bacon.php',
@@ -1500,6 +1509,7 @@ class ComposerStaticInit0dc49b59920dc0b2aeaf47b49ea6fcfe
         'Symfony\\Polyfill\\Mbstring\\Mbstring' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/Mbstring.php',
         'Symfony\\Polyfill\\Php73\\Php73' => __DIR__ . '/..' . '/symfony/polyfill-php73/Php73.php',
         'Symfony\\Polyfill\\Php80\\Php80' => __DIR__ . '/..' . '/symfony/polyfill-php80/Php80.php',
+        'Symfony\\Polyfill\\Php80\\PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/PhpToken.php',
         'Symfony\\Polyfill\\Php81\\Php81' => __DIR__ . '/..' . '/symfony/polyfill-php81/Php81.php',
         'TCPDF' => __DIR__ . '/..' . '/tecnickcom/tcpdf/tcpdf.php',
         'TCPDF2DBarcode' => __DIR__ . '/..' . '/tecnickcom/tcpdf/tcpdf_barcodes_2d.php',
@@ -1701,9 +1711,9 @@ class ComposerStaticInit0dc49b59920dc0b2aeaf47b49ea6fcfe
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit0dc49b59920dc0b2aeaf47b49ea6fcfe::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit0dc49b59920dc0b2aeaf47b49ea6fcfe::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit0dc49b59920dc0b2aeaf47b49ea6fcfe::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit30dc56dbcd95b1f5db28729d0c4615c4::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit30dc56dbcd95b1f5db28729d0c4615c4::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit30dc56dbcd95b1f5db28729d0c4615c4::$classMap;
 
         }, null, ClassLoader::class);
     }
