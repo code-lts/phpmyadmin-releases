@@ -7,9 +7,12 @@ namespace PhpMyAdmin\Tests\Plugins\Import;
 use PhpMyAdmin\File;
 use PhpMyAdmin\Plugins\Import\ImportOds;
 use PhpMyAdmin\Tests\AbstractTestCase;
+
+use function __;
 use function str_repeat;
 
 /**
+ * @covers \PhpMyAdmin\Plugins\Import\ImportOds
  * @requires extension zip
  */
 class ImportOdsTest extends AbstractTestCase
@@ -20,13 +23,10 @@ class ImportOdsTest extends AbstractTestCase
     /**
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
-     *
-     * @access protected
      */
     protected function setUp(): void
     {
         parent::setUp();
-        parent::loadDefaultConfig();
         $GLOBALS['server'] = 0;
         $GLOBALS['plugin_param'] = 'csv';
         $this->object = new ImportOds();
@@ -51,8 +51,6 @@ class ImportOdsTest extends AbstractTestCase
     /**
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
-     *
-     * @access protected
      */
     protected function tearDown(): void
     {
@@ -107,17 +105,12 @@ class ImportOdsTest extends AbstractTestCase
         $this->object->doImport($importHandle);
 
         $this->assertStringContainsString(
-            'CREATE DATABASE IF NOT EXISTS `ODS_DB` DEFAULT CHARACTER SET '
-            . 'utf8 COLLATE utf8_general_ci',
+            'CREATE DATABASE IF NOT EXISTS `ODS_DB` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci',
             $sql_query
         );
+        $this->assertStringContainsString('CREATE TABLE IF NOT EXISTS `ODS_DB`.`pma_bookmark`', $sql_query);
         $this->assertStringContainsString(
-            'CREATE TABLE IF NOT EXISTS `ODS_DB`.`pma_bookmark`',
-            $sql_query
-        );
-        $this->assertStringContainsString(
-            'INSERT INTO `ODS_DB`.`pma_bookmark` (`A`, `B`, `C`, `D`) VALUES '
-            . "(1, 'dbbase', NULL, 'ddd');",
+            'INSERT INTO `ODS_DB`.`pma_bookmark` (`A`, `B`, `C`, `D`) VALUES (1, \'dbbase\', NULL, \'ddd\');',
             $sql_query
         );
 
@@ -126,27 +119,13 @@ class ImportOdsTest extends AbstractTestCase
             'The following structures have either been created or altered.',
             $import_notice
         );
-        $this->assertStringContainsString(
-            'Go to database: `ODS_DB`',
-            $import_notice
-        );
-        $this->assertStringContainsString(
-            'Edit settings for `ODS_DB`',
-            $import_notice
-        );
-        $this->assertStringContainsString(
-            'Go to table: `pma_bookmark`',
-            $import_notice
-        );
-        $this->assertStringContainsString(
-            'Edit settings for `pma_bookmark`',
-            $import_notice
-        );
+        $this->assertStringContainsString('Go to database: `ODS_DB`', $import_notice);
+        $this->assertStringContainsString('Edit settings for `ODS_DB`', $import_notice);
+        $this->assertStringContainsString('Go to table: `pma_bookmark`', $import_notice);
+        $this->assertStringContainsString('Edit settings for `pma_bookmark`', $import_notice);
 
         //asset that the import process is finished
-        $this->assertTrue(
-            $GLOBALS['finished']
-        );
+        $this->assertTrue($GLOBALS['finished']);
     }
 
     public function dataProviderOdsEmptyRows(): array
@@ -162,6 +141,7 @@ class ImportOdsTest extends AbstractTestCase
      *
      * @group medium
      * @dataProvider dataProviderOdsEmptyRows
+     * @requires extension simplexml
      */
     public function testDoImportDataset2(bool $odsEmptyRowsMode): void
     {
@@ -182,16 +162,33 @@ class ImportOdsTest extends AbstractTestCase
 
         // The process could probably detect that all the values for columns V to BL are empty
         // That would make the empty columns not needed and would create a cleaner structure
-        $nulls = '';
-        $nullCells = '';
-        $nullCellNames = '';
+
+        $nulls = ', NULL' . str_repeat(', NULL', 44);// 45 empty cells
+
+        $nullCells = ', `T` varchar(10), `U` varchar(10),'
+            . ' `V` varchar(10), `W` varchar(10), `X` varchar(10), `Y` varchar(10), `Z` varchar(10),'
+            . ' `AA` varchar(10), `AB` varchar(10), `AC` varchar(10), `AD` varchar(10), `AE` varchar(10),'
+            . ' `AF` varchar(10), `AG` varchar(10), `AH` varchar(10), `AI` varchar(10), `AJ` varchar(10),'
+            . ' `AK` varchar(10), `AL` varchar(10), `AM` varchar(10), `AN` varchar(10), `AO` varchar(10),'
+            . ' `AP` varchar(10), `AQ` varchar(10), `AR` varchar(10), `AS` varchar(10), `AT` varchar(10),'
+            . ' `AU` varchar(10), `AV` varchar(10), `AW` varchar(10), `AX` varchar(10), `AY` varchar(10),'
+            . ' `AZ` varchar(10), `BA` varchar(10), `BB` varchar(10), `BC` varchar(10), `BD` varchar(10),'
+            . ' `BE` varchar(10), `BF` varchar(10), `BG` varchar(10), `BH` varchar(10), `BI` varchar(10),'
+            . ' `BJ` varchar(10), `BK` varchar(10), `BL` varchar(10)';
+
+        $nullCellNames = ', `T`, `U`, `V`, `W`, `X`, `Y`, `Z`, `AA`, `AB`, `AC`,'
+            . ' `AD`, `AE`, `AF`, `AG`, `AH`, `AI`, `AJ`, `AK`, `AL`, `AM`, `AN`, `AO`, `AP`, `AQ`,'
+            . ' `AR`, `AS`, `AT`, `AU`, `AV`, `AW`, `AX`, `AY`, `AZ`, `BA`, `BB`, `BC`, `BD`, `BE`,'
+            . ' `BF`, `BG`, `BH`, `BI`, `BJ`, `BK`, `BL`';
 
         $endOfSql = ');;';
 
         if (! $odsEmptyRowsMode) {
-            $nulls = '';
-            $fullCols = 'NULL' . str_repeat(', NULL', 18);// 19 empty cells
-            $endOfSql = '),' . "\n" . ' (' . $fullCols . '),' . "\n" . ' (' . $fullCols . ');;';
+            $fullCols = 'NULL' . str_repeat(', NULL', 44 + 19);
+            $endOfSql = '),' . "\n"// three more empty lines
+                    . ' (' . $fullCols . '),' . "\n"
+                    . ' (' . $fullCols . '),' . "\n"
+                    . ' (' . $fullCols . ');;';
         }
 
         //Test function called
@@ -207,8 +204,6 @@ class ImportOdsTest extends AbstractTestCase
             . ' `Gefahrstoff` varchar(11), `GefahrArbeitsbereich` varchar(14), `Verwendungszweck` varchar(10),'
             . ' `Verbrauch` varchar(10), `showLagerbestand` varchar(7)' . $nullCells . ') '
             . 'DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;;'
-            . 'CREATE TABLE IF NOT EXISTS `ODS_DB`.`Feuille 1` (`value` varchar(19)) '
-            . 'DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;;'
             . 'INSERT INTO `ODS_DB`.`Shop` ('
             . '`Artikelnummer`, `Name`, `keywords`, `EK_Preis`, `Preis`, `Details`, `addInfo`, `Einheit`,'
             . ' `Wirkstoff`, `verkuerztHaltbar`, `kuehlkette`, `Gebinde`, `Verbrauchsnachweis`,'
@@ -219,45 +214,31 @@ class ImportOdsTest extends AbstractTestCase
             . ' \'Stück,Rolle,Pack,Flasche,Sack,Eimer,Karton,Palette,Beutel,Kanister,Paar\', \'ja/nein\','
             . ' \'ja/nein\', \'GHS01-GHS09\', \'Arbeitsbereich\', NULL, NULL, \'ja/nein\''
             . $nulls . '),' . "\n"
-            . ' (\'1005\', \'Beatmungsfilter\', NULL, \'0.85\', \'1,2\', NULL, NULL, \'5\', NULL, NULL, \'nein\','
+            . ' (\'1005\', \'Beatmungsfilter\', NULL, \'0,85\', \'1,2\', NULL, NULL, \'5\', NULL, NULL, \'nein\','
             . ' \'Stück\', \'nein\', \'nein\', NULL, NULL, NULL, NULL, \'ja\'' . $nulls . '),' . "\n"
-            . ' (\'04-3-06\', \'Absaugkatheter, CH06 grün\', NULL, \'0.13\', \'0,13\', NULL, NULL, \'1\','
+            . ' (\'04-3-06\', \'Absaugkatheter, CH06 grün\', NULL, \'0.13\', \'0.13\', NULL, NULL, \'1\','
             . ' NULL, NULL,'
             . ' NULL, \'Stück\', \'nein\', \'nein\', NULL, NULL, NULL, NULL, \'ja\''
             . $nulls . '),' . "\n"
-            . ' (\'04-3-10\', \'Absaugkatheter, CH10 schwarz\', NULL, \'0.13\', \'0,13\', NULL, NULL, \'1\','
+            . ' (\'04-3-10\', \'Absaugkatheter, CH10 schwarz\', NULL, \'0.13\', \'0.13\', NULL, NULL, \'1\','
             . ' NULL, NULL, NULL, \'Stück\', \'nein\', \'nein\', NULL, NULL, NULL, NULL, \'ja\''
              . $nulls . '),' . "\n"
-            . ' (\'04-3-18\', \'Absaugkatheter, CH18 rot\', NULL, \'0.13\', \'0,13\', NULL, NULL, \'1\','
+            . ' (\'04-3-18\', \'Absaugkatheter, CH18 rot\', NULL, \'0.13\', \'0.13\', NULL, NULL, \'1\','
             . ' NULL, NULL, NULL, \'Stück\', \'nein\', \'nein\', NULL, NULL, NULL, NULL, \'ja\''
              . $nulls . '),' . "\n"
-            . ' (\'06-38\', \'Bakterienfilter\', NULL, \'1.25\', \'1,25\', NULL, NULL, \'1\', NULL, NULL, NULL,'
+            . ' (\'06-38\', \'Bakterienfilter\', NULL, \'1.25\', \'1.25\', NULL, NULL, \'1\', NULL, NULL, NULL,'
             . ' \'Stück\', \'nein\', \'nein\', NULL, NULL, NULL, NULL, \'ja\''
             . $nulls . '),' . "\n"
-            . ' (\'05-453\', \'Blockerspritze für Larynxtubus, Erwachsen\', NULL, \'2.6\', \'2,6\', NULL, NULL,'
+            . ' (\'05-453\', \'Blockerspritze für Larynxtubus, Erwachsen\', NULL, \'2.6\', \'2.6\', NULL, NULL,'
             . ' \'1\', NULL, NULL, NULL, \'Stück\', \'nein\', \'nein\', NULL, NULL, NULL, NULL, \'ja\''
              . $nulls . '),' . "\n"
-            . ' (\'04-402\', \'Absaugschlauch mit Fingertip für Accuvac\', NULL, \'1.7\', \'1,7\', NULL, NULL,'
+            . ' (\'04-402\', \'Absaugschlauch mit Fingertip für Accuvac\', NULL, \'1.7\', \'1.7\', NULL, NULL,'
             . ' \'1\', NULL, NULL, NULL, \'Stück\', \'nein\', \'nein\', NULL, NULL, NULL, NULL, \'ja\''
              . $nulls . '),' . "\n"
-            . ' (\'02-580\', \'Einmalbeatmungsbeutel, Erwachsen\', NULL, \'8.9\', \'8,9\', NULL, NULL,'
+            . ' (\'02-580\', \'Einmalbeatmungsbeutel, Erwachsen\', NULL, \'8.9\', \'8.9\', NULL, NULL,'
             . ' \'1\', NULL, NULL, NULL, \'Stück\', \'nein\', \'nein\', NULL, NULL, NULL, NULL, \'ja\''
              . $nulls
-             . $endOfSql
-             . 'INSERT INTO `ODS_DB`.`Feuille 1` (`value`) VALUES ('
-             . '\'test@example.org\'),' . "\n"
-             . ' (\'123 45\'),' . "\n"
-             . ' (\'123 \'),' . "\n"
-             . ' (\'test@example.fr\'),' . "\n"
-             . ' (\'https://example.org\'),' . "\n"
-             . ' (\'example.txt\'),' . "\n"
-             . ' (\'\\\'Feuille 1\\\'!A1:A4\'),' . "\n"
-             . ' (\'1,50\'),' . "\n"
-             . ' (\'0.05\'),' . "\n"
-             . ' (\'true\'),' . "\n"
-             . ' (\'12\')'
-             . ($odsEmptyRowsMode ? '' : ',' . "\n" . ' (NULL)')
-             . ($odsEmptyRowsMode ? ';;' : ',' . "\n" . ' (NULL);;'),
+             . $endOfSql,
             $sql_query
         );
 
@@ -266,26 +247,12 @@ class ImportOdsTest extends AbstractTestCase
             'The following structures have either been created or altered.',
             $import_notice
         );
-        $this->assertStringContainsString(
-            'Go to database: `ODS_DB`',
-            $import_notice
-        );
-        $this->assertStringContainsString(
-            'Edit settings for `ODS_DB`',
-            $import_notice
-        );
-        $this->assertStringContainsString(
-            'Go to table: `Shop`',
-            $import_notice
-        );
-        $this->assertStringContainsString(
-            'Edit settings for `Shop`',
-            $import_notice
-        );
+        $this->assertStringContainsString('Go to database: `ODS_DB`', $import_notice);
+        $this->assertStringContainsString('Edit settings for `ODS_DB`', $import_notice);
+        $this->assertStringContainsString('Go to table: `Shop`', $import_notice);
+        $this->assertStringContainsString('Edit settings for `Shop`', $import_notice);
 
         //asset that the import process is finished
-        $this->assertTrue(
-            $GLOBALS['finished']
-        );
+        $this->assertTrue($GLOBALS['finished']);
     }
 }

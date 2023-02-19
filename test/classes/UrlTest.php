@@ -5,25 +5,27 @@ declare(strict_types=1);
 namespace PhpMyAdmin\Tests;
 
 use PhpMyAdmin\Url;
-use function urldecode;
-use function str_repeat;
-use function parse_str;
-use function is_string;
 
+use function is_string;
+use function parse_str;
+use function str_repeat;
+use function urldecode;
+
+/**
+ * @covers \PhpMyAdmin\Url
+ */
 class UrlTest extends AbstractTestCase
 {
     /**
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
-     *
-     * @access protected
      */
     protected function setUp(): void
     {
         parent::setUp();
         parent::setLanguage();
         unset($_COOKIE['pma_lang']);
-        $GLOBALS['PMA_Config']->set('URLQueryEncryption', false);
+        $GLOBALS['config']->set('URLQueryEncryption', false);
     }
 
     /**
@@ -115,8 +117,7 @@ class UrlTest extends AbstractTestCase
             'change_column' => 1,
         ]);
         $this->assertEquals(
-            'index.php?route=/test&db=%253%5C%24s&table=%252%'
-            . '5C%24s&field=%251%5C%24s&change_column=1&lang=en',
+            'index.php?route=/test&db=%253%5C%24s&table=%252%5C%24s&field=%251%5C%24s&change_column=1&lang=en',
             $generatedUrl
         );
     }
@@ -135,10 +136,7 @@ class UrlTest extends AbstractTestCase
         ]);
         $expectedUrl = 'index.php?route=/test&db=%26test%3D_database%3D'
         . '&table=%26test%3D_database%3D&field=%26test%3D_database%3D&change_column=1&lang=en';
-        $this->assertEquals(
-            $expectedUrl,
-            $generatedUrl
-        );
+        $this->assertEquals($expectedUrl, $generatedUrl);
 
         $this->assertEquals(
             'index.php?route=/test&db=&test=_database=&table=&'
@@ -189,9 +187,9 @@ class UrlTest extends AbstractTestCase
      */
     public function testBuildHttpQueryWithUrlQueryEncryptionDisabled()
     {
-        global $PMA_Config;
+        global $config;
 
-        $PMA_Config->set('URLQueryEncryption', false);
+        $config->set('URLQueryEncryption', false);
         $params = ['db' => 'test_db', 'table' => 'test_table', 'pos' => 0];
         $this->assertEquals('db=test_db&table=test_table&pos=0', Url::buildHttpQuery($params));
     }
@@ -201,11 +199,11 @@ class UrlTest extends AbstractTestCase
      */
     public function testBuildHttpQueryWithUrlQueryEncryptionEnabled()
     {
-        global $PMA_Config;
+        global $config;
 
         $_SESSION = [];
-        $PMA_Config->set('URLQueryEncryption', true);
-        $PMA_Config->set('URLQueryEncryptionSecretKey', str_repeat('a', 32));
+        $config->set('URLQueryEncryption', true);
+        $config->set('URLQueryEncryptionSecretKey', str_repeat('a', 32));
 
         $params = ['db' => 'test_db', 'table' => 'test_table', 'pos' => 0];
         $query = Url::buildHttpQuery($params);
@@ -217,6 +215,7 @@ class UrlTest extends AbstractTestCase
         $this->assertNotSame('', $queryParams['eq']);
         $this->assertRegExp('/^[a-zA-Z0-9-_=]+$/', $queryParams['eq']);
         $decrypted = Url::decryptQuery($queryParams['eq']);
+        $this->assertNotNull($decrypted);
         $this->assertJson($decrypted);
         $this->assertSame('{"db":"test_db","table":"test_table"}', $decrypted);
     }
@@ -226,11 +225,11 @@ class UrlTest extends AbstractTestCase
      */
     public function testQueryEncryption()
     {
-        global $PMA_Config;
+        global $config;
 
         $_SESSION = [];
-        $PMA_Config->set('URLQueryEncryption', true);
-        $PMA_Config->set('URLQueryEncryptionSecretKey', str_repeat('a', 32));
+        $config->set('URLQueryEncryption', true);
+        $config->set('URLQueryEncryptionSecretKey', str_repeat('a', 32));
 
         $query = '{"db":"test_db","table":"test_table"}';
         $encrypted = Url::encryptQuery($query);

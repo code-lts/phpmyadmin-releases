@@ -7,6 +7,9 @@ namespace PhpMyAdmin\Tests\Gis;
 use PhpMyAdmin\Gis\GisVisualization;
 use PhpMyAdmin\Tests\AbstractTestCase;
 
+/**
+ * @covers \PhpMyAdmin\Gis\GisVisualization
+ */
 class GisVisualizationTest extends AbstractTestCase
 {
     /**
@@ -99,10 +102,7 @@ class GisVisualizationTest extends AbstractTestCase
             ]
         );
 
-        $this->assertEquals(
-            'SELECT ASTEXT(`abc`) AS `abc`, SRID(`abc`) AS `srid` FROM () AS `temp_gis`',
-            $queryString
-        );
+        $this->assertEquals('SELECT ASTEXT(`abc`) AS `abc`, SRID(`abc`) AS `srid` FROM () AS `temp_gis`', $queryString);
     }
 
     /**
