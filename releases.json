@@ -11,7 +11,7 @@
 			{
 				"patch": 0,
 				"name": "5.2.0",
-				"imported": false
+				"imported": true
 			},
 			{
 				"patch": 1,
