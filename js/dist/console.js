@@ -1,5 +1,3 @@
-"use strict";
-
 /**
  * Used in or for console
  *

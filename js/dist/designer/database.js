@@ -1,5 +1,3 @@
-"use strict";
-
 var designerTables = [{
   name: 'pdf_pages',
   key: 'pgNr',
@@ -86,7 +84,9 @@ var DesignerOfflineDB = function () {
       }
     };
 
-    request.onerror = designerDB.onerror;
+    request.onerror = function () {
+      Functions.ajaxShowMessage(Messages.strIndexedDBNotWorking, null, 'error');
+    };
   };
   /**
    * @param {String} table
@@ -97,6 +97,11 @@ var DesignerOfflineDB = function () {
 
 
   designerDB.loadObject = function (table, id, callback) {
+    if (datastore === null) {
+      Functions.ajaxShowMessage(Messages.strIndexedDBNotWorking, null, 'error');
+      return;
+    }
+
     var objStore = designerDB.getObjectStore(table);
     var cursorRequest = objStore.get(parseInt(id));
 
@@ -114,6 +119,11 @@ var DesignerOfflineDB = function () {
 
 
   designerDB.loadAllObjects = function (table, callback) {
+    if (datastore === null) {
+      Functions.ajaxShowMessage(Messages.strIndexedDBNotWorking, null, 'error');
+      return;
+    }
+
     var transaction = designerDB.getTransaction(table);
     var cursorRequest = designerDB.getCursorRequest(transaction, table);
     var results = [];
@@ -143,6 +153,11 @@ var DesignerOfflineDB = function () {
 
 
   designerDB.loadFirstObject = function (table, callback) {
+    if (datastore === null) {
+      Functions.ajaxShowMessage(Messages.strIndexedDBNotWorking, null, 'error');
+      return;
+    }
+
     var transaction = designerDB.getTransaction(table);
     var cursorRequest = designerDB.getCursorRequest(transaction, table);
     var firstResult = null;
@@ -172,6 +187,11 @@ var DesignerOfflineDB = function () {
 
 
   designerDB.addObject = function (table, obj, callback) {
+    if (datastore === null) {
+      Functions.ajaxShowMessage(Messages.strIndexedDBNotWorking, null, 'error');
+      return;
+    }
+
     var objStore = designerDB.getObjectStore(table);
     var request = objStore.put(obj);
 
@@ -192,6 +212,11 @@ var DesignerOfflineDB = function () {
 
 
   designerDB.deleteObject = function (table, id, callback) {
+    if (datastore === null) {
+      Functions.ajaxShowMessage(Messages.strIndexedDBNotWorking, null, 'error');
+      return;
+    }
+
     var objStore = designerDB.getObjectStore(table);
     var request = objStore.delete(parseInt(id));
 

@@ -1,5 +1,3 @@
-"use strict";
-
 /**
  * @fileoverview    functions used on the table structure page
  * @name            Table Structure
@@ -57,7 +55,7 @@ AJAX.registerTeardown('table/structure.js', function () {
   $(document).off('click', 'a.add_key.ajax');
   $(document).off('click', '#move_columns_anchor');
   $(document).off('submit', '.append_fields_form.ajax');
-  $('body').off('click', '#fieldsForm button');
+  $('body').off('click', '#fieldsForm button.mult_submit');
   $(document).off('click', 'a[id^=partition_action].ajax');
   $(document).off('click', '#remove_partitioning.ajax');
 });
@@ -388,7 +386,7 @@ AJAX.registerOnload('table/structure.js', function () {
    * Handles multi submits in table structure page such as change, browse, drop, primary etc.
    */
 
-  $('body').on('click', '#fieldsForm button', function (e) {
+  $('body').on('click', '#fieldsForm button.mult_submit', function (e) {
     e.preventDefault();
     var $form = $(this).parents('form');
     var argsep = CommonParams.get('arg_separator');

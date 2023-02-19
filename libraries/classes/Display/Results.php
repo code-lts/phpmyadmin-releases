@@ -130,7 +130,7 @@ class Results
      *   table: string,
      *   goto: string,
      *   sql_query: string,
-     *   unlim_num_rows: int|numeric-string,
+     *   unlim_num_rows: int|numeric-string|false,
      *   fields_meta: FieldMetadata[],
      *   is_count: bool|null,
      *   is_export: bool|null,
@@ -770,7 +770,7 @@ class Results
     {
         $pageNow = (int) floor($_SESSION['tmpval']['pos'] / $_SESSION['tmpval']['max_rows']) + 1;
 
-        $nbTotalPage = (int) ceil($this->properties['unlim_num_rows'] / $_SESSION['tmpval']['max_rows']);
+        $nbTotalPage = (int) ceil((int) $this->properties['unlim_num_rows'] / $_SESSION['tmpval']['max_rows']);
 
         $output = '';
         if ($nbTotalPage > 1) {
@@ -840,7 +840,8 @@ class Results
         // Move to the next page or to the last one
         $moveForwardButtons = '';
         if (
-            $this->properties['unlim_num_rows'] === -1 // view with unknown number of rows
+            // view with unknown number of rows
+            ($this->properties['unlim_num_rows'] === -1 || $this->properties['unlim_num_rows'] === false)
             || (! $isShowingAll
             && intval($_SESSION['tmpval']['pos']) + intval($_SESSION['tmpval']['max_rows'])
                 < $this->properties['unlim_num_rows']
@@ -932,6 +933,11 @@ class Results
             false
         );
 
+        // If the number of rows is unknown, stop here (don't add the End button)
+        if ($this->properties['unlim_num_rows'] === false) {
+            return $buttonsHtml;
+        }
+
         $inputForRealEnd = '';
         // prepare some options for the End button
         if ($isInnodb && $this->properties['unlim_num_rows'] > $GLOBALS['cfg']['MaxExactCount']) {
@@ -953,7 +959,7 @@ class Results
             '&gt;&gt;',
             _pgettext('Last page', 'End'),
             @((int) ceil(
-                $this->properties['unlim_num_rows']
+                (int) $this->properties['unlim_num_rows']
                 / $_SESSION['tmpval']['max_rows']
             ) - 1) * $maxRows,
             $htmlSqlQuery,
@@ -1305,7 +1311,7 @@ class Results
 
             $displayParams['emptypre'] = $emptyPreCondition ? 4 : 0;
 
-            $buttonHtml .= '<th class="column_action sticky d-print-none"' . $colspan
+            $buttonHtml .= '<th class="column_action position-sticky d-print-none"' . $colspan
                 . '>' . $fullOrPartialTextLink . '</th>';
         } elseif (
             $leftOrBoth
@@ -1320,7 +1326,7 @@ class Results
         } elseif ($GLOBALS['cfg']['RowActionLinks'] === self::POSITION_NONE) {
             // ... elseif display an empty column if the actions links are
             //  disabled to match the rest of the table
-            $buttonHtml .= '<th class="column_action sticky"></th>';
+            $buttonHtml .= '<th class="column_action position-sticky"></th>';
         }
 
         $this->properties['display_params'] = $displayParams;
@@ -2242,7 +2248,7 @@ class Results
             $copyUrl = null;
             $copyString = null;
             $editUrl = null;
-            $editCopyUrlParams = null;
+            $editCopyUrlParams = [];
             $delUrlParams = null;
 
             // 1.2 Defines the URLs for the modify/delete link(s)
@@ -2863,20 +2869,29 @@ class Results
         if ($this->isSelect($analyzedSqlResults)) {
             $pmatable = new Table($this->properties['table'], $this->properties['db']);
             $colOrder = $pmatable->getUiProp(Table::PROP_COLUMN_ORDER);
+            $fieldsCount = $this->properties['fields_cnt'];
             /* Validate the value */
-            if ($colOrder !== false) {
-                $fieldsCount = $this->properties['fields_cnt'];
+            if (is_array($colOrder)) {
                 foreach ($colOrder as $value) {
                     if ($value < $fieldsCount) {
                         continue;
                     }
 
                     $pmatable->removeUiProp(Table::PROP_COLUMN_ORDER);
-                    $fieldsCount = false;
+                    break;
+                }
+
+                if ($fieldsCount !== count($colOrder)) {
+                    $pmatable->removeUiProp(Table::PROP_COLUMN_ORDER);
+                    $colOrder = false;
                 }
             }
 
             $colVisib = $pmatable->getUiProp(Table::PROP_COLUMN_VISIB);
+            if (is_array($colVisib) && $fieldsCount !== count($colVisib)) {
+                $pmatable->removeUiProp(Table::PROP_COLUMN_VISIB);
+                $colVisib = false;
+            }
         } else {
             $colOrder = false;
             $colVisib = false;
@@ -3654,12 +3669,10 @@ class Results
             $sortDirection[] = '';
         }
 
-        $numberOfColumns = count($sortExpressionNoDirection);
-
         // 1.4 Prepares display of first and last value of the sorted column
         $sortedColumnMessage = '';
-        for ($i = 0; $i < $numberOfColumns; $i++) {
-            $sortedColumnMessage .= $this->getSortedColumnMessage($dtResult, $sortExpressionNoDirection[$i]);
+        foreach ($sortExpressionNoDirection as $expression) {
+            $sortedColumnMessage .= $this->getSortedColumnMessage($dtResult, $expression);
         }
 
         // 2. ----- Prepare to display the top of the page -----
@@ -4149,7 +4162,7 @@ class Results
      *     sql_query: string,
      *     single_table?: "true",
      *     raw_query?: "true",
-     *     unlim_num_rows?: int|numeric-string
+     *     unlim_num_rows?: int|numeric-string|false
      *   }
      * }
      */

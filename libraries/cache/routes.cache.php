@@ -22,7 +22,6 @@
       '/database/search' => 'PhpMyAdmin\\Controllers\\Database\\SearchController',
       '/database/sql' => 'PhpMyAdmin\\Controllers\\Database\\SqlController',
       '/database/structure' => 'PhpMyAdmin\\Controllers\\Database\\StructureController',
-      '/database/structure/favorite-table' => 'PhpMyAdmin\\Controllers\\Database\\Structure\\FavoriteTableController',
       '/database/structure/real-row-count' => 'PhpMyAdmin\\Controllers\\Database\\Structure\\RealRowCountController',
       '/database/tracking' => 'PhpMyAdmin\\Controllers\\Database\\TrackingController',
       '/database/triggers' => 'PhpMyAdmin\\Controllers\\Database\\TriggersController',

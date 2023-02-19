@@ -1,5 +1,3 @@
-"use strict";
-
 /**
  * This file is internal to phpMyAdmin.
  * @license see the main phpMyAdmin license.

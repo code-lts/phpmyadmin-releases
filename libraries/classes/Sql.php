@@ -1085,7 +1085,6 @@ class Sql
         if ($profilingResults !== null) {
             $header = $response->getHeader();
             $scripts = $header->getScripts();
-            $scripts->addFile('vendor/stickyfill.min.js');
             $scripts->addFile('sql.js');
 
             $profiling = $this->getDetailedProfilingStats($profilingResults);
@@ -1454,7 +1453,8 @@ class Sql
         $editable = ($hasUnique
             || $GLOBALS['cfg']['RowActionLinksWithoutUnique']
             || $updatableView)
-            && $justOneTable;
+            && $justOneTable
+            && ! Utilities::isSystemSchema($db);
 
         $_SESSION['tmpval']['possible_as_geometry'] = $editable;
 
@@ -1468,7 +1468,7 @@ class Sql
             'pview_lnk' => '1',
         ];
 
-        if (Utilities::isSystemSchema($db) || ! $editable) {
+        if (! $editable) {
             $displayParts = [
                 'edit_lnk' => $displayResultsObject::NO_EDIT_OR_DELETE,
                 'del_lnk' => $displayResultsObject::NO_EDIT_OR_DELETE,
@@ -1494,7 +1494,6 @@ class Sql
 
         if (! isset($_POST['printview']) || $_POST['printview'] != '1') {
             $scripts->addFile('makegrid.js');
-            $scripts->addFile('vendor/stickyfill.min.js');
             $scripts->addFile('sql.js');
             unset($GLOBALS['message']);
             //we don't need to buffer the output in getMessage here.

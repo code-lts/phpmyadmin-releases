@@ -520,7 +520,7 @@ Functions.checkPasswordStrength = function (value, meterObject, meterObjectLabel
         customDict.push(username);
     }
 
-    zxcvbnts.core.ZxcvbnOptions.setOptions({ dictionary: { userInputs: customDict } });
+    zxcvbnts.core.zxcvbnOptions.setOptions({ dictionary: { userInputs: customDict } });
     var zxcvbnObject = zxcvbnts.core.zxcvbn(value);
     var strength = zxcvbnObject.score;
     strength = parseInt(strength);
@@ -1187,6 +1187,9 @@ Functions.insertQuery = function (queryType) {
                         codeMirrorEditor.setValue(data.sql);
                     }
                     $('#querymessage').html('');
+                },
+                error: function () {
+                    $('#querymessage').html('');
                 }
             });
         }
@@ -1844,7 +1847,7 @@ Functions.ajaxShowMessage = function (message, timeout, type) {
         selfClosing = false;
     }
     // Figure out whether (or after how long) to remove the notification
-    if (newTimeOut === undefined) {
+    if (newTimeOut === undefined || newTimeOut === null) {
         newTimeOut = 5000;
     } else if (newTimeOut === false) {
         selfClosing = false;
