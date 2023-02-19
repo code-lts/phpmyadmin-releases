@@ -345,7 +345,7 @@ class UtilTest extends AbstractTestCase
             )
         );
         $this->assertSame(
-            ['', '=0x626c6f6f6f626262 AND'],
+            ['', '= CAST(0x626c6f6f6f626262 AS BINARY)'],
             $this->callFunction(
                 null,
                 Util::class,
@@ -364,7 +364,7 @@ class UtilTest extends AbstractTestCase
             )
         );
         $this->assertSame(
-            ['', '`table`.`tbl2`=0x626c6f6f6f626262 AND'],
+            ['', '`table`.`tbl2`= CAST(0x626c6f6f6f626262 AS BINARY)'],
             $this->callFunction(
                 null,
                 Util::class,
@@ -525,9 +525,19 @@ class UtilTest extends AbstractTestCase
             $_SESSION['cache']['server_server']['is_superuser']
         );
 
+        SessionCache::set('mysql_cur_user', 'mysql');
+        $this->assertEquals(
+            'mysql',
+            $_SESSION['cache']['server_server']['mysql_cur_user']
+        );
+
         Util::clearUserCache();
         $this->assertArrayNotHasKey(
             'is_superuser',
+            $_SESSION['cache']['server_server']
+        );
+        $this->assertArrayNotHasKey(
+            'mysql_cur_user',
             $_SESSION['cache']['server_server']
         );
     }

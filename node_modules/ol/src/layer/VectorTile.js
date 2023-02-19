@@ -62,9 +62,16 @@ import {assign} from '../obj.js';
  * is defined by the z-index of the layer, the `zIndex` of the style and the render order of features.
  * Higher z-index means higher priority. Within the same z-index, a feature rendered before another has
  * higher priority.
- * @property {import("../style/Style.js").StyleLike} [style] Layer style. See
- * {@link import("../style/Style.js").default the style docs} for the default style that will be used if
- * this is not defined.
+ *
+ * As an optimization decluttered features from layers with the same `className` are rendered above
+ * the fill and stroke styles of all of those layers regardless of z-index.  To opt out of this
+ * behavior and place declutterd features with their own layer configure the layer with a `className`
+ * other than `ol-layer`.
+ * @property {import("../style/Style.js").StyleLike|null} [style] Layer style. When set to `null`, only
+ * features that have their own style will be rendered. See {@link module:ol/style/Style~Style} for the default style
+ * which will be used if this is not set.
+ * @property {import("./Base.js").BackgroundColor|false} [background] Background color for the layer. If not specified, no
+ * background will be rendered.
  * @property {boolean} [updateWhileAnimating=false] When set to `true`, feature batches will be
  * recreated during animations. This means that no vectors will be shown clipped, but the setting
  * will have a performance impact for large amounts of vector data. When set to `false`, batches
@@ -85,7 +92,7 @@ import {assign} from '../obj.js';
  * options means that `title` is observable, and has get/set accessors.
  *
  * @param {Options} [opt_options] Options.
- * @extends {BaseVectorLayer<import("../source/VectorTile.js").default>}
+ * @extends {BaseVectorLayer<import("../source/VectorTile.js").default, CanvasVectorTileLayerRenderer>}
  * @api
  */
 class VectorTileLayer extends BaseVectorLayer {
@@ -145,13 +152,22 @@ class VectorTileLayer extends BaseVectorLayer {
         ? options.useInterimTilesOnError
         : true
     );
+
+    /**
+     * @return {import("./Base.js").BackgroundColor} Background color.
+     * @function
+     * @api
+     */
+    this.getBackground;
+
+    /**
+     * @param {import("./Base.js").BackgroundColor} background Background color.
+     * @function
+     * @api
+     */
+    this.setBackground;
   }
 
-  /**
-   * Create a renderer for this layer.
-   * @return {import("../renderer/Layer.js").default} A layer renderer.
-   * @protected
-   */
   createRenderer() {
     return new CanvasVectorTileLayerRenderer(this);
   }

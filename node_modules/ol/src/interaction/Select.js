@@ -6,6 +6,7 @@ import CollectionEventType from '../CollectionEventType.js';
 import Event from '../events/Event.js';
 import GeometryType from '../geom/GeometryType.js';
 import Interaction from './Interaction.js';
+import VectorLayer from '../layer/Vector.js';
 import {TRUE} from '../functions.js';
 import {clear} from '../obj.js';
 import {createEditingStyle} from '../style/Style.js';
@@ -26,9 +27,9 @@ const SelectEventType = {
 };
 
 /**
- * A function that takes an {@link module:ol/Feature} or
- * {@link module:ol/render/Feature} and an
- * {@link module:ol/layer/Layer} and returns `true` if the feature may be
+ * A function that takes an {@link module:ol/Feature~Feature} or
+ * {@link module:ol/render/Feature~RenderFeature} and an
+ * {@link module:ol/layer/Layer~Layer} and returns `true` if the feature may be
  * selected or `false` otherwise.
  * @typedef {function(import("../Feature.js").FeatureLike, import("../layer/Layer.js").default<import("../source/Source").default>):boolean} FilterFunction
  */
@@ -57,7 +58,7 @@ const SelectEventType = {
  * selectable.
  * @property {import("../style/Style.js").StyleLike|null} [style]
  * Style for the selected features. By default the default edit style is used
- * (see {@link module:ol/style}). Set to `null` if this interaction should not apply
+ * (see {@link module:ol/style/Style~Style}). Set to `null` if this interaction should not apply
  * any style changes for selected features.
  * If set to a falsey value, the selected feature's style will not change.
  * @property {import("../events/condition.js").Condition} [removeCondition] A function
@@ -82,8 +83,8 @@ const SelectEventType = {
  * used by the interaction is returned by
  * {@link module:ol/interaction/Select~Select#getFeatures}.
  * @property {FilterFunction} [filter] A function
- * that takes an {@link module:ol/Feature} and an
- * {@link module:ol/layer/Layer} and returns `true` if the feature may be
+ * that takes an {@link module:ol/Feature~Feature} and an
+ * {@link module:ol/layer/Layer~Layer} and returns `true` if the feature may be
  * selected or `false` otherwise.
  * @property {number} [hitTolerance=0] Hit-detection tolerance. Pixels inside
  * the radius around the given position will be checked for features.
@@ -100,7 +101,7 @@ export class SelectEvent extends Event {
    * @param {Array<import("../Feature.js").default>} selected Selected features.
    * @param {Array<import("../Feature.js").default>} deselected Deselected features.
    * @param {import("../MapBrowserEvent.js").default} mapBrowserEvent Associated
-   *     {@link module:ol/MapBrowserEvent}.
+   *     {@link module:ol/MapBrowserEvent~MapBrowserEvent}.
    */
   constructor(type, selected, deselected, mapBrowserEvent) {
     super(type);
@@ -120,7 +121,7 @@ export class SelectEvent extends Event {
     this.deselected = deselected;
 
     /**
-     * Associated {@link module:ol/MapBrowserEvent}.
+     * Associated {@link module:ol/MapBrowserEvent~MapBrowserEvent}.
      * @type {import("../MapBrowserEvent.js").default}
      * @api
      */
@@ -308,10 +309,8 @@ class Select extends Interaction {
   }
 
   /**
-   * Returns the associated {@link module:ol/layer/Vector~Vector vectorlayer} of
-   * the (last) selected feature. Note that this will not work with any
-   * programmatic method like pushing features to
-   * {@link module:ol/interaction/Select~Select#getFeatures collection}.
+   * Returns the associated {@link module:ol/layer/Vector~VectorLayer vector layer} of
+   * a selected feature.
    * @param {import("../Feature.js").FeatureLike} feature Feature
    * @return {import('../layer/Vector.js').default} Layer.
    * @api
@@ -335,7 +334,7 @@ class Select extends Interaction {
   /**
    * Remove the interaction from its current map, if any,  and attach it to a new
    * map, if any. Pass `null` to just remove the interaction from the current map.
-   * @param {import("../PluggableMap.js").default} map Map.
+   * @param {import("../PluggableMap.js").default|null} map Map.
    * @api
    */
   setMap(map) {
@@ -377,6 +376,24 @@ class Select extends Interaction {
     const feature = evt.element;
     if (this.style_) {
       this.applySelectedStyle_(feature);
+    }
+    if (!this.getLayer(feature)) {
+      const layer = /** @type {VectorLayer} */ (
+        this.getMap()
+          .getAllLayers()
+          .find(function (layer) {
+            if (
+              layer instanceof VectorLayer &&
+              layer.getSource() &&
+              layer.getSource().hasFeature(feature)
+            ) {
+              return layer;
+            }
+          })
+      );
+      if (layer) {
+        this.addFeatureLayerAssociation_(feature, layer);
+      }
     }
   }
 
@@ -443,7 +460,7 @@ class Select extends Interaction {
   }
 
   /**
-   * Handles the {@link module:ol/MapBrowserEvent map browser event} and may change the
+   * Handles the {@link module:ol/MapBrowserEvent~MapBrowserEvent map browser event} and may change the
    * selected state of features.
    * @param {import("../MapBrowserEvent.js").default} mapBrowserEvent Map browser event.
    * @return {boolean} `false` to stop event propagation.
@@ -475,8 +492,8 @@ class Select extends Interaction {
          */
         function (feature, layer) {
           if (this.filter_(feature, layer)) {
-            selected.push(feature);
             this.addFeatureLayerAssociation_(feature, layer);
+            selected.push(feature);
             return !this.multi_;
           }
         }.bind(this),
@@ -511,8 +528,8 @@ class Select extends Interaction {
         function (feature, layer) {
           if (this.filter_(feature, layer)) {
             if ((add || toggle) && !includes(features.getArray(), feature)) {
-              selected.push(feature);
               this.addFeatureLayerAssociation_(feature, layer);
+              selected.push(feature);
             } else if (
               (remove || toggle) &&
               includes(features.getArray(), feature)

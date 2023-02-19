@@ -3,8 +3,9 @@
  * @module ol/style/expressions
  */
 
+import PaletteTexture from '../webgl/PaletteTexture.js';
 import {Uniforms} from '../renderer/webgl/TileLayer.js';
-import {asArray, isStringColor} from '../color.js';
+import {asArray, fromString, isStringColor} from '../color.js';
 import {log2} from '../math.js';
 
 /**
@@ -37,6 +38,9 @@ import {log2} from '../math.js';
  *   * `['%', value1, value2]` returns the result of `value1 % value2` (modulo)
  *   * `['^', value1, value2]` returns the value of `value1` raised to the `value2` power
  *   * `['abs', value1]` returns the absolute value of `value1`
+ *   * `['floor', value1]` returns the nearest integer less than or equal to `value1`
+ *   * `['round', value1]` returns the nearest integer to `value1`
+ *   * `['ceil', value1]` returns the nearest integer greater than or equal to `value1`
  *   * `['sin', value1]` returns the sine of `value1`
  *   * `['cos', value1]` returns the cosine of `value1`
  *   * `['atan', value1, value2]` returns `atan2(value1, value2)`. If `value2` is not provided, returns `atan(value1)`
@@ -77,6 +81,11 @@ import {log2} from '../math.js';
  *   * `['color', red, green, blue, alpha]` creates a `color` value from `number` values; the `alpha` parameter is
  *     optional; if not specified, it will be set to 1.
  *     Note: `red`, `green` and `blue` components must be values between 0 and 255; `alpha` between 0 and 1.
+ *   * `['palette', index, colors]` picks a `color` value from an array of colors using the given index; the `index`
+ *     expression must evaluate to a number; the items in the `colors` array must be strings with hex colors
+ *     (e.g. `'#86A136'`), colors using the rgba[a] functional notation (e.g. `'rgb(134, 161, 54)'` or `'rgba(134, 161, 54, 1)'`),
+ *     named colors (e.g. `'red'`), or array literals with 3 ([r, g, b]) or 4 ([r, g, b, a]) values (with r, g, and b
+ *     in the 0-255 range and a in the 0-1 range).
  *
  * Values can either be literals or another operator, as they will be evaluated recursively.
  * Literal values can be of the following types:
@@ -184,7 +193,9 @@ export function isTypeUnique(valueType) {
  * @property {Array<string>} variables List of variables used in the expression; contains **unprefixed names**
  * @property {Array<string>} attributes List of attributes used in the expression; contains **unprefixed names**
  * @property {Object<string, number>} stringLiteralsMap This object maps all encountered string values to a number
+ * @property {Object<string, string>} functions Lookup of functions used by the style.
  * @property {number} [bandCount] Number of bands per pixel.
+ * @property {Array<PaletteTexture>} [paletteTextures] List of palettes used by the style.
  */
 
 /**
@@ -417,6 +428,67 @@ Operators['var'] = {
   },
 };
 
+export const PALETTE_TEXTURE_ARRAY = 'u_paletteTextures';
+
+// ['palette', index, colors]
+Operators['palette'] = {
+  getReturnType: function (args) {
+    return ValueTypes.COLOR;
+  },
+  toGlsl: function (context, args) {
+    assertArgsCount(args, 2);
+    assertNumber(args[0]);
+    const index = expressionToGlsl(context, args[0]);
+    const colors = args[1];
+    if (!Array.isArray(colors)) {
+      throw new Error('The second argument of palette must be an array');
+    }
+    const numColors = colors.length;
+    const palette = new Uint8Array(numColors * 4);
+    for (let i = 0; i < numColors; i++) {
+      const candidate = colors[i];
+      /**
+       * @type {import('../color.js').Color}
+       */
+      let color;
+      if (typeof candidate === 'string') {
+        color = fromString(candidate);
+      } else {
+        if (!Array.isArray(candidate)) {
+          throw new Error(
+            'The second argument of palette must be an array of strings or colors'
+          );
+        }
+        const length = candidate.length;
+        if (length === 4) {
+          color = candidate;
+        } else {
+          if (length !== 3) {
+            throw new Error(
+              `Expected palette color to have 3 or 4 values, got ${length}`
+            );
+          }
+          color = [candidate[0], candidate[1], candidate[2], 1];
+        }
+      }
+      const offset = i * 4;
+      palette[offset] = color[0];
+      palette[offset + 1] = color[1];
+      palette[offset + 2] = color[2];
+      palette[offset + 3] = color[3] * 255;
+    }
+    if (!context.paletteTextures) {
+      context.paletteTextures = [];
+    }
+    const paletteName = `${PALETTE_TEXTURE_ARRAY}[${context.paletteTextures.length}]`;
+    const paletteTexture = new PaletteTexture(paletteName, palette);
+    context.paletteTextures.push(paletteTexture);
+    return `texture2D(${paletteName}, vec2((${index} + 0.5) / ${numColors}.0, 0.5))`;
+  },
+};
+
+const GET_BAND_VALUE_FUNC = 'getBandValue';
+
 Operators['band'] = {
   getReturnType: function (args) {
     return ValueTypes.NUMBER;
@@ -425,32 +497,38 @@ Operators['band'] = {
     assertArgsMinCount(args, 1);
     assertArgsMaxCount(args, 3);
     const band = args[0];
-    if (typeof band !== 'number') {
-      throw new Error('Band index must be a number');
+
+    if (!(GET_BAND_VALUE_FUNC in context.functions)) {
+      let ifBlocks = '';
+      const bandCount = context.bandCount || 1;
+      for (let i = 0; i < bandCount; i++) {
+        const colorIndex = Math.floor(i / 4);
+        let bandIndex = i % 4;
+        if (bandIndex === bandCount - 1 && bandIndex === 1) {
+          // LUMINANCE_ALPHA - band 1 assigned to rgb and band 2 assigned to alpha
+          bandIndex = 3;
+        }
+        const textureName = `${Uniforms.TILE_TEXTURE_ARRAY}[${colorIndex}]`;
+        ifBlocks += `
+          if (band == ${i + 1}.0) {
+            return texture2D(${textureName}, v_textureCoord + vec2(dx, dy))[${bandIndex}];
+          }
+        `;
+      }
+
+      context.functions[GET_BAND_VALUE_FUNC] = `
+        float getBandValue(float band, float xOffset, float yOffset) {
+          float dx = xOffset / ${Uniforms.TEXTURE_PIXEL_WIDTH};
+          float dy = yOffset / ${Uniforms.TEXTURE_PIXEL_HEIGHT};
+          ${ifBlocks}
+        }
+      `;
     }
-    const zeroBasedBand = band - 1;
-    const colorIndex = Math.floor(zeroBasedBand / 4);
-    let bandIndex = zeroBasedBand % 4;
-    if (band === context.bandCount && bandIndex === 1) {
-      // LUMINANCE_ALPHA - band 1 assigned to rgb and band 2 assigned to alpha
-      bandIndex = 3;
-    }
-    if (args.length === 1) {
-      return `color${colorIndex}[${bandIndex}]`;
-    } else {
-      const xOffset = args[1];
-      const yOffset = args[2] || 0;
-      assertNumber(xOffset);
-      assertNumber(yOffset);
-      const uniformName = Uniforms.TILE_TEXTURE_PREFIX + colorIndex;
-      return `texture2D(${uniformName}, v_textureCoord + vec2(${expressionToGlsl(
-        context,
-        xOffset
-      )} / ${Uniforms.TEXTURE_PIXEL_WIDTH}, ${expressionToGlsl(
-        context,
-        yOffset
-      )} / ${Uniforms.TEXTURE_PIXEL_HEIGHT}))[${bandIndex}]`;
-    }
+
+    const bandExpression = expressionToGlsl(context, band);
+    const xOffsetExpression = expressionToGlsl(context, args[1] || 0);
+    const yOffsetExpression = expressionToGlsl(context, args[2] || 0);
+    return `${GET_BAND_VALUE_FUNC}(${bandExpression}, ${xOffsetExpression}, ${yOffsetExpression})`;
   },
 };
 
@@ -589,6 +667,39 @@ Operators['abs'] = {
     assertArgsCount(args, 1);
     assertNumbers(args);
     return `abs(${expressionToGlsl(context, args[0])})`;
+  },
+};
+
+Operators['floor'] = {
+  getReturnType: function (args) {
+    return ValueTypes.NUMBER;
+  },
+  toGlsl: function (context, args) {
+    assertArgsCount(args, 1);
+    assertNumbers(args);
+    return `floor(${expressionToGlsl(context, args[0])})`;
+  },
+};
+
+Operators['round'] = {
+  getReturnType: function (args) {
+    return ValueTypes.NUMBER;
+  },
+  toGlsl: function (context, args) {
+    assertArgsCount(args, 1);
+    assertNumbers(args);
+    return `floor(${expressionToGlsl(context, args[0])} + 0.5)`;
+  },
+};
+
+Operators['ceil'] = {
+  getReturnType: function (args) {
+    return ValueTypes.NUMBER;
+  },
+  toGlsl: function (context, args) {
+    assertArgsCount(args, 1);
+    assertNumbers(args);
+    return `ceil(${expressionToGlsl(context, args[0])})`;
   },
 };
 

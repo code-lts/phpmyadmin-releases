@@ -4,6 +4,7 @@
 import BaseLayer from './Base.js';
 import Collection from '../Collection.js';
 import CollectionEventType from '../CollectionEventType.js';
+import Event from '../events/Event.js';
 import EventType from '../events/EventType.js';
 import ObjectEventType from '../ObjectEventType.js';
 import SourceState from '../source/State.js';
@@ -12,6 +13,33 @@ import {assign, clear} from '../obj.js';
 import {getIntersection} from '../extent.js';
 import {getUid} from '../util.js';
 import {listen, unlistenByKey} from '../events.js';
+
+/**
+ * @typedef {'addlayer'|'removelayer'} EventType
+ */
+
+/**
+ * @classdesc
+ * A layer group triggers 'addlayer' and 'removelayer' events when layers are added to or removed from
+ * the group or one of its child groups.  When a layer group is added to or removed from another layer group,
+ * a single event will be triggered (instead of one per layer in the group added or removed).
+ */
+export class GroupEvent extends Event {
+  /**
+   * @param {EventType} type The event type.
+   * @param {BaseLayer} layer The layer.
+   */
+  constructor(type, layer) {
+    super(type);
+
+    /**
+     * The added or removed layer.
+     * @type {BaseLayer}
+     * @api
+     */
+    this.layer = layer;
+  }
+}
 
 /***
  * @template Return
@@ -142,18 +170,48 @@ class LayerGroup extends BaseLayer {
     const layersArray = layers.getArray();
     for (let i = 0, ii = layersArray.length; i < ii; i++) {
       const layer = layersArray[i];
-      this.listenerKeys_[getUid(layer)] = [
-        listen(
-          layer,
-          ObjectEventType.PROPERTYCHANGE,
-          this.handleLayerChange_,
-          this
-        ),
-        listen(layer, EventType.CHANGE, this.handleLayerChange_, this),
-      ];
+      this.registerLayerListeners_(layer);
+      this.dispatchEvent(new GroupEvent('addlayer', layer));
+    }
+    this.changed();
+  }
+
+  /**
+   * @param {BaseLayer} layer The layer.
+   */
+  registerLayerListeners_(layer) {
+    const listenerKeys = [
+      listen(
+        layer,
+        ObjectEventType.PROPERTYCHANGE,
+        this.handleLayerChange_,
+        this
+      ),
+      listen(layer, EventType.CHANGE, this.handleLayerChange_, this),
+    ];
+
+    if (layer instanceof LayerGroup) {
+      listenerKeys.push(
+        listen(layer, 'addlayer', this.handleLayerGroupAdd_, this),
+        listen(layer, 'removelayer', this.handleLayerGroupRemove_, this)
+      );
     }
 
-    this.changed();
+    this.listenerKeys_[getUid(layer)] = listenerKeys;
+  }
+
+  /**
+   * @param {GroupEvent} event The layer group event.
+   */
+  handleLayerGroupAdd_(event) {
+    this.dispatchEvent(new GroupEvent('addlayer', event.layer));
+  }
+
+  /**
+   * @param {GroupEvent} event The layer group event.
+   */
+  handleLayerGroupRemove_(event) {
+    this.dispatchEvent(new GroupEvent('removelayer', event.layer));
   }
 
   /**
@@ -164,15 +222,8 @@ class LayerGroup extends BaseLayer {
     const layer = /** @type {import("./Base.js").default} */ (
       collectionEvent.element
     );
-    this.listenerKeys_[getUid(layer)] = [
-      listen(
-        layer,
-        ObjectEventType.PROPERTYCHANGE,
-        this.handleLayerChange_,
-        this
-      ),
-      listen(layer, EventType.CHANGE, this.handleLayerChange_, this),
-    ];
+    this.registerLayerListeners_(layer);
+    this.dispatchEvent(new GroupEvent('addlayer', layer));
     this.changed();
   }
 
@@ -187,14 +238,15 @@ class LayerGroup extends BaseLayer {
     const key = getUid(layer);
     this.listenerKeys_[key].forEach(unlistenByKey);
     delete this.listenerKeys_[key];
+    this.dispatchEvent(new GroupEvent('removelayer', layer));
     this.changed();
   }
 
   /**
-   * Returns the {@link module:ol/Collection collection} of {@link module:ol/layer/Layer~Layer layers}
+   * Returns the {@link module:ol/Collection~Collection collection} of {@link module:ol/layer/Layer~Layer layers}
    * in this group.
    * @return {!import("../Collection.js").default<import("./Base.js").default>} Collection of
-   *   {@link module:ol/layer/Base layers} that are part of this group.
+   *   {@link module:ol/layer/Base~BaseLayer layers} that are part of this group.
    * @observable
    * @api
    */
@@ -205,14 +257,22 @@ class LayerGroup extends BaseLayer {
   }
 
   /**
-   * Set the {@link module:ol/Collection collection} of {@link module:ol/layer/Layer~Layer layers}
+   * Set the {@link module:ol/Collection~Collection collection} of {@link module:ol/layer/Layer~Layer layers}
    * in this group.
    * @param {!import("../Collection.js").default<import("./Base.js").default>} layers Collection of
-   *   {@link module:ol/layer/Base layers} that are part of this group.
+   *   {@link module:ol/layer/Base~BaseLayer layers} that are part of this group.
    * @observable
    * @api
    */
   setLayers(layers) {
+    const collection = this.getLayers();
+    if (collection) {
+      const currentLayers = collection.getArray();
+      for (let i = 0, ii = currentLayers.length; i < ii; ++i) {
+        this.dispatchEvent(new GroupEvent('removelayer', currentLayers[i]));
+      }
+    }
+
     this.set(Property.LAYERS, layers);
   }
 

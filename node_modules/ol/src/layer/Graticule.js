@@ -20,7 +20,6 @@ import {
   containsExtent,
   equals,
   getCenter,
-  getHeight,
   getIntersection,
   getWidth,
   intersects,
@@ -86,9 +85,13 @@ const INTERVALS = [
  * appropriate for conformal projections like Spherical Mercator. If you
  * increase the value, more lines will be drawn and the drawing performance will
  * decrease.
- * @property {Stroke} [strokeStyle='rgba(0,0,0,0.2)'] The
- * stroke style to use for drawing the graticule. If not provided, a not fully
- * opaque black will be used.
+ * @property {Stroke} [strokeStyle] The
+ * stroke style to use for drawing the graticule. If not provided, the following stroke will be used:
+ * ```js
+ * new Stroke({
+ *   color: 'rgba(0, 0, 0, 0.2)' // a not fully opaque black
+ * });
+ * ```
  * @property {number} [targetSize=100] The target size of the graticule cells,
  * in pixels.
  * @property {boolean} [showLabels=false] Render a label with the respective
@@ -480,8 +483,15 @@ class Graticule extends VectorLayer {
 
     /**
      * @type {?import("../extent.js").Extent}
+     * @private
      */
     this.renderedExtent_ = null;
+
+    /**
+     * @type {?number}
+     * @private
+     */
+    this.renderedResolution_ = null;
 
     this.setRenderOrder(null);
   }
@@ -532,10 +542,15 @@ class Graticule extends VectorLayer {
     ];
     const renderExtent = getIntersection(layerExtent, extent);
 
-    if (this.renderedExtent_ && equals(this.renderedExtent_, renderExtent)) {
+    if (
+      this.renderedExtent_ &&
+      equals(this.renderedExtent_, renderExtent) &&
+      this.renderedResolution_ === resolution
+    ) {
       return;
     }
     this.renderedExtent_ = renderExtent;
+    this.renderedResolution_ = resolution;
 
     // bail out if nothing to render
     if (isEmpty(renderExtent)) {
@@ -666,16 +681,14 @@ class Graticule extends VectorLayer {
    */
   drawLabels_(event) {
     const rotation = event.frameState.viewState.rotation;
+    const resolution = event.frameState.viewState.resolution;
+    const size = event.frameState.size;
     const extent = event.frameState.extent;
     const rotationCenter = getCenter(extent);
     let rotationExtent = extent;
     if (rotation) {
-      const width = getWidth(extent);
-      const height = getHeight(extent);
-      const cr = Math.abs(Math.cos(rotation));
-      const sr = Math.abs(Math.sin(rotation));
-      const unrotatedWidth = (sr * height - cr * width) / (sr * sr - cr * cr);
-      const unrotatedHeight = (sr * width - cr * height) / (sr * sr - cr * cr);
+      const unrotatedWidth = size[0] * resolution;
+      const unrotatedHeight = size[1] * resolution;
       rotationExtent = [
         rotationCenter[0] - unrotatedWidth / 2,
         rotationCenter[1] - unrotatedHeight / 2,

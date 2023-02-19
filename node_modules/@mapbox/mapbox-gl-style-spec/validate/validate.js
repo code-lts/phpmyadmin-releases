@@ -1,3 +1,4 @@
+// @flow
 
 import extend from '../util/extend.js';
 import {unbundle, deepUnbundle} from '../util/unbundle_jsonlint.js';
@@ -11,7 +12,6 @@ import validateArray from './validate_array.js';
 import validateBoolean from './validate_boolean.js';
 import validateNumber from './validate_number.js';
 import validateColor from './validate_color.js';
-import validateConstants from './validate_constants.js';
 import validateEnum from './validate_enum.js';
 import validateFilter from './validate_filter.js';
 import validateLayer from './validate_layer.js';
@@ -22,6 +22,11 @@ import validateFog from './validate_fog.js';
 import validateString from './validate_string.js';
 import validateFormatted from './validate_formatted.js';
 import validateImage from './validate_image.js';
+import validateProjection from './validate_projection.js';
+
+import type {StyleReference} from '../reference/latest.js';
+import type {StyleSpecification} from '../types.js';
+import type ValidationError from '../error/validation_error.js';
 
 const VALIDATORS = {
     '*'() {
@@ -31,7 +36,6 @@ const VALIDATORS = {
     'boolean': validateBoolean,
     'number': validateNumber,
     'color': validateColor,
-    'constants': validateConstants,
     'enum': validateEnum,
     'filter': validateFilter,
     'function': validateFunction,
@@ -43,7 +47,8 @@ const VALIDATORS = {
     'fog': validateFog,
     'string': validateString,
     'formatted': validateFormatted,
-    'resolvedImage': validateImage
+    'resolvedImage': validateImage,
+    'projection': validateProjection
 };
 
 // Main recursive validation function. Tracks:
@@ -55,8 +60,15 @@ const VALIDATORS = {
 //   scalar value.
 // - valueSpec: current spec being evaluated. Tracks value.
 // - styleSpec: current full spec being evaluated.
+export type ValidationOptions = {
+    key: string;
+    value: Object;
+    valueSpec: Object;
+    style: $Shape<StyleSpecification>;
+    styleSpec: StyleReference;
+}
 
-export default function validate(options) {
+export default function validate(options: ValidationOptions): Array<ValidationError> {
     const value = options.value;
     const valueSpec = options.valueSpec;
     const styleSpec = options.styleSpec;

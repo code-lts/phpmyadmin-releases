@@ -441,6 +441,7 @@ export function parseLiteralStyle(style) {
     variables: [],
     attributes: [],
     stringLiteralsMap: {},
+    functions: {},
   };
   const parsedSize = expressionToGlsl(
     vertContext,
@@ -471,6 +472,7 @@ export function parseLiteralStyle(style) {
     variables: vertContext.variables,
     attributes: [],
     stringLiteralsMap: vertContext.stringLiteralsMap,
+    functions: {},
   };
   const parsedColor = expressionToGlsl(fragContext, color, ValueTypes.COLOR);
   const parsedOpacity = expressionToGlsl(
@@ -546,6 +548,8 @@ export function parseLiteralStyle(style) {
 
   if (symbStyle.symbolType === 'image' && symbStyle.src) {
     const texture = new Image();
+    texture.crossOrigin =
+      symbStyle.crossOrigin === undefined ? 'anonymous' : symbStyle.crossOrigin;
     texture.src = symbStyle.src;
     builder
       .addUniform('sampler2D u_texture')
