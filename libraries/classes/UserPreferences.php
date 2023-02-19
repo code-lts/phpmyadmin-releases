@@ -9,8 +9,12 @@ use PhpMyAdmin\Config\Forms\User\UserFormList;
 use function array_flip;
 use function array_merge;
 use function basename;
+use function htmlspecialchars;
 use function http_build_query;
 use function is_array;
+use function is_int;
+use function is_numeric;
+use function is_string;
 use function json_decode;
 use function json_encode;
 use function strpos;
@@ -65,25 +69,25 @@ class UserPreferences
      * * mtime - last modification time
      * * type - 'db' (config read from pmadb) or 'session' (read from user session)
      *
-     * @return array
+     * @psalm-return array{config_data: array, mtime: int, type: 'session'|'db'}
      */
-    public function load()
+    public function load(): array
     {
         global $dbi;
 
         $cfgRelation = $this->relation->getRelationsParam();
         if (! $cfgRelation['userconfigwork']) {
             // no pmadb table, use session storage
-            if (! isset($_SESSION['userconfig'])) {
-                $_SESSION['userconfig'] = [
-                    'db' => [],
-                    'ts' => time(),
-                ];
+            if (! isset($_SESSION['userconfig']) || ! is_array($_SESSION['userconfig'])) {
+                $_SESSION['userconfig'] = ['db' => [], 'ts' => time()];
             }
 
+            $configData = $_SESSION['userconfig']['db'] ?? null;
+            $timestamp = $_SESSION['userconfig']['ts'] ?? null;
+
             return [
-                'config_data' => $_SESSION['userconfig']['db'],
-                'mtime' => $_SESSION['userconfig']['ts'],
+                'config_data' => is_array($configData) ? $configData : [],
+                'mtime' => is_int($timestamp) ? $timestamp : time(),
                 'type' => 'session',
             ];
         }
@@ -96,10 +100,15 @@ class UserPreferences
             . $dbi->escapeString($cfgRelation['user'])
             . '\'';
         $row = $dbi->fetchSingleRow($query, 'ASSOC', DatabaseInterface::CONNECT_CONTROL);
+        if (! is_array($row) || ! isset($row['config_data']) || ! isset($row['ts'])) {
+            return ['config_data' => [], 'mtime' => time(), 'type' => 'db'];
+        }
+
+        $configData = is_string($row['config_data']) ? json_decode($row['config_data'], true) : [];
 
         return [
-            'config_data' => $row ? json_decode($row['config_data'], true) : [],
-            'mtime' => $row ? $row['ts'] : time(),
+            'config_data' => is_array($configData) ? $configData : [],
+            'mtime' => is_numeric($row['ts']) ? (int) $row['ts'] : time(),
             'type' => 'db',
         ];
     }
@@ -166,17 +175,33 @@ class UserPreferences
         }
         if (! $dbi->tryQuery($query, DatabaseInterface::CONNECT_CONTROL)) {
             $message = Message::error(__('Could not save configuration'));
-            $message->addMessage(
-                Message::rawError(
-                    $dbi->getError(DatabaseInterface::CONNECT_CONTROL)
-                ),
-                '<br><br>'
-            );
+            $message->addMessage(Message::error($dbi->getError(DatabaseInterface::CONNECT_CONTROL)), '<br><br>');
+            if (! $this->hasAccessToDatabase($cfgRelation['db'])) {
+                /**
+                 * When phpMyAdmin cached the configuration storage parameters, it checked if the database can be
+                 * accessed, so if it could not be accessed anymore, then the cache must be cleared as it's out of date.
+                 */
+                $_SESSION['relation'][$GLOBALS['server']] = [];
+                $message->addMessage(Message::error(htmlspecialchars(
+                    __('The phpMyAdmin configuration storage database could not be accessed.')
+                )), '<br><br>');
+            }
 
             return $message;
         }
 
         return true;
+    }
+
+    private function hasAccessToDatabase(string $database): bool
+    {
+        $escapedDb = $GLOBALS['dbi']->escapeString($database);
+        $query = 'SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = \'' . $escapedDb . '\';';
+        if ($GLOBALS['cfg']['Server']['DisableIS']) {
+            $query = 'SHOW DATABASES LIKE \'' . Util::escapeMysqlWildcards($escapedDb) . '\';';
+        }
+
+        return (bool) $GLOBALS['dbi']->fetchSingleRow($query, 'ASSOC', DatabaseInterface::CONNECT_CONTROL);
     }
 
     /**

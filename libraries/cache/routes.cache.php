@@ -108,11 +108,6 @@
         0 => 'PhpMyAdmin\\Controllers\\Database\\StructureController',
         1 => 'index',
       ),
-      '/database/structure/favorite-table' => 
-      array (
-        0 => 'PhpMyAdmin\\Controllers\\Database\\StructureController',
-        1 => 'addRemoveFavoriteTablesAction',
-      ),
       '/database/structure/real-row-count' => 
       array (
         0 => 'PhpMyAdmin\\Controllers\\Database\\StructureController',
