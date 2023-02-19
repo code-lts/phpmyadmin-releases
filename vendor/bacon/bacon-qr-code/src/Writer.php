@@ -4,7 +4,6 @@ declare(strict_types = 1);
 namespace BaconQrCode;
 
 use BaconQrCode\Common\ErrorCorrectionLevel;
-use BaconQrCode\Common\Version;
 use BaconQrCode\Encoder\Encoder;
 use BaconQrCode\Exception\InvalidArgumentException;
 use BaconQrCode\Renderer\RendererInterface;
@@ -40,8 +39,7 @@ final class Writer
     public function writeString(
         string $content,
         string $encoding = Encoder::DEFAULT_BYTE_MODE_ECODING,
-        ?ErrorCorrectionLevel $ecLevel = null,
-        ?Version $forcedVersion = null
+        ?ErrorCorrectionLevel $ecLevel = null
     ) : string {
         if (strlen($content) === 0) {
             throw new InvalidArgumentException('Found empty contents');
@@ -51,7 +49,7 @@ final class Writer
             $ecLevel = ErrorCorrectionLevel::L();
         }
 
-        return $this->renderer->render(Encoder::encode($content, $ecLevel, $encoding, $forcedVersion));
+        return $this->renderer->render(Encoder::encode($content, $ecLevel, $encoding));
     }
 
     /**
@@ -63,9 +61,8 @@ final class Writer
         string $content,
         string $filename,
         string $encoding = Encoder::DEFAULT_BYTE_MODE_ECODING,
-        ?ErrorCorrectionLevel $ecLevel = null,
-        ?Version $forcedVersion = null
+        ?ErrorCorrectionLevel $ecLevel = null
     ) : void {
-        file_put_contents($filename, $this->writeString($content, $encoding, $ecLevel, $forcedVersion));
+        file_put_contents($filename, $this->writeString($content, $encoding, $ecLevel));
     }
 }
