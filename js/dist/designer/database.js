@@ -1,5 +1,3 @@
-"use strict";
-
 var designerTables = [{
   name: 'pdf_pages',
   key: 'pgNr',
@@ -45,10 +43,17 @@ var DesignerOfflineDB = function () {
       }
     };
 
-    request.onerror = designerDB.onerror;
+    request.onerror = function () {
+      Functions.ajaxShowMessage(Messages.strIndexedDBNotWorking, null, 'error');
+    };
   };
 
   designerDB.loadObject = function (table, id, callback) {
+    if (datastore === null) {
+      Functions.ajaxShowMessage(Messages.strIndexedDBNotWorking, null, 'error');
+      return;
+    }
+
     var db = datastore;
     var transaction = db.transaction([table], 'readwrite');
     var objStore = transaction.objectStore(table);
@@ -62,6 +67,11 @@ var DesignerOfflineDB = function () {
   };
 
   designerDB.loadAllObjects = function (table, callback) {
+    if (datastore === null) {
+      Functions.ajaxShowMessage(Messages.strIndexedDBNotWorking, null, 'error');
+      return;
+    }
+
     var db = datastore;
     var transaction = db.transaction([table], 'readwrite');
     var objStore = transaction.objectStore(table);
@@ -88,6 +98,11 @@ var DesignerOfflineDB = function () {
   };
 
   designerDB.loadFirstObject = function (table, callback) {
+    if (datastore === null) {
+      Functions.ajaxShowMessage(Messages.strIndexedDBNotWorking, null, 'error');
+      return;
+    }
+
     var db = datastore;
     var transaction = db.transaction([table], 'readwrite');
     var objStore = transaction.objectStore(table);
@@ -113,6 +128,11 @@ var DesignerOfflineDB = function () {
   };
 
   designerDB.addObject = function (table, obj, callback) {
+    if (datastore === null) {
+      Functions.ajaxShowMessage(Messages.strIndexedDBNotWorking, null, 'error');
+      return;
+    }
+
     var db = datastore;
     var transaction = db.transaction([table], 'readwrite');
     var objStore = transaction.objectStore(table);
@@ -128,6 +148,11 @@ var DesignerOfflineDB = function () {
   };
 
   designerDB.deleteObject = function (table, id, callback) {
+    if (datastore === null) {
+      Functions.ajaxShowMessage(Messages.strIndexedDBNotWorking, null, 'error');
+      return;
+    }
+
     var db = datastore;
     var transaction = db.transaction([table], 'readwrite');
     var objStore = transaction.objectStore(table);

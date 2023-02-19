@@ -3186,19 +3186,29 @@ class Results
         if ($this->isSelect($analyzed_sql_results)) {
             $pmatable = new Table($this->properties['table'], $this->properties['db']);
             $col_order = $pmatable->getUiProp(Table::PROP_COLUMN_ORDER);
+            $fields_cnt = $this->properties['fields_cnt'];
             /* Validate the value */
-            if ($col_order !== false) {
-                $fields_cnt = $this->properties['fields_cnt'];
+            if (is_array($col_order)) {
                 foreach ($col_order as $value) {
                     if ($value < $fields_cnt) {
                         continue;
                     }
 
                     $pmatable->removeUiProp(Table::PROP_COLUMN_ORDER);
-                    $fields_cnt = false;
+                    break;
+                }
+
+                if ($fields_cnt !== count($col_order)) {
+                    $pmatable->removeUiProp(Table::PROP_COLUMN_ORDER);
+                    $col_order = false;
                 }
             }
+
             $col_visib = $pmatable->getUiProp(Table::PROP_COLUMN_VISIB);
+            if (is_array($col_visib) && $fields_cnt !== count($col_visib)) {
+                $pmatable->removeUiProp(Table::PROP_COLUMN_VISIB);
+                $col_visib = false;
+            }
         } else {
             $col_order = false;
             $col_visib = false;
@@ -4142,15 +4152,10 @@ class Results
             $sort_direction[] = '';
         }
 
-        $number_of_columns = count($sort_expression_nodirection);
-
         // 1.4 Prepares display of first and last value of the sorted column
         $sorted_column_message = '';
-        for ($i = 0; $i < $number_of_columns; $i++) {
-            $sorted_column_message .= $this->getSortedColumnMessage(
-                $dt_result,
-                $sort_expression_nodirection[$i]
-            );
+        foreach ($sort_expression_nodirection as $expression) {
+            $sorted_column_message .= $this->getSortedColumnMessage($dt_result, $expression);
         }
 
         // 2. ----- Prepare to display the top of the page -----

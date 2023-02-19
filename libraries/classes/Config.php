@@ -1028,7 +1028,6 @@ class Config
             'PMA_MAJOR_VERSION',
             'PMA_THEME_VERSION',
             'PMA_THEME_GENERATION',
-            'PMA_IS_WINDOWS',
             'PMA_IS_GD2',
             'PMA_USR_OS',
             'PMA_USR_BROWSER_VER',
@@ -1091,10 +1090,7 @@ class Config
         ?int $validity = null,
         bool $httponly = true
     ): bool {
-        global $cfg;
-
-        if (strlen($value) > 0 && $default !== null && $value === $default
-        ) {
+        if (strlen($value) > 0 && $default !== null && $value === $default) {
             // default value is used
             if ($this->issetCookie($cookie)) {
                 // remove cookie
@@ -1134,7 +1130,7 @@ class Config
                     $httpCookieName,
                     $value,
                     $validity,
-                    $this->getRootPath() . '; samesite=' . $cfg['CookieSameSite'],
+                    $this->getRootPath() . '; SameSite=' . $this->get('CookieSameSite'),
                     '',
                     $this->isHttps(),
                     $httponly
@@ -1146,7 +1142,7 @@ class Config
                 'domain' => '',
                 'secure' => $this->isHttps(),
                 'httponly' => $httponly,
-                'samesite' => $cfg['CookieSameSite'],
+                'samesite' => $this->get('CookieSameSite'),
             ];
 
             return setcookie(

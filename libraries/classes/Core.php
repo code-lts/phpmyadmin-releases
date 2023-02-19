@@ -37,6 +37,7 @@ use function gmdate;
 use function hash_equals;
 use function hash_hmac;
 use function header;
+use function header_remove;
 use function htmlspecialchars;
 use function http_build_query;
 use function implode;
@@ -324,9 +325,7 @@ class Core
             'zh',
             'fr',
             'de',
-            'it',
             'ja',
-            'ro',
             'ru',
             'es',
             'tr',
@@ -633,12 +632,26 @@ class Core
             header('Content-Disposition: attachment; filename="' . $filename . '"');
         }
         header('Content-Type: ' . $mimetype);
+
+        /** @var string $browserAgent */
+        $browserAgent = $GLOBALS['PMA_Config']->get('PMA_USR_BROWSER_AGENT');
+        /** @var string $browserVersion */
+        $browserVersion = $GLOBALS['PMA_Config']->get('PMA_USR_BROWSER_VER');
+
         // inform the server that compression has been done,
         // to avoid a double compression (for example with Apache + mod_deflate)
-        $notChromeOrLessThan43 = PMA_USR_BROWSER_AGENT != 'CHROME' // see bug #4942
-            || (PMA_USR_BROWSER_AGENT == 'CHROME' && PMA_USR_BROWSER_VER < 43);
-        if (strpos($mimetype, 'gzip') !== false && $notChromeOrLessThan43) {
-            header('Content-Encoding: gzip');
+        if (strpos($mimetype, 'gzip') !== false) {
+            /**
+             * @see https://github.com/phpmyadmin/phpmyadmin/issues/11283
+             */
+            if ($browserAgent != 'CHROME' || $browserVersion < 43) {
+                header('Content-Encoding: gzip');
+            }
+        } else {
+            // The default output in PMA uses gzip,
+            // so if we want to output uncompressed file, we should reset the encoding.
+            // See PHP bug https://github.com/php/php-src/issues/8218
+            header_remove('Content-Encoding');
         }
         header('Content-Transfer-Encoding: binary');
         if ($length <= 0) {
