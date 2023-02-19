@@ -12,6 +12,7 @@
 
 /* global themeImagePath */
 // templates/javascript/variables.twig
+// eslint-disable-next-line no-unused-vars
 var gisEditorLoaded = false;
 /**
  * Closes the GIS data editor and perform necessary clean up work.
@@ -47,9 +48,9 @@ function prepareJSVersion() {
 /**
  * Returns the HTML for a data point.
  *
- * @param pointNumber point number
- * @param prefix      prefix of the name
- * @returns the HTML for a data point
+ * @param {number} pointNumber point number
+ * @param {string} prefix      prefix of the name
+ * @return {string} the HTML for a data point
  */
 
 
@@ -116,8 +117,7 @@ function loadJSAndGISEditor(value, field, type, inputName) {
   };
 
   script.src = 'js/vendor/openlayers/OpenLayers.js';
-  head.appendChild(script); // eslint-disable-next-line no-unused-vars
-
+  head.appendChild(script);
   gisEditorLoaded = true;
 }
 /**
