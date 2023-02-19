@@ -810,6 +810,7 @@ table#chartGrid {
 
   div.monitorChart {
     background: $th-background;
+    min-width: 1px;
   }
 }
 
@@ -1696,12 +1697,6 @@ form.append_fields_form .tblFooters {
   }
 }
 
-.sticky {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 60px;
-}
-
 .pma_table {
   td {
     position: static;
@@ -1794,6 +1789,8 @@ form.append_fields_form .tblFooters {
   position: absolute;
   margin-left: 75%;
   right: 0;
+  max-width: 100%;
+  overflow-wrap: break-word;
 
   .lDiv div {
     padding: 0.2em 0.5em 0.2em;
@@ -2837,12 +2834,6 @@ body {
   .pma-fieldset.tblFooters,
   .tblFooters {
     text-align: left;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .sticky {
-    top: 0;
   }
 }
 

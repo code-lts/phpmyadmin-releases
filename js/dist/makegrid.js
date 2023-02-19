@@ -1,5 +1,3 @@
-"use strict";
-
 /* global firstDayOfCalendar */
 // templates/javascript/variables.twig
 

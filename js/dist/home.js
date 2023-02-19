@@ -1,5 +1,3 @@
-"use strict";
-
 const GitInfo = {
   /**
    * Version string to integer conversion.

@@ -366,7 +366,7 @@ tr:last-child td.condition {
  */
 td.null {
   font-style: italic;
-  color: #7d7d7d;
+  color: #7d7d7d !important;
 }
 
 table {
@@ -818,6 +818,7 @@ table#chartGrid {
   div.monitorChart {
     background: #ebebeb;
     border: none;
+    min-width: 1px;
   }
 }
 
@@ -1672,12 +1673,6 @@ input#auto_increment_opt {
   }
 }
 
-.sticky {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 60px;
-}
-
 .pma_table {
   td {
     position: static;
@@ -1780,6 +1775,8 @@ input#auto_increment_opt {
   box-shadow: 0 0.2em 0.5em #333;
   margin-left: 75%;
   right: 0;
+  max-width: 100%;
+  overflow-wrap: break-word;
 
   .lDiv div {
     padding: 0.2em 0.5em 0.2em;
@@ -2754,10 +2751,6 @@ body .ui-dialog {
 @media only screen and (max-width: 768px) {
   .responsivetable {
     overflow-x: auto;
-  }
-
-  .sticky {
-    top: 0;
   }
 
   body#loginform div.container {
