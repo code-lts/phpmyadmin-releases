@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: phpMyAdmin 4.9.7-dev\n"
 "Report-Msgid-Bugs-To: translators@phpmyadmin.net\n"
 "POT-Creation-Date: 2020-10-10 13:32-0300\n"
-"PO-Revision-Date: 2021-04-24 09:46+0000\n"
+"PO-Revision-Date: 2023-01-28 03:53+0000\n"
 "Last-Translator: dingo thirteen <dingo13@d404.nl>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/phpmyadmin/4-9/nl/>"
 "\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.16-dev\n"
 
 #: ajax.php:21 ajax.php:50 export.php:196 libraries/classes/Export.php:1095
 msgid "Bad type!"
@@ -127,7 +127,7 @@ msgstr "Type"
 #: templates/table/search/zoom_result_form.twig:35
 #: templates/table/tracking/structure_snapshot_columns.twig:9
 msgid "Null"
-msgstr "Leeg"
+msgstr "Nul"
 
 #: db_datadict.php:120 libraries/classes/CentralColumns.php:748
 #: libraries/classes/CentralColumns.php:1428
@@ -2983,7 +2983,7 @@ msgstr "Week"
 #.
 #: js/messages.php:899
 msgid "calendar-month-year"
-msgstr "kalender-maand-jaar"
+msgstr "calendar-month-year"
 
 #. l10n: Year suffix for calendar, "none" is empty.
 #: js/messages.php:902
@@ -3118,8 +3118,8 @@ msgstr ""
 msgid ""
 "Invalid rule declaration on line %1$s, expected line %2$s of previous rule."
 msgstr ""
-"Ongeldige regeldeclaratie op lijn %1$s, lijn %2$s van de vorige regel "
-"verwacht."
+"Ongeldige regeldeclaratie op regel %1$s, regel %2$s van de vorige "
+"regeldeclaratie verwacht."
 
 #: libraries/classes/Advisor.php:567
 #, php-format
@@ -10942,12 +10942,12 @@ msgstr "Na afloop behouden"
 #: libraries/classes/Rte/Events.php:511 libraries/classes/Rte/Routines.php:1046
 #: libraries/classes/Rte/Triggers.php:399 templates/view_create.twig:45
 msgid "Definer"
-msgstr "Naam"
+msgstr "DEFINER"
 
 #: libraries/classes/Rte/Events.php:555 libraries/classes/Rte/Routines.php:1127
 #: libraries/classes/Rte/Triggers.php:438
 msgid "The definer must be in the \"username@hostname\" format!"
-msgstr "De naam moet het formaat \"gebruikersnaam@computernaam\" hebben!"
+msgstr "DEFINER moet het formaat \"gebruikersnaam@computernaam\" hebben!"
 
 #: libraries/classes/Rte/Events.php:562
 msgid "You must provide an event name!"
@@ -16438,7 +16438,7 @@ msgstr "Aanmaakquery's worden getoond"
 
 #: templates/table/relation/common_form.twig:6
 msgid "Foreign key constraints"
-msgstr "Beperkingen voor vreemde sleutels"
+msgstr "Externe sleutel beperkingen"
 
 #: templates/table/relation/common_form.twig:10
 msgid "Actions"
@@ -16467,7 +16467,7 @@ msgstr ""
 
 #: templates/table/relation/common_form.twig:24
 msgid "Foreign key constraint"
-msgstr "Vreemde sleutel"
+msgstr "Externe sleutel beperking"
 
 #: templates/table/relation/common_form.twig:89
 msgid "+ Add constraint"

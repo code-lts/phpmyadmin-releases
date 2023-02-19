@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: phpMyAdmin 4.9.7-dev\n"
 "Report-Msgid-Bugs-To: translators@phpmyadmin.net\n"
 "POT-Creation-Date: 2020-10-10 13:32-0300\n"
-"PO-Revision-Date: 2021-03-20 09:18+0000\n"
+"PO-Revision-Date: 2023-02-01 12:12+0000\n"
 "Last-Translator: Kristijan Fremen Velkovski <me@krisfremen.com>\n"
 "Language-Team: Macedonian <https://hosted.weblate.org/projects/phpmyadmin/"
 "4-9/mk/>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==1 || n%10==1 ? 0 : 1;\n"
-"X-Generator: Weblate 4.5.2-dev\n"
+"X-Generator: Weblate 4.16-dev\n"
 
 #: ajax.php:21 ajax.php:50 export.php:196 libraries/classes/Export.php:1095
 msgid "Bad type!"
@@ -303,7 +303,7 @@ msgstr "Податоци"
 #: templates/display/export/select_options.twig:4
 #: templates/database/search/selection_form.twig:32
 msgid "Select all"
-msgstr "Избери се"
+msgstr "Избери сè"
 
 #: db_operations.php:58 tbl_create.php:27
 msgid "The database name is empty!"
@@ -312,50 +312,42 @@ msgstr "Името на базата на податоци е празно!"
 #: db_operations.php:69
 msgid "Cannot copy database to the same name. Change the name and try again."
 msgstr ""
+"Не може да се ископира базата на податоци со исто име. Сменете го името и "
+"пробајте повторно."
 
 #: db_operations.php:156
-#, fuzzy, php-format
-#| msgid "Database %s has been renamed to %s."
+#, php-format
 msgid "Database %1$s has been renamed to %2$s."
-msgstr "Базата на податоци %s е преименувана во %s"
+msgstr "Датабазата %1$s беше преименувана во %2$s."
 
 #: db_operations.php:168
-#, fuzzy, php-format
-#| msgid "Database %s has been copied to %s."
+#, php-format
 msgid "Database %1$s has been copied to %2$s."
-msgstr "Базата на податоци %s е ископирана во %s"
+msgstr "Датабазата %1$s беше копирана во %2$s."
 
 #: db_operations.php:297
-#, fuzzy, php-format
-#| msgid ""
-#| " additional features for working with linked tables have been ctivated. "
-#| "To find out why click %shere%s."
+#, php-format
 msgid ""
 "The phpMyAdmin configuration storage has been deactivated. %sFind out why%s."
 msgstr ""
-"Дополнителните можности за работа со поврзаните табели се исклучени. За да "
-"дознаете зошто, кликнете %sовде%s."
+"Конфигурационото складирање на phpMyAdmin беше исклучено. %sДознајте зошто%s."
 
 #: db_qbe.php:133
 msgid "You have to choose at least one column to display!"
 msgstr "Изберете барем една колона за приказ!"
 
 #: db_qbe.php:145 templates/database/multi_table_query/form.twig:3
-#, fuzzy
-#| msgid "in query"
 msgid "Multi-table query"
-msgstr "во упитот"
+msgstr "повеќе-табеларно барање"
 
 #: db_qbe.php:149 templates/database/multi_table_query/form.twig:3
-#, fuzzy
 msgid "Query by example"
-msgstr "Вид на упит"
+msgstr "Барање по пример"
 
 #: db_qbe.php:168
-#, fuzzy, php-format
-#| msgid "Switch to copied table"
+#, php-format
 msgid "Switch to %svisual builder%s"
-msgstr "Премини на копираната табела"
+msgstr "Премини на %sвизуелна изградба%s"
 
 #: db_search.php:32 libraries/classes/Plugins/Auth/AuthenticationConfig.php:84
 #: libraries/classes/Plugins/Auth/AuthenticationConfig.php:99
@@ -375,23 +367,23 @@ msgstr "Привилегиите се успешно вчитани."
 msgid ""
 "Version %1$s was created for selected tables, tracking is active for them."
 msgstr ""
+"Верзија %1$s е креирана за избраните табели, следењето е активирано за нив."
 
 #: db_tracking.php:95
 msgid "No tables selected."
 msgstr "Не е избрана ниту една табела."
 
 #: db_tracking.php:153
-#, fuzzy
 msgid "Database Log"
-msgstr "База на податоци"
+msgstr "Журнал на базата на податоци"
 
 #: error_report.php:73
 msgid ""
 "An error has been detected and an error report has been automatically "
 "submitted based on your settings."
 msgstr ""
-"Откриена е грешка и извештајот за грешка е автоматски доставени врз основа "
-"на вашите подесувања."
+"Пронајдена е грешка и извештајот за грешката е автоматски доставени врз "
+"основа на вашите подесувања."
 
 #: error_report.php:77
 msgid "Thank you for submitting this report."
@@ -402,6 +394,8 @@ msgid ""
 "An error has been detected and an error report has been generated but failed "
 "to be sent."
 msgstr ""
+"Пронајдена е грешка и генериран е извештај за грешки, но испраќањето не "
+"успеа."
 
 #: error_report.php:86
 msgid "If you experience any problems please submit a bug report manually."
@@ -433,7 +427,7 @@ msgstr ""
 #: gis_data_editor.php:199
 #, php-format
 msgid "Geometry %d:"
-msgstr ""
+msgstr "Геометрија %d:"
 
 #: gis_data_editor.php:221
 msgid "Point:"
@@ -461,19 +455,18 @@ msgid "Add a point"
 msgstr "Додади точка"
 
 #: gis_data_editor.php:277
-#, fuzzy, php-format
-#| msgid "Lines terminated by"
+#, php-format
 msgid "Linestring %d:"
-msgstr "Линиите се завршуваат со"
+msgstr "Линија текст %d:"
 
 #: gis_data_editor.php:280 gis_data_editor.php:357
 msgid "Outer ring:"
-msgstr ""
+msgstr "Надворешен прстен:"
 
 #: gis_data_editor.php:282 gis_data_editor.php:359
 #, php-format
 msgid "Inner ring %d:"
-msgstr ""
+msgstr "Внатрешен прстен %d:"
 
 #: gis_data_editor.php:319
 #, fuzzy
@@ -482,10 +475,8 @@ msgid "Add a linestring"
 msgstr "Додади нов корисник"
 
 #: gis_data_editor.php:320 gis_data_editor.php:399 js/messages.php:531
-#, fuzzy
-#| msgid "Add a new User"
 msgid "Add an inner ring"
-msgstr "Додади нов корисник"
+msgstr "Додади внатрешен прстен"
 
 #: gis_data_editor.php:341
 #, php-format
@@ -497,9 +488,8 @@ msgid "Add a polygon"
 msgstr "Додади полигон"
 
 #: gis_data_editor.php:411
-#, fuzzy
 msgid "Add geometry"
-msgstr "Додади нов корисник"
+msgstr "Додади геометрија"
 
 #: gis_data_editor.php:417 js/messages.php:354
 #: libraries/classes/BrowseForeigners.php:199
@@ -549,7 +539,7 @@ msgstr "OK"
 
 #: gis_data_editor.php:420
 msgid "Output"
-msgstr ""
+msgstr "Излез"
 
 #: gis_data_editor.php:423
 msgid ""
@@ -563,13 +553,11 @@ msgstr "Успешно"
 
 #: import.php:77 js/messages.php:619
 msgid "Failed"
-msgstr ""
+msgstr "Неуспешно"
 
 #: import.php:81
-#, fuzzy
-#| msgid "Complete inserts"
 msgid "Incomplete params"
-msgstr "Комплетен INSERT (со имиња на полињата)"
+msgstr "Непотполни параметри"
 
 #: import.php:205
 #, php-format
@@ -577,10 +565,13 @@ msgid ""
 "You probably tried to upload a file that is too large. Please refer to "
 "%sdocumentation%s for a workaround for this limit."
 msgstr ""
+"Веројатно пробавте да прикачете датотека која е преголема. Ве молиме , "
+"погледнете ја %sдокументацијата%s за начин како да ја заобиколете оваа "
+"граница."
 
 #: import.php:382 import.php:584
 msgid "Showing bookmark"
-msgstr ""
+msgstr "Прикажување белешка"
 
 #: import.php:403 import.php:580
 msgid "The bookmark has been deleted."
@@ -826,16 +817,13 @@ msgid ""
 msgstr ""
 
 #: index.php:616
-#, fuzzy, php-format
-#| msgid ""
-#| " additional features for working with linked tables have been ctivated. "
-#| "To find out why click %shere%s."
+#, php-format
 msgid ""
 "The phpMyAdmin configuration storage is not completely configured, some "
 "extended features have been deactivated. %sFind out why%s. "
 msgstr ""
-"Дополнителните можности за работа со поврзаните табели се исклучени. За да "
-"дознаете зошто, кликнете %sовде%s."
+"Складиштето за конфигурација на phpMyAdmin не е комплетно подесено, некои "
+"проширени особини се деактивирани. %sПронајдете зашто%s. "
 
 #: index.php:623
 msgid ""
@@ -886,66 +874,50 @@ msgid "You are about to TRUNCATE a complete table!"
 msgstr "Со ова ја БРИШЕТЕ комплетната база на податоци!"
 
 #: js/messages.php:52
-#, fuzzy
-#| msgid "Delete tracking data for this table"
 msgid "Delete tracking data for this table?"
-msgstr "Избришете го податоците за тракирање од табелава"
+msgstr "Избришете ги податоците за тракирање од оваа табела?"
 
 #: js/messages.php:54
-#, fuzzy
-#| msgid "Delete tracking data for this table"
 msgid "Delete tracking data for these tables?"
-msgstr "Избришете го податоците за тракирање од табелава"
+msgstr "Избришете ги податоците за тракирање од овие табели?"
 
 #: js/messages.php:56
-#, fuzzy
-#| msgid "Delete tracking data for this table"
 msgid "Delete tracking data for this version?"
-msgstr "Избришете го податоците за тракирање од табелава"
+msgstr "Избришете ги податоците за тракирање за оваа верзија?"
 
 #: js/messages.php:58
-#, fuzzy
-#| msgid "Delete tracking data for this table"
 msgid "Delete tracking data for these versions?"
-msgstr "Избришете го податоците за тракирање од табелава"
+msgstr "Избришете ги податоците за тракирање од овие верзии?"
 
 #: js/messages.php:59
-#, fuzzy
-#| msgid "Allows inserting and replacing data."
 msgid "Delete entry from tracking report?"
-msgstr "Дозволува вметнување и замена на података."
+msgstr "Избришете запис од извештајот за тракирање?"
 
 #: js/messages.php:60
-#, fuzzy
-#| msgid "Allows inserting and replacing data."
 msgid "Deleting tracking data"
-msgstr "Дозволува вметнување и замена на података."
+msgstr "Се бришат податоци за следење"
 
 #: js/messages.php:61
 msgid "Dropping Primary Key/Index"
 msgstr ""
 
 #: js/messages.php:62
-#, fuzzy
-#| msgid "Disable foreign key checks"
 msgid "Dropping Foreign key."
-msgstr "Исклучи проверка на надворешни клучеви"
+msgstr "Отфрли Странски клуч."
 
 #: js/messages.php:64
 msgid "This operation could take a long time. Proceed anyway?"
 msgstr "Оваа операција може да потрае. Да ли да продолжиме?"
 
 #: js/messages.php:66
-#, fuzzy, php-format
-#| msgid "Do you really want to "
+#, php-format
 msgid "Do you really want to delete user group \"%s\"?"
-msgstr "Дали навистина сакате да "
+msgstr "Дали навистина сакате да ја избришете корисничата група \"%s\"?"
 
 #: js/messages.php:68
-#, fuzzy, php-format
-#| msgid "Do you really want to "
+#, php-format
 msgid "Do you really want to delete the search \"%s\"?"
-msgstr "Дали навистина сакате да "
+msgstr "Дали навистина сакате да го избришете пребарувањето \"%s\"?"
 
 #: js/messages.php:70
 msgid "You have unsaved changes; are you sure you want to leave this page?"
@@ -958,22 +930,16 @@ msgid ""
 msgstr ""
 
 #: js/messages.php:74
-#, fuzzy
-#| msgid "Do you really want to "
 msgid "Do you really want to revoke the selected user(s) ?"
-msgstr "Дали навистина сакате да "
+msgstr "Дали навистина сакате да укинете избраниот(ите) корисник(ци) ?"
 
 #: js/messages.php:76
-#, fuzzy
-#| msgid "Do you really want to "
 msgid "Do you really want to delete this central column?"
-msgstr "Дали навистина сакате да "
+msgstr "Дали навистина сакате да ја избришете оваа централна колона?"
 
 #: js/messages.php:78
-#, fuzzy
-#| msgid "Do you really want to "
 msgid "Do you really want to delete the selected items?"
-msgstr "Дали навистина сакате да "
+msgstr "Дали навистина сакате да ги избришете избраните елеметни?"
 
 #: js/messages.php:80
 msgid ""
@@ -982,16 +948,12 @@ msgid ""
 msgstr ""
 
 #: js/messages.php:84
-#, fuzzy
-#| msgid "Do you really want to "
 msgid "Do you really want to TRUNCATE the selected partition(s)?"
-msgstr "Дали навистина сакате да "
+msgstr "Дали навистина сакате да ги СКРАТИТЕ избраната(ите) партиција(ии)?"
 
 #: js/messages.php:86
-#, fuzzy
-#| msgid "Do you really want to "
 msgid "Do you really want to remove partitioning?"
-msgstr "Дали навистина сакате да "
+msgstr "Дали навистина сакате да ги отстраните партициите?"
 
 #: js/messages.php:87
 #, fuzzy
@@ -1055,10 +1017,8 @@ msgid "Missing value in the form!"
 msgstr "Недостасува вредност во образецот!"
 
 #: js/messages.php:118
-#, fuzzy
-#| msgid "at least one of the words"
 msgid "Select at least one of the options!"
-msgstr "барем еден од зборовите"
+msgstr "Изберете барем една од опциите!"
 
 #: js/messages.php:119
 msgid "Please enter a valid number!"
@@ -1099,16 +1059,12 @@ msgid "Create composite index"
 msgstr "Верзија на серверот"
 
 #: js/messages.php:126
-#, fuzzy
-#| msgid "Fields enclosed by"
 msgid "Composite with:"
-msgstr "Полињата се раздвоени со"
+msgstr "Kомбиниранo со:"
 
 #: js/messages.php:127
-#, fuzzy
-#| msgid "Add %s field(s)"
 msgid "Please select column(s) for the index."
-msgstr "Додади %s полиња"
+msgstr "Молиме одберете колон(а/и) за индексот."
 
 #: js/messages.php:130 libraries/classes/InsertEdit.php:1893
 #: templates/columns_definitions/column_definitions_form.twig:146
@@ -1124,16 +1080,12 @@ msgid "Simulate query"
 msgstr "во упитот"
 
 #: js/messages.php:134
-#, fuzzy
-#| msgid "Latched pages"
 msgid "Matched rows:"
-msgstr "Заглавени страници"
+msgstr "Совпаднати редови:"
 
 #: js/messages.php:135 libraries/classes/Util.php:566
-#, fuzzy
-#| msgid "SQL query"
 msgid "SQL query:"
-msgstr "SQL упит"
+msgstr "SQL барање:"
 
 #. l10n: Default label for the y-Axis of Charts
 #: js/messages.php:139
@@ -1173,12 +1125,11 @@ msgstr "Избриши ги селектираните корисници"
 #: js/messages.php:150 js/messages.php:217 libraries/classes/Tracking.php:335
 #: libraries/classes/Tracking.php:651
 msgid "Close"
-msgstr ""
+msgstr "Затвори"
 
 #: js/messages.php:153
-#, fuzzy
 msgid "Template was created."
-msgstr "Табелата %s е избришана"
+msgstr "Шаблонот беше создаден."
 
 #: js/messages.php:154
 msgid "Template was loaded."
@@ -1191,16 +1142,14 @@ msgid "Template was updated."
 msgstr "Профилот е променет."
 
 #: js/messages.php:156
-#, fuzzy
-#| msgid "The row has been deleted."
 msgid "Template was deleted."
-msgstr "Записот е избришан"
+msgstr "Шаблонот беше избришан."
 
 #. l10n: Other, small valued, queries
 #: js/messages.php:159 libraries/classes/Server/Status/Data.php:132
 #: libraries/classes/Server/Status/Queries.php:149
 msgid "Other"
-msgstr ""
+msgstr "Други"
 
 #. l10n: Thousands separator
 #: js/messages.php:161 libraries/classes/Util.php:1353
@@ -1327,9 +1276,8 @@ msgstr "Конекции"
 
 #: js/messages.php:200 libraries/classes/Server/Status/Data.php:431
 #: libraries/classes/Server/Status/Processes.php:128
-#, fuzzy
 msgid "Processes"
-msgstr "Листа на процеси"
+msgstr "Процеси"
 
 #. l10n: shortcuts for Byte
 #: js/messages.php:203 libraries/classes/Util.php:1264
@@ -1369,16 +1317,14 @@ msgid "EiB"
 msgstr "EB"
 
 #: js/messages.php:210
-#, fuzzy, php-format
-#| msgid "%s table(s)"
+#, php-format
 msgid "%d table(s)"
-msgstr "%s табела"
+msgstr "%d табела(и)"
 
 #. l10n: Questions is the name of a MySQL Status variable
 #: js/messages.php:213
-#, fuzzy
 msgid "Questions"
-msgstr "Персиски"
+msgstr "Прашања"
 
 #: js/messages.php:214 libraries/classes/Server/Status.php:151
 msgid "Traffic"
@@ -1387,10 +1333,8 @@ msgstr "Сообраќај"
 #: js/messages.php:215 libraries/classes/Menu.php:625
 #: libraries/classes/Server/Status/Monitor.php:264
 #: libraries/classes/Util.php:3995
-#, fuzzy
-#| msgid "General relation features"
 msgid "Settings"
-msgstr "Општи особини на релациите"
+msgstr "Подесувања"
 
 #: js/messages.php:216
 msgid "Add chart to grid"
@@ -1475,31 +1419,27 @@ msgstr ""
 
 #. l10n: %s is FILE or TABLE
 #: js/messages.php:243
-#, fuzzy, php-format
-#| msgid "Save as file"
+#, php-format
 msgid "Set log_output to %s"
-msgstr "Сочувај како податотека"
+msgstr "Подеси log_output во %s"
 
 #. l10n: Enable in this context means setting a status variable to ON
 #: js/messages.php:245
-#, fuzzy, php-format
-#| msgid "Enabled"
+#, php-format
 msgid "Enable %s"
-msgstr "Овозможено"
+msgstr "Вклучи %s"
 
 #. l10n: Disable in this context means setting a status variable to OFF
 #: js/messages.php:247
-#, fuzzy, php-format
-#| msgid "Disable"
+#, php-format
 msgid "Disable %s"
-msgstr "Оневозможено"
+msgstr "Исклучи %s"
 
 #. l10n: %d seconds
 #: js/messages.php:249
-#, fuzzy, php-format
-#| msgid "Query took %01.4f sec"
+#, php-format
 msgid "Set long_query_time to %d seconds."
-msgstr "време на извршување на упитот %01.4f секунди"
+msgstr "Подеси long_query_time на %d секунди."
 
 #: js/messages.php:251
 msgid ""
@@ -1528,7 +1468,7 @@ msgstr "Увоз на податотека"
 #. l10n: As in differential values
 #: js/messages.php:259
 msgid "Differential"
-msgstr ""
+msgstr "Диференцијал"
 
 #: js/messages.php:260
 #, php-format
@@ -1537,7 +1477,7 @@ msgstr ""
 
 #: js/messages.php:261
 msgid "Unit"
-msgstr ""
+msgstr "Единица"
 
 #: js/messages.php:263
 msgid "From slow log"
@@ -1601,7 +1541,7 @@ msgstr ""
 
 #: js/messages.php:290
 msgid "Analyzing…"
-msgstr ""
+msgstr "Се Анализира…"
 
 #: js/messages.php:291
 #, fuzzy
@@ -1630,10 +1570,8 @@ msgid "Time"
 msgstr "Време"
 
 #: js/messages.php:294
-#, fuzzy
-#| msgid "Total"
 msgid "Total time:"
-msgstr "Вкупно"
+msgstr "Вкупно време:"
 
 #: js/messages.php:295
 #, fuzzy
@@ -1642,17 +1580,13 @@ msgid "Profiling results"
 msgstr "SQL резултат"
 
 #: js/messages.php:296
-#, fuzzy
-#| msgid "Table"
 msgctxt "Display format"
 msgid "Table"
 msgstr "Табела"
 
 #: js/messages.php:297
-#, fuzzy
-#| msgid "Charset"
 msgid "Chart"
-msgstr "Кодна страна"
+msgstr "Графикон"
 
 #: js/messages.php:299 libraries/classes/Display/Export.php:579
 #, fuzzy
@@ -1685,7 +1619,7 @@ msgstr "Опции на табелата"
 #. l10n: Filter as in "Start Filtering"
 #: js/messages.php:306
 msgid "Filter"
-msgstr ""
+msgstr "Филтер"
 
 #: js/messages.php:307
 msgid "Filter queries by word/regexp:"
@@ -1696,16 +1630,12 @@ msgid "Group queries, ignoring variable data in WHERE clauses"
 msgstr ""
 
 #: js/messages.php:310
-#, fuzzy
-#| msgid "Number of rows per page"
 msgid "Sum of grouped rows:"
-msgstr "Број на записи на страница"
+msgstr "Сума на групирани редови:"
 
 #: js/messages.php:311
-#, fuzzy
-#| msgid "Total"
 msgid "Total:"
-msgstr "Вкупно"
+msgstr "Вкупно:"
 
 #: js/messages.php:313
 #, fuzzy
@@ -1749,9 +1679,8 @@ msgstr ""
 #: libraries/classes/Util.php:3994 libraries/classes/Util.php:4009
 #: libraries/classes/Util.php:4026 prefs_manage.php:228
 #: templates/display/import/import.twig:38
-#, fuzzy
 msgid "Import"
-msgstr "Извоз"
+msgstr "Увоз"
 
 #: js/messages.php:331
 msgid "Import monitor configuration"
@@ -1812,10 +1741,8 @@ msgid "Formatting SQL…"
 msgstr ""
 
 #: js/messages.php:351
-#, fuzzy
-#| msgid "Add new field"
 msgid "No parameters found!"
-msgstr "Додади ново поле"
+msgstr "Не беа најдени параметрите!"
 
 #: js/messages.php:355 templates/database/designer/having_query_panel.twig:118
 #: templates/database/designer/rename_to_panel.twig:45
@@ -1826,7 +1753,7 @@ msgstr "Додади ново поле"
 #: templates/database/designer/where_query_panel.twig:85
 #: templates/database/designer/new_relation_panel.twig:90
 msgid "Cancel"
-msgstr ""
+msgstr "Откажи"
 
 #: js/messages.php:358 libraries/classes/Header.php:461
 #, fuzzy
@@ -1840,9 +1767,8 @@ msgstr ""
 
 #: js/messages.php:362 libraries/classes/Navigation/NavigationHeader.php:61
 #: libraries/classes/Server/Status/Monitor.php:130
-#, fuzzy
 msgid "Loading…"
-msgstr "Локален"
+msgstr "Вчитување…"
 
 #: js/messages.php:363
 msgid "Request aborted!!"
@@ -1854,9 +1780,8 @@ msgid "Processing request"
 msgstr "Листа на процеси"
 
 #: js/messages.php:365
-#, fuzzy
 msgid "Request failed!!"
-msgstr "Вид на упит"
+msgstr "Барањето не успеа!!"
 
 #: js/messages.php:366
 #, fuzzy
@@ -1886,16 +1811,12 @@ msgid "No databases selected."
 msgstr "Не е избрана ни една база на податоци."
 
 #: js/messages.php:374
-#, fuzzy
-#| msgid "No rows selected"
 msgid "No accounts selected."
-msgstr "Нема селектирани записи"
+msgstr "Не се одберени акаунти."
 
 #: js/messages.php:375
-#, fuzzy
-#| msgid "Inside table(s):"
 msgid "Dropping column"
-msgstr "во табела(и):"
+msgstr "Отстранување на колона"
 
 #: js/messages.php:376
 #, fuzzy
@@ -1946,8 +1867,6 @@ msgid "Failed to get real row count."
 msgstr ""
 
 #: js/messages.php:393
-#, fuzzy
-#| msgid "Search"
 msgid "Searching"
 msgstr "Пребарување"
 
@@ -1962,22 +1881,17 @@ msgid "Show search results"
 msgstr "SQL упит"
 
 #: js/messages.php:396
-#, fuzzy
-#| msgid "Browse"
 msgid "Browsing"
-msgstr "Преглед"
+msgstr "Прегледување"
 
 #: js/messages.php:397
-#, fuzzy
-#| msgid "Deleting %s"
 msgid "Deleting"
-msgstr "Бришам %s"
+msgstr "Бришење"
 
 #: js/messages.php:398
-#, fuzzy, php-format
-#| msgid "Dumping data for table"
+#, php-format
 msgid "Delete the matches for the %s table?"
-msgstr "Приказ на податоци од табелата"
+msgstr "Избришете ги совпаѓањата за табелата %s?"
 
 #: js/messages.php:402
 msgid "The definition of a stored function must contain a RETURN statement!"
@@ -2010,10 +1924,9 @@ msgid "ENUM/SET editor"
 msgstr ""
 
 #: js/messages.php:409
-#, fuzzy, php-format
-#| msgid "Number of rows per page"
+#, php-format
 msgid "Values for column %s"
-msgstr "Број на записи на страница"
+msgstr "Вредности за колона %s"
 
 #: js/messages.php:410
 msgid "Values for a new column"
@@ -2024,9 +1937,9 @@ msgid "Enter each value in a separate field."
 msgstr ""
 
 #: js/messages.php:412
-#, fuzzy, php-format
+#, php-format
 msgid "Add %d value(s)"
-msgstr "Додади нов корисник"
+msgstr "Додади %d вредност(и)"
 
 #: js/messages.php:416
 msgid ""
@@ -2090,14 +2003,13 @@ msgid "No auto-saved query"
 msgstr ""
 
 #: js/messages.php:427
-#, fuzzy, php-format
-#| msgid "Variable"
+#, php-format
 msgid "Variable %d:"
-msgstr "Променлива"
+msgstr "Варијабила %d:"
 
 #: js/messages.php:430 libraries/classes/Normalization.php:967
 msgid "Pick"
-msgstr ""
+msgstr "Избери"
 
 #: js/messages.php:431
 #, fuzzy
@@ -2133,10 +2045,8 @@ msgid ""
 msgstr ""
 
 #: js/messages.php:443
-#, fuzzy
-#| msgid "Attributes"
 msgid "Continue"
-msgstr "Атрибути"
+msgstr "Продолжи"
 
 #: js/messages.php:446
 msgid "Add primary key"
@@ -2149,10 +2059,8 @@ msgid "Primary key added."
 msgstr "Примарниот клуч %s е додаден."
 
 #: js/messages.php:448 libraries/classes/Normalization.php:242
-#, fuzzy
-#| msgid "Change"
 msgid "Taking you to next step…"
-msgstr "Промени"
+msgstr "Кон следниот чекор…"
 
 #: js/messages.php:450
 #, php-format
@@ -2175,10 +2083,8 @@ msgstr ""
 #. l10n: Display text for calendar close link
 #: js/messages.php:453 js/messages.php:782
 #: libraries/classes/Normalization.php:340
-#, fuzzy
-#| msgid "None"
 msgid "Done"
-msgstr "нема"
+msgstr "Готово"
 
 #: js/messages.php:454
 msgid "Confirm partial dependencies"
@@ -2195,10 +2101,8 @@ msgid ""
 msgstr ""
 
 #: js/messages.php:460
-#, fuzzy
-#| msgid "No databases selected."
 msgid "No partial dependencies selected!"
-msgstr "Не е избрана ни една база на податоци."
+msgstr "Не беа избрани деловни зависности!"
 
 #: js/messages.php:463
 msgid "Show me the possible partial dependencies based on data in the table"
@@ -2216,7 +2120,7 @@ msgstr ""
 
 #: js/messages.php:469
 msgid "Step"
-msgstr ""
+msgstr "Чекор"
 
 #: js/messages.php:471
 msgid "The following actions will be performed:"
@@ -2246,10 +2150,8 @@ msgid "Selected dependencies are as follows:"
 msgstr ""
 
 #: js/messages.php:479
-#, fuzzy
-#| msgid "No databases selected."
 msgid "No dependencies selected!"
-msgstr "Не е избрана ни една база на податоци."
+msgstr "Не беа избрани зависностите!"
 
 #: js/messages.php:482 libraries/classes/CentralColumns.php:1254
 #: libraries/classes/InsertEdit.php:1805
@@ -2278,16 +2180,12 @@ msgid "Range search"
 msgstr "Пребарување"
 
 #: js/messages.php:488
-#, fuzzy
-#| msgid "Column names"
 msgid "Column maximum:"
-msgstr "Имиња на колони"
+msgstr "Колона максимум:"
 
 #: js/messages.php:489
-#, fuzzy
-#| msgid "Column names"
 msgid "Column minimum:"
-msgstr "Имиња на колони"
+msgstr "Колона минимум:"
 
 #: js/messages.php:490
 msgid "Minimum value:"
@@ -2360,7 +2258,7 @@ msgstr "Копирај"
 
 #: js/messages.php:523
 msgid "Point"
-msgstr ""
+msgstr "Точка"
 
 #: js/messages.php:525
 #, fuzzy
@@ -2370,7 +2268,7 @@ msgstr "Линиите се завршуваат со"
 
 #: js/messages.php:526
 msgid "Polygon"
-msgstr ""
+msgstr "Полигон"
 
 #: js/messages.php:527 templates/display/results/options_block.twig:79
 msgid "Geometry"
@@ -2445,16 +2343,12 @@ msgstr ""
 
 #: js/messages.php:565 templates/database/designer/side_menu.twig:34
 #: templates/database/designer/side_menu.twig:37
-#, fuzzy
-#| msgid "No tables found in database."
 msgid "Add tables from other databases"
-msgstr "Табелите не се пронајдени во базата на податоци."
+msgstr "Додади табели од други датабази"
 
 #: js/messages.php:566
-#, fuzzy
-#| msgid "Page number:"
 msgid "Page name"
-msgstr "Број на страници:"
+msgstr "Име на страна"
 
 #: js/messages.php:567 templates/database/designer/side_menu.twig:57
 #: templates/database/designer/side_menu.twig:60
@@ -2485,7 +2379,7 @@ msgstr "избери се"
 
 #: js/messages.php:571 templates/database/designer/side_menu.twig:4
 msgid "Untitled"
-msgstr ""
+msgstr "Без наслов"
 
 #: js/messages.php:572
 #, fuzzy
@@ -2560,10 +2454,8 @@ msgid "Click to mark/unmark."
 msgstr ""
 
 #: js/messages.php:599
-#, fuzzy
-#| msgid "Column names"
 msgid "Double-click to copy column name."
-msgstr "Имиња на колони"
+msgstr "Дупло-кликнете за до го копирате името на колоната."
 
 #: js/messages.php:601
 msgid "Click the drop-down arrow<br />to toggle column's visibility."
@@ -2608,7 +2500,7 @@ msgstr "Прекинато"
 
 #: js/messages.php:620
 msgid "Success"
-msgstr ""
+msgstr "Успех"
 
 #: js/messages.php:621
 #, fuzzy
@@ -2641,9 +2533,8 @@ msgid "You can also edit most values<br />by clicking directly on them."
 msgstr ""
 
 #: js/messages.php:644
-#, fuzzy
 msgid "Go to link:"
-msgstr "Базата на податоци не постои"
+msgstr "Посети линк:"
 
 #: js/messages.php:645
 #, fuzzy
@@ -2790,25 +2681,21 @@ msgid ""
 msgstr ""
 
 #: js/messages.php:725
-#, fuzzy
-#| msgid "Show this query here again"
 msgid "Execute this query again?"
-msgstr "Прикажи го повторно овој упит"
+msgstr "Извршите го барањето повторно?"
 
 #: js/messages.php:727
-#, fuzzy
-#| msgid "Do you really want to "
 msgid "Do you really want to delete this bookmark?"
-msgstr "Дали навистина сакате да "
+msgstr "Дали навистина сакате да ја избришете ознаката?"
 
 #: js/messages.php:729
 msgid "Some error occurred while getting SQL debug info."
 msgstr ""
 
 #: js/messages.php:731
-#, fuzzy, php-format
+#, php-format
 msgid "%s queries executed %s times in %s seconds."
-msgstr "SQL упит"
+msgstr "%s барања извршени %s пати во %s секунди."
 
 #: js/messages.php:732
 #, php-format
@@ -2931,7 +2818,7 @@ msgstr "Бинарен"
 
 #: js/messages.php:799
 msgid "February"
-msgstr ""
+msgstr "Февруари"
 
 #: js/messages.php:800
 #, fuzzy
@@ -2969,7 +2856,7 @@ msgstr "авг"
 
 #: js/messages.php:806
 msgid "September"
-msgstr ""
+msgstr "Септември"
 
 #: js/messages.php:807
 #, fuzzy
@@ -3068,11 +2955,11 @@ msgstr "Вто"
 
 #: js/messages.php:847
 msgid "Wednesday"
-msgstr ""
+msgstr "Среда"
 
 #: js/messages.php:848
 msgid "Thursday"
-msgstr ""
+msgstr "Четврток"
 
 #: js/messages.php:849
 #, fuzzy
@@ -3082,7 +2969,7 @@ msgstr "Пет"
 
 #: js/messages.php:850
 msgid "Saturday"
-msgstr ""
+msgstr "Сабота"
 
 #. l10n: Short week day name for Sunday
 #: js/messages.php:857
@@ -3181,7 +3068,7 @@ msgstr ""
 #.
 #: js/messages.php:899
 msgid "calendar-month-year"
-msgstr ""
+msgstr "calendar-month-year"
 
 #. l10n: Year suffix for calendar, "none" is empty.
 #: js/messages.php:902
@@ -3293,30 +3180,29 @@ msgid "Error"
 msgstr "Грешка"
 
 #: libraries/classes/Advisor.php:259
-#, fuzzy, php-format
-#| msgid "Allows reading data."
+#, php-format
 msgid "Error when evaluating: %s"
-msgstr "Дозволува читање на податоци."
+msgstr "Грешка при евалуација: %s"
 
 #: libraries/classes/Advisor.php:290
 #, php-format
 msgid "Failed evaluating precondition for rule '%s'."
-msgstr ""
+msgstr "Неуспешна евалуација на прекондиција за правило '%s'."
 
 #: libraries/classes/Advisor.php:307
 #, php-format
 msgid "Failed calculating value for rule '%s'."
-msgstr ""
+msgstr "Неуспешна калкулација за вредноста на правило '%s'."
 
 #: libraries/classes/Advisor.php:326
 #, php-format
 msgid "Failed running test for rule '%s'."
-msgstr ""
+msgstr "Неуспешно извршување на тестот за правило '%s'."
 
 #: libraries/classes/Advisor.php:406
 #, php-format
 msgid "Failed formatting string for rule '%s'."
-msgstr ""
+msgstr "Неуспешно форматирање на низа карактери за правило '%s'."
 
 #: libraries/classes/Advisor.php:523
 #, php-format
@@ -3360,13 +3246,11 @@ msgstr "на час"
 
 #: libraries/classes/Advisor.php:634
 msgid "per day"
-msgstr ""
+msgstr "на ден"
 
 #: libraries/classes/BrowseForeigners.php:193
-#, fuzzy
-#| msgid "Search"
 msgid "Search:"
-msgstr "Пребарување"
+msgstr "Пребарај:"
 
 #: libraries/classes/BrowseForeigners.php:216
 #: libraries/classes/BrowseForeigners.php:220 libraries/classes/Index.php:719
@@ -3413,10 +3297,8 @@ msgid ""
 msgstr ""
 
 #: libraries/classes/CentralColumns.php:466
-#, fuzzy
-#| msgid "Documentation"
 msgid "Could not remove columns!"
-msgstr "Документација"
+msgstr "Не можеше да се отстранат колоните!"
 
 #: libraries/classes/CentralColumns.php:626
 msgid "YES"
@@ -3791,22 +3673,16 @@ msgid "Burmese"
 msgstr ""
 
 #: libraries/classes/Charsets.php:544
-#, fuzzy
-#| msgid "Persian"
 msgctxt "Collation"
 msgid "Persian"
 msgstr "Персиски"
 
 #: libraries/classes/Charsets.php:548
-#, fuzzy
-#| msgid "Polish"
 msgctxt "Collation"
 msgid "Polish"
 msgstr "Полски"
 
 #: libraries/classes/Charsets.php:555
-#, fuzzy
-#| msgid "Romanian"
 msgctxt "Collation"
 msgid "Romanian"
 msgstr "Романски"
@@ -3938,10 +3814,9 @@ msgid "Invalid server index: %s"
 msgstr ""
 
 #: libraries/classes/Config.php:1884
-#, fuzzy, php-format
-#| msgid "Server"
+#, php-format
 msgid "Server %d"
-msgstr "Сервер"
+msgstr "Сервер %d"
 
 #: libraries/classes/Config/Descriptions.php:62
 msgid ""
@@ -4147,10 +4022,8 @@ msgid "Default table tab"
 msgstr ""
 
 #: libraries/classes/Config/Descriptions.php:183
-#, fuzzy
-#| msgid "Enclose table and field names with backquotes"
 msgid "Autocomplete of the table and column names in the SQL queries."
-msgstr "Името на полето стави го во '"
+msgstr "Автоматското дополнување на табели и имиња на колони во SQL барања."
 
 #: libraries/classes/Config/Descriptions.php:185
 #, fuzzy
@@ -4159,10 +4032,8 @@ msgid "Enable autocomplete for table and column names"
 msgstr "Името на полето стави го во '"
 
 #: libraries/classes/Config/Descriptions.php:187
-#, fuzzy
-#| msgid "Propose table structure"
 msgid "Whether the table structure actions should be hidden."
-msgstr "Предложи структура на табелата"
+msgstr "Криење на акциите за структура на табели."
 
 #: libraries/classes/Config/Descriptions.php:189
 #, fuzzy
@@ -4263,10 +4134,8 @@ msgid ""
 msgstr ""
 
 #: libraries/classes/Config/Descriptions.php:241
-#, fuzzy
-#| msgid "Table maintenance"
 msgid "Disable multi table maintenance"
-msgstr "Можете да извршите:"
+msgstr "Исклучете одржување на мулти табели"
 
 #: libraries/classes/Config/Descriptions.php:244
 msgid ""
@@ -4280,10 +4149,9 @@ msgstr ""
 
 #: libraries/classes/Config/Descriptions.php:251
 #: templates/display/export/options_output.twig:17
-#, fuzzy, php-format
-#| msgid "Statements"
+#, php-format
 msgid "Use %s statement"
-msgstr "Име"
+msgstr "Користи %s изјава"
 
 #: libraries/classes/Config/Descriptions.php:254
 msgid "Save as file"
@@ -4291,9 +4159,8 @@ msgstr "Сочувај како податотека"
 
 #: libraries/classes/Config/Descriptions.php:256
 #: libraries/classes/Config/Descriptions.php:629
-#, fuzzy
 msgid "Character set of the file"
-msgstr "Кодна страна на податотеката:"
+msgstr "Сет на карактери на фајлот"
 
 #: libraries/classes/Config/Descriptions.php:258
 #: libraries/classes/Config/Descriptions.php:290
@@ -4337,10 +4204,8 @@ msgstr "Полињата се раздвоени со"
 #: libraries/classes/Config/Descriptions.php:635
 #: libraries/classes/Config/Descriptions.php:654
 #: libraries/classes/Plugins/Import/ImportCsv.php:148
-#, fuzzy
-#| msgid "Fields escaped by"
 msgid "Columns escaped with"
-msgstr "Escape карактер &nbsp; &nbsp; &nbsp;"
+msgstr "Колоните се избегнати со"
 
 #: libraries/classes/Config/Descriptions.php:268
 #: libraries/classes/Config/Descriptions.php:280
@@ -4349,8 +4214,6 @@ msgstr "Escape карактер &nbsp; &nbsp; &nbsp;"
 #: libraries/classes/Config/Descriptions.php:328
 #: libraries/classes/Config/Descriptions.php:336
 #: libraries/classes/Config/Descriptions.php:415
-#, fuzzy
-#| msgid "Replace NULL by"
 msgid "Replace NULL with"
 msgstr "Замени NULL со"
 
@@ -4470,10 +4333,8 @@ msgid "Overwrite existing file(s)"
 msgstr "Препиши ги постоечките податотеки"
 
 #: libraries/classes/Config/Descriptions.php:346
-#, fuzzy
-#| msgid "horizontal (rotated headers)"
 msgid "Export as separate files"
-msgstr "хоризонтален (ротирани заглавија)"
+msgstr "Експортирај како одделени фајлови"
 
 #: libraries/classes/Config/Descriptions.php:352
 #, fuzzy
@@ -4604,10 +4465,8 @@ msgid "Browse mode"
 msgstr ""
 
 #: libraries/classes/Config/Descriptions.php:436
-#, fuzzy
-#| msgid "Automatic recovery mode"
 msgid "Customize browse mode."
-msgstr "Режим на автоматско опоравување"
+msgstr "Подеси мод на прегледување."
 
 #: libraries/classes/Config/Descriptions.php:440
 #: libraries/classes/Config/Descriptions.php:444
@@ -4615,9 +4474,8 @@ msgstr "Режим на автоматско опоравување"
 #: libraries/classes/Config/Descriptions.php:498
 #: libraries/classes/Config/Descriptions.php:502
 #: libraries/classes/Config/Descriptions.php:559
-#, fuzzy
 msgid "Customize default options."
-msgstr "Опции за извоз на бази на податоци"
+msgstr "Подеси стандардни опции."
 
 #: libraries/classes/Config/Descriptions.php:442
 #: libraries/classes/Config/Forms/User/ExportForm.php:75
@@ -4638,18 +4496,16 @@ msgid "Edit mode"
 msgstr ""
 
 #: libraries/classes/Config/Descriptions.php:452
-#, fuzzy
 msgid "Customize edit mode."
-msgstr "Опции за извоз на бази на податоци"
+msgstr "Подесувања на модови за уредување."
 
 #: libraries/classes/Config/Descriptions.php:454
 msgid "Export defaults"
 msgstr ""
 
 #: libraries/classes/Config/Descriptions.php:456
-#, fuzzy
 msgid "Customize default export options."
-msgstr "Опции за извоз на бази на податоци"
+msgstr "Подесување на стандардни опции за извоз."
 
 #: libraries/classes/Config/Descriptions.php:458
 #, fuzzy
@@ -4667,9 +4523,8 @@ msgid "Import defaults"
 msgstr "Увоз на податотека"
 
 #: libraries/classes/Config/Descriptions.php:464
-#, fuzzy
 msgid "Customize default common import options."
-msgstr "Опции за извоз на бази на податоци"
+msgstr "Подесување на стандардни опции за увоз."
 
 #: libraries/classes/Config/Descriptions.php:466
 msgid "Import / export"
@@ -4692,9 +4547,8 @@ msgid "Databases"
 msgstr "База на податоци"
 
 #: libraries/classes/Config/Descriptions.php:476
-#, fuzzy
 msgid "Databases display options."
-msgstr "Опции за извоз на бази на податоци"
+msgstr "Опции за приказ на бази на податоци."
 
 #: libraries/classes/Config/Descriptions.php:478
 #: libraries/classes/Config/Forms/User/NaviForm.php:59
@@ -4702,9 +4556,8 @@ msgid "Navigation panel"
 msgstr ""
 
 #: libraries/classes/Config/Descriptions.php:480
-#, fuzzy
 msgid "Customize appearance of the navigation panel."
-msgstr "Опции за извоз на бази на податоци"
+msgstr "Подесување на изгледот на панелот за навигација."
 
 #: libraries/classes/Config/Descriptions.php:482
 #, fuzzy
@@ -4712,9 +4565,8 @@ msgid "Navigation tree"
 msgstr "Опции за извоз на бази на податоци"
 
 #: libraries/classes/Config/Descriptions.php:484
-#, fuzzy
 msgid "Customize the navigation tree."
-msgstr "Опции за извоз на бази на податоци"
+msgstr "Подесување на дрво за навигација."
 
 #: libraries/classes/Config/Descriptions.php:486
 #: libraries/classes/Server/Select.php:56 setup/frames/index.inc.php:123
@@ -4723,14 +4575,12 @@ msgid "Servers"
 msgstr "Сервер"
 
 #: libraries/classes/Config/Descriptions.php:488
-#, fuzzy
 msgid "Servers display options."
-msgstr "Опции за извоз на бази на податоци"
+msgstr "Опции за приказ на сервери."
 
 #: libraries/classes/Config/Descriptions.php:492
-#, fuzzy
 msgid "Tables display options."
-msgstr "Опции за извоз на бази на податоци"
+msgstr "Опции за приказ на табели."
 
 #: libraries/classes/Config/Descriptions.php:494
 #: libraries/classes/Config/Forms/User/MainForm.php:84
@@ -4754,10 +4604,8 @@ msgid "Settings that didn't fit anywhere else."
 msgstr ""
 
 #: libraries/classes/Config/Descriptions.php:508
-#, fuzzy
-#| msgid "Page number:"
 msgid "Page titles"
-msgstr "Број на страници:"
+msgstr "Наслови на страници"
 
 #: libraries/classes/Config/Descriptions.php:511
 msgid ""
@@ -4786,10 +4634,8 @@ msgid "Authentication"
 msgstr "Документација"
 
 #: libraries/classes/Config/Descriptions.php:527
-#, fuzzy
-#| msgid "Documentation"
 msgid "Authentication settings."
-msgstr "Документација"
+msgstr "Подесувања за автентикација."
 
 #: libraries/classes/Config/Descriptions.php:529
 msgid "Server configuration"
@@ -4802,10 +4648,8 @@ msgid ""
 msgstr ""
 
 #: libraries/classes/Config/Descriptions.php:536
-#, fuzzy
-#| msgid "MySQL connection collation"
 msgid "Enter server connection parameters."
-msgstr "Колација за MySQL врска"
+msgstr "Наведете параметри за конектирање на сервер."
 
 #: libraries/classes/Config/Descriptions.php:538
 msgid "Configuration storage"
@@ -4855,9 +4699,8 @@ msgid "SQL queries"
 msgstr "SQL упит"
 
 #: libraries/classes/Config/Descriptions.php:563
-#, fuzzy
 msgid "SQL queries settings."
-msgstr "SQL упит"
+msgstr "Подесувања за SQL барања."
 
 #: libraries/classes/Config/Descriptions.php:565
 #, fuzzy
@@ -4865,9 +4708,8 @@ msgid "Startup"
 msgstr "Статус"
 
 #: libraries/classes/Config/Descriptions.php:567
-#, fuzzy
 msgid "Customize startup page."
-msgstr "Опции за извоз на бази на податоци"
+msgstr "Подесување на стартна страница."
 
 #: libraries/classes/Config/Descriptions.php:569
 #, fuzzy
@@ -4920,9 +4762,8 @@ msgid "Text fields"
 msgstr "Користи текст поле"
 
 #: libraries/classes/Config/Descriptions.php:593
-#, fuzzy
 msgid "Customize text input fields."
-msgstr "Опции за извоз на бази на податоци"
+msgstr "Подесувања на текст полиња."
 
 #: libraries/classes/Config/Descriptions.php:595
 msgid "Texy! text"
@@ -4944,7 +4785,7 @@ msgstr ""
 #: libraries/classes/Config/Descriptions.php:603
 #: templates/console/display.twig:4
 msgid "Console"
-msgstr ""
+msgstr "Конзола"
 
 #: libraries/classes/Config/Descriptions.php:606
 msgid "Enable gzip compression for import and export operations."
@@ -5122,7 +4963,7 @@ msgstr ""
 
 #: libraries/classes/Config/Descriptions.php:726
 msgid "Maximum number of characters used when a SQL query is displayed."
-msgstr ""
+msgstr "Максимум број на карактери употребени кога се покажува SQL барање."
 
 #: libraries/classes/Config/Descriptions.php:728
 msgid "Maximum displayed SQL length"
@@ -5147,6 +4988,8 @@ msgid ""
 "The number of items that can be displayed on each page on the first level of "
 "the navigation tree."
 msgstr ""
+"Бројот на елементи коишто се покажуваат на секоја странија на првото ниво од "
+"навигационото дрво."
 
 #: libraries/classes/Config/Descriptions.php:741
 #, fuzzy
@@ -5159,6 +5002,8 @@ msgid ""
 "The number of items that can be displayed on each page of the navigation "
 "tree."
 msgstr ""
+"Бројот на елементи коишто се покажуваат на секоја странија од навигационото "
+"дрво."
 
 #: libraries/classes/Config/Descriptions.php:745
 msgid "Maximum items in branch"
@@ -5209,18 +5054,16 @@ msgid "Navigation panel width"
 msgstr "Опции за извоз на бази на податоци"
 
 #: libraries/classes/Config/Descriptions.php:774
-#, fuzzy
 msgid "Set to 0 to collapse navigation panel."
-msgstr "Опции за извоз на бази на податоци"
+msgstr "Подеси на 0 за да се собере панелот за навигација."
 
 #: libraries/classes/Config/Descriptions.php:776
 msgid "Link with main panel by highlighting the current database or table."
 msgstr ""
 
 #: libraries/classes/Config/Descriptions.php:780
-#, fuzzy
 msgid "Show logo in navigation panel."
-msgstr "Опции за извоз на бази на податоци"
+msgstr "Покажи лого на панелот за навигација."
 
 #: libraries/classes/Config/Descriptions.php:782
 msgid "Display logo"
@@ -5268,11 +5111,11 @@ msgstr ""
 
 #: libraries/classes/Config/Descriptions.php:808
 msgid "Minimum number of items to display the filter box"
-msgstr ""
+msgstr "Минимум број на елементи за да се покажат филтрите"
 
 #: libraries/classes/Config/Descriptions.php:810
 msgid "Minimum number of databases to display the database filter box"
-msgstr ""
+msgstr "Минимум број на датабази за да се покажат филтрите за датабази"
 
 #: libraries/classes/Config/Descriptions.php:813
 msgid ""
@@ -5282,7 +5125,7 @@ msgstr ""
 
 #: libraries/classes/Config/Descriptions.php:817
 msgid "Group items in the tree"
-msgstr ""
+msgstr "Групирај елементи во дрвото"
 
 #: libraries/classes/Config/Descriptions.php:819
 msgid "String that separates databases into different tree levels."
@@ -5302,7 +5145,7 @@ msgstr ""
 
 #: libraries/classes/Config/Descriptions.php:827
 msgid "Maximum table tree depth"
-msgstr ""
+msgstr "Максимална длабочина на дрво за табели"
 
 #: libraries/classes/Config/Descriptions.php:829
 msgid "Highlight server under the mouse cursor."
@@ -5310,7 +5153,7 @@ msgstr ""
 
 #: libraries/classes/Config/Descriptions.php:831
 msgid "Enable highlighting"
-msgstr ""
+msgstr "Вклучи истакнување"
 
 #: libraries/classes/Config/Descriptions.php:833
 msgid ""
@@ -5318,10 +5161,8 @@ msgid ""
 msgstr ""
 
 #: libraries/classes/Config/Descriptions.php:835
-#, fuzzy
-#| msgid "Table caption"
 msgid "Enable navigation tree expansion"
-msgstr "Коментар на табела"
+msgstr "Вклучи експанзија на навигационо дрво"
 
 #: libraries/classes/Config/Descriptions.php:837
 #, fuzzy
@@ -5538,20 +5379,16 @@ msgid "When browsing tables, the sorting of each table is remembered."
 msgstr ""
 
 #: libraries/classes/Config/Descriptions.php:947
-#, fuzzy
-#| msgid "Rename table to"
 msgid "Remember table's sorting"
-msgstr "Промени го името на табелата во "
+msgstr "Запомнете го сортирањето на табелата"
 
 #: libraries/classes/Config/Descriptions.php:949
 msgid "Default sort order for tables with a primary key."
 msgstr ""
 
 #: libraries/classes/Config/Descriptions.php:951
-#, fuzzy
-#| msgid "A primary key has been added on %s."
 msgid "Primary key default sort order"
-msgstr "Примарниот клуч %s е додаден."
+msgstr "Стандардно подредување на примарен клуч"
 
 #: libraries/classes/Config/Descriptions.php:953
 msgid ""
@@ -5637,10 +5474,8 @@ msgid "HTTP Realm"
 msgstr ""
 
 #: libraries/classes/Config/Descriptions.php:992
-#, fuzzy
-#| msgid "Documentation"
 msgid "Authentication method to use."
-msgstr "Документација"
+msgstr "Употребливи методи за автентикација."
 
 #: libraries/classes/Config/Descriptions.php:994 setup/frames/index.inc.php:142
 msgid "Authentication type"
@@ -5667,10 +5502,8 @@ msgid "Column information table"
 msgstr ""
 
 #: libraries/classes/Config/Descriptions.php:1010
-#, fuzzy
-#| msgid "Cannot log in to the MySQL server"
 msgid "Compress connection to MySQL server."
-msgstr "Не можам да се пријавам на MySQL серверот"
+msgstr "Компресија при конекција на MySQL сервер."
 
 #: libraries/classes/Config/Descriptions.php:1012
 msgid "Compress connection"
@@ -6433,9 +6266,8 @@ msgid ""
 msgstr ""
 
 #: libraries/classes/Config/Descriptions.php:1426
-#, fuzzy
 msgid "Proxy username"
-msgstr "Корисничко име:"
+msgstr "Прокси корисничко име"
 
 #: libraries/classes/Config/Descriptions.php:1428
 msgid "The password for authenticating with the proxy."
@@ -6807,9 +6639,8 @@ msgid "Could not connect to the database server!"
 msgstr ""
 
 #: libraries/classes/Config/Validator.php:253
-#, fuzzy
 msgid "Invalid authentication type!"
-msgstr "Тип на извоз"
+msgstr "Невалиден тип на автентикација!"
 
 #: libraries/classes/Config/Validator.php:260
 msgid "Empty username while using [kbd]config[/kbd] authentication method!"
@@ -6875,17 +6706,15 @@ msgstr "Табелата %s е испразнета."
 
 #: libraries/classes/Controllers/Database/DatabaseStructureController.php:588
 #: tbl_operations.php:453 view_operations.php:130
-#, fuzzy, php-format
-#| msgid "View %s has been dropped."
+#, php-format
 msgid "View %s has been dropped."
-msgstr "Прегледот %s е избришан"
+msgstr "Прегледот %s беше отфрлен."
 
 #: libraries/classes/Controllers/Database/DatabaseStructureController.php:589
 #: tbl_operations.php:454
-#, fuzzy, php-format
-#| msgid "Table %s has been dropped."
+#, php-format
 msgid "Table %s has been dropped."
-msgstr "Табелата %s е избришана"
+msgstr "Табелата %s е отфрлена."
 
 #: libraries/classes/Controllers/Database/DatabaseStructureController.php:797
 #: libraries/classes/Display/Results.php:4545
@@ -6962,12 +6791,11 @@ msgid "Database %1$s has been created."
 msgstr "Базата на податоци %1$s е креирана."
 
 #: libraries/classes/Controllers/Server/ServerDatabasesController.php:208
-#, fuzzy, php-format
-#| msgid "%s databases have been dropped successfully."
+#, php-format
 msgid "%1$d database has been dropped successfully."
 msgid_plural "%1$d databases have been dropped successfully."
-msgstr[0] "%s базата на податоци успешно е избришана."
-msgstr[1] "%s базата на податоци успешно е избришана."
+msgstr[0] "%1$d база на податоци беше успешно избришана."
+msgstr[1] "%1$d бази на податоци беа успешно избришани."
 
 #: libraries/classes/Controllers/Server/ServerDatabasesController.php:343
 #: libraries/classes/Import.php:122
@@ -7013,10 +6841,11 @@ msgid "Replicated"
 msgstr "Релации"
 
 #: libraries/classes/Controllers/Server/ServerVariablesController.php:116
-#, fuzzy, php-format
-#| msgid "Server variables and settings"
+#, php-format
 msgid "Not enough privilege to view server variables and settings. %s"
-msgstr "Серверски променливи и подесувања"
+msgstr ""
+"Немате доволно привилегија за прегледување на варијабили и подесувањата на "
+"серверот. %s"
 
 #: libraries/classes/Controllers/Server/ServerVariablesController.php:234
 msgid "Setting variable failed"
@@ -7041,9 +6870,9 @@ msgstr "Базата на податоци не постои"
 #: libraries/classes/Controllers/Table/TableStructureController.php:760
 #: libraries/classes/Controllers/Table/TableStructureController.php:1018
 #: tbl_addfield.php:96
-#, fuzzy, php-format
+#, php-format
 msgid "Table %1$s has been altered successfully."
-msgstr "Изабраните корисници успешно се избришани."
+msgstr "Табелата %1$s беше успешно променета."
 
 #: libraries/classes/Controllers/Table/TableRelationController.php:228
 #, fuzzy
@@ -7057,10 +6886,8 @@ msgstr "Процесот %s е успешно прекинат."
 #: libraries/classes/Rte/Routines.php:1465
 #: libraries/classes/SqlQueryForm.php:93 tbl_row_action.php:142
 #: view_operations.php:69
-#, fuzzy
-#| msgid "Your SQL query has been executed successfully."
 msgid "Your SQL query has been executed successfully."
-msgstr "Вашиот SQL упит успешно е извршен"
+msgstr "Вашето SQL барање беше успешно егзекутирано."
 
 #: libraries/classes/Controllers/Table/TableRelationController.php:304
 #, fuzzy
@@ -7093,10 +6920,8 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: libraries/classes/Controllers/Table/TableStructureController.php:273
-#, fuzzy
-#| msgid "No rows selected"
 msgid "No column selected."
-msgstr "Нема селектирани записи"
+msgstr "Нема избрана колона."
 
 #: libraries/classes/Controllers/Table/TableStructureController.php:499
 #, fuzzy
@@ -7118,10 +6943,10 @@ msgid "Query error"
 msgstr "Вид на упит"
 
 #: libraries/classes/Controllers/Table/TableStructureController.php:1012
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Table %1$s has been altered successfully. Privileges have been adjusted."
-msgstr "Изабраните корисници успешно се избришани."
+msgstr "Табелата %1$s беше успешно променета. Привилегиите се прилагодени."
 
 #: libraries/classes/Controllers/Table/TableStructureController.php:1228
 #: templates/table/structure/check_all_table_column.twig:17
@@ -7242,9 +7067,8 @@ msgstr ""
 "дознаете зошто, кликнете %sовде%s."
 
 #: libraries/classes/Database/Designer/Common.php:565
-#, fuzzy
 msgid "Error: relationship already exists."
-msgstr "Корисник %s веќе постои!"
+msgstr "Грешка: врската веќе постои."
 
 #: libraries/classes/Database/Designer/Common.php:611
 #, fuzzy
@@ -7253,10 +7077,8 @@ msgid "FOREIGN KEY relationship has been added."
 msgstr "Измените се сочувани"
 
 #: libraries/classes/Database/Designer/Common.php:617
-#, fuzzy
-#| msgid "File could not be read"
 msgid "Error: FOREIGN KEY relationship could not be added!"
-msgstr "Податотеката не е можно да се прочита"
+msgstr "Грешка: FOREIGN KEY врска не може да се додаде!"
 
 #: libraries/classes/Database/Designer/Common.php:622
 msgid "Error: Missing index on column(s)."
@@ -7272,10 +7094,8 @@ msgid "Internal relationship has been added."
 msgstr "Внатрешни релации"
 
 #: libraries/classes/Database/Designer/Common.php:655
-#, fuzzy
-#| msgid "File could not be read"
 msgid "Error: Internal relationship could not be added!"
-msgstr "Податотеката не е можно да се прочита"
+msgstr "Грешка: Внатрешната врска не може да се додаде!"
 
 #: libraries/classes/Database/Designer/Common.php:693
 #, fuzzy
@@ -7290,10 +7110,8 @@ msgid "Error: FOREIGN KEY relationship could not be removed!"
 msgstr "Податотеката не е можно да се прочита"
 
 #: libraries/classes/Database/Designer/Common.php:726
-#, fuzzy
-#| msgid "File could not be read"
 msgid "Error: Internal relationship could not be removed!"
-msgstr "Податотеката не е можно да се прочита"
+msgstr "Грешка: Внатрешната врска не може да се отстрани!"
 
 #: libraries/classes/Database/Designer/Common.php:730
 #, fuzzy
@@ -7302,38 +7120,28 @@ msgstr "Внатрешни релации"
 
 #: libraries/classes/Database/Qbe.php:456
 #: templates/table/search/search_and_replace.twig:6
-#, fuzzy
-#| msgid "Column names"
 msgid "Column:"
-msgstr "Имиња на колони"
+msgstr "Колона:"
 
 #: libraries/classes/Database/Qbe.php:502
 msgid "Alias:"
 msgstr ""
 
 #: libraries/classes/Database/Qbe.php:554
-#, fuzzy
-#| msgid "Sort"
 msgid "Sort:"
-msgstr "Подредуваање"
+msgstr "Подредување:"
 
 #: libraries/classes/Database/Qbe.php:616
-#, fuzzy
-#| msgid "Sort"
 msgid "Sort order:"
-msgstr "Подредуваање"
+msgstr "Подредување:"
 
 #: libraries/classes/Database/Qbe.php:665
-#, fuzzy
-#| msgid "Show"
 msgid "Show:"
-msgstr "Прикажи"
+msgstr "Прикажи:"
 
 #: libraries/classes/Database/Qbe.php:714
-#, fuzzy
-#| msgid "Criteria"
 msgid "Criteria:"
-msgstr "Критериум"
+msgstr "Критериуми:"
 
 #: libraries/classes/Database/Qbe.php:797
 #: libraries/classes/Database/Qbe.php:829
@@ -7346,15 +7154,13 @@ msgstr "Користи табели"
 
 #: libraries/classes/Database/Qbe.php:850
 #: libraries/classes/Database/Qbe.php:961
-#, fuzzy
-#| msgid "Or"
 msgid "Or:"
-msgstr "или"
+msgstr "Или:"
 
 #: libraries/classes/Database/Qbe.php:854
 #: libraries/classes/Database/Qbe.php:946
 msgid "And:"
-msgstr ""
+msgstr "И:"
 
 #: libraries/classes/Database/Qbe.php:859
 msgid "Ins"
@@ -7365,10 +7171,8 @@ msgid "Del"
 msgstr "Del"
 
 #: libraries/classes/Database/Qbe.php:878
-#, fuzzy
-#| msgid "Modify"
 msgid "Modify:"
-msgstr "Промени"
+msgstr "Измени:"
 
 #: libraries/classes/Database/Qbe.php:941
 msgid "Ins:"
@@ -7388,10 +7192,8 @@ msgid "Submit Query"
 msgstr "Изврши SQL"
 
 #: libraries/classes/Database/Qbe.php:1856
-#, fuzzy
-#| msgid "Search"
 msgid "Saved bookmarked search:"
-msgstr "Пребарување"
+msgstr "Пребарување на зачувани белешки:"
 
 #: libraries/classes/Database/Qbe.php:1858
 #, fuzzy
@@ -7487,10 +7289,8 @@ msgid "Details…"
 msgstr ""
 
 #: libraries/classes/DatabaseInterface.php:2507
-#, fuzzy
-#| msgid "Routines"
 msgid "Missing connection parameters!"
-msgstr "Рутини"
+msgstr "Недостасуваат параметрите за конекција!"
 
 #: libraries/classes/DatabaseInterface.php:2532
 msgid "Connection for controluser as defined in your configuration failed."
@@ -7538,10 +7338,8 @@ msgstr ""
 #: libraries/classes/Display/ChangePassword.php:87
 #: libraries/classes/ReplicationGui.php:878
 #: libraries/classes/Server/Privileges.php:1704
-#, fuzzy
-#| msgid "Re-type"
 msgid "Re-type:"
-msgstr "Повтори внес"
+msgstr "Повторно напишете:"
 
 #: libraries/classes/Display/ChangePassword.php:118
 #: libraries/classes/Display/ChangePassword.php:151
@@ -7664,17 +7462,13 @@ msgstr "Подредување по клуч"
 
 #: libraries/classes/Display/Results.php:1729
 #: templates/display/results/options_block.twig:14
-#, fuzzy
-#| msgid "Partial Texts"
 msgid "Partial texts"
-msgstr "Дел на текстот"
+msgstr "Деловни текстови"
 
 #: libraries/classes/Display/Results.php:1733
 #: templates/display/results/options_block.twig:14
-#, fuzzy
-#| msgid "Full Texts"
 msgid "Full texts"
-msgstr "Полн текст"
+msgstr "Полни текстови"
 
 #: libraries/classes/Display/Results.php:2121
 #: libraries/classes/Display/Results.php:2135
@@ -7722,10 +7516,9 @@ msgstr ""
 "[doc@faq3-11]FAQ 3.11[/doc]"
 
 #: libraries/classes/Display/Results.php:4558
-#, fuzzy, php-format
-#| msgid "Showing rows"
+#, php-format
 msgid "Showing rows %1s - %2s"
-msgstr "Приказ на записи од"
+msgstr "Приказ на редови %1s - %2s"
 
 #: libraries/classes/Display/Results.php:4573
 #, php-format
@@ -7733,10 +7526,9 @@ msgid "%1$d total, %2$d in query"
 msgstr ""
 
 #: libraries/classes/Display/Results.php:4578
-#, fuzzy, php-format
-#| msgid "total"
+#, php-format
 msgid "%d total"
-msgstr "вкупно"
+msgstr "%d вкупно"
 
 #: libraries/classes/Display/Results.php:4590 libraries/classes/Sql.php:1435
 #, fuzzy, php-format
@@ -7786,10 +7578,8 @@ msgid "Visualize GIS data"
 msgstr ""
 
 #: libraries/classes/Display/Results.php:5213
-#, fuzzy
-#| msgid "Link not found"
 msgid "Link not found!"
-msgstr "Врската не е пронајдена"
+msgstr "Врската не е пронајдена!"
 
 #: libraries/classes/Engines/Bdb.php:28
 msgid "Version information"
@@ -8142,7 +7932,7 @@ msgstr ""
 #: libraries/classes/Export.php:363 libraries/classes/Export.php:371
 #, php-format
 msgid "The web server does not have permission to save the file %s."
-msgstr "На веб серверот не му е допуштено да ја сочува  податотеката %s."
+msgstr "На веб серверот не му е дозволено да го сочува фајлот %s."
 
 #: libraries/classes/Export.php:405
 #, php-format
@@ -8192,11 +7982,10 @@ msgid "File could not be read!"
 msgstr "Датотеката не е можно да се прочита!"
 
 #: libraries/classes/File.php:506
-#, fuzzy
 msgid "Error moving the uploaded file, see [doc@faq1-11]FAQ 1.11[/doc]."
 msgstr ""
-"Бројот на записи може да биде приближен. За подетални информации види FAQ "
-"3.11"
+"Грешка при пренесување на уплоадираниот фајл, види [doc@faq1-11]FAQ 1."
+"11[/doc]."
 
 #: libraries/classes/File.php:525
 msgid "Error while moving uploaded file."
@@ -8305,9 +8094,9 @@ msgid "Options"
 msgstr "Операции"
 
 #: libraries/classes/Import.php:1228
-#, fuzzy, php-format
+#, php-format
 msgid "Go to database: %s"
-msgstr "Базата на податоци не постои"
+msgstr "Оди на датабаза: %s"
 
 #: libraries/classes/Import.php:1234 libraries/classes/Import.php:1278
 #, php-format
@@ -8315,15 +8104,14 @@ msgid "Edit settings for %s"
 msgstr ""
 
 #: libraries/classes/Import.php:1263
-#, fuzzy, php-format
+#, php-format
 msgid "Go to table: %s"
-msgstr "Базата на податоци не постои"
+msgstr "Оди на табела: %s"
 
 #: libraries/classes/Import.php:1271
-#, fuzzy, php-format
-#| msgid "Structure only"
+#, php-format
 msgid "Structure of %s"
-msgstr "Само структура"
+msgstr "Структура на %s"
 
 #: libraries/classes/Import.php:1289
 #, php-format
@@ -8420,10 +8208,8 @@ msgid "Or"
 msgstr "или"
 
 #: libraries/classes/InsertEdit.php:1501
-#, fuzzy
-#| msgid "web server upload directory"
 msgid "web server upload directory:"
-msgstr "директориум за праќање на веб серверот"
+msgstr "директориум за праќање на веб серверот:"
 
 #: libraries/classes/InsertEdit.php:1703
 #: templates/table/search/input_box.twig:38
@@ -8681,20 +8467,18 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: libraries/classes/Message.php:266
-#, fuzzy, php-format
-#| msgid "No rows selected"
+#, php-format
 msgid "%1$d row deleted."
 msgid_plural "%1$d rows deleted."
-msgstr[0] "Нема селектирани записи"
-msgstr[1] "Нема селектирани записи"
+msgstr[0] "%1$d редица избришана"
+msgstr[1] "%1$d редици избришани"
 
 #: libraries/classes/Message.php:285
-#, fuzzy, php-format
-#| msgid "No rows selected"
+#, php-format
 msgid "%1$d row inserted."
 msgid_plural "%1$d rows inserted."
-msgstr[0] "Нема селектирани записи"
-msgstr[1] "Нема селектирани записи"
+msgstr[0] "%1$d редица внесена."
+msgstr[1] "%1$d редици внесени."
 
 #: libraries/classes/MultSubmits.php:399 libraries/classes/Operations.php:197
 #: libraries/classes/Operations.php:1286 libraries/classes/Tracking.php:395
@@ -8749,48 +8533,37 @@ msgid "Add prefix"
 msgstr "Додади ново поле"
 
 #: libraries/classes/MultSubmits.php:500
-#, fuzzy
-#| msgid "Do you really want to "
 msgid "Do you really want to execute the following query?"
-msgstr "Дали навистина сакате да "
+msgstr "Дали навистина сакате да егзекутурате следното барање?"
 
 #: libraries/classes/Navigation/Navigation.php:69
 msgid "An error has occurred while loading the navigation display"
 msgstr ""
 
 #: libraries/classes/Navigation/Navigation.php:207
-#, fuzzy
-#| msgid "Column names"
 msgid "Groups:"
-msgstr "Имиња на колони"
+msgstr "Групи:"
 
 #: libraries/classes/Navigation/Navigation.php:208
-#, fuzzy
 msgid "Events:"
-msgstr "Пратено"
+msgstr "Настани:"
 
 #: libraries/classes/Navigation/Navigation.php:209
-#, fuzzy
 msgid "Functions:"
-msgstr "Функција"
+msgstr "Функции:"
 
 #: libraries/classes/Navigation/Navigation.php:210
-#, fuzzy
 msgid "Procedures:"
-msgstr "Листа на процеси"
+msgstr "Процедури:"
 
 #: libraries/classes/Navigation/Navigation.php:211
 #: templates/display/export/selection.twig:5
-#, fuzzy
-#| msgid "Tables"
 msgid "Tables:"
-msgstr "Табели"
+msgstr "Табели:"
 
 #: libraries/classes/Navigation/Navigation.php:212
-#, fuzzy
-#| msgid "View"
 msgid "Views:"
-msgstr "Поглед"
+msgstr "Прегледи:"
 
 #: libraries/classes/Navigation/Navigation.php:236
 #: libraries/classes/Tracking.php:164 tbl_change.php:147
@@ -8863,10 +8636,9 @@ msgid "Invalid class name \"%1$s\", using default of \"Node\""
 msgstr ""
 
 #: libraries/classes/Navigation/NodeFactory.php:61
-#, fuzzy, php-format
-#| msgid "Add %s field(s)"
+#, php-format
 msgid "Could not load class \"%1$s\""
-msgstr "Додади %s полиња"
+msgstr "Не може да се вчита класа \"%1$s\""
 
 #: libraries/classes/Navigation/Nodes/Node.php:802
 msgid "Expand/Collapse"
@@ -9000,10 +8772,8 @@ msgid ""
 msgstr ""
 
 #: libraries/classes/Normalization.php:206 normalization.php:19
-#, fuzzy
-#| msgid "Add/Delete Field Columns"
 msgid "Select one…"
-msgstr "Додади/избриши колона"
+msgstr "Изберете еден…"
 
 #: libraries/classes/Normalization.php:207 normalization.php:20
 #, fuzzy
@@ -9028,9 +8798,8 @@ msgid "Have a primary key"
 msgstr ""
 
 #: libraries/classes/Normalization.php:241
-#, fuzzy
 msgid "Primary key already exists."
-msgstr "Корисник %s веќе постои!"
+msgstr "Примарниот клуч веќе постои."
 
 #: libraries/classes/Normalization.php:246
 msgid ""
@@ -9180,9 +8949,8 @@ msgstr ""
 #: libraries/classes/Normalization.php:545
 #: libraries/classes/Normalization.php:695
 #: libraries/classes/Normalization.php:767
-#, fuzzy
 msgid "Error in processing!"
-msgstr "Листа на процеси"
+msgstr "Грешка во процесирање!"
 
 #: libraries/classes/Normalization.php:591
 #, php-format
@@ -9514,10 +9282,8 @@ msgid "The table name is empty!"
 msgstr "Името на табелата е празно!"
 
 #: libraries/classes/Pdf.php:131
-#, fuzzy
-#| msgid "Allows reading data."
 msgid "Error while creating PDF:"
-msgstr "Дозволува читање на податоци."
+msgstr "Грешка при креирање на PDF:"
 
 #: libraries/classes/Plugins.php:578
 #, fuzzy
@@ -9552,7 +9318,7 @@ msgid ""
 msgstr ""
 "phpMyAdmin се обиде да се поврзе на MySQL сервер, но серверот тоа не го "
 "допушти. Проверете го називот на host-от, корисничката сметка и лозинка во "
-"config.inc.php и уверите се дека одговараат на  податоците кои сте ги добили "
+"config.inc.php и уверите се дека одговараат на податоците кои сте ги добили "
 "од администраторот на MySQL серверот."
 
 #: libraries/classes/Plugins/Auth/AuthenticationConfig.php:153
@@ -9632,38 +9398,28 @@ msgstr ""
 #: libraries/classes/Plugins/Export/ExportCodegen.php:101
 #: templates/display/import/import.twig:168
 #: templates/display/export/format_dropdown.twig:2
-#, fuzzy
-#| msgid "Format"
 msgid "Format:"
-msgstr "Формат"
+msgstr "Формат:"
 
 #: libraries/classes/Plugins/Export/ExportCsv.php:63
 #: libraries/classes/Plugins/Import/AbstractImportCsv.php:58
-#, fuzzy
-#| msgid "Lines terminated by"
 msgid "Columns separated with:"
-msgstr "Линиите се завршуваат со"
+msgstr "Колоните се одвоени со:"
 
 #: libraries/classes/Plugins/Export/ExportCsv.php:68
 #: libraries/classes/Plugins/Import/AbstractImportCsv.php:64
-#, fuzzy
-#| msgid "Fields enclosed by"
 msgid "Columns enclosed with:"
-msgstr "Полињата се раздвоени со"
+msgstr "Колоните се оградени со:"
 
 #: libraries/classes/Plugins/Export/ExportCsv.php:73
 #: libraries/classes/Plugins/Import/AbstractImportCsv.php:71
-#, fuzzy
-#| msgid "Fields escaped by"
 msgid "Columns escaped with:"
-msgstr "Escape карактер &nbsp; &nbsp; &nbsp;"
+msgstr "Колоните се избегнати со:"
 
 #: libraries/classes/Plugins/Export/ExportCsv.php:78
 #: libraries/classes/Plugins/Import/AbstractImportCsv.php:78
-#, fuzzy
-#| msgid "Lines terminated by"
 msgid "Lines terminated with:"
-msgstr "Линиите се завршуваат со"
+msgstr "Линиите завршуваат со:"
 
 #: libraries/classes/Plugins/Export/ExportCsv.php:83
 #: libraries/classes/Plugins/Export/ExportExcel.php:52
@@ -9672,10 +9428,8 @@ msgstr "Линиите се завршуваат со"
 #: libraries/classes/Plugins/Export/ExportOds.php:67
 #: libraries/classes/Plugins/Export/ExportOdt.php:134
 #: libraries/classes/Plugins/Export/ExportTexytext.php:91
-#, fuzzy
-#| msgid "Replace NULL by"
 msgid "Replace NULL with:"
-msgstr "Замени NULL со"
+msgstr "Замени NULL со:"
 
 #: libraries/classes/Plugins/Export/ExportCsv.php:88
 #: libraries/classes/Plugins/Export/ExportExcel.php:57
@@ -9683,10 +9437,8 @@ msgid "Remove carriage return/line feed characters within columns"
 msgstr ""
 
 #: libraries/classes/Plugins/Export/ExportExcel.php:67
-#, fuzzy
-#| msgid "Excel edition"
 msgid "Excel edition:"
-msgstr "Excel издание"
+msgstr "Excel издание:"
 
 #: libraries/classes/Plugins/Export/ExportHtmlword.php:70
 #: libraries/classes/Plugins/Export/ExportLatex.php:103
@@ -9816,24 +9568,18 @@ msgstr "Опции на трансформацијата"
 
 #: libraries/classes/Plugins/Export/ExportLatex.php:121
 #: libraries/classes/Plugins/Export/ExportLatex.php:173
-#, fuzzy
-#| msgid "Table caption"
 msgid "Table caption:"
-msgstr "Коментар на табела"
+msgstr "Наслов на табела:"
 
 #: libraries/classes/Plugins/Export/ExportLatex.php:127
 #: libraries/classes/Plugins/Export/ExportLatex.php:179
-#, fuzzy
-#| msgid "Table caption"
 msgid "Table caption (continued):"
-msgstr "Коментар на табела"
+msgstr "Наслов на табела (продолжение):"
 
 #: libraries/classes/Plugins/Export/ExportLatex.php:133
 #: libraries/classes/Plugins/Export/ExportLatex.php:185
-#, fuzzy
-#| msgid "Label key"
 msgid "Label key:"
-msgstr "Ознака на клучот"
+msgstr "Ознака на клучот:"
 
 #: libraries/classes/Plugins/Export/ExportLatex.php:140
 #: libraries/classes/Plugins/Export/ExportOdt.php:101
@@ -9859,58 +9605,44 @@ msgid "Display MIME types"
 msgstr "Достапни MIME-типови"
 
 #: libraries/classes/Plugins/Export/ExportLatex.php:168
-#, fuzzy
-#| msgid "Put fields names in the first row"
 msgid "Put columns names in the first row:"
-msgstr "Стави ги имињата на полињата во првата редица"
+msgstr "Стави ги имињата на полињата во првата редица:"
 
 #: libraries/classes/Plugins/Export/ExportLatex.php:216
 #: libraries/classes/Plugins/Export/ExportSql.php:695
 #: libraries/classes/Plugins/Export/ExportXml.php:238
 #: libraries/classes/ReplicationGui.php:443
 #: libraries/classes/ReplicationGui.php:709
-#, fuzzy
-#| msgid "Host"
 msgid "Host:"
-msgstr "Host"
+msgstr "Хост:"
 
 #: libraries/classes/Plugins/Export/ExportLatex.php:221
 #: libraries/classes/Plugins/Export/ExportSql.php:701
 #: libraries/classes/Plugins/Export/ExportXml.php:243
-#, fuzzy
-#| msgid "Generation Time"
 msgid "Generation Time:"
-msgstr "Време на креирање"
+msgstr "Време на креирање:"
 
 #: libraries/classes/Plugins/Export/ExportLatex.php:224
 #: libraries/classes/Plugins/Export/ExportSql.php:707
 #: libraries/classes/Plugins/Export/ExportXml.php:246
-#, fuzzy
-#| msgid "PHP Version"
 msgid "PHP Version:"
-msgstr "PHP верзија"
+msgstr "PHP верзија:"
 
 #: libraries/classes/Plugins/Export/ExportLatex.php:254
 #: libraries/classes/Plugins/Export/ExportSql.php:896
 #: libraries/classes/Plugins/Export/ExportXml.php:411
 #: libraries/classes/Plugins/Export/Helpers/Pdf.php:158
-#, fuzzy
-#| msgid "Database"
 msgid "Database:"
-msgstr "База на податоци"
+msgstr "База на податоци:"
 
 #: libraries/classes/Plugins/Export/ExportLatex.php:327
 #: libraries/classes/Plugins/Export/ExportSql.php:2195
-#, fuzzy
-#| msgid "Data"
 msgid "Data:"
-msgstr "Податоци"
+msgstr "Податоци:"
 
 #: libraries/classes/Plugins/Export/ExportLatex.php:507
-#, fuzzy
-#| msgid "Structure"
 msgid "Structure:"
-msgstr "Структура"
+msgstr "Структура:"
 
 #: libraries/classes/Plugins/Export/ExportMediawiki.php:81
 #, fuzzy
@@ -9925,10 +9657,8 @@ msgid "Export table headers"
 msgstr "хоризонтален (ротирани заглавија)"
 
 #: libraries/classes/Plugins/Export/ExportPdf.php:99
-#, fuzzy
-#| msgid "Import files"
 msgid "Report title:"
-msgstr "Увоз на податотека"
+msgstr "Наслов на извештај:"
 
 #: libraries/classes/Plugins/Export/ExportPdf.php:228
 #, fuzzy
@@ -9952,10 +9682,10 @@ msgid ""
 msgstr ""
 
 #: libraries/classes/Plugins/Export/ExportSql.php:111
-#, fuzzy
-#| msgid "Add custom comment into header (\\n splits lines)"
 msgid "Additional custom header comment (\\n splits lines):"
-msgstr "Додади коментар во заглавие (користи \\n за нов ред)"
+msgstr ""
+"Додади коментар во заглавие (користи \\n"
+" за нов ред):"
 
 #: libraries/classes/Plugins/Export/ExportSql.php:117
 msgid ""
@@ -9975,10 +9705,8 @@ msgid ""
 msgstr ""
 
 #: libraries/classes/Plugins/Export/ExportSql.php:236
-#, fuzzy
-#| msgid "Statements"
 msgid "Add statements:"
-msgstr "Име"
+msgstr "Додај изјави:"
 
 #: libraries/classes/Plugins/Export/ExportSql.php:244
 #: libraries/classes/Plugins/Export/ExportSql.php:253
@@ -9987,20 +9715,18 @@ msgstr "Име"
 #: libraries/classes/Plugins/Export/ExportSql.php:307
 #: libraries/classes/Plugins/Export/ExportSql.php:314
 #: libraries/classes/Plugins/Export/ExportSql.php:323
-#, fuzzy, php-format
-#| msgid "Statements"
+#, php-format
 msgid "Add %s statement"
-msgstr "Име"
+msgstr "Додади %s израз"
 
 #: libraries/classes/Plugins/Export/ExportSql.php:290
 msgid "(less efficient as indexes will be generated during table creation)"
 msgstr ""
 
 #: libraries/classes/Plugins/Export/ExportSql.php:298
-#, fuzzy, php-format
-#| msgid "Session value"
+#, php-format
 msgid "%s value"
-msgstr "Вредност на сесијата"
+msgstr "%s вредност"
 
 #: libraries/classes/Plugins/Export/ExportSql.php:332
 msgid ""
@@ -10095,10 +9821,9 @@ msgid "Metadata"
 msgstr "Тип на извоз"
 
 #: libraries/classes/Plugins/Export/ExportSql.php:1080
-#, fuzzy, php-format
-#| msgid "Dumping data for table"
+#, php-format
 msgid "Metadata for table %s"
-msgstr "Приказ на податоци од табелата"
+msgstr "Метадата за табела %s"
 
 #: libraries/classes/Plugins/Export/ExportSql.php:1087
 #, fuzzy, php-format
@@ -10108,30 +9833,23 @@ msgstr "Креирај нова табела во базата на подато
 
 #: libraries/classes/Plugins/Export/ExportSql.php:1419
 #: libraries/classes/Plugins/Schema/Pdf/PdfRelationSchema.php:603
-#, fuzzy
-#| msgid "Creation"
 msgid "Creation:"
-msgstr "Направено"
+msgstr "Создадено:"
 
 #: libraries/classes/Plugins/Export/ExportSql.php:1432
 #: libraries/classes/Plugins/Schema/Pdf/PdfRelationSchema.php:610
-#, fuzzy
-#| msgid "Last update"
 msgid "Last update:"
-msgstr "Последна измена"
+msgstr "Последна измена:"
 
 #: libraries/classes/Plugins/Export/ExportSql.php:1445
 #: libraries/classes/Plugins/Schema/Pdf/PdfRelationSchema.php:617
-#, fuzzy
-#| msgid "Last check"
 msgid "Last check:"
-msgstr "Последна проверка"
+msgstr "Последна проверка:"
 
 #: libraries/classes/Plugins/Export/ExportSql.php:1493
-#, fuzzy, php-format
-#| msgid "Table structure for table"
+#, php-format
 msgid "Error reading structure for table %s:"
-msgstr "Структура на табелата"
+msgstr "Грешка при читање на структура на табелата %s:"
 
 #: libraries/classes/Plugins/Export/ExportSql.php:1547
 msgid "It appears your database uses views;"
@@ -10152,10 +9870,8 @@ msgid "Indexes for dumped tables"
 msgstr "Ограничувања за извезените табели"
 
 #: libraries/classes/Plugins/Export/ExportSql.php:1756
-#, fuzzy
-#| msgid "Inside table(s):"
 msgid "Indexes for table"
-msgstr "во табела(и):"
+msgstr "Индекси за табелата"
 
 #: libraries/classes/Plugins/Export/ExportSql.php:1789
 #, fuzzy
@@ -10184,19 +9900,18 @@ msgid "It appears your table uses triggers;"
 msgstr ""
 
 #: libraries/classes/Plugins/Export/ExportSql.php:2106
-#, fuzzy, php-format
+#, php-format
 msgid "Structure for view %s exported as a table"
-msgstr "Само структура"
+msgstr "Структура за поглед %s извезена како табела"
 
 #: libraries/classes/Plugins/Export/ExportSql.php:2130
 msgid "(See below for the actual view)"
 msgstr ""
 
 #: libraries/classes/Plugins/Export/ExportSql.php:2210
-#, fuzzy, php-format
-#| msgid "Allows reading data."
+#, php-format
 msgid "Error reading data for table %s:"
-msgstr "Дозволува читање на податоци."
+msgstr "Грешка при читање на податоци за табелата %s:"
 
 #: libraries/classes/Plugins/Export/ExportXml.php:100
 msgid "Object creation options (all are recommended)"
@@ -10207,10 +9922,8 @@ msgid "Export contents"
 msgstr ""
 
 #: libraries/classes/Plugins/Export/Helpers/Pdf.php:159
-#, fuzzy
-#| msgid "Table"
 msgid "Table:"
-msgstr "Табела"
+msgstr "Табела:"
 
 #: libraries/classes/Plugins/Export/Helpers/Pdf.php:160
 msgid "Purpose:"
@@ -10243,10 +9956,8 @@ msgstr ""
 
 #: libraries/classes/Plugins/Import/ImportCsv.php:80
 #: libraries/classes/Plugins/Import/ImportLdi.php:75
-#, fuzzy
-#| msgid "Column names"
 msgid "Column names: "
-msgstr "Имиња на колони"
+msgstr "Имиња на колони: "
 
 #: libraries/classes/Plugins/Import/ImportCsv.php:120
 #: libraries/classes/Plugins/Import/ImportCsv.php:135
@@ -10329,10 +10040,8 @@ msgid "The imported file does not contain any data!"
 msgstr ""
 
 #: libraries/classes/Plugins/Import/ImportSql.php:68
-#, fuzzy
-#| msgid "MySQL&nbsp;4.0 compatible"
 msgid "SQL compatibility mode:"
-msgstr "MySQL&nbsp;4.0 компатибилно"
+msgstr "SQL компатибилен мод:"
 
 #: libraries/classes/Plugins/Import/ImportSql.php:80
 msgid "Do not use <code>AUTO_INCREMENT</code> for zero values"
@@ -10368,10 +10077,9 @@ msgid "PDF export page"
 msgstr "Тип на извоз"
 
 #: libraries/classes/Plugins/Schema/Pdf/PdfRelationSchema.php:102
-#, fuzzy, php-format
-#| msgid "Schema of the \"%s\" database - Page %s"
+#, php-format
 msgid "Schema of the %s database"
-msgstr "Шема на базата \"%s\" - Страница %s"
+msgstr "Шема на %s датабаза"
 
 #: libraries/classes/Plugins/Schema/Pdf/PdfRelationSchema.php:130
 #: libraries/classes/Plugins/Schema/Pdf/PdfRelationSchema.php:525
@@ -10816,10 +10524,8 @@ msgid "Enabled"
 msgstr "Овозможено"
 
 #: libraries/classes/Relation.php:116
-#, fuzzy
-#| msgid "Modifications have been saved"
 msgid "Configuration of pmadb…"
-msgstr "Измените се сочувани"
+msgstr "Конфигурација на pmadb…"
 
 #: libraries/classes/Relation.php:120 libraries/classes/Relation.php:156
 msgid "General relation features"
@@ -11350,15 +11056,14 @@ msgid "Sorry, we failed to restore the dropped event."
 msgstr ""
 
 #: libraries/classes/Rte/Events.php:149
-#, fuzzy, php-format
-#| msgid "Table %s has been dropped."
+#, php-format
 msgid "Event %1$s has been modified."
-msgstr "Табелата %s е избришана"
+msgstr "Настанот %1$s беше променет."
 
 #: libraries/classes/Rte/Events.php:169
-#, fuzzy, php-format
+#, php-format
 msgid "Event %1$s has been created."
-msgstr "Табелата %s е избришана"
+msgstr "Настанот %1$s беше создаден"
 
 #: libraries/classes/Rte/Events.php:183 libraries/classes/Rte/Routines.php:287
 #: libraries/classes/Rte/Triggers.php:159
@@ -11382,10 +11087,9 @@ msgid "Event name"
 msgstr "Вид на настан"
 
 #: libraries/classes/Rte/Events.php:450 libraries/classes/Rte/Routines.php:929
-#, fuzzy, php-format
-#| msgid "Change"
+#, php-format
 msgid "Change to %s"
-msgstr "Промени"
+msgstr "Промени во %s"
 
 #: libraries/classes/Rte/Events.php:456
 msgid "Execute at"
@@ -11450,9 +11154,8 @@ msgstr ""
 #: libraries/classes/Rte/Routines.php:172
 #: libraries/classes/Rte/Routines.php:1332
 #: libraries/classes/Rte/Routines.php:1542
-#, fuzzy
 msgid "Error in processing request:"
-msgstr "Листа на процеси"
+msgstr "Грешка при процесирање на барањето:"
 
 #: libraries/classes/Rte/Footer.php:102
 msgid "OFF"
@@ -11491,25 +11194,23 @@ msgid "Invalid routine type: \"%s\""
 msgstr ""
 
 #: libraries/classes/Rte/Routines.php:274
-#, fuzzy, php-format
+#, php-format
 msgid "Routine %1$s has been created."
-msgstr "Табелата %s е избришана"
+msgstr "Рутината %1$s беше создадена."
 
 #: libraries/classes/Rte/Routines.php:393
 msgid "Sorry, we failed to restore the dropped routine."
 msgstr ""
 
 #: libraries/classes/Rte/Routines.php:449
-#, fuzzy, php-format
-#| msgid "Table %s has been dropped."
+#, php-format
 msgid "Routine %1$s has been modified. Privileges have been adjusted."
-msgstr "Табелата %s е избришана"
+msgstr "Рутината %1$s беше променета. Привилегиите се прилагодени."
 
 #: libraries/classes/Rte/Routines.php:454
-#, fuzzy, php-format
-#| msgid "Table %s has been dropped."
+#, php-format
 msgid "Routine %1$s has been modified."
-msgstr "Табелата %s е избришана"
+msgstr "Рутината %1$s беше променета."
 
 #: libraries/classes/Rte/Routines.php:909
 #, fuzzy
@@ -11604,10 +11305,9 @@ msgid "You must provide a routine definition."
 msgstr ""
 
 #: libraries/classes/Rte/Routines.php:1418
-#, fuzzy, php-format
-#| msgid "Allows executing stored routines."
+#, php-format
 msgid "Execution results of routine %s"
-msgstr "Дозволува извршување на stored рутини."
+msgstr "Резултати на извршување на рутина %s"
 
 #: libraries/classes/Rte/Routines.php:1473
 #, php-format
@@ -11639,15 +11339,14 @@ msgid "Sorry, we failed to restore the dropped trigger."
 msgstr ""
 
 #: libraries/classes/Rte/Triggers.php:125
-#, fuzzy, php-format
-#| msgid "Table %s has been dropped."
+#, php-format
 msgid "Trigger %1$s has been modified."
-msgstr "Табелата %s е избришана"
+msgstr "Прекинувачот %1$s беше променет."
 
 #: libraries/classes/Rte/Triggers.php:145
-#, fuzzy, php-format
+#, php-format
 msgid "Trigger %1$s has been created."
-msgstr "Табелата %s е избришана"
+msgstr "Прекинувачот %1$s беше создаден."
 
 #: libraries/classes/Rte/Triggers.php:221
 #, fuzzy
@@ -11725,10 +11424,9 @@ msgid ""
 msgstr ""
 
 #: libraries/classes/Rte/Words.php:47
-#, fuzzy, php-format
-#| msgid "No tables found in database."
+#, php-format
 msgid "No routine with name %1$s found in database %2$s."
-msgstr "Табелите не се пронајдени во базата на податоци."
+msgstr "Не се најде рутина со име %1$s во датабаза %2$s."
 
 #: libraries/classes/Rte/Words.php:48
 msgid "There are no routines to display."
@@ -11756,10 +11454,9 @@ msgid "You do not have the necessary privileges to create a trigger."
 msgstr "Немате право на пристап овде!"
 
 #: libraries/classes/Rte/Words.php:61
-#, fuzzy, php-format
-#| msgid "No tables found in database."
+#, php-format
 msgid "No trigger with name %1$s found in database %2$s."
-msgstr "Табелите не се пронајдени во базата на податоци."
+msgstr "Немаше прекинувач со име %1$s во датабазата %2$s."
 
 #: libraries/classes/Rte/Words.php:62
 msgid "There are no triggers to display."
@@ -11771,10 +11468,9 @@ msgid "Add event"
 msgstr "Додади нов корисник"
 
 #: libraries/classes/Rte/Words.php:70
-#, fuzzy, php-format
-#| msgid "No rows selected"
+#, php-format
 msgid "Export of event %s"
-msgstr "Нема селектирани записи"
+msgstr "Извоз на настан %s"
 
 #: libraries/classes/Rte/Words.php:71
 #, fuzzy
@@ -11788,10 +11484,9 @@ msgid "You do not have the necessary privileges to create an event."
 msgstr "Немате право на пристап овде!"
 
 #: libraries/classes/Rte/Words.php:75
-#, fuzzy, php-format
-#| msgid "No tables found in database."
+#, php-format
 msgid "No event with name %1$s found in database %2$s."
-msgstr "Табелите не се пронајдени во базата на податоци."
+msgstr "Нема настан со име %1$s најден во датабазата %2$s."
 
 #: libraries/classes/Rte/Words.php:76
 msgid "There are no events to display."
@@ -12379,10 +12074,9 @@ msgid "The user %s already exists!"
 msgstr "Корисник %s веќе постои!"
 
 #: libraries/classes/Server/Privileges.php:4469
-#, fuzzy, php-format
-#| msgid "Privileges"
+#, php-format
 msgid "Privileges for %s"
-msgstr "Привилегии"
+msgstr "Привилегии на %s"
 
 #: libraries/classes/Server/Privileges.php:4478
 #: libraries/classes/Server/Status/Processes.php:69
@@ -12423,31 +12117,19 @@ msgid ""
 msgstr ""
 
 #: libraries/classes/Server/Privileges.php:4758
-#, fuzzy, php-format
-#| msgid ""
-#| "Note: phpMyAdmin gets the users' privileges directly from MySQL's "
-#| "privilege tables. The content of these tables may differ from the "
-#| "privileges the server uses, if they have been changed manually. In this "
-#| "case, you should %sreload the privileges%s before you continue."
+#, php-format
 msgid ""
 "Note: phpMyAdmin gets the users’ privileges directly from MySQL’s privilege "
 "tables. The content of these tables may differ from the privileges the "
 "server uses, if they have been changed manually. In this case, you should "
 "%sreload the privileges%s before you continue."
 msgstr ""
-"Напомена: phpMyAdmin ги зема привилегиите на корисникот директно од MySQL "
-"табелата на привилегии. Содржината на оваа табела табела може да се "
-"разликува од привилегиите кои серверот ги користи ако се вршени мануелни "
-"измени. Во тој случај %sповторно вчитајте ги привилегиите%s пред да "
-"продолжите со работа."
+"Белешка: phpMyAdmin ги зема привилегиите на корисникот директно од табелата "
+"на привилегии на MySQL. Содржината на оваа табела може да се разликува од "
+"привилегиите кои серверот ги користи ако се рачно изменети. Во тој случај "
+"%sповторно вчитајте ги привилегиите%s пред да продолжите."
 
 #: libraries/classes/Server/Privileges.php:4775
-#, fuzzy
-#| msgid ""
-#| "Note: phpMyAdmin gets the users' privileges directly from MySQL's "
-#| "privilege tables. The content of these tables may differ from the "
-#| "privileges the server uses, if they have been changed manually. In this "
-#| "case, you should %sreload the privileges%s before you continue."
 msgid ""
 "Note: phpMyAdmin gets the users’ privileges directly from MySQL’s privilege "
 "tables. The content of these tables may differ from the privileges the "
@@ -12455,11 +12137,11 @@ msgid ""
 "privileges have to be reloaded but currently, you don't have the RELOAD "
 "privilege."
 msgstr ""
-"Напомена: phpMyAdmin ги зема привилегиите на корисникот директно од MySQL "
-"табелата на привилегии. Содржината на оваа табела табела може да се "
-"разликува од привилегиите кои серверот ги користи ако се вршени мануелни "
-"измени. Во тој случај %sповторно вчитајте ги привилегиите%s пред да "
-"продолжите со работа."
+"Белешка: phpMyAdmin ги зема привилегиите на корисникот директно од табелата "
+"на привилегии на MySQL. Содржината на оваа табела може да се разликува од "
+"привилегиите кои серверот ги користи ако се рачно изменети. Во тој случај, "
+"привилегиите треба да се вчитаат повторно, но вие ja немате RELOAD "
+"привилегијата."
 
 #: libraries/classes/Server/Privileges.php:5060
 msgid "You have added a new user."
@@ -12478,10 +12160,9 @@ msgid "Network traffic since startup: %s"
 msgstr ""
 
 #: libraries/classes/Server/Status.php:81
-#, fuzzy, php-format
-#| msgid "This MySQL server has been running for %s. It started up on %s."
+#, php-format
 msgid "This MySQL server has been running for %1$s. It started up on %2$s."
-msgstr "Овој MySQL сервер работи %s. Стартуван е на %s."
+msgstr "Овој MySQL сервер работи %1$s. Стартуван е на %2$s."
 
 #: libraries/classes/Server/Status.php:102
 msgid ""
@@ -13286,9 +12967,8 @@ msgid ""
 msgstr ""
 
 #: libraries/classes/Server/Status/Variables.php:607
-#, fuzzy
 msgid "Percentage of used key cache (calculated value)"
-msgstr "Кодна страна на податотеката:"
+msgstr "Процентажа на користен кеш за клучеви (калкулирана вредност)"
 
 #: libraries/classes/Server/Status/Variables.php:610
 msgid "The number of requests to read a key block from the cache."
@@ -13769,25 +13449,22 @@ msgid "This MySQL server does not support the %s storage engine."
 msgstr "Овој MySQL сервер не подржува %s вид на складиште."
 
 #: libraries/classes/Table.php:338
-#, fuzzy
-#| msgid "Show tables"
 msgid "Unknown table status:"
-msgstr "Прикажи табели"
+msgstr "Непознат статус на табела:"
 
 #: libraries/classes/Table.php:911
-#, fuzzy, php-format
+#, php-format
 msgid "Source database `%s` was not found!"
-msgstr "Пребарување низ базата на податоци"
+msgstr "Изворната датабаза `%s` не се најде!"
 
 #: libraries/classes/Table.php:919
-#, fuzzy, php-format
+#, php-format
 msgid "Target database `%s` was not found!"
-msgstr "Пребарување низ базата на податоци"
+msgstr "Целната датабаза `%s` не се најде!"
 
 #: libraries/classes/Table.php:1462
-#, fuzzy
 msgid "Invalid database:"
-msgstr "Базата на податоци не постои"
+msgstr "Невалидна датабаза:"
 
 #: libraries/classes/Table.php:1479
 #, fuzzy
@@ -13796,15 +13473,14 @@ msgid "Invalid table name:"
 msgstr "во табела(и):"
 
 #: libraries/classes/Table.php:1514
-#, fuzzy, php-format
+#, php-format
 msgid "Failed to rename table %1$s to %2$s!"
-msgstr "Верзија на серверот"
+msgstr "Не успеа да се преимени табелата %1$s во %2$s!"
 
 #: libraries/classes/Table.php:1533
-#, fuzzy, php-format
-#| msgid "Table %s has been renamed to %s."
+#, php-format
 msgid "Table %1$s has been renamed to %2$s."
-msgstr "Табелата %s е преименувана во %s"
+msgstr "Табелата %1$s беше преименувана во %2$s."
 
 #: libraries/classes/Table.php:1767
 msgid "Could not save table UI preferences!"
@@ -13843,10 +13519,9 @@ msgid "Error creating foreign key on %1$s (check data types)"
 msgstr ""
 
 #: libraries/classes/Template.php:127
-#, fuzzy, php-format
-#| msgid "Allows reading data."
+#, php-format
 msgid "Error while working with template cache: %s"
-msgstr "Дозволува читање на податоци."
+msgstr "Грешка при работење со кеш шаблон: %s"
 
 #: libraries/classes/Theme.php:186
 #, php-format
@@ -13996,9 +13671,9 @@ msgid "Tracking for %1$s was deactivated at version %2$s."
 msgstr ""
 
 #: libraries/classes/Tracking.php:986
-#, fuzzy, php-format
+#, php-format
 msgid "Version %1$s of %2$s was deleted."
-msgstr "Верзија на серверот"
+msgstr "Верзијата %1$s на %2$s беше избришана."
 
 #: libraries/classes/Tracking.php:1017
 #, php-format
@@ -14086,9 +13761,9 @@ msgid "An alias for BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE"
 msgstr ""
 
 #: libraries/classes/Types.php:265
-#, fuzzy, php-format
+#, php-format
 msgid "A date, supported range is %1$s to %2$s"
-msgstr "Верзија на серверот"
+msgstr "Датум, поддржан опсег од %1$s до %2$s"
 
 #: libraries/classes/Types.php:270
 #, php-format
@@ -14102,9 +13777,9 @@ msgid ""
 msgstr ""
 
 #: libraries/classes/Types.php:281
-#, fuzzy, php-format
+#, php-format
 msgid "A time, range is %1$s to %2$s"
-msgstr "Верзија на серверот"
+msgstr "Време, опсег од %1$s до %2$s"
 
 #: libraries/classes/Types.php:285
 msgid ""
@@ -14334,10 +14009,8 @@ msgid "%s days, %s hours, %s minutes and %s seconds"
 msgstr "%s денови, %s часови, %s минути и %s секунди"
 
 #: libraries/classes/Util.php:1882
-#, fuzzy
-#| msgid "Routines"
 msgid "Missing parameter:"
-msgstr "Рутини"
+msgstr "Недостига параметар:"
 
 #: libraries/classes/Util.php:2440
 #, fuzzy, php-format
@@ -14688,9 +14361,8 @@ msgid "You can reset all your settings and restore them to default values."
 msgstr ""
 
 #: prefs_twofactor.php:29
-#, fuzzy
 msgid "Two-factor authentication has been removed."
-msgstr "Внатрешни релации"
+msgstr "Дво-факторната автентикација се отстрани."
 
 #: prefs_twofactor.php:39
 msgid "Two-factor authentication has been configured."
@@ -14943,7 +14615,7 @@ msgstr "Прикажи содржина (шема) на табелите"
 
 #: tbl_get_field.php:38
 msgid "Invalid table name"
-msgstr ""
+msgstr "Невалидно име на табела"
 
 #. l10n: In case a SQL query did not pass a security check
 #: tbl_get_field.php:46 transformation_wrapper.php:69
@@ -14956,10 +14628,8 @@ msgid "Row: %1$s, Column: %2$s, Error: %3$s"
 msgstr ""
 
 #: tbl_row_action.php:73
-#, fuzzy
-#| msgid "No rows selected"
 msgid "No row selected."
-msgstr "Нема селектирани записи"
+msgstr "Нема избран ред."
 
 #: tbl_tracking.php:34
 #, php-format
@@ -15036,10 +14706,8 @@ msgstr "Саб"
 #: templates/start_and_number_of_rows_panel.twig:10
 #: templates/display/results/additional_fields.twig:6
 #: templates/display/export/options_rows.twig:10
-#, fuzzy
-#| msgid "Number of rows per page"
 msgid "Number of rows:"
-msgstr "Број на записи на страница"
+msgstr "Број на редови:"
 
 #: templates/toggle_button.twig:3
 msgid "Click to toggle"
@@ -15414,24 +15082,20 @@ msgid "See table structure"
 msgstr "База на податоци"
 
 #: templates/database/designer/database_tables.twig:91
-#, fuzzy, php-format
-#| msgctxt "Create SELECT … query"
-#| msgid "Select"
+#, php-format
 msgid "Select \"%s\""
-msgstr "избери се"
+msgstr "Избери \"%s\""
 
 #: templates/database/designer/database_tables.twig:126
-#, fuzzy, php-format
-#| msgid "Number of rows per page"
+#, php-format
 msgid "Add an option for column \"%s\"."
-msgstr "Број на записи на страница"
+msgstr "Додади опција за колона \"%s\"."
 
 #: templates/display/export/options_output_save_dir.twig:5
 #: templates/display/export/options_quick_export.twig:8
-#, fuzzy, php-format
-#| msgid "Save on server in %s directory"
+#, php-format
 msgid "Save on server in the directory <strong>%s</strong>"
-msgstr "Сочувај на серверот во директориумот %s"
+msgstr "Сочувај на серверот во директориумот <strong>%s</strong>"
 
 #: templates/login/twofactor.twig:5
 msgid "Verify"
@@ -15549,12 +15213,11 @@ msgid "Save chart as image"
 msgstr "Сочувај како податотека"
 
 #: templates/database/structure/body_for_table_summary.twig:6
-#, fuzzy, php-format
-#| msgid "%s table(s)"
+#, php-format
 msgid "%s table"
 msgid_plural "%s tables"
 msgstr[0] "%s табела"
-msgstr[1] "%s табела"
+msgstr[1] "%s табели"
 
 #: templates/database/structure/body_for_table_summary.twig:17
 msgid "Sum"
@@ -15585,10 +15248,8 @@ msgid ""
 msgstr ""
 
 #: templates/display/export/options_output_compression.twig:4
-#, fuzzy
-#| msgid "Compression"
 msgid "Compression:"
-msgstr "Компресија"
+msgstr "Компресија:"
 
 #: templates/display/export/options_output_compression.twig:11
 #, fuzzy
@@ -15604,9 +15265,8 @@ msgstr "\"gzip\""
 
 #: templates/database/designer/rename_to_panel.twig:22
 #: templates/database/designer/options_panel.twig:84
-#, fuzzy
 msgid "Rename to"
-msgstr "Промени го името на табелата во "
+msgstr "Преименувајте во"
 
 #: templates/database/designer/rename_to_panel.twig:30
 #: templates/database/designer/options_panel.twig:90
@@ -15845,9 +15505,8 @@ msgid "Delete tracking"
 msgstr "Дозволува вметнување и замена на података."
 
 #: templates/database/tracking/tracked_tables.twig:65
-#, fuzzy
 msgid "Versions"
-msgstr "Персиски"
+msgstr "Верзии"
 
 #: templates/database/create_table.twig:7
 #: templates/database/designer/side_menu.twig:78
@@ -15889,14 +15548,14 @@ msgid "Add/Delete columns"
 msgstr "Додади/избриши колона"
 
 #: templates/table/tracking/create_version.twig:11
-#, fuzzy, php-format
+#, php-format
 msgid "Create version %1$s of %2$s"
-msgstr "Верзија на серверот"
+msgstr "Создади верзија %1$s од %2$s"
 
 #: templates/table/tracking/create_version.twig:16
-#, fuzzy, php-format
+#, php-format
 msgid "Create version %1$s"
-msgstr "Верзија на серверот"
+msgstr "Создади верзија %1$s"
 
 #: templates/table/tracking/create_version.twig:20
 msgid "Track these data definition statements:"
@@ -15936,9 +15595,9 @@ msgid "As defined:"
 msgstr ""
 
 #: templates/server/databases/table_row.twig:13
-#, fuzzy, php-format
+#, php-format
 msgid "Jump to database '%s'"
-msgstr "Базата на податоци не постои"
+msgstr "Прескокни во базата на податоци '%s'"
 
 #: templates/server/databases/table_row.twig:63
 #, php-format
@@ -15991,10 +15650,8 @@ msgid "Add to Favorites"
 msgstr "Додади нов корисник"
 
 #: templates/database/designer/edit_delete_pages.twig:6
-#, fuzzy
-#| msgid "Page number:"
 msgid "Page to open"
-msgstr "Број на страници:"
+msgstr "Страна да се отвори"
 
 #: templates/database/designer/edit_delete_pages.twig:6
 #, fuzzy
@@ -16020,22 +15677,16 @@ msgid "column(s)"
 msgstr "Имиња на колони"
 
 #: templates/columns_definitions/column_definitions_form.twig:74
-#, fuzzy
-#| msgid "Collation"
 msgid "Collation:"
-msgstr "Подредување"
+msgstr "Подредување:"
 
 #: templates/columns_definitions/column_definitions_form.twig:77
-#, fuzzy
-#| msgid "Storage Engine"
 msgid "Storage Engine:"
-msgstr "Вид на складиште"
+msgstr "Мотор на складиште:"
 
 #: templates/columns_definitions/column_definitions_form.twig:82
-#, fuzzy
-#| msgid "Connections"
 msgid "Connection:"
-msgstr "Конекции"
+msgstr "Конекциja:"
 
 #: templates/columns_definitions/column_definitions_form.twig:128
 msgid "PARTITION definition:"
@@ -16185,10 +15836,8 @@ msgid "Size"
 msgstr "Големина"
 
 #: templates/display/export/options_rows.twig:2
-#, fuzzy
-#| msgid "Rows"
 msgid "Rows:"
-msgstr "Записи"
+msgstr "Редови:"
 
 #: templates/display/export/options_rows.twig:7
 msgid "Dump some row(s)"
@@ -16343,14 +15992,14 @@ msgid "Importing into the current server"
 msgstr "Не можам да се пријавам на MySQL серверот"
 
 #: templates/display/import/import.twig:42
-#, fuzzy, php-format
+#, php-format
 msgid "Importing into the database \"%s\""
-msgstr "Базата на податоци не постои"
+msgstr "Увоз во датабаза \"%s\""
 
 #: templates/display/import/import.twig:44
-#, fuzzy, php-format
+#, php-format
 msgid "Importing into the table \"%s\""
-msgstr "Базата на податоци не постои"
+msgstr "Увозување во табелата \"%s\""
 
 #: templates/display/import/import.twig:50
 #, fuzzy
@@ -16456,15 +16105,12 @@ msgid "None"
 msgstr "нема"
 
 #: templates/display/export/template_loading.twig:2
-#, fuzzy
 msgid "Export templates:"
-msgstr "Тип на извоз"
+msgstr "Шаблони за извоз:"
 
 #: templates/display/export/template_loading.twig:6
-#, fuzzy
-#| msgid "File name template"
 msgid "New template:"
-msgstr "Шаблон на име на податотека"
+msgstr "Нов шаблон:"
 
 #: templates/display/export/template_loading.twig:8
 #, fuzzy
@@ -16513,20 +16159,17 @@ msgid "Username"
 msgstr "Корисничко име:"
 
 #: templates/database/search/results.twig:12
-#, fuzzy, php-format
-#| msgid "%s match(es) inside table <i>%s</i>"
+#, php-format
 msgid "%1$s match in <strong>%2$s</strong>"
 msgid_plural "%1$s matches in <strong>%2$s</strong>"
-msgstr[0] "%s погодоци во табелата <i>%s</i>"
-msgstr[1] "%s погодоци во табелата <i>%s</i>"
+msgstr[0] "%1$s погодок во <strong>%2$s</strong>"
+msgstr[1] "%1$s погодоци во <strong>%2$s</strong>"
 
 #: templates/database/search/results.twig:56
-#, fuzzy
-#| msgid "<b>Total:</b> <i>%s</i> match(es)"
 msgid "<strong>Total:</strong> <em>%count%</em> match"
 msgid_plural "<strong>Total:</strong> <em>%count%</em> matches"
-msgstr[0] "<b>вкупно:</b> <i>%s</i> погодоци"
-msgstr[1] "<b>вкупно:</b> <i>%s</i> погодоци"
+msgstr[0] "<strong>Вкупно:</strong> <em>%count%</em> погодок"
+msgstr[1] "<strong>Вкупно:</strong> <em>%count%</em> погодоци"
 
 #: templates/columns_definitions/table_fields_definitions.twig:17
 #, fuzzy
@@ -16855,10 +16498,8 @@ msgid "Convert to Kana"
 msgstr ""
 
 #: templates/columns_definitions/partitions.twig:17
-#, fuzzy
-#| msgid "Position"
 msgid "Partition by:"
-msgstr "Позиција"
+msgstr "Подели партиции по:"
 
 #: templates/columns_definitions/partitions.twig:32
 #: templates/columns_definitions/partitions.twig:60
@@ -16868,22 +16509,16 @@ msgid "Expression or column list"
 msgstr "Број на записи на страница"
 
 #: templates/columns_definitions/partitions.twig:37
-#, fuzzy
-#| msgid "Position"
 msgid "Partitions:"
-msgstr "Позиција"
+msgstr "Партиции:"
 
 #: templates/columns_definitions/partitions.twig:45
-#, fuzzy
-#| msgid "Position"
 msgid "Subpartition by:"
-msgstr "Позиција"
+msgstr "Подпартицирај по:"
 
 #: templates/columns_definitions/partitions.twig:65
-#, fuzzy
-#| msgid "Position"
 msgid "Subpartitions:"
-msgstr "Позиција"
+msgstr "Подпартиции:"
 
 #: templates/columns_definitions/partitions.twig:78
 #, fuzzy
@@ -17045,10 +16680,8 @@ msgid "Hide/Show tables with no relationship"
 msgstr "Предложи структура на табелата"
 
 #: templates/database/designer/table_list.twig:25
-#, fuzzy
-#| msgid "Number of rows per page"
 msgid "Number of tables:"
-msgstr "Број на записи на страница"
+msgstr "Број на табели:"
 
 #: templates/database/multi_table_query/form.twig:16
 msgid "Query window"
@@ -17324,9 +16957,8 @@ msgid "View name can not be empty!"
 msgstr ""
 
 #: view_operations.php:105
-#, fuzzy
 msgid "Rename view to"
-msgstr "Промени го името на табелата во "
+msgstr "Преименувај го погледот во"
 
 #: view_operations.php:144
 #, fuzzy
@@ -17347,6 +16979,8 @@ msgid ""
 "To have more accurate averages it is recommended to let the server run for "
 "longer than a day before running this analyzer"
 msgstr ""
+"За да имате попрецизни просеци, препорачано е да го оставите серверот да "
+"работи за подолго од еден ден пред да ја извршите оваа анализа"
 
 #: libraries/advisory_rules_generic.txt:54
 #, php-format
@@ -17354,9 +16988,8 @@ msgid "The uptime is only %s"
 msgstr "Работно време е само %s"
 
 #: libraries/advisory_rules_generic.txt:56
-#, fuzzy
 msgid "Questions below 1,000"
-msgstr "Персиски"
+msgstr "Прашања под 1,000"
 
 #: libraries/advisory_rules_generic.txt:59
 msgid ""
@@ -17371,22 +17004,22 @@ msgid ""
 "Let the server run for a longer time until it has executed a greater amount "
 "of queries."
 msgstr ""
+"Оставате го серверот да работи за подолго време додека се егзекуриани "
+"поголеми броеви на барања."
 
 #: libraries/advisory_rules_generic.txt:61
-#, fuzzy, php-format
-#| msgid "Connections"
+#, php-format
 msgid "Current amount of Questions: %s"
-msgstr "Конекции"
+msgstr "Сегашна вредност на Прашања: %s"
 
 #: libraries/advisory_rules_generic.txt:63
-#, fuzzy
 msgid "Percentage of slow queries"
-msgstr "Прикажи комплетни упити"
+msgstr "Процентажа на спори барања"
 
 #: libraries/advisory_rules_generic.txt:66
 msgid ""
 "There is a lot of slow queries compared to the overall amount of Queries."
-msgstr ""
+msgstr "Има многу спори барања во споредба со вкупниот број на Барања."
 
 #: libraries/advisory_rules_generic.txt:67
 #: libraries/advisory_rules_generic.txt:74
@@ -17394,21 +17027,24 @@ msgid ""
 "You might want to increase {long_query_time} or optimize the queries listed "
 "in the slow query log"
 msgstr ""
+"Можете да го зголемите {long_query_time} или да го оптимизирате барањето "
+"наведено во логот за спори барања"
 
 #: libraries/advisory_rules_generic.txt:68
 #, php-format
 msgid "The slow query rate should be below 5%%, your value is %s%%."
 msgstr ""
+"Стапката за спори барања би требало да биде под 5%%, вашата вредност е %s%%."
 
 #: libraries/advisory_rules_generic.txt:70
-#, fuzzy
 msgid "Slow query rate"
-msgstr "SQL упит"
+msgstr "Спора рата на барање"
 
 #: libraries/advisory_rules_generic.txt:73
 msgid ""
 "There is a high percentage of slow queries compared to the server uptime."
 msgstr ""
+"Има голем процент на спори барања во споредба со работното време на серверот."
 
 #: libraries/advisory_rules_generic.txt:75
 #, php-format
@@ -17416,17 +17052,20 @@ msgid ""
 "You have a slow query rate of %s per hour, you should have less than 1%% per "
 "hour."
 msgstr ""
+"Вие имате рана на спори барања од %s на саат, би требало да биде помалку од "
+"1%% на саат."
 
 #: libraries/advisory_rules_generic.txt:77
-#, fuzzy
 msgid "Long query time"
-msgstr "SQL упит"
+msgstr "Долго време на барање"
 
 #: libraries/advisory_rules_generic.txt:80
 msgid ""
 "{long_query_time} is set to 10 seconds or more, thus only slow queries that "
 "take above 10 seconds are logged."
 msgstr ""
+"{long_query_time} е подесено на 10 секунди или повеќе, така што се логираат "
+"само бавните барања што траат над 10 секунди."
 
 #: libraries/advisory_rules_generic.txt:81
 msgid ""
@@ -17437,20 +17076,17 @@ msgstr ""
 #: libraries/advisory_rules_generic.txt:82
 #, php-format
 msgid "long_query_time is currently set to %ds."
-msgstr ""
+msgstr "long_query_time е моментално на %d секунди."
 
 #: libraries/advisory_rules_generic.txt:84
 #: libraries/advisory_rules_generic.txt:91
-#, fuzzy
 msgid "Slow query logging"
-msgstr "SQL упит"
+msgstr "Логирање на спори барања"
 
 #: libraries/advisory_rules_generic.txt:87
 #: libraries/advisory_rules_generic.txt:94
-#, fuzzy
-#| msgid "The server is not responding"
 msgid "The slow query log is disabled."
-msgstr "Серверот не одговара"
+msgstr "Логирањето на спори барања е исклучено."
 
 #: libraries/advisory_rules_generic.txt:88
 msgid ""
@@ -17473,37 +17109,36 @@ msgid "slow_query_log is set to 'OFF'"
 msgstr ""
 
 #: libraries/advisory_rules_generic.txt:100
-#, fuzzy
-#| msgid "Select Tables"
 msgid "Release Series"
-msgstr "Избери табели"
+msgstr "Серија на Издание"
 
 #: libraries/advisory_rules_generic.txt:103
 msgid "The MySQL server version less than 5.1."
-msgstr ""
+msgstr "Верзијата на MySQL серверот е помала од 5.1."
 
 #: libraries/advisory_rules_generic.txt:104
 msgid ""
 "You should upgrade, as MySQL 5.1 has improved performance, and MySQL 5.5 "
 "even more so."
 msgstr ""
+"Треба да го надградите софтверот, MySQL 5.1 има подобрена перформанса, со "
+"MySQL 5.5 уште повеќе."
 
 #: libraries/advisory_rules_generic.txt:105
 #: libraries/advisory_rules_generic.txt:112
 #: libraries/advisory_rules_generic.txt:119
-#, fuzzy, php-format
+#, php-format
 msgid "Current version: %s"
-msgstr "Верзија на серверот"
+msgstr "Сегашна верзија: %s"
 
 #: libraries/advisory_rules_generic.txt:107
 #: libraries/advisory_rules_generic.txt:114
-#, fuzzy
 msgid "Minor Version"
-msgstr "Персиски"
+msgstr "Мала Верзија"
 
 #: libraries/advisory_rules_generic.txt:110
 msgid "Version less than 5.1.30 (the first GA release of 5.1)."
-msgstr ""
+msgstr "Верзија пониска од 5.1.30 (првата GA верзија од 5.1)."
 
 #: libraries/advisory_rules_generic.txt:111
 msgid ""
@@ -17513,25 +17148,21 @@ msgstr ""
 
 #: libraries/advisory_rules_generic.txt:117
 msgid "Version less than 5.5.8 (the first GA release of 5.5)."
-msgstr ""
+msgstr "Верзија пониска од 5.5.8 (првата GA верзија од 5.5)."
 
 #: libraries/advisory_rules_generic.txt:118
-#, fuzzy
-#| msgid "You should upgrade to %s %s or later."
 msgid "You should upgrade, to a stable version of MySQL 5.5."
-msgstr ""
-"Би требало да го надоградите вашиот %s сервер на верзија %s или понова."
+msgstr "Би требало да надградите до стабилна верзија на MySQL 5.5."
 
 #: libraries/advisory_rules_generic.txt:121
 #: libraries/advisory_rules_generic.txt:128
-#, fuzzy
-#| msgid "Description"
 msgid "Distribution"
-msgstr "Опис"
+msgstr "Дистрибуција"
 
 #: libraries/advisory_rules_generic.txt:124
 msgid "Version is compiled from source, not a MySQL official binary."
 msgstr ""
+"Верзијата е компајлирана од изворен код, не е официјален MySQL бинарен код."
 
 #: libraries/advisory_rules_generic.txt:125
 msgid ""
@@ -17553,20 +17184,20 @@ msgid ""
 "Percona documentation is at <a href=\"https://www.percona.com/software/"
 "documentation/\">https://www.percona.com/software/documentation/</a>"
 msgstr ""
+"Percona документација е на <a href=\"https://www.percona.com/software/"
+"documentation/\">https://www.percona.com/software/documentation/</a>"
 
 #: libraries/advisory_rules_generic.txt:133
 msgid "'percona' found in version_comment"
 msgstr ""
 
 #: libraries/advisory_rules_generic.txt:135
-#, fuzzy
-#| msgid "MySQL charset"
 msgid "MySQL Architecture"
-msgstr "MySQL множество на знаци"
+msgstr "MySQL архитектура"
 
 #: libraries/advisory_rules_generic.txt:138
 msgid "MySQL is not compiled as a 64-bit package."
-msgstr ""
+msgstr "MySQL не е компајлиран како 64-битен пакет."
 
 #: libraries/advisory_rules_generic.txt:139
 msgid ""
@@ -17578,17 +17209,15 @@ msgstr ""
 #: libraries/advisory_rules_generic.txt:140
 #, php-format
 msgid "Available memory on this host: %s"
-msgstr ""
+msgstr "Достапна меморија на овој хост: %s"
 
 #: libraries/advisory_rules_generic.txt:145
-#, fuzzy
 msgid "Query caching method"
-msgstr "Вид на упит"
+msgstr "Метод на кеширање за барања"
 
 #: libraries/advisory_rules_generic.txt:148
-#, fuzzy
 msgid "Suboptimal caching method."
-msgstr "Вид на упит"
+msgstr "Неоптимален метод на кеширање."
 
 #: libraries/advisory_rules_generic.txt:149
 msgid ""
@@ -17606,17 +17235,13 @@ msgid ""
 msgstr ""
 
 #: libraries/advisory_rules_generic.txt:154
-#, fuzzy
-#| msgid "Allows creating temporary tables."
 msgid "Percentage of sorts that cause temporary tables"
-msgstr "Дозволува креирање на привремени табели…"
+msgstr "Процентажа на одредби што причунуваат привремени таблици"
 
 #: libraries/advisory_rules_generic.txt:157
 #: libraries/advisory_rules_generic.txt:164
-#, fuzzy
-#| msgid "Allows creating temporary tables."
 msgid "Too many sorts are causing temporary tables."
-msgstr "Дозволува креирање на привремени табели…"
+msgstr "Премногу одредби предизвикуваат привремени табели."
 
 #: libraries/advisory_rules_generic.txt:158
 #: libraries/advisory_rules_generic.txt:165
@@ -17633,23 +17258,20 @@ msgid ""
 msgstr ""
 
 #: libraries/advisory_rules_generic.txt:161
-#, fuzzy
-#| msgid "Allows creating temporary tables."
 msgid "Rate of sorts that cause temporary tables"
-msgstr "Дозволува креирање на привремени табели…"
+msgstr "Рата на одредба што предизвикува привремени табели"
 
 #: libraries/advisory_rules_generic.txt:166
-#, fuzzy, php-format
-#| msgid "Sort buffer size"
+#, php-format
 msgid ""
 "Temporary tables average: %s, this value should be less than 1 per hour."
-msgstr "Големина на меѓупросторот за подредување"
+msgstr ""
+"Просек на привремени табели: %s, оваа вредност треба да биде помала од 1 на "
+"саат."
 
 #: libraries/advisory_rules_generic.txt:168
-#, fuzzy
-#| msgid "Start"
 msgid "Sort rows"
-msgstr "Саб"
+msgstr "Одреди редови"
 
 #: libraries/advisory_rules_generic.txt:171
 msgid "There are lots of rows being sorted."
@@ -17683,20 +17305,18 @@ msgid ""
 msgstr ""
 
 #: libraries/advisory_rules_generic.txt:181
-#, fuzzy, php-format
-#| msgid "Sort buffer size"
+#, php-format
 msgid "Table joins average: %s, this value should be less than 1 per hour"
-msgstr "Големина на меѓупросторот за подредување"
+msgstr ""
+"Просек на споени табели: %s, оваа вредност треба да биде помала од 1 на саат"
 
 #: libraries/advisory_rules_generic.txt:183
-#, fuzzy
 msgid "Rate of reading first index entry"
-msgstr "Кодна страна на податотеката:"
+msgstr "Рата на читање првиот внес на индекс"
 
 #: libraries/advisory_rules_generic.txt:186
-#, fuzzy
 msgid "The rate of reading the first index entry is high."
-msgstr "Кодна страна на податотеката:"
+msgstr "Ратата на читање на првиот внес на индескот е висока."
 
 #: libraries/advisory_rules_generic.txt:187
 msgid ""
@@ -17709,20 +17329,18 @@ msgid ""
 msgstr ""
 
 #: libraries/advisory_rules_generic.txt:188
-#, fuzzy, php-format
-#| msgid "Sort buffer size"
+#, php-format
 msgid "Index scans average: %s, this value should be less than 1 per hour"
-msgstr "Големина на меѓупросторот за подредување"
+msgstr ""
+"Просек на скенирање на индекс: %s, оваа вредност треба да биде под 1 на саат"
 
 #: libraries/advisory_rules_generic.txt:190
-#, fuzzy
 msgid "Rate of reading fixed position"
-msgstr "Кодна страна на податотеката:"
+msgstr "Рата на читање на фиксна позиција"
 
 #: libraries/advisory_rules_generic.txt:193
-#, fuzzy
 msgid "The rate of reading data from a fixed position is high."
-msgstr "Кодна страна на податотеката:"
+msgstr "Ратата на читање од фиксна позиција е висока."
 
 #: libraries/advisory_rules_generic.txt:194
 msgid ""
@@ -17739,14 +17357,12 @@ msgid ""
 msgstr ""
 
 #: libraries/advisory_rules_generic.txt:197
-#, fuzzy
 msgid "Rate of reading next table row"
-msgstr "Направи нова страница"
+msgstr "Рата на читање на следниот ред на табелата"
 
 #: libraries/advisory_rules_generic.txt:200
-#, fuzzy
 msgid "The rate of reading the next table row is high."
-msgstr "Направи нова страница"
+msgstr "Ратата на читање на следниот ред на табелата е висока."
 
 #: libraries/advisory_rules_generic.txt:201
 msgid ""
@@ -17755,11 +17371,12 @@ msgid ""
 msgstr ""
 
 #: libraries/advisory_rules_generic.txt:202
-#, fuzzy, php-format
-#| msgid "Sort buffer size"
+#, php-format
 msgid ""
 "Rate of reading next table row: %s, this value should be less than 1 per hour"
-msgstr "Големина на меѓупросторот за подредување"
+msgstr ""
+"Рата на читање на следниот ред на табелата: %s, оваа вредност треба да биде "
+"под 1 на саат"
 
 #: libraries/advisory_rules_generic.txt:205
 msgid "Different tmp_table_size and max_heap_table_size"
@@ -17783,10 +17400,8 @@ msgid "Current values are tmp_table_size: %s, max_heap_table_size: %s"
 msgstr ""
 
 #: libraries/advisory_rules_generic.txt:212
-#, fuzzy
-#| msgid "Table of contents"
 msgid "Percentage of temp tables on disk"
-msgstr "Содржина"
+msgstr "Процентажа на привремени табели на диск"
 
 #: libraries/advisory_rules_generic.txt:215
 #: libraries/advisory_rules_generic.txt:222
@@ -17814,10 +17429,8 @@ msgid ""
 msgstr ""
 
 #: libraries/advisory_rules_generic.txt:219
-#, fuzzy
-#| msgid "%s table(s)"
 msgid "Temp disk rate"
-msgstr "%s табела"
+msgstr "Рата на привремен диск"
 
 #: libraries/advisory_rules_generic.txt:223
 msgid ""
@@ -17838,10 +17451,8 @@ msgid ""
 msgstr ""
 
 #: libraries/advisory_rules_generic.txt:228
-#, fuzzy
-#| msgid "Sort buffer size"
 msgid "MyISAM key buffer size"
-msgstr "Големина на меѓупросторот за подредување"
+msgstr "Големина на бафер за MyISAM клучеви"
 
 #: libraries/advisory_rules_generic.txt:231
 msgid "Key buffer is not initialized. No MyISAM indexes will be cached."
@@ -17854,10 +17465,8 @@ msgid ""
 msgstr ""
 
 #: libraries/advisory_rules_generic.txt:233
-#, fuzzy
-#| msgid "Sort buffer size"
 msgid "key_buffer_size is 0"
-msgstr "Големина на меѓупросторот за подредување"
+msgstr "key_buffer_size е 0"
 
 #: libraries/advisory_rules_generic.txt:235
 #, fuzzy, php-format
@@ -17881,28 +17490,26 @@ msgid ""
 msgstr ""
 
 #: libraries/advisory_rules_generic.txt:240
-#, fuzzy, php-format
-#| msgid "Sort buffer size"
+#, php-format
 msgid ""
 "max %% MyISAM key buffer ever used: %s%%, this value should be above 95%%"
-msgstr "Големина на меѓупросторот за подредување"
+msgstr ""
+"Максимум %% MyISAM искористен клучен бафер: %s%%, оваа вредност треба да "
+"биде над 95%%"
 
 #: libraries/advisory_rules_generic.txt:243
-#, fuzzy
-#| msgid "Sort buffer size"
 msgid "Percentage of MyISAM key buffer used"
-msgstr "Големина на меѓупросторот за подредување"
+msgstr "Големина на искористен MyISAM клучен бафер"
 
 #: libraries/advisory_rules_generic.txt:248
-#, fuzzy, php-format
-#| msgid "Sort buffer size"
+#, php-format
 msgid "%% MyISAM key buffer used: %s%%, this value should be above 95%%"
-msgstr "Големина на меѓупросторот за подредување"
+msgstr ""
+"%% MyISAM искористен клучен бафер: %s%%, оваа вредност треба да биде над 95%%"
 
 #: libraries/advisory_rules_generic.txt:250
-#, fuzzy
 msgid "Percentage of index reads from memory"
-msgstr "Прикажи комплетни упити"
+msgstr "Процентажа на индекс читања од меморија"
 
 #: libraries/advisory_rules_generic.txt:253
 #, php-format
@@ -17914,20 +17521,17 @@ msgid "You may need to increase {key_buffer_size}."
 msgstr ""
 
 #: libraries/advisory_rules_generic.txt:255
-#, fuzzy, php-format
-#| msgid "Sort buffer size"
+#, php-format
 msgid "Index reads from memory: %s%%, this value should be above 95%%"
-msgstr "Големина на меѓупросторот за подредување"
+msgstr "Индекс читања од меморија: %s%%, оваа вредност треба да биде над 95%%"
 
 #: libraries/advisory_rules_generic.txt:259
-#, fuzzy
 msgid "Rate of table open"
-msgstr "Направи нова страница"
+msgstr "Рата на отварање на табели"
 
 #: libraries/advisory_rules_generic.txt:262
-#, fuzzy
 msgid "The rate of opening tables is high."
-msgstr "Кодна страна на податотеката:"
+msgstr "Рата на отварање на табели е висока."
 
 #: libraries/advisory_rules_generic.txt:263
 msgid ""
@@ -17936,15 +17540,15 @@ msgid ""
 msgstr ""
 
 #: libraries/advisory_rules_generic.txt:264
-#, fuzzy, php-format
-#| msgid "Sort buffer size"
+#, php-format
 msgid "Opened table rate: %s, this value should be less than 10 per hour"
-msgstr "Големина на меѓупросторот за подредување"
+msgstr ""
+"Рата на отворени табели: %s, оваа вредност треба да биде помалце од 10 на "
+"саат"
 
 #: libraries/advisory_rules_generic.txt:266
-#, fuzzy
 msgid "Percentage of used open files limit"
-msgstr "Кодна страна на податотеката:"
+msgstr "Процентажа на лимитот на искористени отворени фајлови"
 
 #: libraries/advisory_rules_generic.txt:269
 msgid ""
@@ -17966,20 +17570,19 @@ msgid ""
 msgstr ""
 
 #: libraries/advisory_rules_generic.txt:273
-#, fuzzy
 msgid "Rate of open files"
-msgstr "Кодна страна на податотеката:"
+msgstr "Рата на отворени фајлови"
 
 #: libraries/advisory_rules_generic.txt:276
-#, fuzzy
 msgid "The rate of opening files is high."
-msgstr "Кодна страна на податотеката:"
+msgstr "Ратата на отворени фајлови е висока."
 
 #: libraries/advisory_rules_generic.txt:278
-#, fuzzy, php-format
-#| msgid "Sort buffer size"
+#, php-format
 msgid "Opened files rate: %s, this value should be less than 5 per hour"
-msgstr "Големина на меѓупросторот за подредување"
+msgstr ""
+"Рата на отворени фајлови: %s, оваа вредност треба да биде помалку од 5 на "
+"саат"
 
 #: libraries/advisory_rules_generic.txt:280
 #, fuzzy, php-format
@@ -17998,25 +17601,25 @@ msgid "Optimize queries and/or use InnoDB to reduce lock wait."
 msgstr ""
 
 #: libraries/advisory_rules_generic.txt:285
-#, fuzzy, php-format
-#| msgid "Sort buffer size"
+#, php-format
 msgid "Immediate table locks: %s%%, this value should be above 95%%"
-msgstr "Големина на меѓупросторот за подредување"
+msgstr ""
+"Непосредни заклучувања на табели: %s%%, оваа вредност треба да биде над 95%%"
 
 #: libraries/advisory_rules_generic.txt:287
 msgid "Table lock wait rate"
 msgstr ""
 
 #: libraries/advisory_rules_generic.txt:292
-#, fuzzy, php-format
-#| msgid "Sort buffer size"
+#, php-format
 msgid "Table lock wait rate: %s, this value should be less than 1 per hour"
-msgstr "Големина на меѓупросторот за подредување"
+msgstr ""
+"Рата на чекање за заклучување на табели: %s, оваа вредност треба да бида "
+"помала од 1 на саат"
 
 #: libraries/advisory_rules_generic.txt:294
-#, fuzzy
 msgid "Thread cache"
-msgstr "Вид на упит"
+msgstr "Кеш за тредови"
 
 #: libraries/advisory_rules_generic.txt:297
 msgid ""
@@ -18029,9 +17632,8 @@ msgid "Enable the thread cache by setting {thread_cache_size} > 0."
 msgstr ""
 
 #: libraries/advisory_rules_generic.txt:299
-#, fuzzy
 msgid "The thread cache is set to 0"
-msgstr "Вид на упит"
+msgstr "Кеш на тредови е подесен на 0"
 
 #: libraries/advisory_rules_generic.txt:301
 #, fuzzy, php-format
@@ -18039,20 +17641,17 @@ msgid "Thread cache hit rate %%"
 msgstr "Вид на упит"
 
 #: libraries/advisory_rules_generic.txt:304
-#, fuzzy
-#| msgid "The server is not responding"
 msgid "Thread cache is not efficient."
-msgstr "Серверот не одговара"
+msgstr "Тред кешот не е ефикасен."
 
 #: libraries/advisory_rules_generic.txt:305
 msgid "Increase {thread_cache_size}."
 msgstr ""
 
 #: libraries/advisory_rules_generic.txt:306
-#, fuzzy, php-format
-#| msgid "Sort buffer size"
+#, php-format
 msgid "Thread cache hitrate: %s%%, this value should be above 80%%"
-msgstr "Големина на меѓупросторот за подредување"
+msgstr "Тред кеш рата на употреба %s%%, оваа вредност треба да биде над 80%%"
 
 #: libraries/advisory_rules_generic.txt:308
 msgid "Threads that are slow to launch"
@@ -18125,10 +17724,8 @@ msgstr "Конекции"
 
 #: libraries/advisory_rules_generic.txt:334
 #: libraries/advisory_rules_generic.txt:341
-#, fuzzy
-#| msgid "Allows creating temporary tables."
 msgid "Too many connections are aborted."
-msgstr "Дозволува креирање на привремени табели…"
+msgstr "Премногу конекции се абортирани."
 
 #: libraries/advisory_rules_generic.txt:335
 #: libraries/advisory_rules_generic.txt:342
@@ -18163,10 +17760,8 @@ msgstr "Содржина"
 
 #: libraries/advisory_rules_generic.txt:348
 #: libraries/advisory_rules_generic.txt:355
-#, fuzzy
-#| msgid "Allows creating temporary tables."
 msgid "Too many clients are aborted."
-msgstr "Дозволува креирање на привремени табели…"
+msgstr "Премногу клиенти се абортирани."
 
 #: libraries/advisory_rules_generic.txt:349
 #: libraries/advisory_rules_generic.txt:356
@@ -18188,10 +17783,11 @@ msgid "Rate of aborted clients"
 msgstr "Содржина"
 
 #: libraries/advisory_rules_generic.txt:357
-#, fuzzy, php-format
-#| msgid "Sort buffer size"
+#, php-format
 msgid "Aborted client rate is at %s, this value should be less than 1 per hour"
-msgstr "Големина на меѓупросторот за подредување"
+msgstr ""
+"Ратата на абортирани клиенти е %s, оваа вредност треба да биде помала од 1 "
+"на саат"
 
 #: libraries/advisory_rules_generic.txt:361
 msgid "Is InnoDB disabled?"
@@ -18278,10 +17874,8 @@ msgid "InnoDB buffer pool size"
 msgstr "Големина на баферот"
 
 #: libraries/advisory_rules_generic.txt:385
-#, fuzzy
-#| msgid "Buffer pool size"
 msgid "Your InnoDB buffer pool is fairly small."
-msgstr "Големина на баферот"
+msgstr "InnoDB баферот пулот е премногу мал."
 
 #: libraries/advisory_rules_generic.txt:386
 #, php-format
@@ -18332,10 +17926,8 @@ msgid "Query cache disabled"
 msgstr "Вид на упит"
 
 #: libraries/advisory_rules_mysql_before80003.txt:13
-#, fuzzy
-#| msgid "The server is not responding"
 msgid "The query cache is not enabled."
-msgstr "Серверот не одговара"
+msgstr "Кешот за барање не е вклучен."
 
 #: libraries/advisory_rules_mysql_before80003.txt:14
 msgid ""
@@ -18363,10 +17955,9 @@ msgid "Consider increasing {query_cache_limit}."
 msgstr ""
 
 #: libraries/advisory_rules_mysql_before80003.txt:22
-#, fuzzy, php-format
-#| msgid "Sort buffer size"
+#, php-format
 msgid "The current query cache hit rate of %s%% is below 20%%"
-msgstr "Големина на меѓупросторот за подредување"
+msgstr "Тековната рата на кеширањите барања од %s%% е под 20%%"
 
 #: libraries/advisory_rules_mysql_before80003.txt:24
 #, fuzzy
@@ -18397,10 +17988,8 @@ msgid "Query cache fragmentation"
 msgstr "Вид на упит"
 
 #: libraries/advisory_rules_mysql_before80003.txt:34
-#, fuzzy
-#| msgid "The server is not responding"
 msgid "The query cache is considerably fragmented."
-msgstr "Серверот не одговара"
+msgstr "Кешот за барања е значително фрагментиран."
 
 #: libraries/advisory_rules_mysql_before80003.txt:35
 msgid ""
@@ -18465,9 +18054,9 @@ msgid ""
 msgstr ""
 
 #: libraries/advisory_rules_mysql_before80003.txt:50
-#, fuzzy, php-format
+#, php-format
 msgid "Current query cache size: %s"
-msgstr "Верзија на серверот"
+msgstr "Тековната големина на кеширањи барања: %s"
 
 #: libraries/advisory_rules_mysql_before80003.txt:52
 #, fuzzy

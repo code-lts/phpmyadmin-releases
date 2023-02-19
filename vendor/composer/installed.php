@@ -7,7 +7,7 @@
         'aliases' => array(
             0 => '4.9.x-dev',
         ),
-        'reference' => '351e66610ec995df75ed0c0ca668890ddf53ebbc',
+        'reference' => 'f1047bc018079214594983a1cb6669efaa8b9bf4',
         'name' => 'phpmyadmin/phpmyadmin',
         'dev' => false,
     ),
@@ -40,12 +40,12 @@
             'dev_requirement' => false,
         ),
         'paragonie/random_compat' => array(
-            'pretty_version' => 'v2.0.20',
-            'version' => '2.0.20.0',
+            'pretty_version' => 'v2.0.21',
+            'version' => '2.0.21.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../paragonie/random_compat',
             'aliases' => array(),
-            'reference' => '0f1f60250fccffeaf5dda91eea1c018aed1adc2a',
+            'reference' => '96c132c7f2f7bc3230723b66e89f8f150b29d5ae',
             'dev_requirement' => false,
         ),
         'phpmyadmin/motranslator' => array(
@@ -65,7 +65,7 @@
             'aliases' => array(
                 0 => '4.9.x-dev',
             ),
-            'reference' => '351e66610ec995df75ed0c0ca668890ddf53ebbc',
+            'reference' => 'f1047bc018079214594983a1cb6669efaa8b9bf4',
             'dev_requirement' => false,
         ),
         'phpmyadmin/shapefile' => array(
@@ -87,12 +87,12 @@
             'dev_requirement' => false,
         ),
         'phpseclib/phpseclib' => array(
-            'pretty_version' => '2.0.36',
-            'version' => '2.0.36.0',
+            'pretty_version' => '2.0.41',
+            'version' => '2.0.41.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../phpseclib/phpseclib',
             'aliases' => array(),
-            'reference' => 'a97547126396548c224703a267a30af1592be146',
+            'reference' => '7e763c6f97ec1fcb37c46aa8ecfc20a2c71d9c1b',
             'dev_requirement' => false,
         ),
         'pragmarx/google2fa' => array(
@@ -168,12 +168,12 @@
             'dev_requirement' => false,
         ),
         'tecnickcom/tcpdf' => array(
-            'pretty_version' => '6.4.4',
-            'version' => '6.4.4.0',
+            'pretty_version' => '6.6.2',
+            'version' => '6.6.2.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../tecnickcom/tcpdf',
             'aliases' => array(),
-            'reference' => '42cd0f9786af7e5db4fcedaa66f717b0d0032320',
+            'reference' => 'e3cffc9bcbc76e89e167e9eb0bbda0cab7518459',
             'dev_requirement' => false,
         ),
         'twig/extensions' => array(

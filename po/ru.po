@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: phpMyAdmin 4.9.7-dev\n"
 "Report-Msgid-Bugs-To: translators@phpmyadmin.net\n"
 "POT-Creation-Date: 2020-10-10 13:32-0300\n"
-"PO-Revision-Date: 2020-09-07 11:45+0000\n"
-"Last-Translator: William Desportes <williamdes@wdes.fr>\n"
+"PO-Revision-Date: 2022-06-18 09:18+0000\n"
+"Last-Translator: Максим <genkaok@yandex.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/phpmyadmin/4-9/"
 "ru/>\n"
 "Language: ru\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.3-dev\n"
+"X-Generator: Weblate 4.13-dev\n"
 
 #: ajax.php:21 ajax.php:50 export.php:196 libraries/classes/Export.php:1095
 msgid "Bad type!"
@@ -1173,7 +1173,7 @@ msgstr " "
 #: js/messages.php:163 libraries/classes/Util.php:1351
 #: libraries/classes/Util.php:1382
 msgid "."
-msgstr "."
+msgstr ","
 
 #: js/messages.php:165
 msgid "Connections / Processes"
@@ -1291,7 +1291,7 @@ msgstr "КиБ"
 #: js/messages.php:205 libraries/classes/Server/Status/Monitor.php:225
 #: libraries/classes/Util.php:1268
 msgid "MiB"
-msgstr "МБ"
+msgstr "МиБ"
 
 #. l10n: shortcuts for Gigabyte
 #: js/messages.php:206 libraries/classes/Util.php:1270
@@ -1353,7 +1353,7 @@ msgstr "Пожалуйста, добавьте в серию хотя бы од�
 #: templates/database/designer/options_panel.twig:177
 #: templates/privileges/privileges_summary.twig:30
 msgid "None"
-msgstr "Ниодного"
+msgstr "Ни одного"
 
 #: js/messages.php:221
 msgid "Resume monitor"
@@ -14979,13 +14979,14 @@ msgstr "Следующие Composer-пакеты отсутствуют:"
 #: templates/prefs_twofactor.twig:18
 msgid "Two-factor authentication is available and configured for this account."
 msgstr ""
-"Двухфакторная авторизация доступна и активирована для этой учетной записи."
+"Двухфакторная аутентификация доступна и настроена для этой учетной записи."
 
 #: templates/prefs_twofactor.twig:20
 msgid ""
 "Two-factor authentication is available, but not configured for this account."
 msgstr ""
-"Двухфакторная авторизация доступна, но не настроена для этой учетной записи."
+"Двухфакторная аутентификация доступна, но не настроена для этой учетной "
+"записи."
 
 #: templates/prefs_twofactor.twig:24
 msgid ""
@@ -15060,7 +15061,7 @@ msgid ""
 "Open the two-factor authentication app on your device to view your "
 "authentication code and verify your identity."
 msgstr ""
-"Откройте приложение двухфакторной аутентификации, чтобы узнать код "
+"Откройте приложение двухфакторной аутентификации, чтобы просмотреть код "
 "аутентификации и подтвердить свою личность."
 
 #: templates/database/tracking/untracked_tables.twig:1
@@ -16155,7 +16156,7 @@ msgstr ""
 
 #: templates/login/twofactor/application_configure.twig:14
 msgid "OTP url:"
-msgstr "URL для OTP:"
+msgstr "OTP адрес:"
 
 #: templates/login/twofactor/application_configure.twig:18
 msgid "Secret/key:"
