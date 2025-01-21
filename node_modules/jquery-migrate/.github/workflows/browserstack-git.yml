@@ -1,0 +1,71 @@
+name: Browserstack (Core git)
+
+on:
+  push:
+    branches:
+      - main
+  # Once a week every Tuesday
+  schedule:
+    - cron: "42 1 * * 2"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    environment: browserstack
+    env:
+      BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+      BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+      NODE_VERSION: 20.x
+    name: ${{ matrix.BROWSER }}
+    concurrency:
+      group: ${{ matrix.BROWSER }} - ${{ github.sha }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        BROWSER:
+          - 'IE_11'
+          - 'Safari_latest'
+          - 'Safari_latest-1'
+          - 'Chrome_latest'
+          - 'Chrome_latest-1'
+          - 'Opera_latest'
+          - 'Edge_latest'
+          - 'Edge_latest-1'
+          - 'Firefox_latest'
+          - 'Firefox_latest-1'
+          - 'Firefox_115'
+          - '__iOS_17'
+          - '__iOS_16'
+          - '__iOS_15'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4.0.3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Cache
+        uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4.0.2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ env.NODE_VERSION }}-npm-lock-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-${{ env.NODE_VERSION }}-npm-lock-
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Pretest script
+        run: npm run pretest
+
+      - name: Test
+        run: |
+          npm run test:unit -- \
+            -v --browserstack "${{ matrix.BROWSER }}" \
+            --jquery-migrate dev --jquery-migrate min \
+            --jquery git --jquery git.min --jquery git.slim --jquery git.slim.min \
+            --run-id ${{ github.run_id }} \
+            --retries 3 --hard-retries 1

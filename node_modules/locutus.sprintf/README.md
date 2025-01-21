@@ -1,5 +1,9 @@
 # Locutus.sprintf
 
+[![npm version](https://badge.fury.io/js/locutus.sprintf.svg)](https://badge.fury.io/js/locutus.sprintf)
+
+Find our package on NPM at: https://www.npmjs.com/package/locutus.sprintf
+
 Locutus's version of sprintf and vsprintf in an NPM package
 
 More info at: https://locutus.io/php/strings/sprintf/

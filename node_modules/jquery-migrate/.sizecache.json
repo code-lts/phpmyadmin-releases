@@ -1,0 +1,24 @@
+{
+  " last run": {
+    "meta": {
+      "version": 1
+    },
+    "files": {
+      "dist/jquery-migrate.min.js": {
+        "raw": 13992,
+        "gz": 5056
+      }
+    }
+  },
+  "main": {
+    "meta": {
+      "commit": "3fa589ad8cdf38b85554d717aa80c8c87d86b783"
+    },
+    "files": {
+      "dist/jquery-migrate.min.js": {
+        "raw": 13992,
+        "gz": 5056
+      }
+    }
+  }
+}
