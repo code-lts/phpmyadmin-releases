@@ -26,7 +26,7 @@
 			{
 				"patch": 3,
 				"name": "5.2.3",
-				"imported": false
+				"imported": true
 			}
 		]
 	},
