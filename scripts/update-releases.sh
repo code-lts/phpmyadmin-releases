@@ -33,7 +33,7 @@ checkRepoInGoodState () {
 		quitError 'Please create a directory named build at the repository root.'
 	fi
 	if output=$(git status --porcelain) && [ ! -z "$output" ]; then
-		quitError 'Some changes are not commited, please clean your repository first.'
+		quitError 'Some changes are not committed, please clean your repository first.'
 	fi
 	logDebug "Showing non pushed tags"
 	git fetch --prune-tags --dry-run
