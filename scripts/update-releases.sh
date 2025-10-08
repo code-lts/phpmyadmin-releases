@@ -114,12 +114,19 @@ doImportOfVersionToCommit () {
 	logInfo "Importing ${RELEASE_NAME} ..."
 	variantList=('all-languages' 'english' 'source')
 	for variant in "${variantList[@]}"; do
+		branchName="upstream/series/latest-${variant}/${MAJOR}-${MINOR}"
+		# Sync with commitVersion
+		tagName="upstream/version/${variant}/${RELEASE_NAME}"
+		if [ "$(git tag -l "$tagName")" == "$tagName" ]; then
+			logInfo "The release ${tagName} is already imported"
+			continue
+		fi
 		downloadReleaseFile "${RELEASE_NAME}" ${variant}
 		checkReleaseFile "phpMyAdmin-${RELEASE_NAME}-${variant}.tar.xz" # The function will cd into build
 		bundleToCommitOnBranch \
 			"./build/phpMyAdmin-${RELEASE_NAME}-${variant}.tar.xz" \
 			"phpMyAdmin-${RELEASE_NAME}-${variant}" \
-			"upstream/series/latest-${variant}/${MAJOR}-${MINOR}" \
+			"$branchName" \
 			"${variant}" \
 			"${RELEASE_NAME}"
 	done
